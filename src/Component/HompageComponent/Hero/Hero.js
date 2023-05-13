@@ -5,7 +5,7 @@ import homeBannerImg from "../../../assets/banner-1.png";
 export default function Hero() {
   return (
     <header
-      className="bg-no-repeat  bg-center rounded-b-[90px] bg-cover	"
+      className="bg-no-repeat relative bg-center  bg-cover	"
       style={{ backgroundImage: `url(${homeBannerBg})` }}
     >
       <div className="container px-6 py-16 mx-auto">
@@ -39,6 +39,8 @@ export default function Hero() {
           </div>
         </div>
       </div>
+    
+    
     </header>
   );
 }
