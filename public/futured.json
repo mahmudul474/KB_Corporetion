@@ -1,0 +1,35 @@
+[
+    {
+        "_id":0,
+        "title":"TATA Steel",
+         "buyPrice":800,
+         "CurentBid":400,
+         "totalBid":20,
+         "img":"https://i.ibb.co/Rzyps9S/download.jpg",
+         "about":"Tata Steel was founded in India in 1907 as Asia's first integrated private steel firm, and it is now one of the world's largest low-cost steel producers. With a focus on growth projects.. "
+         
+
+    },
+    {
+        "_id":1,
+        "title":"JSW Steel",
+         "buyPrice":9000,
+         "CurentBid":490,
+         "totalBid":20,
+         "img":"https://i.ibb.co/92DLJWk/image.png",
+         "about":"JSW Group is one of India's most prestigious corporate conglomerates. In the last three decades, it has developed from a single production unit to become India's largest integrated steel.. "
+         
+
+    },
+    {
+        "_id":2,
+        "title":"VANADA Steel",
+         "buyPrice":1200,
+         "CurentBid":800,
+         "totalBid":40,
+         "img":"https://i.ibb.co/k8Fwmzq/image.png",
+         "about":"Vedanta entered the steel market once it acquired a 90% stake in ESL Steel Limited (ESL). Through the Corporate Insolvency Resolution Process, created to handle the resolution of non-performing assets in the Indian banking sector, Vedanta Limited obtained.."
+         
+
+    }
+]

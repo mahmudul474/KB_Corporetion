@@ -95,7 +95,7 @@ const Category = () => {
     responsive: responsiveSettings,
   };
   return (
-    <div className="px-10 cursor-pointer text-left ">
+    <div className="px-10 cursor-pointer text-left mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">
       <div className="flex justify-between text-left my-4 flex-col lg:flex-row items-center">
         <div>
           <h1 className="text-2xl capitalize font-semibold text-green-600">

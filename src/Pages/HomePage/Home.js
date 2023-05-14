@@ -1,6 +1,9 @@
 import React from 'react'
 import Hero from '../../Component/HompageComponent/Hero/Hero'
 import Category from '../../Component/HompageComponent/Category/Category'
+import Featured from '../../Component/HompageComponent/Featured/Featured'
+import Subscriptions from '../../Component/HompageComponent/Subscriptions/Subscriptions'
+import Upcommings from '../../Component/HompageComponent/Upcomming/Upcommings'
 
 export default function Home() {
   return (
@@ -10,6 +13,15 @@ export default function Home() {
       </div>
       <div>
         <Category></Category>
+      </div>
+      <div>
+        <Featured></Featured>
+      </div>
+      <div>
+        <Subscriptions></Subscriptions>
+      </div>
+      <div>
+        <Upcommings></Upcommings>
       </div>
     </div>
   )
