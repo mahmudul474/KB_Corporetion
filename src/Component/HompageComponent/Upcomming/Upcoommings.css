@@ -1,0 +1,8 @@
+.active-tab {
+ 
+    color: white;
+    background: rgb(23, 119, 23);
+    border-bottom: 2px solid rgb(29, 167, 29);
+    border:none;
+    padding:10px
+  }

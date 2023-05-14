@@ -4,6 +4,8 @@ import Category from '../../Component/HompageComponent/Category/Category'
 import Featured from '../../Component/HompageComponent/Featured/Featured'
 import Subscriptions from '../../Component/HompageComponent/Subscriptions/Subscriptions'
 import Upcommings from '../../Component/HompageComponent/Upcomming/Upcommings'
+import HowToWork from '../../Component/HompageComponent/HowToWork/HowToWork'
+import Review from '../../Component/HompageComponent/Review/Review'
 
 export default function Home() {
   return (
@@ -22,6 +24,12 @@ export default function Home() {
       </div>
       <div>
         <Upcommings></Upcommings>
+      </div>
+      <div>
+        <HowToWork></HowToWork>
+      </div>
+      <div>
+        <Review></Review>
       </div>
     </div>
   )
