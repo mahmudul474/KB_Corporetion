@@ -108,7 +108,7 @@ const Review = () => {
       <Slider {...settings} ref={sliderRef}>
         {cardData.map((card) => (
           <div class="w-full mr-6 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex flex-col items-center pb-10">
+            <div class="flex bg-slate-50 flex-col items-center pb-10">
               <img
                 alt=""
                 className="w-24 h-24 mb-3 rounded-full shadow-lg"
