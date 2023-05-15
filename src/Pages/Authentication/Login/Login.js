@@ -1,23 +1,25 @@
 import React from "react";
- 
 
 export default function Login() {
   return (
     <>
-      
       <div className=" px-4 py-10  mt-10 shadow-2xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:mx-16 md:px-24 lg:px-8  bottom-0 bg-white rounded-2xl ">
         <div className="container ">
           <div className="sm:flex sm:flex-col    sm:w-full lg:flex-row lg:w-full">
             <div className="lg:w-3/4 sm:w-full px-16">
               <div className="my-10 text-center">
-                <h1 className="text-3xl capitalize  mb-1 font-semibold ">HI, THERE</h1>
-                <h3 className="text-lg ">You can log in to your KB account here.</h3>
+                <h1 className="text-3xl capitalize  mb-1 font-semibold ">
+                  HI, THERE
+                </h1>
+                <h3 className="text-lg ">
+                  You can log in to your KB account here.
+                </h3>
               </div>
 
               <div className="my-5">
                 <button
                   type="button"
-                  className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
+                  className="hover:text-white hover:bg-green-600  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center border-green-600 border text-green-600  mr-2 mb-2"
                 >
                   <svg
                     className="w-4 h-4 mr-2 -ml-1"
@@ -39,7 +41,7 @@ export default function Login() {
 
                 <button
                   type="button"
-                  className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+                  className="hover:text-white hover:bg-green-600  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center border-green-600 border text-green-600  mr-2 mb-2"
                 >
                   <svg
                     className="w-4 h-4 mr-2 -ml-1"
@@ -61,7 +63,7 @@ export default function Login() {
               </div>
               <hr />
 
-              <form className="my-10" >
+              <form className="my-10">
                 <div className="my-1">
                   <label
                     for="email"
@@ -78,7 +80,7 @@ export default function Login() {
                     required=""
                   />
                 </div>
-                <div  className="my-1">
+                <div className="my-1">
                   <label
                     for="password"
                     className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -127,32 +129,25 @@ export default function Login() {
                 >
                   Sign in
                 </button>
-                
-               
               </form>
             </div>
             <div className="lg:w-1/4 sm:w-full bg-[#442db9] rounded-md py-16 ">
-
-    <div className="mt-24 text-white my-10">
-        <h1 className="text-3xl font-semibold">NEW HERE?</h1>
-        <h2>Sign up and create your Account</h2>
-
-
-
-    </div>  <div class="mb-4 mx-4 ">
-          <button
-            type="button"
-            className="flex justify-center items-center max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
-          >
-             Sing Up
-          </button>
-        </div>
-
+              <div className="mt-24 text-white my-10">
+                <h1 className="text-3xl font-semibold">NEW HERE?</h1>
+                <h2>Sign up and create your Account</h2>
+              </div>{" "}
+              <div className="mb-4 mx-4 ">
+                <button
+                  type="button"
+                  className="flex justify-center items-center max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
+                >
+                  Sing Up
+                </button>
+              </div>
             </div>
-
           </div>
         </div>
-      </div> 
+      </div>
     </>
   );
 }

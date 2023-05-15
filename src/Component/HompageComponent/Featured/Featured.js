@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import featuredBg from "../../../assets/featured-bg-1.jpg";
 import actionimg1 from "../../../assets/auction (1).png";
 import price from "../../../assets/price (2).png";
+import { Link } from "react-router-dom";
 export default function Featured() {
   const [futureds, setFutureds] = useState([]);
 
@@ -71,12 +72,14 @@ export default function Featured() {
 
                 <div className="card-actions">
                   <div class="mb-4">
+                  
+                  <Link to={`/action/${featuredBg._id}`}>
                     <button
                       type="button"
                       className="flex justify-center items-center max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
                     >
                       Submit A Bid
-                    </button>
+                    </button></Link>
                   </div>
                 </div>
               </div>
