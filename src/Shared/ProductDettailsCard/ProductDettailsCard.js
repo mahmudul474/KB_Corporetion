@@ -1,185 +1,152 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Tab } from "@headlessui/react";
 
 export default function ProductDettailsCard() {
+  const [uploadTime, setUploadTime] = useState(
+    new Date("2023-05-18T10:00:00Z")
+  );
+  const [remainingTime, setRemainingTime] = useState({
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      calculateRemainingTime();
+    }, 1000);
+
+    const calculateRemainingTime = () => {
+      const currentTime = new Date();
+      const timeDifference = uploadTime - currentTime;
+
+      if (timeDifference <= 0) {
+        clearInterval(timer);
+        return;
+      }
+
+      const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeDifference / 1000) % 60);
+
+      setRemainingTime({ hours, minutes, seconds });
+    };
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
-    <div><section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
-    <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-        <div className="flex flex-wrap -mx-4">
+    <div>
+      <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
+        <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
+          <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4 md:w-1/2 ">
-                <div className="sticky top-0 z-50 overflow-hidden ">
-                    <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                        <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
-                            className="object-cover w-full lg:h-full "/>
-                    </div>
-                    <div className="flex-wrap hidden md:flex ">
-                        <div className="w-1/2 p-2 sm:w-1/4">
-                            <a href="#"
-                                className="block border border-purple-300 dark:border-transparent dark:hover:border-purple-300 hover:border-purple-300">
-                                <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
-                                    className="object-cover w-full lg:h-20"/>
-                            </a>
-                        </div>
-                        <div className="w-1/2 p-2 sm:w-1/4">
-                            <a href="#"
-                                className="block border border-transparent dark:border-transparent dark:hover:border-purple-300 hover:border-purple-300">
-                                <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
-                                    className="object-cover w-full lg:h-20"/>
-                            </a>
-                        </div>
-                        <div className="w-1/2 p-2 sm:w-1/4">
-                            <a href="#"
-                                className="block border border-transparent dark:border-transparent dark:hover:border-purple-300 hover:border-purple-300">
-                                <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
-                                    className="object-cover w-full lg:h-20"/>
-                            </a>
-                        </div>
-                        <div className="w-1/2 p-2 sm:w-1/4">
-                            <a href="#"
-                                className="block border border-transparent dark:border-transparent dark:hover:border-purple-300 hover:border-purple-300">
-                                <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
-                                    className="object-cover w-full lg:h-20"/>
-                            </a>
-                        </div>
-                    </div>
+              <div className="sticky top-0 z-50 overflow-hidden ">
+                <div className="relative mb-6 lg:mb-10 h-96 ">
+                  <img
+                    src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg"
+                    alt=""
+                    className="object-cover w-full lg:h-full "
+                  />
                 </div>
+              </div>
             </div>
-            <div className="w-full px-4 md:w-1/2 ">
-                <div className="lg:pl-20">
-                    <div className="mb-8 ">
-                        <span className="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
-                        <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
-                            Shoes</h2>
-                        <div className="flex items-center mb-6">
-                            <ul className="flex mr-2">
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor"
-                                            className="w-4 mr-1 text-red-500 dark:text-gray-400 bi bi-star "
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor"
-                                            className="w-4 mr-1 text-red-500 dark:text-gray-400 bi bi-star "
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor"
-                                            className="w-4 mr-1 text-red-500 dark:text-gray-400 bi bi-star "
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor"
-                                            className="w-4 mr-1 text-red-500 dark:text-gray-400 bi bi-star "
-                                            viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                            <p className="text-xs dark:text-gray-400 ">(2 customer reviews)</p>
-                        </div>
-                        <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
-                            Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
-                            Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
-                        </p>
-                        <p className="inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
-                            <span>$1000.99</span>
-                            <span
-                                className="text-base font-normal text-gray-500 line-through dark:text-gray-400">$1500.99</span>
-                        </p>
-                        <p className="text-green-600 dark:text-green-300 ">7 in stock</p>
-                    </div>
-                    <div className="flex items-center mb-8">
-                        <h2 className="w-16 mr-6 text-xl font-bold dark:text-gray-400">
-                            Colors:</h2>
-                        <div className="flex flex-wrap -mx-2 -mb-2">
-                            <button
-                                className="p-1 mb-2 mr-2 border border-transparent hover:border-purple-400 dark:border-gray-800 dark:hover:border-gray-400 ">
-                                <div className="w-6 h-6 bg-cyan-300"></div>
-                            </button>
-                            <button
-                                className="p-1 mb-2 mr-2 border border-transparent hover:border-purple-400 dark:border-gray-800 dark:hover:border-gray-400">
-                                <div className="w-6 h-6 bg-green-300 "></div>
-                            </button>
-                            <button
-                                className="p-1 mb-2 border border-transparent hover:border-purple-400 dark:border-gray-800 dark:hover:border-gray-400">
-                                <div className="w-6 h-6 bg-red-200 "></div>
-                            </button>
-                        </div>
-                    </div>
-                    <div className="flex items-center mb-8">
-                        <h2 className="w-16 text-xl font-bold dark:text-gray-400">
-                            Size:</h2>
-                        <div className="flex flex-wrap -mx-2 -mb-2">
-                            <button
-                                className="py-1 mb-2 mr-1 border w-11 hover:border-purple-400 dark:border-gray-400 hover:text-purple-600 dark:hover:border-gray-300 dark:text-gray-400">XL
-                            </button>
-                            <button
-                                className="py-1 mb-2 mr-1 border w-11 hover:border-purple-400 hover:text-purple-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">S
-                            </button>
-                            <button
-                                className="py-1 mb-2 mr-1 border w-11 hover:border-purple-400 hover:text-purple-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">M
-                            </button>
-                            <button
-                                className="py-1 mb-2 mr-1 border w-11 hover:border-purple-400 hover:text-purple-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">XS
-                            </button>
-                        </div>
-                    </div>
-                    <div className="w-32 mb-8 ">
-                        <label for=""
-                            className="w-full text-xl font-semibold text-gray-700 dark:text-gray-400">Quantity</label>
-                        <div className="relative flex flex-row w-full h-10 mt-4 bg-transparent rounded-lg">
-                            <button
-                                className="w-20 h-full text-gray-600 bg-gray-300 rounded-l outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 hover:text-gray-700 dark:bg-gray-900 hover:bg-gray-400">
-                                <span className="m-auto text-2xl font-thin">-</span>
-                            </button>
-                            <input type="number"
-                                className="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md hover:text-black"
-                                placeholder="1"/>
-                            <button
-                                className="w-20 h-full text-gray-600 bg-gray-300 rounded-r outline-none cursor-pointer dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-900 hover:text-gray-700 hover:bg-gray-400">
-                                <span className="m-auto text-2xl font-thin">+</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div className="flex flex-wrap items-center -mx-4 ">
-                        <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
-                            <button
-                                className="flex items-center justify-center w-full p-4 text-purple-500 border border-purple-500 rounded-md dark:text-gray-200 dark:border-purple-600 hover:bg-purple-600 hover:border-purple-600 hover:text-gray-100 dark:bg-purple-600 dark:hover:bg-purple-700 dark:hover:border-purple-700 dark:hover:text-gray-300">
-                                Add to Cart
-                            </button>
-                        </div>
-                        <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
-                            <button
-                                className="flex items-center justify-center w-full p-4 text-purple-500 border border-purple-500 rounded-md dark:text-gray-200 dark:border-purple-600 hover:bg-purple-600 hover:border-purple-600 hover:text-gray-100 dark:bg-purple-600 dark:hover:bg-purple-700 dark:hover:border-purple-700 dark:hover:text-gray-300">
-                                Add to wishlist
-                            </button>
-                        </div>
-                    </div>
+            <div className="w-full text-left px-4 md:w-1/2 ">
+              <div className=" ">
+                <div className="mb-8 ">
+                  <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
+                    Shoes
+                  </h2>
+
+                  <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
+                    Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor
+                    amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum
+                    dor amet Lorem ispum dor amet Lorem ispum dor amet
+                  </p>
+                  <p className="inline-block  mb-1 text-xl font-bold text-green-600  dark:text-green-100 ">
+                  Starting bid: <span>600 $</span>
+                  </p> 
+
+                  <p  className="mb-1">Current bid:   <span>No Bids</span></p>
+
+                  <div className="flex justify-start flex-col lg:flex-row items-center text-xl ">
+                    <h4 className="lg:mr-2">This Auction Ends in:</h4>
+                    <h2 className="text-red-500">
+                      {" "}
+                      {remainingTime.hours.toString().padStart(2, "0")} h :{" "}
+                      {remainingTime.minutes.toString().padStart(2, "0")} m :{" "}
+                      {remainingTime.seconds.toString().padStart(2, "0")}s
+                    </h2>
+                  </div>
                 </div>
+
+                <div className=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                  <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                    Bid Now
+                  </h5>
+                  <p className="mb-1 font-normal text-gray-500 dark:text-gray-400">
+                    Bid Amount : Minimum Bid $20.00
+                  </p>
+                  <span className="w-16 h-1 bg-green-600 block"></span>
+
+                  <div>
+                    <form className="flex justify-between my-5 items-center">
+                      <div className="  w-full">
+                        <input
+                          type="text"
+                          id="voice-search"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          placeholder="$00:00"
+                          required
+                        />
+                        <button
+                          type="button"
+                          className="absolute inset-y-0 right-0 flex items-center pr-3"
+                        ></button>
+                      </div>
+                      <button
+                        type="submit"
+                        className="inline-flex lg:w-1/3 w-1/2 items-center py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-600 dark:focus:ring-green-800"
+                      >
+                        Place Bid
+                      </button>
+                    </form>
+
+                    <button
+                      type="button"
+                      className="  text-center w-full    px-5 py-2.5 text-sm font-medium   text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
+                    >
+                      Buy now for
+                      <span className="inline-flex items-center justify-center  ml-2 text-xs font-semibold text-white ">
+                        2000 $
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </section>
+
+      <div className="px-4 shadow-2xl py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+        <Tab.Group manual>
+          <Tab.List className="flex justify-between items-center ">
+            <Tab>Description </Tab>
+            <Tab>Auction history </Tab>
+            <Tab>Reviews (0) </Tab>
+            <Tab> Vendor Info </Tab>
+          </Tab.List>
+          <Tab.Panels>
+            <Tab.Panel>coming soon Description</Tab.Panel>
+            <Tab.Panel>coming soon Auction history</Tab.Panel>
+            <Tab.Panel>coming soon Reviews</Tab.Panel>
+            <Tab.Panel>coming soon Vendor Info</Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
+      </div>
     </div>
-</section></div>
-  )
+  );
 }

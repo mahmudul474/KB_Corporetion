@@ -14,6 +14,54 @@ export default function Featured() {
       });
   }, []);
 
+
+
+
+
+  const [uploadTime, setUploadTime] = useState(new Date('2023-05-18T10:00:00Z'));
+  const [remainingTime, setRemainingTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      calculateRemainingTime();
+    }, 1000);
+
+    const calculateRemainingTime = () => {
+      const currentTime = new Date();
+      const timeDifference = uploadTime - currentTime;
+  
+      if (timeDifference <= 0) {
+        clearInterval(timer);
+        return;
+      }
+  
+      const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeDifference / 1000) % 60);
+  
+      setRemainingTime({ hours, minutes, seconds });
+    };
+   
+   
+   
+   
+   
+    return () => {
+      clearInterval(timer);
+    };
+
+
+
+
+
+    
+  }, []);
+
+  
+
+
+
+
   return (
     <div
       className="bg-no-repeat my-10   bg-center  bg-cover	"
@@ -42,6 +90,7 @@ export default function Featured() {
                   {futured.title}
                 </h2>
 
+
                 <hr className=""></hr>
 
                 <div className="flex justify-between items-center py-5 ">
@@ -65,7 +114,7 @@ export default function Featured() {
                 <hr className=""></hr>
 
                 <div className="flex justify-between text-2xl items-center my-4">
-                  <h2 className="text-red-500">0d : 4h : 33m : 40s </h2>
+                  <h2 className="text-red-500">  {remainingTime.hours.toString().padStart(2, '0')} h : {remainingTime.minutes.toString().padStart(2, '0')} m : {remainingTime.seconds.toString().padStart(2, '0')}s</h2>
                   <span className="w-[2px] h-6 bg-green-600"></span>
                   <h2 className="text-green-600">{futured.CurentBid} Bids</h2>
                 </div>
