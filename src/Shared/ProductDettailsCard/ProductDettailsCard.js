@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
-
+import bg from "../../assets/section-bg.png"
+import  product from "../../assets/CategoryAssets/03.png"
+import Description from "./Description";
+import ActionHistory from "./ActionHistory";
+import Reviews from "./Reviews";
 export default function ProductDettailsCard() {
   const [uploadTime, setUploadTime] = useState(
     new Date("2023-05-18T10:00:00Z")
@@ -37,30 +41,38 @@ export default function ProductDettailsCard() {
     };
   }, []);
 
+
+
+
+
+
+  
+
   return (
     <div>
-      <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
+      <section   
+      style={{ backgroundImage: `url(${ bg})` }} className="bg-no-repeat relative bg-center  bg-cover     overflow-hidden  py-11 font-poppins dark:bg-gray-800">
         <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4 md:w-1/2 ">
               <div className="sticky top-0 z-50 overflow-hidden ">
-                <div className="relative mb-6 lg:mb-10 h-96 ">
+                <div className="relative mb-6 lg:mb-10 h-full lg:h-[500px] ">
                   <img
-                    src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg"
+                    src="https://i.ibb.co/Xz3JW58/image.png"
                     alt=""
-                    className="object-cover w-full lg:h-full "
+                    className="object-cover w-full h-full "
                   />
                 </div>
               </div>
             </div>
             <div className="w-full text-left px-4 md:w-1/2 ">
               <div className=" ">
-                <div className="mb-8 ">
-                  <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
-                    Shoes
+                <div className="mb-4 ">
+                  <h2 className="max-w-xl mt-1 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
+                    SPA Steel 
                   </h2>
 
-                  <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
+                  <p className="max-w-md mb-4 text-gray-700 dark:text-gray-400">
                     Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor
                     amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum
                     dor amet Lorem ispum dor amet Lorem ispum dor amet
@@ -71,7 +83,7 @@ export default function ProductDettailsCard() {
 
                   <p  className="mb-1">Current bid:   <span>No Bids</span></p>
 
-                  <div className="flex justify-start flex-col lg:flex-row items-center text-xl ">
+                  <div className="flex justify-start flex-col lg:flex-row  text-xl text-left items-start">
                     <h4 className="lg:mr-2">This Auction Ends in:</h4>
                     <h2 className="text-red-500">
                       {" "}
@@ -132,20 +144,32 @@ export default function ProductDettailsCard() {
       </section>
 
       <div className="px-4 shadow-2xl py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-        <Tab.Group manual>
-          <Tab.List className="flex justify-between items-center ">
-            <Tab>Description </Tab>
-            <Tab>Auction history </Tab>
-            <Tab>Reviews (0) </Tab>
-            <Tab> Vendor Info </Tab>
+      <div className="flex justify-between   flex-col lg:flex-row">
+
+      <div className="w-full   lg:w-2/3">
+       <Tab.Group manual>
+          <Tab.List className="flex  justify-start items-center ">
+            <Tab  className="border-none  mr-5 shadow-2xl p-5 rounded-lg  font-bold  hover:bg-green-600 transition duration-500 ease-in-out hover:text-white">Description </Tab>
+            <Tab   className="border-none   mr-5 shadow-2xl p-5 rounded-lg  font-bold  hover:bg-green-600 transition duration-500 ease-in-out hover:text-white">Auction history </Tab>
+            <Tab   className="border-none  mr-5 shadow-2xl p-5 rounded-lg  font-bold  hover:bg-green-600 transition duration-500 ease-in-out hover:text-white">Reviews   </Tab>
+             
           </Tab.List>
           <Tab.Panels>
-            <Tab.Panel>coming soon Description</Tab.Panel>
-            <Tab.Panel>coming soon Auction history</Tab.Panel>
-            <Tab.Panel>coming soon Reviews</Tab.Panel>
-            <Tab.Panel>coming soon Vendor Info</Tab.Panel>
+            <Tab.Panel><Description></Description></Tab.Panel>
+            <Tab.Panel> <ActionHistory></ActionHistory></Tab.Panel>
+            <Tab.Panel><Reviews></Reviews></Tab.Panel>
+            
           </Tab.Panels>
         </Tab.Group>
+       </div>
+   
+   <div className="w-full   lg:w-1/3">
+    <h1>this is sell component </h1>
+   </div>
+      </div>
+
+     
+
       </div>
     </div>
   );
