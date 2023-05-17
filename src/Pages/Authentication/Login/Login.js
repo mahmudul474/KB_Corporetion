@@ -3,7 +3,7 @@ import React from "react";
 export default function Login() {
   return (
     <>
-      <div className=" px-4 py-10  mt-10 shadow-2xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:mx-16 md:px-24 lg:px-8  bottom-0 bg-white rounded-2xl ">
+      <div className=" px-4 py-10  mt-10 shadow-2xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:mx-16 md:px-24 lg:px-8  bottom-0 bg-white rounded-2xl  ">
         <div className="container ">
           <div className="sm:flex sm:flex-col    sm:w-full lg:flex-row lg:w-full">
             <div className="lg:w-3/4 sm:w-full px-16">

@@ -2,9 +2,9 @@ import React from 'react'
 import logo from "../../assets/logo.jpg"
 export default function Footer() {
   return (
-    <div className="relative mt-16 bg-[#442db9]">
+    <div className="relative mt-16 text-white bg-[#442db9]">
       <svg
-        className="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-[#442db9]"
+        className="absolute top-0 w-full h-6  -mt-5 sm:-mt-10 sm:h-16 text-[#442db9]"
         preserveAspectRatio="none"
         viewBox="0 0 1440 54"
       >

@@ -30,38 +30,32 @@ const Category = () => {
   const category = [
     {
       _id: 1,
-      title: "VEHICLES",
-      img: img1,
+      title: " Tungsten Steel",
+      img: "https://i.ibb.co/TbSFdrS/image.png",
     },
     {
       _id: 2,
-      title: "JEWELRY",
-      img: img2,
+      title: "Structural Steel",
+      img: "https://i.ibb.co/grgykMH/image.png",
     },
     {
       id: 3,
-      title: "WATCHES",
+      title: "Rebar Steel",
 
-      img: img3,
+      img: "https://i.ibb.co/Fxv3DY4/image.png",
     },
     {
       id: 4,
-      title: "ELECTRONICS",
-
-      img: img4,
+      title: "Kit",
+      img: "https://i.ibb.co/vcCsBSt/image.png",
     },
     {
       id: 5,
-      title: "SPORTS",
+      title: "SP",
 
-      img: img5,
-    },
-    {
-      id: 6,
-      title: "REAL ESTATE",
-
-      img: img6,
-    },
+      img: "https://i.ibb.co/JjmTvWZ/image.png"
+    }
+     
   ];
 
   const responsiveSettings = [

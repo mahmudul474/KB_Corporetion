@@ -5,7 +5,7 @@ import how3 from "../../../assets/how3.png"
 
 export default function HowToWork() {
   return (
-    <div className='bg-slate-200 rounded-lg mt-20 mx-2 lg:mx-16 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8'>
+    <div className='bg-slate-200 m-auto rounded-lg mt-20  sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8'>
   
    <div className='p-10 py-16'>
    <div className='text-left '>
