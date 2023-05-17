@@ -81,10 +81,13 @@ export default function Featured() {
         </div>
 
         <div className="my-10">
+       
+       <Link to="/action">
           <button className="m-auto btn bg-transparent border  p-5 rounded-md text-lg  font-semibold capitalize border-green-600">
             {" "}
             View All{" "}
           </button>
+          </Link>
         </div>
       </div>
     </div>

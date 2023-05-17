@@ -1,0 +1,50 @@
+[
+  {
+    "_id": 1,
+    "title": "Stainless Steel",
+    "img": "https://i.ibb.co/nQDkbvZ/image.png",
+    "listingID": "#44445",
+    "item": "#e33432232",
+    "curentbid": 500,
+    "buynow": 800,
+    "totalbid": 12,
+    "lastbid": 3,
+    "bidincrement": 10
+  },
+  {
+    "_id": 2,
+    "title": "Alloy Steel",
+    "img": "https://i.ibb.co/7K1Kkp3/image.png",
+    "listingID": "#rffds333",
+    "item": "ed22144",
+    "curentbid": 400,
+    "buynow": 600,
+    "totalbid": 30,
+    "lastbid": 7,
+    "bidincrement": 20
+  },
+  {
+    "_id": 3,
+    "title": "Hardened Steel",
+    "img": "https://i.ibb.co/0VZxghB/image.png",
+    "listingID": "@ffedfd332",
+    "item": "2edgfgd",
+    "curentbid": 300,
+    "buynow": 500,
+    "totalbid": 2,
+    "lastbid": 3,
+    "bidincrement": 3
+  },
+  {
+    "_id": 4,
+    "title": "Electrical Steel",
+    "img": "https://i.ibb.co/dtrWJKq/image.png",
+    "listingID": "dfggeaswe",
+    "item": "@fdhbhff",
+    "curentbid": 560,
+    "buynow": 3000,
+    "totalbid": 50,
+    "lastbid": 10,
+    "bidincrement": 200
+  }
+]

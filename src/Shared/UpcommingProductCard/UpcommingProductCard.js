@@ -3,30 +3,34 @@ import actionimg1 from "../../assets/auction (1).png";
 import price from "../../assets/price (2).png";
 import { Link } from "react-router-dom";
 
-export default function UpcommingProductCard() {
+export default function UpcommingProductCard({data}) {
+
+  const{_id ,title, img,listingID,item,curentbid,buynow,totalbid,lastbid,bidincrement}=data
+
+
   return (
-    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col sm:flex-row sm:divide-x sm:divide-gray-300">
-      <div class="w-full   lg:w-1/4">
+    <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col sm:flex-row sm:divide-x sm:divide-gray-300">
+      <div className="w-full   lg:w-1/4">
         <img
           className="w-full h-full"
           alt="img"
-          src="https://pixner.net/sbidu/main/assets/images/auction/upcoming/upcoming-1.png"
+          src={img}
         />
       </div>
-      <div class="w-full lg:w-1/2 px-4 mt-4 lg:mt-0">
+      <div className="w-full lg:w-1/2 px-4 mt-4 lg:mt-0">
         <div className=" text-left lg:text-center">
           <h2
             className="text-lg my-3  font-bold
           "
           >
-            14k Gold Geneve Watch,24.5g
+            {title}
           </h2>
           <div className="flex  justify-start lg:justify-center items-center my-4">
             <p className="border-r-2  mr-3 pr-2 border-emerald-500   ">
-              <span className="text lg font-bold">Listing ID:</span> 14033488
+              <span className="text lg font-bold">Listing ID:</span> {listingID}
             </p>
             <p className="border-r-2  mr-3 pr-2 border-emerald-500   ">
-              <span className="text lg font-bold">Item:</span> #14033488
+              <span className="text lg font-bold">Item:</span> {item}
             </p>
           </div>
         </div>
@@ -37,7 +41,7 @@ export default function UpcommingProductCard() {
             <img className="w-10 h-10" alt="action" src={actionimg1} />
             <div className="ml-2 text-lg font-semibold">
               <h2 className="text-green-600">Current Bid</h2>
-              <h1> 300 $</h1>
+              <h1> {curentbid} $</h1>
             </div>
           </div>
           <span className="w-[2px] h-10 bg-green-600"></span>
@@ -45,7 +49,7 @@ export default function UpcommingProductCard() {
             <img className="w-10 h-10" alt="action" src={price} />
             <div className="ml-2 text-lg font-semibold">
               <h2 className="text-red-600">Buy now</h2>
-              <h1>400 $</h1>
+              <h1>{buynow} $</h1>
             </div>
           </div>
         </div>
@@ -53,15 +57,15 @@ export default function UpcommingProductCard() {
         <div className="my-3 flex flex-col lg:flex-row  items-start lg:items-center justify-start lg:justify-center text-left">
           <p className="border-r-2  mr-3 pr-2 border-emerald-500  text-green-600  ">
             <span className="text-lg font-bold text-black">Total Bids</span> :
-            50 Bids
+            {totalbid} Bids
           </p>
           <p className="border-r-2  mr-3 pr-2 border-emerald-500  text-green-600  ">
-            <span className="text-lg font-bold text-black">Last Bids</span> : 7
+            <span className="text-lg font-bold text-black">Last Bids</span> : {lastbid}
             minute ago
           </p>
         </div>
       </div>
-      <div class="w-full lg:w-1/4 bg-slate-200">
+      <div className="w-full lg:w-1/4 bg-slate-200">
         <div className="mb-6">
           <h2 className="text-lg font-bold mb-2 py-2 text-green-600">
             Bidding ends in
@@ -71,10 +75,10 @@ export default function UpcommingProductCard() {
 
         <div className="mb-8" >
           <h3>Bid Increment</h3>
-          <h1 className="text-3xl  font-bold">10 $</h1>
+          <h1 className="text-3xl  font-bold">{bidincrement} $</h1>
         </div>
 
-        <div class="mb-4 mx-4 ">
+        <div className="mb-4 mx-4 ">
           <Link to={`/action/${2}`}>
           <button
             type="button"
