@@ -1,6 +1,7 @@
 import React from "react";
 import actionimg1 from "../../assets/auction (1).png";
 import price from "../../assets/price (2).png";
+import { Link } from "react-router-dom";
 
 export default function UpcommingProductCard() {
   return (
@@ -74,12 +75,14 @@ export default function UpcommingProductCard() {
         </div>
 
         <div class="mb-4 mx-4 ">
+          <Link to={`/action/${2}`}>
           <button
             type="button"
             className="flex justify-center items-center max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
           >
             Submit A Bid
           </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -31,5 +31,17 @@
          "about":"Vedanta entered the steel market once it acquired a 90% stake in ESL Steel Limited (ESL). Through the Corporate Insolvency Resolution Process, created to handle the resolution of non-performing assets in the Indian banking sector, Vedanta Limited obtained.."
          
 
+    },
+    {
+        "_id":0,
+        "title":"TATA Steel",
+         "buyPrice":800,
+         "CurentBid":400,
+         "totalBid":20,
+         "img":"https://i.ibb.co/Rzyps9S/download.jpg",
+         "about":"Tata Steel was founded in India in 1907 as Asia's first integrated private steel firm, and it is now one of the world's largest low-cost steel producers. With a focus on growth projects.. "
+         
+
     }
+    
 ]

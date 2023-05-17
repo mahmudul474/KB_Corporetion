@@ -4,6 +4,7 @@ import Home from "../Pages/HomePage/Home";
 import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
 import ProductDettails from "../Pages/ProductDettails/ProductDettails";
+import Action from "../Pages/ActionPage/Action";
 
 export  const routs=createBrowserRouter([
     {
@@ -21,6 +22,10 @@ export  const routs=createBrowserRouter([
             {
                 path:"/login",
                 element:<Login></Login>
+            },
+            {
+             path:"/action",
+             element:<Action></Action>
             },
             {
                 path:"/action/:id",

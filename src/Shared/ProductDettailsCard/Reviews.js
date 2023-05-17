@@ -17,7 +17,7 @@ export default function Reviews() {
               <div class="flex flex-wrap items-center">
                 <img
                   class="mr-6"
-                  src="uinel-assets/images/ecommerce-reviews/user2.png"
+                  src="https://i.ibb.co/NFRvMnj/image.png"
                   alt=""
                 />
                 <h4 class="w-full md:w-auto text-xl font-heading font-medium">
@@ -163,7 +163,7 @@ export default function Reviews() {
               <div class="flex flex-wrap items-center">
                 <img
                   class="mr-6"
-                  src="uinel-assets/images/ecommerce-reviews/user3.png"
+                  src="https://i.ibb.co/NFRvMnj/image.png"
                   alt=""
                 />
                 <h4 class="w-full md:w-auto text-xl font-heading font-medium">

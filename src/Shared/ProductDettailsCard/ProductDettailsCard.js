@@ -5,6 +5,7 @@ import  product from "../../assets/CategoryAssets/03.png"
 import Description from "./Description";
 import ActionHistory from "./ActionHistory";
 import Reviews from "./Reviews";
+import WinBids from "../WinBids/WinBids";
 export default function ProductDettailsCard() {
   const [uploadTime, setUploadTime] = useState(
     new Date("2023-05-18T10:00:00Z")
@@ -164,7 +165,11 @@ export default function ProductDettailsCard() {
        </div>
    
    <div className="w-full   lg:w-1/3">
-    <h1>this is sell component </h1>
+
+    <div className="shadow-2xl px-5">
+      <WinBids></WinBids>
+    </div>
+   
    </div>
       </div>
 
