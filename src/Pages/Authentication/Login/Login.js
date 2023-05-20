@@ -1,6 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  console.log(errorMessage)
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Login successful
+        console.log(data.message);
+        // Redirect to the dashboard or desired page
+      
+      }
+       else {
+        // Login failed
+        setErrorMessage(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className=" px-4 py-10  mt-10 shadow-2xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:mx-16 md:px-24 lg:px-8  bottom-0 bg-white rounded-2xl  ">
@@ -16,54 +51,13 @@ export default function Login() {
                 </h3>
               </div>
 
-              <div className="my-5">
-                <button
-                  type="button"
-                  className="hover:text-white hover:bg-green-600  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center border-green-600 border text-green-600  mr-2 mb-2"
-                >
-                  <svg
-                    className="w-4 h-4 mr-2 -ml-1"
-                    aria-hidden="true"
-                    focusable="false"
-                    data-prefix="fab"
-                    data-icon="facebook-f"
-                    role="img"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 320 512"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"
-                    ></path>
-                  </svg>
-                  Sign in with Facebook
-                </button>
-
-                <button
-                  type="button"
-                  className="hover:text-white hover:bg-green-600  focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center border-green-600 border text-green-600  mr-2 mb-2"
-                >
-                  <svg
-                    className="w-4 h-4 mr-2 -ml-1"
-                    aria-hidden="true"
-                    focusable="false"
-                    data-prefix="fab"
-                    data-icon="google"
-                    role="img"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 488 512"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-                    ></path>
-                  </svg>
-                  Sign in with Google
-                </button>
-              </div>
+              
               <hr />
 
-              <form className="my-10">
+              <form className="my-10" onSubmit={handleLogin}>
+
+
+                <p className="text-center  my-4  text-red">{errorMessage}</p>
                 <div className="my-1">
                   <label
                     for="email"
@@ -75,6 +69,8 @@ export default function Login() {
                     type="email"
                     name="email"
                     id="email"
+                    value={email}
+                     onChange={(e) => setEmail(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="example@gmail.com"
                     required=""
@@ -91,6 +87,8 @@ export default function Login() {
                     type="password"
                     name="password"
                     id="password"
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
