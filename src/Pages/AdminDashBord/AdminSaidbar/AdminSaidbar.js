@@ -1,5 +1,7 @@
 import React from "react";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdOutlineProductionQuantityLimits } from "react-icons/md";
+import { TbUpload } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 export default function AdminSaidbar({ isOpen }) {
   return (
@@ -13,21 +15,23 @@ export default function AdminSaidbar({ isOpen }) {
               <h1 class="text-3xl uppercase text-indigo-500">Logo</h1>
             </div>
             <ul class="flex flex-col py-4">
-              <li>
-                <p class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                  <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                    <MdDashboard></MdDashboard>
-                  </span>
-                  <span class="text-sm font-medium">Dashboard</span>
-                </p>
-              </li>
+              <Link to="/adminDashboard">
+                <li>
+                  <p class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                      <MdDashboard></MdDashboard>
+                    </span>
+                    <span class="text-sm font-medium">Dashboard</span>
+                  </p>
+                </li>
+              </Link>
 
               <li>
                 <p class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
                   <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                    <MdDashboard></MdDashboard>
+                    <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                   </span>
-                  <span class="text-sm font-medium">Dashboard</span>
+                  <span class="text-sm font-medium">Products</span>
                 </p>
               </li>
               <li>
@@ -35,17 +39,19 @@ export default function AdminSaidbar({ isOpen }) {
                   <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                     <MdDashboard></MdDashboard>
                   </span>
-                  <span class="text-sm font-medium">Dashboard</span>
+                  <span class="text-sm font-medium">All Product</span>
                 </p>
               </li>
-              <li>
-                <p class="flex flex-row items-center pl-4 h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
-                  <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                    <MdDashboard></MdDashboard>
-                  </span>
-                  <span class="text-sm font-medium">Dashboard</span>
-                </p>
-              </li>
+              <Link to="/adminDashboard/productUpload">
+                <li>
+                  <p class="flex flex-row items-center cursor-pointer pl-4 h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                      <TbUpload></TbUpload>
+                    </span>
+                    <span class="text-sm font-medium">Upload Product</span>
+                  </p>
+                </li>
+              </Link>
 
               <li>
                 <a

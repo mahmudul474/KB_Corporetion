@@ -7,6 +7,7 @@ import ProductDettails from "../Pages/ProductDettails/ProductDettails";
 import Action from "../Pages/ActionPage/Action";
 import AdminDashBordLayot from "../Pages/AdminDashBord/AdminDashBordLayot/AdminDashBordLayot";
 import AdminDashBoard from "../Pages/AdminDashBord/AdminDashbord/AdminDashBoard";
+import ProductUploadForm from "../Pages/AdminDashBord/ProductUpload/ProductUploadForm";
 
 export const routs = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const routs = createBrowserRouter([
       {
         path: "/adminDashboard",
         element: <AdminDashBoard></AdminDashBoard>
+      },
+      {
+        path: "/adminDashboard/productUpload",
+        element: <ProductUploadForm></ProductUploadForm>
       }
     ]
   }
