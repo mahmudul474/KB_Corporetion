@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const SubImgSlider = ({ images }) => {
+const SubImgSlider = ({ images, handleSubimgShow }) => {
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -15,11 +15,13 @@ const SubImgSlider = ({ images }) => {
     autoplaySpeed: 2000
   };
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 md:grid-cols-2">
+    <div className="">
       <Slider {...sliderSettings}>
         {images.map((imageUrl, index) => (
-          <div className="" key={index}>
+          <div className=" w-full mx-5  " key={index}>
             <img
+              onClick={() => handleSubimgShow(imageUrl)}
+              className="h-52 object-fill border"
               src={`${process.env.REACT_APP_API_URL}/uploads/sub-images/${imageUrl}`}
               alt={`Image ${index + 1}`}
             />

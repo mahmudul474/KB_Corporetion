@@ -7,9 +7,15 @@ import ActionHistory from "./ActionHistory";
 import Reviews from "./Reviews";
 import WinBids from "../WinBids/WinBids";
 import { useLoaderData } from "react-router-dom";
+import SubImgSlider from "./SubImgSlider";
 
 export default function ProductDettailsCard() {
   const data = useLoaderData();
+  const [subimageUrl, setSubImgUrl] = useState(null);
+
+  const handleSubimgShow = subimgUrl => {
+    setSubImgUrl(subimgUrl);
+  };
 
   const calculateRemainingTime = endTime => {
     const currentTime = new Date().getTime();
@@ -88,12 +94,26 @@ export default function ProductDettailsCard() {
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4 md:w-1/2 ">
               <div className="sticky top-0 z-50 overflow-hidden ">
-                <div className="relative mb-6 lg:mb-10 h-full lg:h-[500px] ">
-                  <img
-                    src={`${process.env.REACT_APP_API_URL}/uploads/main-images/${data?.mainImage}`}
-                    alt=""
-                    className="object-cover w-full h-full "
-                  />
+                <div className="relative mb-6 lg:mb-10 h-full  ">
+                  {subimageUrl ? (
+                    <img
+                      src={`${process.env.REACT_APP_API_URL}/uploads/sub-images/${subimageUrl}`}
+                      alt=""
+                      className="  w-full h-[400px] object-contain "
+                    />
+                  ) : (
+                    <img
+                      src={`${process.env.REACT_APP_API_URL}/uploads/main-images/${data?.mainImage}`}
+                      alt=""
+                      className="h-[400px] object-contain w-full   "
+                    />
+                  )}
+                </div>
+                <div>
+                  <SubImgSlider
+                    handleSubimgShow={handleSubimgShow}
+                    images={data.subImages}
+                  ></SubImgSlider>
                 </div>
               </div>
             </div>
@@ -137,7 +157,7 @@ export default function ProductDettailsCard() {
                     Bid Now
                   </h5>
                   <p className="mb-1 font-normal text-gray-500 dark:text-gray-400">
-                    : Minimum Bid: {data?.minimumBid} $
+                    Minimum Bid: {data?.minimumBid} $
                   </p>
                   <span className="w-16 h-1 bg-green-600 block"></span>
 
@@ -164,15 +184,31 @@ export default function ProductDettailsCard() {
                       </button>
                     </form>
 
-                    <button
-                      type="button"
-                      className="  text-center w-full    px-5 py-2.5 text-sm font-medium   text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
-                    >
-                      Buy now for
-                      <span className="inline-flex items-center justify-center  ml-2 text-xs font-semibold text-white ">
-                        2000 $
-                      </span>
-                    </button>
+                    <div className="flex  items-center lg:flex-row flex-col  justify-between ">
+                      {" "}
+                      <a
+                        className=" mx-3 my-2 text-center w-full  "
+                        target="_blank"
+                        href={`${process.env.REACT_APP_API_URL}/uploads/pdf-files/${data.pdfFile}`}
+                        download="product-description"
+                      >
+                        <button
+                          type="button"
+                          className="  px-5 py-2.5 text-sm font-medium   text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
+                        >
+                          Download PDF
+                        </button>
+                      </a>
+                      <button
+                        type="button"
+                        className=" mx-3 my-2 text-center w-full    px-5 py-2.5 text-sm font-medium   text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
+                      >
+                        Buy now for
+                        <span className="inline-flex items-center justify-center  ml-2 text-xs font-semibold text-white ">
+                          {data?.buyNowPrice} $
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
