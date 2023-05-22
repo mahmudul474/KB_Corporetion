@@ -1,7 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 
 export default function Register() {
+  const { signUpUser } = useContext(AuthContext);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,40 +14,55 @@ export default function Register() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
-  console.log(message);
-
-  const handlePhotoChange = (e) => {
+  const handlePhotoChange = e => {
     setUserPhoto(e.target.files[0]);
   };
 
-  const handleNIDCardChange = (e) => {
+  const handleNIDCardChange = e => {
     setNidCardImg(e.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
+  const handleRegistration = e => {
     e.preventDefault();
+    signUpUser(email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        //save user database
+        saveData(user.email,);
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
 
+  const saveData = async (userEmail,) => {
     try {
       const formData = new FormData();
       formData.append("name", firstName + lastName);
-      formData.append("email", email);
+      formData.append("email", userEmail);
       formData.append("password", password);
       formData.append("userPhoto", userPhoto);
       formData.append("nidCardImg", nidCardImg);
       formData.append("phoneNumber", phoneNumber);
+
+   
 
       const response = await axios.post(
         "http://localhost:5000/register",
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-          },
+            "Content-Type": "multipart/form-data"
+          }
         }
       );
 
+
+      console.log("api  is hit ")
       setMessage(response.data.message);
-       
     } catch (err) {
       console.error(err);
       setMessage("Registration failed");
@@ -66,7 +84,7 @@ export default function Register() {
 
               <hr />
 
-              <form className="my-10" onSubmit={handleSubmit}>
+              <form className="my-10" onSubmit={handleRegistration}>
                 <div className="flex justify-between flex-col lg:flex-row">
                   <div className="my-1   w-full">
                     <label
@@ -77,7 +95,7 @@ export default function Register() {
                     </label>
                     <input
                       value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
+                      onChange={e => setFirstName(e.target.value)}
                       type="text"
                       name="Fname"
                       id="Fname"
@@ -96,7 +114,7 @@ export default function Register() {
                     <input
                       type="text"
                       name="Lname"
-                      onChange={(e) => setLastName(e.target.value)}
+                      onChange={e => setLastName(e.target.value)}
                       value={lastName}
                       id="Lname"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -116,7 +134,7 @@ export default function Register() {
                     </label>
                     <input
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={e => setEmail(e.target.value)}
                       type="email"
                       name="email"
                       id="email"
@@ -136,11 +154,11 @@ export default function Register() {
                       type="number"
                       name="Phone"
                       value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      onChange={e => setPhoneNumber(e.target.value)}
                       id="Phone"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Mobile number"
-                      required=""
+                       required
                     />
                   </div>
                 </div>
@@ -161,7 +179,7 @@ export default function Register() {
                       id="profile"
                       placeholder="profile"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      required=""
+                      required
                     />
                   </div>
                   <div className="my-1 w-full">
@@ -179,7 +197,7 @@ export default function Register() {
                       onChange={handleNIDCardChange}
                       placeholder="upload nid or passport"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      required=""
+                      required
                     />
                   </div>
                 </div>
@@ -196,10 +214,10 @@ export default function Register() {
                     name="password"
                     id="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={e => setPassword(e.target.value)}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
+                    required
                   />
                 </div>
 

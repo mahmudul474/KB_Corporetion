@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 
 const ProductUploadForm = () => {
+  const { user } = useContext(AuthContext);
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [startBiddingPrice, setStartBiddingPrice] = useState("");
@@ -27,6 +30,7 @@ const ProductUploadForm = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
+    formData.append("owner", user);
     formData.append("description", description);
     formData.append("startBiddingPrice", startBiddingPrice);
     formData.append("buyNowPrice", buyNowPrice);
@@ -47,8 +51,6 @@ const ProductUploadForm = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("Product uploaded successfully", data);
-        // Clear the form fields after successful upload
         setName("");
         setDescription("");
         setStartBiddingPrice("");
@@ -58,6 +60,7 @@ const ProductUploadForm = () => {
         setEndBiddingTime("");
         setMainImage(null);
         setSubImages([]);
+        setPdfFile(null);
       })
       .catch(error => {
         console.error("Error uploading product", error);

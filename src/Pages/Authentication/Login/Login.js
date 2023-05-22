@@ -1,23 +1,30 @@
-import React, { useState } from "react";
-
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 
 export default function Login() {
+  const { loginUser } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  console.log(errorMessage);
-
-  const handleLogin = async event => {
+  const handleLogin = event => {
     event.preventDefault();
+    loginUser(email, password).then(result => {
+      const user = result.user;
+      console.log(user);
+      checkUserDb(user.email);
+    });
+  };
 
+  const checkUserDb = async userEmail => {
     try {
       const response = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ userEmail, password })
       });
 
       const data = await response.json();
@@ -35,11 +42,8 @@ export default function Login() {
     }
   };
 
-  const url = `${process.env.REACT_APP_API_BASE_URL}`;
-
   return (
     <>
-      <h1>{url}</h1>
       <div className=" px-4 py-10  mt-10 shadow-2xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:mx-16 md:px-24 lg:px-8  bottom-0 bg-white rounded-2xl  ">
         <div className="container ">
           <div className="sm:flex sm:flex-col    sm:w-full lg:flex-row lg:w-full">
