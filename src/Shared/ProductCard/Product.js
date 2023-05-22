@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import actionimg1 from "../../assets/auction (1).png";
-import priceimg from "../../assets/price (2).png";
 
 export default function Product({ data }) {
   /////
-
   const calculateRemainingTime = endTime => {
     const currentTime = new Date().getTime();
     const endTimeValue = new Date(endTime).getTime();
 
     if (currentTime > endTimeValue) {
-      return "Bidding Ended";
+      return "Bidding Close";
     }
 
     const remainingTime = endTimeValue - currentTime;
@@ -32,7 +29,6 @@ export default function Product({ data }) {
   const [remainingTime, setRemainingTime] = useState(
     calculateRemainingTime(data.endBiddingTime)
   );
-  console.log(remainingTime);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -61,12 +57,20 @@ export default function Product({ data }) {
   const formatDateTime = dateTimeString => {
     const options = {
       year: "numeric",
-      month: "long",
-      day: "numeric",
+      month: "2-digit",
+      day: "2-digit",
       hour: "numeric",
-      minute: "numeric"
+      minute: "numeric",
+      hour12: true
     };
-    return new Date(dateTimeString).toLocaleString(undefined, options);
+
+    const dateTime = new Date(dateTimeString).toLocaleString("en-US", options);
+    const [date, time] = dateTime.split(", ");
+
+    const formattedDate = date.replace(/\//g, "-");
+    const formattedTime = time.toLowerCase();
+
+    return `${formattedDate} ${formattedTime}`;
   };
 
   return (
@@ -118,7 +122,7 @@ export default function Product({ data }) {
           </div>
 
           <div className="card-actions">
-            <div class="mb-4">
+            <div className="mb-4">
               <Link to={`/action/${data._id}`}>
                 <button
                   type="button"
@@ -132,10 +136,10 @@ export default function Product({ data }) {
         </div>
       </div> */}
 
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="border ">
           <img
-            class="rounded-t-lg w-full text-center h-60 object-contain "
+            className="rounded-t-lg w-full text-center h-60 object-contain "
             src={`${process.env.REACT_APP_API_URL}/uploads/main-images/${data?.mainImage}`}
             alt=""
           />
@@ -159,38 +163,48 @@ export default function Product({ data }) {
           </div>
         </div>
 
-        <div class="p-5 text-left capitalize">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <div className="p-5 text-left capitalize">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {data?.name}
           </h5>
 
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {data?.description.slice(0, 150)} <Link> ...</Link>
           </p>
+          <div className="flex my-2 justify-between items-center">
+            <p className="flex flex-col text-green-500  items-center ">
+              <span>Start Bidding Time</span>
+              <span> {formatDateTime(data.startBiddingTime)}</span>
+            </p>
+            <p className="flex text-red-700 flex-col items-center ">
+              <span>End Bidding Time</span>
+              <span> {formatDateTime(data.endBiddingTime)}</span>
+            </p>
+          </div>
 
           <div className="flex justify-between items-center">
             <h2 className="font-semibold">
               Bidding Price: {data.startBiddingPrice} ${" "}
             </h2>
-            <p
-              href="#"
-              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              View Details
-              <svg
-                aria-hidden="true"
-                class="w-4 h-4 ml-2 -mr-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </p>
+
+            <Link to={`/action/${data._id}`}>
+              <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                View Details
+                <svg
+                  aria-hidden="true"
+                  className="w-4 h-4 ml-2 -mr-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

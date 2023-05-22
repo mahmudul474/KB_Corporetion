@@ -6,62 +6,16 @@ import { Link } from "react-router-dom";
 import Product from "../../../Shared/ProductCard/Product";
 export default function Featured() {
   const [futureds, setFutureds] = useState([]);
+ 
+  console.log(futureds);
 
   useEffect(() => {
-    fetch("futured.json")
-      .then((res) => res.json())
-      .then((data) => {
+    fetch(`${process.env.REACT_APP_API_URL}/products`)
+      .then(res => res.json())
+      .then(data => {
         setFutureds(data);
       });
   }, []);
-
-
-
-
-
-  const [uploadTime, setUploadTime] = useState(new Date('2023-05-18T10:00:00Z'));
-  const [remainingTime, setRemainingTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      calculateRemainingTime();
-    }, 1000);
-
-    const calculateRemainingTime = () => {
-      const currentTime = new Date();
-      const timeDifference = uploadTime - currentTime;
-  
-      if (timeDifference <= 0) {
-        clearInterval(timer);
-        return;
-      }
-  
-      const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
-      const seconds = Math.floor((timeDifference / 1000) % 60);
-  
-      setRemainingTime({ hours, minutes, seconds });
-    };
-   
-   
-   
-   
-   
-    return () => {
-      clearInterval(timer);
-    };
-
-
-
-
-
-    
-  }, []);
-
-  
-
-
-
 
   return (
     <div
@@ -77,16 +31,17 @@ export default function Featured() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 ">
-          {futureds?.slice(0, 3).map((futured) => <Product key={futured._id} data={futured}></Product> )}
+          {futureds?.slice(0, 3).map(futured => (
+            <Product key={futured._id} data={futured}></Product>
+          ))}
         </div>
 
         <div className="my-10">
-       
-       <Link to="/action">
-          <button className="m-auto btn bg-transparent border  p-5 rounded-md text-lg  font-semibold capitalize border-green-600">
-            {" "}
-            View All{" "}
-          </button>
+          <Link to="/action">
+            <button className="m-auto btn bg-transparent border  p-5 rounded-md text-lg  font-semibold capitalize border-green-600">
+              {" "}
+              View All{" "}
+            </button>
           </Link>
         </div>
       </div>
