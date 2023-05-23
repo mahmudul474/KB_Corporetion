@@ -18,7 +18,6 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-  console.log(currentUser, "from auth provider");
 
   const [loading, setLoading] = useState(true);
 
@@ -81,9 +80,6 @@ const AuthProvider = ({ children }) => {
     forgatPassword,
     logOut
   };
-
-  
-
 
   return (
     <div>

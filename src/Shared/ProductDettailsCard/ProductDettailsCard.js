@@ -6,25 +6,53 @@ import Reviews from "./Reviews";
 import WinBids from "../WinBids/WinBids";
 import SubImgSlider from "./SubImgSlider";
 import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
+import axios from "axios";
 
 export default function ProductDettailsCard({ data }) {
   const { currentUser } = useContext(AuthContext);
   const [subimageUrl, setSubImgUrl] = useState(null);
-  const [bidAmount, setBidAmount] = useState("");
+  const [currentPrice, setCurrentPrice] = useState(10);
+  const [newPrice, setNewPrice] = useState("");
 
-  console.log(bidAmount);
+  const handlePriceChange = event => {
+    const bidPrice = parseFloat(event.target.value);
+    setNewPrice(bidPrice);
+  };
 
   const handlePlcebid = e => {
     e.preventDefault();
 
-    const bidInfo = {
-      bidAmount: bidAmount,
+    if (newPrice >= currentPrice) {
+      setCurrentPrice(newPrice);
+    } else {
+      alert("New price cannot be lower than the current price.");
+    }
+
+    const bidData = {
+      bidAmount: newPrice,
       bidderName: currentUser?.name,
       bidderEmail: currentUser?.email,
+      bidderId: currentUser?._id,
       bidderPhone: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
       productId: data?._id
     };
+
+    fetch(`http://localhost:5000/products/${data._id}/bids`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bidData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Bid placed successfully", data);
+        // Clear bid amount field
+      })
+      .catch(error => {
+        console.error("Error placing bid", error);
+      });
   };
 
   const handleSubimgShow = subimgUrl => {
@@ -100,6 +128,40 @@ export default function ProductDettailsCard({ data }) {
 
     return `${formattedDate} ${formattedTime}`;
   };
+
+  const [winner, setWinner] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchWinner = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/products/${data._id}/winner`
+        );
+        setWinner(response.data.winner);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    // Fetch the winner initially
+    fetchWinner();
+
+    // Poll for winner updates every 10 seconds
+    const interval = setInterval(() => {
+      fetchWinner();
+    }, 10000);
+
+    // Cleanup the interval on component unmount
+    return () => {
+      clearInterval(interval);
+    };
+  }, [data._id]);
+
+  if (loading) {
+    return <p>Loading winner...</p>;
+  }
 
   return (
     <div>
@@ -182,9 +244,11 @@ export default function ProductDettailsCard({ data }) {
                     >
                       <div className="  w-full">
                         <input
-                          onChange={e => setBidAmount(e.target.value)}
                           type="number"
-                          id=""
+                          value={newPrice}
+                          onChange={handlePriceChange}
+                          min={data.minimumBid}
+                          step="any"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="$00:00"
                           required
@@ -267,7 +331,11 @@ export default function ProductDettailsCard({ data }) {
 
           <div className="w-full   lg:w-1/3">
             <div className="shadow-2xl px-5">
-              <WinBids></WinBids>
+              {winner && (
+                <div>
+                  <h1>{winner?.name}</h1>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -276,7 +344,7 @@ export default function ProductDettailsCard({ data }) {
   );
 }
 
-// import React from "react";
+ 
 
 // import ActionHistory from "./ActionHistory";
 // import SubImgSlider from "./SubImgSlider";
