@@ -1,17 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
-import bg from "../../assets/section-bg.png";
-import product from "../../assets/CategoryAssets/03.png";
 import Description from "./Description";
 import ActionHistory from "./ActionHistory";
 import Reviews from "./Reviews";
 import WinBids from "../WinBids/WinBids";
-import { useLoaderData } from "react-router-dom";
 import SubImgSlider from "./SubImgSlider";
+import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 
-export default function ProductDettailsCard() {
-  const data = useLoaderData();
+export default function ProductDettailsCard({ data }) {
+  const { currentUser } = useContext(AuthContext);
   const [subimageUrl, setSubImgUrl] = useState(null);
+  const [bidAmount, setBidAmount] = useState("");
+
+  console.log(bidAmount);
+
+  const handlePlcebid = e => {
+    e.preventDefault();
+
+    const bidInfo = {
+      bidAmount: bidAmount,
+      bidderName: currentUser?.name,
+      bidderEmail: currentUser?.email,
+      bidderPhone: currentUser?.userPhoto,
+      bidderNumber: currentUser?.phoneNumber,
+      productId: data?._id
+    };
+  };
 
   const handleSubimgShow = subimgUrl => {
     setSubImgUrl(subimgUrl);
@@ -162,17 +176,21 @@ export default function ProductDettailsCard() {
                   <span className="w-16 h-1 bg-green-600 block"></span>
 
                   <div>
-                    <form className="flex justify-between my-5 items-center">
+                    <form
+                      onSubmit={handlePlcebid}
+                      className="flex justify-between my-5 items-center"
+                    >
                       <div className="  w-full">
                         <input
-                          type="text"
-                          id="voice-search"
+                          onChange={e => setBidAmount(e.target.value)}
+                          type="number"
+                          id=""
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="$00:00"
                           required
                         />
                         <button
-                          type="button"
+                          type="submit"
                           className="absolute inset-y-0 right-0 flex items-center pr-3"
                         ></button>
                       </div>

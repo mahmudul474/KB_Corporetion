@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-  const { signUpUser } = useContext(AuthContext);
+  const { signUpUser, updateUser } = useContext(AuthContext);
+  const  navigete=useNavigate("")
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -13,6 +15,10 @@ export default function Register() {
   const [nidCardImg, setNidCardImg] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
+
+
+  
+
 
   const handlePhotoChange = e => {
     setUserPhoto(e.target.files[0]);
@@ -29,7 +35,19 @@ export default function Register() {
         const user = result.user;
         console.log(user);
         //save user database
-        saveData(user.email,);
+
+
+        const userInfo = {
+          displayName: firstName + lastName,
+        };
+        updateUser(userInfo)
+        .then(() => {
+             saveData(user.email);
+             navigete("/")
+             
+        }).catch(err => console.log(err));
+
+      
       })
       .catch(error => {
         const errorCode = error.code;
@@ -272,3 +290,10 @@ export default function Register() {
     </>
   );
 }
+
+
+
+//////buissnes name
+// trade licencse no. 
+// business  tin no. 
+// business address 

@@ -17,6 +17,8 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  console.log(currentUser, "from auth provider");
 
   const [loading, setLoading] = useState(true);
 
@@ -30,8 +32,8 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const setProfile = profile => {
-    return updateProfile(auth.currentUser, profile);
+  const updateUser = userInfo => {
+    return updateProfile(auth.currentUser, userInfo);
   };
 
   const emailVerification = () => {
@@ -44,7 +46,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
-    localStorage.removeItem("omarToken");
+
     return signOut(auth);
   };
 
@@ -57,17 +59,31 @@ const AuthProvider = ({ children }) => {
     return unsubcribe;
   }, []);
 
+  useEffect(() => {
+    if (user?.email) {
+      fetch(`${process.env.REACT_APP_API_URL}/user/${user?.email}`)
+        .then(res => res.json())
+        .then(data => {
+          setCurrentUser(data);
+        })
+        .catch(error => {});
+    }
+  }, [user?.email]);
+
   const authInfo = {
-    user,
     loading,
+    currentUser,
     setLoading,
     signUpUser,
     loginUser,
-    setProfile,
+    updateUser,
     emailVerification,
     forgatPassword,
     logOut
   };
+
+  
+
 
   return (
     <div>
