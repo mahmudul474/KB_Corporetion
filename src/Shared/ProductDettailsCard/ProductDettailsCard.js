@@ -3,10 +3,11 @@ import SubImgSlider from "./SubImgSlider";
 import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 import axios from "axios";
 import ActionHistory from "./ActionHistory";
+import { useQuery } from "react-query";
+
+ 
 
 export default function ProductDettailsCard({ data }) {
-  
-
   const { currentUser } = useContext(AuthContext);
   const [subimageUrl, setSubImgUrl] = useState(null);
   const [currentPrice, setCurrentPrice] = useState(10);
@@ -52,6 +53,18 @@ export default function ProductDettailsCard({ data }) {
         console.error("Error placing bid", error);
       });
   };
+
+  const {
+    data: responseData =[],
+    isLoading,
+    isError,
+    error
+  } = useQuery(["productDetails", data._id], async () => {
+    const res = await fetch(`http://localhost:5000/products/${data._id}/bids`);
+    const data = await res.json();
+    return data;
+  });
+  console.log(responseData);
 
   const handleSubimgShow = subimgUrl => {
     setSubImgUrl(subimgUrl);
@@ -149,7 +162,7 @@ export default function ProductDettailsCard({ data }) {
     // Poll for winner updates every 10 seconds
     const interval = setInterval(() => {
       fetchWinner();
-    }, 1000);
+    }, 10000);
 
     // Cleanup the interval on component unmount
     return () => {
@@ -301,7 +314,7 @@ export default function ProductDettailsCard({ data }) {
               "
               >
                 <h1>Total Bids</h1>
-                <h>90 Bid</h>
+                <h1>{data?.bids?.length} Bids</h1>
               </div>
             </div>
           </div>
