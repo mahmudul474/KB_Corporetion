@@ -1,8 +1,10 @@
 import React from "react";
 
-export default function ActionHistory() {
+export default function ActionHistory({ bids }) {
+  console.log(bids);
+
   return (
-    <div  className="my-10   ">
+    <div className="my-10   ">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-white dark:text-blue-100">
           <thead className="text-xs text-white uppercase bg-green-600 border-b border-green-400 dark:text-white">
