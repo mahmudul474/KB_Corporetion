@@ -31,7 +31,7 @@ export default function ProductDettailsCard({ data }) {
       bidderName: currentUser?.name,
       bidderEmail: currentUser?.email,
       bidderId: currentUser?._id,
-      bidderPhone: currentUser?.userPhoto,
+      bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
       productId: data?._id
     };
@@ -149,7 +149,7 @@ export default function ProductDettailsCard({ data }) {
     // Poll for winner updates every 10 seconds
     const interval = setInterval(() => {
       fetchWinner();
-    }, 10000);
+    }, 1000);
 
     // Cleanup the interval on component unmount
     return () => {
@@ -276,6 +276,8 @@ export default function ProductDettailsCard({ data }) {
           <div className=" w-full   lg:w-1/3  border bg-slate-200 border-gray-300  rounded-lg  p-5">
             <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
               <div className="text-center my-2">
+                <h1> winner :{winner ? winner.name : ""}</h1>
+
                 <h4 className="text-red-500">This Auction Ends in</h4>
                 <h2 className="text-red-500">{remainingTime}</h2>
               </div>
