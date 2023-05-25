@@ -10,22 +10,16 @@ import ActionHistory from "./ActionHistory";
 export default function ProductDettailsCard({ data }) {
   const { currentUser } = useContext(AuthContext);
   const [subimageUrl, setSubImgUrl] = useState(null);
-  const [currentPrice, setCurrentPrice] = useState(10);
   const [newPrice, setNewPrice] = useState("");
 
   const handlePriceChange = event => {
     const bidPrice = parseFloat(event.target.value);
     setNewPrice(bidPrice);
   };
+  const currentBids = data?.bids[data?.bids.length - 1];
 
   const handlePlcebid = e => {
     e.preventDefault();
-
-    if (newPrice >= currentPrice) {
-      setCurrentPrice(newPrice);
-    } else {
-      alert("New price cannot be lower than the current price.");
-    }
 
     const bidData = {
       bidAmount: newPrice,
@@ -47,6 +41,7 @@ export default function ProductDettailsCard({ data }) {
       .then(response => response.json())
       .then(data => {
         console.log("Bid placed successfully", data);
+
         // Clear bid amount field
       })
       .catch(error => {
@@ -94,6 +89,7 @@ export default function ProductDettailsCard({ data }) {
       clearInterval(interval);
     };
   }, [data.endBiddingTime]);
+  const isBiddingClosed = remainingTime === "Bidding Close";
 
   const isBiddingStartSoon = startTime => {
     const currentTime = new Date().getTime();
@@ -210,7 +206,12 @@ export default function ProductDettailsCard({ data }) {
                 </div>
                 <div className="flex justify-between items-center text-xl font-bold text-green-600  dark:text-green-100">
                   <span>Current bidding Price:</span>
-                  <span>No Bids</span>
+
+                  {currentBids ? (
+                    <span>{currentBids?.amount} $</span>
+                  ) : (
+                    <span>No Bids</span>
+                  )}
                 </div>
               </div>
 
@@ -231,9 +232,10 @@ export default function ProductDettailsCard({ data }) {
                   <div className="  w-full  ">
                     <input
                       type="number"
+                    disabled={isBiddingClosed}
                       value={newPrice}
                       onChange={handlePriceChange}
-                      min={data.minimumBid}
+                      min={data.startBiddingPrice}
                       step="any"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="$00:00"
@@ -241,6 +243,7 @@ export default function ProductDettailsCard({ data }) {
                     />
                   </div>
                   <button
+                    disabled={isBiddingClosed}
                     type="submit"
                     className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-600 dark:focus:ring-green-800"
                   >
@@ -256,14 +259,15 @@ export default function ProductDettailsCard({ data }) {
                   >
                     <button
                       type="button"
-                      className="  px-5 py-2.5 text-sm font-medium   w-full text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
+                      className="  px-5 py-2.5 text-sm font-medium   w-full text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
                     >
                       Download PDF
                     </button>
                   </a>
                   <button
+                    disabled={isBiddingClosed}
                     type="button"
-                    className=" mx-3 my-2 text-center w-full     py-2.5 text-sm font-medium   text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
+                    className=" mx-3 my-2 text-center w-full     py-2.5 text-sm font-medium  cursor-pointer  text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
                   >
                     Buy now for
                     <span className="inline-flex items-center justify-center  ml-2 text-xs font-semibold text-white ">
