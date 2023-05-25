@@ -7,29 +7,33 @@ export default function MyBidds() {
     const [mybidds,setMybidds]=useState([])
   
     
-    const fetchBidderBids = () => {
-        // Replace with the actual bidder ID
+   
+
+
+      useEffect(()=>{
+
+     if(currentUser){
         fetch(`http://localhost:5000/bids/bidder/${currentUser._id}/products`)
-          .then(response => response.json())
-          .then(data => {
-            // Process the retrieved bidder bids
-            setMybidds(data?.products);
-          })
-          .catch(error => {
-            console.error("Error retrieving bidder bids", error);
-          });
-      };
-      
-      // Call the fetchBidderBids function to retrieve the bidder's bids
-      useEffect(() => {
-        fetchBidderBids();
-      }, [currentUser?._id]);
+        .then(response => response.json())
+        .then(data => {
+          // Process the retrieved bidder bids
+          setMybidds(data?.products);
+        })
+        .catch(error => {
+          console.error("Error retrieving bidder bids", error);
+        });
+     }else{
+
+     }
+
+
+      },[currentUser])
       
 
 
   return (
     <div className='mt-10' >
-
+  <h1 className="text-4xl capitalize  text-left mb-3 pt-10 px-5 font-semibold">My Bids</h1>
 
 <div className='grid px-5 grid-cols-1 lg:grid-cols-2 gap-5'>
 

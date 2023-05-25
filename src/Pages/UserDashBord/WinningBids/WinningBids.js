@@ -11,27 +11,37 @@ export default function WinningBids() {
   const fetchWinnerBids = () => {
     // Replace with your actual bidder ID
 
-    if (currentUser._id) {
-      fetch(
-        `http://localhost:5000/bids/bidder/646f4354e4287d9a14894d88/products/won`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          // Process the retrieved winning bids
-          setWinBidds(data.wonProducts);
-        })
-        .catch((error) => {
-          console.error("Error retrieving winner bids", error);
-        });
-    }
+    
+      
+     
   };
 
   useEffect(() => {
     fetchWinnerBids();
   }, []);
 
+
+  useEffect(()=>{
+    if(currentUser){
+        fetch(
+            `http://localhost:5000/bids/bidder/${currentUser._id}/products/won`
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              // Process the retrieved winning bids
+              setWinBidds(data.wonProducts);
+            })
+            .catch((error) => {
+              console.error("Error retrieving winner bids", error);
+            });
+    }else{
+
+    }
+  },[currentUser])
+
   return (
     <div className="mt-10">
+          <h1 className="text-4xl capitalize  text-left mb-3 pt-10 px-5 font-semibold">Win Bids</h1>
       <div className="grid px-5 grid-cols-1 lg:grid-cols-2 gap-5">
         {winBidds?.map((data) => (
           <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
