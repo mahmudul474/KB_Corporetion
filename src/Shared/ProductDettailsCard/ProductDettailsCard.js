@@ -3,20 +3,23 @@ import SubImgSlider from "./SubImgSlider";
 import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 import axios from "axios";
 import ActionHistory from "./ActionHistory";
- 
-
- 
+import { toast } from "react-hot-toast";
 
 export default function ProductDettailsCard({ data }) {
   const { currentUser } = useContext(AuthContext);
+
+  console.log(currentUser, "user ");
+
   const [subimageUrl, setSubImgUrl] = useState(null);
   const [newPrice, setNewPrice] = useState("");
+  const [bidEroo, setBidError] = useState("");
 
   const handlePriceChange = event => {
+    setBidError("");
     const bidPrice = parseFloat(event.target.value);
     setNewPrice(bidPrice);
   };
-  const currentBids = data?.bids[data?.bids.length - 1];
+  // const currentBids = data?.bids[data?.bids.length - 1];
 
   const handlePlcebid = e => {
     e.preventDefault();
@@ -28,7 +31,7 @@ export default function ProductDettailsCard({ data }) {
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
-      productId: data?._id
+      productName: data.name
     };
 
     fetch(`http://localhost:5000/products/${data._id}/bids`, {
@@ -41,6 +44,14 @@ export default function ProductDettailsCard({ data }) {
       .then(response => response.json())
       .then(data => {
         console.log("Bid placed successfully", data);
+        if (data.message) {
+          toast.success(data.message);
+          window.location.reload(true);
+          setNewPrice("");
+        } else {
+          toast.error(data.error);
+          setBidError(data.error);
+        }
 
         // Clear bid amount field
       })
@@ -154,10 +165,6 @@ export default function ProductDettailsCard({ data }) {
     };
   }, [data._id]);
 
-  if (loading) {
-    return <p>Loading winner...</p>;
-  }
-
   return (
     <div>
       <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
@@ -207,11 +214,11 @@ export default function ProductDettailsCard({ data }) {
                 <div className="flex justify-between items-center text-xl font-bold text-green-600  dark:text-green-100">
                   <span>Current bidding Price:</span>
 
-                  {currentBids ? (
+                  {/* {currentBids ? (
                     <span>{currentBids?.amount} $</span>
                   ) : (
                     <span>No Bids</span>
-                  )}
+                  )} */}
                 </div>
               </div>
 
@@ -232,7 +239,7 @@ export default function ProductDettailsCard({ data }) {
                   <div className="  w-full  ">
                     <input
                       type="number"
-                    disabled={isBiddingClosed}
+                      disabled={isBiddingClosed}
                       value={newPrice}
                       onChange={handlePriceChange}
                       min={data.startBiddingPrice}
@@ -242,6 +249,7 @@ export default function ProductDettailsCard({ data }) {
                       required
                     />
                   </div>
+
                   <button
                     disabled={isBiddingClosed}
                     type="submit"
@@ -250,6 +258,7 @@ export default function ProductDettailsCard({ data }) {
                     Place Bid
                   </button>
                 </form>
+                <p className="text-red-600 text-left ">{bidEroo}</p>
                 <div className="flex  items-center lg:flex-row flex-col  justify-between ">
                   <a
                     className=" mx-3 my-2 text-center w-full  "
@@ -281,7 +290,30 @@ export default function ProductDettailsCard({ data }) {
           <div className=" w-full   lg:w-1/3  border bg-slate-200 border-gray-300  rounded-lg  p-5">
             <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
               <div className="text-center my-2">
-                <h1> winner :{winner ? winner.name : ""}</h1>
+                <div className="my-5">
+                  <h1 className="text-green-600  flex items-center justify-center text-xl">
+                    Winner{" "}
+                  </h1>
+                  {winner ? (
+                    <div className="flex">
+                      <img
+                        className="object-cover w-20 h-20 mr-4 rounded-full shadow"
+                        src={`${process.env.REACT_APP_API_URL}/${winner.bidderPhoto}`}
+                        alt="Person"
+                      />
+                      <div className="flex flex-col justify-center">
+                        <p className="text-lg font-bold">
+                          {winner?.bidderName}
+                        </p>
+                        <p className="text-sm text-gray-800">
+                          Win Bid Price: {winner?.amount}$
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <h2> waitting for bidding end </h2>
+                  )}
+                </div>
 
                 <h4 className="text-red-500">This Auction Ends in</h4>
                 <h2 className="text-red-500">{remainingTime}</h2>
@@ -306,7 +338,7 @@ export default function ProductDettailsCard({ data }) {
               "
               >
                 <h1>Total Bids</h1>
-                <h1>{data?.bids?.length} Bids</h1>
+                {/* <h1>{data?.bids?.length} Bids</h1> */}
               </div>
             </div>
           </div>
