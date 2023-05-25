@@ -31,7 +31,8 @@ export default function ProductDettailsCard({ data }) {
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
-      productName: data.name
+      productName: data.name,
+      productPhoto:data.mainImage
     };
 
     fetch(`http://localhost:5000/products/${data._id}/bids`, {

@@ -9,6 +9,10 @@ import AdminDashBordLayot from "../Pages/AdminDashBord/AdminDashBordLayot/AdminD
 import AdminDashBoard from "../Pages/AdminDashBord/AdminDashbord/AdminDashBoard";
 import ProductUploadForm from "../Pages/AdminDashBord/ProductUpload/ProductUploadForm";
 import UserDashBord from "../Pages/UserDashBord/UserDashBord";
+import Profile from "../Pages/UserDashBord/Profile/Profile";
+import MyBidds from "../Pages/UserDashBord/My_Bids/MyBidds";
+import WinningBids from "../Pages/UserDashBord/WinningBids/WinningBids";
+import Buy from "../Pages/UserDashBord/Buy/Buy";
 
 export const routs = createBrowserRouter([
   {
@@ -29,8 +33,30 @@ export const routs = createBrowserRouter([
       },
       {
         path: "/my-dashboard",
-        element: <UserDashBord></UserDashBord>
+        element: <UserDashBord></UserDashBord>,
+        children:[
+          {
+            path:"/my-dashboard",
+            element:<Profile></Profile>
+             },
+             {
+              path:"/my-dashboard/my-bids",
+              element:<MyBidds></MyBidds>
+               },
+               {
+                path:"/my-dashboard/win-bids",
+                element:<WinningBids></WinningBids>
+              },
+              {
+                path:"/my-dashboard/buy",
+                element:<Buy></Buy>
+              },
+        ]
       },
+      
+     
+      
+      
 
       {
         path: "/action",

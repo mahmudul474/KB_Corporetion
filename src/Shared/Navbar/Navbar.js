@@ -13,8 +13,8 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut().then(() => {
-      toast.error("user Log-Out successfully");
       window.location.reload(true);
+      toast.error("user Log-Out successfully");
     });
   };
 
@@ -68,14 +68,16 @@ const Navbar = () => {
             aria-labelledby="user-menu-button"
             tabindex="-1"
           >
+            <Link to="/my-dashboard">
             <li
               className="block px-4 py-2 text-sm text-gray-700"
               role="menuitem"
               tabindex="-1"
               id="user-menu-item-0"
             >
-              Your Profile
+              Dashboard
             </li>
+            </Link>
 
             <li
               onClick={handleLogOut}
