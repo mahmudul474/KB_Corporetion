@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export default function Register() {
   const { signUpUser, updateUser } = useContext(AuthContext);
@@ -14,6 +15,11 @@ export default function Register() {
   const [userPhoto, setUserPhoto] = useState("");
   const [nidCardImg, setNidCardImg] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+ const [businessName,setBusinessName]=useState("")
+ const [businessAddress, setBusinessAddress]=useState("")
+ const [tinNum, setTinNo]=useState("")
+ const [tradeLN, setTradeLC]=useState("")
+console.log(businessName,businessAddress,tinNum,tradeLN)
   const [message, setMessage] = useState("");
 
 
@@ -30,6 +36,10 @@ export default function Register() {
 
   const handleRegistration = e => {
     e.preventDefault();
+ if(password.length<5){
+  alert("password must be 7 digit ")
+ }
+
     signUpUser(email, password)
       .then(result => {
         const user = result.user;
@@ -65,8 +75,11 @@ export default function Register() {
       formData.append("userPhoto", userPhoto);
       formData.append("nidCardImg", nidCardImg);
       formData.append("phoneNumber", phoneNumber);
+      formData.append("businessName", businessName);
+      formData.append("businessAddress", businessAddress);
+      formData.append("tinNum", tinNum);
+      formData.append("tradeLN", tradeLN);
 
-   
 
       const response = await axios.post(
         "http://localhost:5000/register",
@@ -77,10 +90,9 @@ export default function Register() {
           }
         }
       );
+      toast.success(response.data.message);
+       window.location.reload(true)
 
-
-      console.log("api  is hit ")
-      setMessage(response.data.message);
     } catch (err) {
       console.error(err);
       setMessage("Registration failed");
@@ -219,6 +231,81 @@ export default function Register() {
                     />
                   </div>
                 </div>
+
+
+
+     
+                <div className="flex justify-between flex-col lg:flex-row">
+                  <div className="my-1 w-full">
+                    <label
+                      for="business name."
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Business Name
+                    </label>
+                    <input
+                    onChange={(e)=>setBusinessName(e.target.value)}
+                      type="text"
+                      placeholder="Trade license No."
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      required
+                    />
+                  </div>
+                  <div className="my-1 w-full">
+                    <label
+                      for="business Address"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Business Address
+                    </label>
+                    <input
+                    onChange={(e)=>setBusinessAddress(e.target.value)}
+                       type="text"
+                    
+                      placeholder="business tin number"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between flex-col lg:flex-row">
+                  <div className="my-1 w-full">
+                    <label
+                      for="Trade license No."
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Trade license No.
+                    </label>
+                    <input
+                    onChange={(e)=>setTradeLC(e.target.value)}
+                      type="number"
+                      placeholder="Trade license No."
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      required
+                    />
+                  </div>
+                  <div className="my-1 w-full">
+                    <label
+                      for="nidPas"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Business Tin Number
+                    </label>
+                    <input
+                    onChange={(e)=>setTinNo(e.target.value)}
+                       type="number"
+                    
+                      placeholder="business tin number"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      required
+                    />
+                  </div>
+                </div>
+
+
+
+
+
 
                 <div className="my-1 w-full">
                   <label
