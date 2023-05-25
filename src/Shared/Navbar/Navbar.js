@@ -1,32 +1,117 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../../assets/logo.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Navbar = () => {
+  const { currentUser, logOut } = useContext(AuthContext);
+  console.log(currentUser);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOut().then(() => {
+      toast.error("user Log-Out successfully");
+      window.location.reload(true);
+    });
+  };
 
   const navitem = (
     <>
       <Link to="/">
-      <li>
-        <p
-          title="Our product"
-          className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-        >
-         Home
-        </p>
-      </li>
+        <li>
+          <p
+            title="Our product"
+            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+            Home
+          </p>
+        </li>
       </Link>
       <Link to="/action">
-      <li>
-        <p
-          title="Our product"
-          className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-        >
-         Actions
-        </p>
-      </li>
+        <li>
+          <p
+            title="Our product"
+            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+            Actions
+          </p>
+        </li>
       </Link>
+
+      {currentUser ? (
+        <div className="relative ml-3">
+          <div>
+            <button
+              type="button"
+              className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              id="user-menu-button"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              <div className="h-14 w-14">
+                <img
+                  className=" rounded-full  "
+                  src={`${process.env.REACT_APP_API_URL}/${currentUser?.userPhoto}`}
+                  alt=""
+                />
+              </div>
+            </button>
+          </div>
+
+          <div
+            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu-button"
+            tabindex="-1"
+          >
+            <li
+              className="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+              tabindex="-1"
+              id="user-menu-item-0"
+            >
+              Your Profile
+            </li>
+
+            <li
+              onClick={handleLogOut}
+              className="block px-4 py-2 text-sm text-red-600 cursor-pointer"
+              role="menuitem"
+              tabindex="-1"
+              id="user-menu-item-2"
+            >
+              Sign out
+            </li>
+          </div>
+        </div>
+      ) : (
+        <>
+          <Link to="/login">
+            <li>
+              <p
+                title="Our product"
+                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+              >
+                Login
+              </p>
+            </li>
+          </Link>
+          <Link to="/register">
+            <li>
+              <p
+                title="Our product"
+                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+              >
+                Sing-up
+              </p>
+            </li>
+          </Link>
+        </>
+      )}
     </>
   );
 
@@ -62,35 +147,6 @@ const Navbar = () => {
           </a>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             {navitem}
-          </ul>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
-          
-          <Link to="/login"> <li>
-              <span
-                
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign in 
-              </span>
-            </li></Link>
-           
-        
-
-     <Link to="/register">
-     <li>
-              <span
-                
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign up
-              </span>
-            </li>
-     </Link>
-
           </ul>
           <div className="lg:hidden">
             <button
@@ -162,13 +218,7 @@ const Navbar = () => {
                     </div>
                   </div>
                   <nav className="bg-red">
-                    <ul className="space-y-4">
-
-                      {
-                        navitem
-                      }
-                    </ul>
-
+                    <ul className="space-y-4">{navitem}</ul>
                   </nav>
                 </div>
               </div>

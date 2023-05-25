@@ -8,7 +8,7 @@ import Action from "../Pages/ActionPage/Action";
 import AdminDashBordLayot from "../Pages/AdminDashBord/AdminDashBordLayot/AdminDashBordLayot";
 import AdminDashBoard from "../Pages/AdminDashBord/AdminDashbord/AdminDashBoard";
 import ProductUploadForm from "../Pages/AdminDashBord/ProductUpload/ProductUploadForm";
-
+import UserDashBord from "../Pages/UserDashBord/UserDashBord";
 
 export const routs = createBrowserRouter([
   {
@@ -28,6 +28,11 @@ export const routs = createBrowserRouter([
         element: <Login></Login>
       },
       {
+        path: "/my-dashboard",
+        element: <UserDashBord></UserDashBord>
+      },
+
+      {
         path: "/action",
         element: <Action></Action>
       },
@@ -40,15 +45,15 @@ export const routs = createBrowserRouter([
     ]
   },
   {
-    path: "/adminDashboard",
+    path: "/admin-dashboard",
     element: <AdminDashBordLayot></AdminDashBordLayot>,
     children: [
       {
-        path: "/adminDashboard",
+        path: "/admin-dashboard",
         element: <AdminDashBoard></AdminDashBoard>
       },
       {
-        path: "/adminDashboard/productUpload",
+        path: "/admin-dashboard/productUpload",
         element: <ProductUploadForm></ProductUploadForm>
       }
     ]

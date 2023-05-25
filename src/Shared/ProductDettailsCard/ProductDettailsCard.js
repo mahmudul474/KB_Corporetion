@@ -19,7 +19,7 @@ export default function ProductDettailsCard({ data }) {
     const bidPrice = parseFloat(event.target.value);
     setNewPrice(bidPrice);
   };
-  // const currentBids = data?.bids[data?.bids.length - 1];
+    const currentBids = data?.bids[data?.bids.length - 1];
 
   const handlePlcebid = e => {
     e.preventDefault();
@@ -214,11 +214,11 @@ export default function ProductDettailsCard({ data }) {
                 <div className="flex justify-between items-center text-xl font-bold text-green-600  dark:text-green-100">
                   <span>Current bidding Price:</span>
 
-                  {/* {currentBids ? (
+                  {currentBids ? (
                     <span>{currentBids?.amount} $</span>
                   ) : (
                     <span>No Bids</span>
-                  )} */}
+                  )}  
                 </div>
               </div>
 
