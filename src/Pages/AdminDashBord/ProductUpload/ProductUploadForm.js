@@ -45,7 +45,7 @@ const ProductUploadForm = () => {
 
     // // Send the form data to the server for processing
 
-    fetch("http://localhost:5000/products", {
+    fetch(`${process.env.REACT_APP_API_URL}/products`, {
       method: "POST",
       body: formData
     })

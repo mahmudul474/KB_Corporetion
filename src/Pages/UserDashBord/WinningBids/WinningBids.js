@@ -24,7 +24,7 @@ export default function WinningBids() {
   useEffect(()=>{
     if(currentUser){
         fetch(
-            `http://localhost:5000/bids/bidder/${currentUser._id}/products/won`
+            `${process.env.REACT_APP_API_URL}/bids/bidder/${currentUser._id}/products/won`
           )
             .then((response) => response.json())
             .then((data) => {

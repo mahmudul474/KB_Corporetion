@@ -35,7 +35,7 @@ export default function ProductDettailsCard({ data }) {
       productPhoto:data.mainImage
     };
 
-    fetch(`http://localhost:5000/products/${data._id}/bids`, {
+    fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/bids`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -143,7 +143,7 @@ export default function ProductDettailsCard({ data }) {
     const fetchWinner = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/products/${data._id}/winner`
+          `${process.env.REACT_APP_API_URL}/products/${data._id}/winner`
         );
         setWinner(response.data.winner);
         setLoading(false);

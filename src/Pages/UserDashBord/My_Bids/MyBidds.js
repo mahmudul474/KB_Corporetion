@@ -13,7 +13,7 @@ export default function MyBidds() {
       useEffect(()=>{
 
      if(currentUser){
-        fetch(`http://localhost:5000/bids/bidder/${currentUser._id}/products`)
+        fetch(`${process.env.REACT_APP_API_URL}/bids/bidder/${currentUser._id}/products`)
         .then(response => response.json())
         .then(data => {
           // Process the retrieved bidder bids

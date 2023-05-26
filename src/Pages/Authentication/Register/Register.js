@@ -82,7 +82,7 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
 
 
       const response = await axios.post(
-        "http://localhost:5000/register",
+        `${process.env.REACT_APP_API_URL}/register`,
         formData,
         {
           headers: {
