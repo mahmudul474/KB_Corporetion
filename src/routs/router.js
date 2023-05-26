@@ -13,6 +13,7 @@ import Profile from "../Pages/UserDashBord/Profile/Profile";
 import MyBidds from "../Pages/UserDashBord/My_Bids/MyBidds";
 import WinningBids from "../Pages/UserDashBord/WinningBids/WinningBids";
 import Buy from "../Pages/UserDashBord/Buy/Buy";
+import Private from "./PraivetRout/Privet";
 
 export const routs = createBrowserRouter([
   {
@@ -33,23 +34,23 @@ export const routs = createBrowserRouter([
       },
       {
         path: "/my-dashboard",
-        element: <UserDashBord></UserDashBord>,
+        element:<Private> <UserDashBord></UserDashBord></Private>,
         children:[
           {
             path:"/my-dashboard",
-            element:<Profile></Profile>
+            element:<Private> <Profile></Profile></Private>
              },
              {
               path:"/my-dashboard/my-bids",
-              element:<MyBidds></MyBidds>
+              element:<Private><MyBidds></MyBidds></Private>
                },
                {
                 path:"/my-dashboard/win-bids",
-                element:<WinningBids></WinningBids>
+                element:<Private><WinningBids></WinningBids></Private>
               },
               {
                 path:"/my-dashboard/buy",
-                element:<Buy></Buy>
+                element:<Private><Buy></Buy></Private>
               },
         ]
       },
@@ -66,21 +67,21 @@ export const routs = createBrowserRouter([
         path: "/action/:id",
         loader: ({ params }) =>
           fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
-        element: <ProductDettails></ProductDettails>
+        element:<Private> <ProductDettails></ProductDettails></Private>
       }
     ]
   },
   {
     path: "/admin-dashboard",
-    element: <AdminDashBordLayot></AdminDashBordLayot>,
+    element:<Private> <AdminDashBordLayot></AdminDashBordLayot></Private>,
     children: [
       {
         path: "/admin-dashboard",
-        element: <AdminDashBoard></AdminDashBoard>
+        element: <Private><AdminDashBoard></AdminDashBoard></Private>
       },
       {
         path: "/admin-dashboard/productUpload",
-        element: <ProductUploadForm></ProductUploadForm>
+        element:<Private> <ProductUploadForm></ProductUploadForm></Private>
       }
     ]
   }
