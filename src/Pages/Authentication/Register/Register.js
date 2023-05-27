@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 export default function Register() {
   const { signUpUser, updateUser } = useContext(AuthContext);
-  const  navigete=useNavigate("")
+  const navigete = useNavigate("");
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -15,16 +15,16 @@ export default function Register() {
   const [userPhoto, setUserPhoto] = useState("");
   const [nidCardImg, setNidCardImg] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
- const [businessName,setBusinessName]=useState("")
- const [businessAddress, setBusinessAddress]=useState("")
- const [tinNum, setTinNo]=useState("")
- const [tradeLN, setTradeLC]=useState("")
-console.log(businessName,businessAddress,tinNum,tradeLN)
+  const [businessName, setBusinessName] = useState("");
+  const [businessAddress, setBusinessAddress] = useState("");
+  const [tinNum, setTinNo] = useState("");
+  const [tradeLN, setTradeLC] = useState("");
+
   const [message, setMessage] = useState("");
 
-
-  
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handlePhotoChange = e => {
     setUserPhoto(e.target.files[0]);
@@ -36,9 +36,9 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
 
   const handleRegistration = e => {
     e.preventDefault();
- if(password.length<5){
-  alert("password must be 7 digit ")
- }
+    if (password.length < 5) {
+      alert("password must be 7 digit ");
+    }
 
     signUpUser(email, password)
       .then(result => {
@@ -46,18 +46,15 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
         console.log(user);
         //save user database
 
-
         const userInfo = {
-          displayName: firstName + lastName,
+          displayName: firstName + lastName
         };
         updateUser(userInfo)
-        .then(() => {
-             saveData(user.email);
-             navigete("/")
-             
-        }).catch(err => console.log(err));
-
-      
+          .then(() => {
+            saveData(user.email);
+            
+          })
+          .catch(err => console.log(err));
       })
       .catch(error => {
         const errorCode = error.code;
@@ -66,7 +63,7 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
       });
   };
 
-  const saveData = async (userEmail,) => {
+  const saveData = async userEmail => {
     try {
       const formData = new FormData();
       formData.append("name", firstName + lastName);
@@ -80,7 +77,6 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
       formData.append("tinNum", tinNum);
       formData.append("tradeLN", tradeLN);
 
-
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/register`,
         formData,
@@ -91,8 +87,8 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
         }
       );
       toast.success(response.data.message);
-       window.location.reload(true)
-
+       navigate(from, { replace: true });
+      window.location.reload(true);
     } catch (err) {
       console.error(err);
       setMessage("Registration failed");
@@ -188,7 +184,7 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
                       id="Phone"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Mobile number"
-                       required
+                      required
                     />
                   </div>
                 </div>
@@ -232,9 +228,6 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
                   </div>
                 </div>
 
-
-
-     
                 <div className="flex justify-between flex-col lg:flex-row">
                   <div className="my-1 w-full">
                     <label
@@ -244,7 +237,7 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
                       Business Name
                     </label>
                     <input
-                    onChange={(e)=>setBusinessName(e.target.value)}
+                      onChange={e => setBusinessName(e.target.value)}
                       type="text"
                       placeholder="Trade license No."
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -259,9 +252,8 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
                       Business Address
                     </label>
                     <input
-                    onChange={(e)=>setBusinessAddress(e.target.value)}
-                       type="text"
-                    
+                      onChange={e => setBusinessAddress(e.target.value)}
+                      type="text"
                       placeholder="business tin number"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
@@ -277,7 +269,7 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
                       Trade license No.
                     </label>
                     <input
-                    onChange={(e)=>setTradeLC(e.target.value)}
+                      onChange={e => setTradeLC(e.target.value)}
                       type="number"
                       placeholder="Trade license No."
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -292,20 +284,14 @@ console.log(businessName,businessAddress,tinNum,tradeLN)
                       Business Tin Number
                     </label>
                     <input
-                    onChange={(e)=>setTinNo(e.target.value)}
-                       type="number"
-                    
+                      onChange={e => setTinNo(e.target.value)}
+                      type="number"
                       placeholder="business tin number"
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                     />
                   </div>
                 </div>
-
-
-
-
-
 
                 <div className="my-1 w-full">
                   <label

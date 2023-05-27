@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 export default function ProductDettailsCard({ data }) {
   const { currentUser } = useContext(AuthContext);
 
-  console.log(currentUser, "user ");
+
 
   const [subimageUrl, setSubImgUrl] = useState(null);
   const [newPrice, setNewPrice] = useState("");
@@ -219,7 +219,7 @@ export default function ProductDettailsCard({ data }) {
                     <span>{currentBids?.amount} $</span>
                   ) : (
                     <span>No Bids</span>
-                  )}  
+                  )}
                 </div>
               </div>
 
@@ -302,11 +302,11 @@ export default function ProductDettailsCard({ data }) {
                         src={`${process.env.REACT_APP_API_URL}/${winner.bidderPhoto}`}
                         alt="Person"
                       />
-                      <div className="flex flex-col justify-center">
-                        <p className="text-lg font-bold">
+                      <div className="flex flex-col items-start justify-center">
+                        <p className="text-lg font-bold text-left">
                           {winner?.bidderName}
                         </p>
-                        <p className="text-sm text-gray-800">
+                        <p className="text-sm text-gray-800 text-left">
                           Win Bid Price: {winner?.amount}$
                         </p>
                       </div>

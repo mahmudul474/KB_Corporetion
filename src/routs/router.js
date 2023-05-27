@@ -14,6 +14,8 @@ import MyBidds from "../Pages/UserDashBord/My_Bids/MyBidds";
 import WinningBids from "../Pages/UserDashBord/WinningBids/WinningBids";
 import Buy from "../Pages/UserDashBord/Buy/Buy";
 import Private from "./PraivetRout/Privet";
+import ThisWeek from "../Pages/ThisWeekEnd/ThisWeek";
+import ThisMonth from "../Pages/ThisMonthEnd/ThisMonth";
 
 export const routs = createBrowserRouter([
   {
@@ -34,54 +36,86 @@ export const routs = createBrowserRouter([
       },
       {
         path: "/my-dashboard",
-        element:<Private> <UserDashBord></UserDashBord></Private>,
-        children:[
+        element: (
+          <Private>
+            {" "}
+            <UserDashBord></UserDashBord>
+          </Private>
+        ),
+        children: [
           {
-            path:"/my-dashboard",
-            element:<Private> <Profile></Profile></Private>
-             },
-             {
-              path:"/my-dashboard/my-bids",
-              element:<Private><MyBidds></MyBidds></Private>
-               },
-               {
-                path:"/my-dashboard/win-bids",
-                element:<Private><WinningBids></WinningBids></Private>
-              },
-              {
-                path:"/my-dashboard/buy",
-                element:<Private><Buy></Buy></Private>
-              },
+            path: "/my-dashboard",
+            element: (
+              <Private>
+                {" "}
+                <Profile></Profile>
+              </Private>
+            )
+          },
+          {
+            path: "/my-dashboard/my-bids",
+            element: (
+              <Private>
+                <MyBidds></MyBidds>
+              </Private>
+            )
+          },
+          {
+            path: "/my-dashboard/win-bids",
+            element: (
+              <Private>
+                <WinningBids></WinningBids>
+              </Private>
+            )
+          },
+          {
+            path: "/my-dashboard/buy",
+            element: (
+              <Private>
+                <Buy></Buy>
+              </Private>
+            )
+          }
         ]
       },
-      
-     
-      
-      
 
       {
-        path: "/action",
+        path: "/this-week",
+        element: <ThisWeek></ThisWeek>
+      },
+      {
+        path: "/this-month",
+        element: <ThisMonth></ThisMonth>
+      },
+      {
+        path: "/others",
         element: <Action></Action>
       },
+
       {
         path: "/action/:id",
         loader: ({ params }) =>
           fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
-        element:<Private> <ProductDettails></ProductDettails></Private>
+        element: (
+          <Private>
+            {" "}
+            <ProductDettails></ProductDettails>
+          </Private>
+        )
       }
     ]
   },
   {
     path: "/admin-dashboard",
-    element:<Private> <AdminDashBordLayot></AdminDashBordLayot></Private>,
+    element: <AdminDashBordLayot></AdminDashBordLayot>,
     children: [
       {
         path: "/admin-dashboard",
-        element: <Private><AdminDashBoard></AdminDashBoard></Private>
+        element: <AdminDashBoard></AdminDashBoard>
       },
       {
         path: "/admin-dashboard/productUpload",
-        element:<Private> <ProductUploadForm></ProductUploadForm></Private>
+        element: <ProductUploadForm></ProductUploadForm>
       }
     ]
   }

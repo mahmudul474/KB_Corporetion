@@ -1,90 +1,100 @@
-import React, { useState, useEffect } from "react";
-
-const ProductPage = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/products`)
-      .then(response => response.json())
-      .then(data => {
-        setProducts(data);
-      })
-      .catch(error => {
-        console.error("Error fetching products", error);
-      });
-  }, []);
-
-  const calculateRemainingTime = endTime => {
-    const currentTime = new Date().getTime();
-    const endTimeValue = new Date(endTime).getTime();
-
-    if (currentTime > endTimeValue) {
-      return "Bidding Ended";
-    }
-
-    const remainingTime = endTimeValue - currentTime;
-
-    // Convert remaining time to hours, minutes, and seconds
-    const hours = Math.floor(remainingTime / (1000 * 60 * 60));
-    const minutes = Math.floor(
-      (remainingTime % (1000 * 60 * 60)) / (1000 * 60)
-    );
-    const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-
-    return `${hours}:${minutes}:${seconds}`;
-  };
-
-  const isBiddingStartSoon = startTime => {
-    const currentTime = new Date().getTime();
-    const startTimeValue = new Date(startTime).getTime();
-
-    return currentTime < startTimeValue;
-  };
-
-  const isBiddingEnd = endTime => {
-    const currentTime = new Date().getTime();
-    const endTimeValue = new Date(endTime).getTime();
-
-    return currentTime > endTimeValue;
-  };
-
-  const formatDateTime = dateTimeString => {
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric"
-    };
-    return new Date(dateTimeString).toLocaleString(undefined, options);
-  };
-
-  return (
-    <div>
-      <h1>Product Listing</h1>
-      {products.map(product => (
-        <div key={product.id}>
-          <h2>{product.productName}</h2>
-          <p>About: {product.about}</p>
-          <p>Start Bidding Price: {product.startBiddingPrice}</p>
-          <p>Buy Now Price: {product.buyNowPrice}</p>
-          <p>Minimum Bid: {product.minimumBid}</p>
-          <p>Start Bidding Time: {formatDateTime(product.startBiddingTime)}</p>
-          <p>End Bidding Time: {formatDateTime(product.endBiddingTime)}</p>
-          {isBiddingStartSoon(product.startBiddingTime) &&
-          !isBiddingEnd(product.endBiddingTime) ? (
-            <p>Start Bidding Soon</p>
-          ) : isBiddingEnd(product.endBiddingTime) ? (
-            <p>Bidding Ended</p>
-          ) : (
-            <p>
-              Remaining Time: {calculateRemainingTime(product.endBiddingTime)}
-            </p>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default ProductPage;
+[
+  {
+    name: "fffff",
+    owner: "undefined",
+    description: "55555",
+    startBiddingPrice: "60",
+    buyNowPrice: "555",
+    minimumBid: "40",
+    startBiddingTime: "2023-05-25T16:50",
+    endBiddingTime: "2023-05-25T19:58",
+    mainImage:
+      "1685013094696-483484660-WhatsApp Image 2023-05-18 at 16.06.32.jpg",
+    subImages: [
+      "1685013094727-658121218-WhatsApp Image 2023-05-18 at 16.06.32.jpg",
+      "1685013094742-226765711-WhatsApp Image 2023-05-18 at 16.06.33.jpg"
+    ],
+    pdfFile:
+      "1685013094713-229993556-WhatsApp Image 2023-05-18 at 16.06.33.jpg",
+    bids: [
+      {
+        amount: 60,
+        bidderName: null,
+        bidderId: null,
+        bidderEmail: null,
+        bidderNumber: null,
+        bidderPhoto: null,
+        productId: "646f4266e4287d9a14894d87",
+        productName: "fffff",
+        timestamp: "2023-05-25T11:13:18.873Z"
+      },
+      {
+        amount: 44444,
+        bidderName: null,
+        bidderId: null,
+        bidderEmail: null,
+        bidderNumber: null,
+        bidderPhoto: null,
+        productId: "646f4266e4287d9a14894d87",
+        productName: "fffff",
+        timestamp: "2023-05-25T11:15:49.977Z"
+      },
+      {
+        amount: 555555555555,
+        bidderName: "jony",
+        bidderId: "646f4354e4287d9a14894d88",
+        bidderEmail: "ex44@gmail.com",
+        bidderNumber: "44443",
+        bidderPhoto:
+          "uploads\\user-photos\\1685013332170-599813467-WhatsApp Image 2023-05-18 at 16.06.33.jpg",
+        productId: "646f4266e4287d9a14894d87",
+        productName: "fffff",
+        timestamp: "2023-05-25T11:17:42.493Z"
+      },
+      {
+        amount: 5555555535555,
+        bidderName: "jony",
+        bidderId: "646f4354e4287d9a14894d88",
+        bidderEmail: "ex44@gmail.com",
+        bidderNumber: "44443",
+        bidderPhoto:
+          "uploads\\user-photos\\1685013332170-599813467-WhatsApp Image 2023-05-18 at 16.06.33.jpg",
+        productName: "fffff",
+        timestamp: "2023-05-25T11:32:44.740Z"
+      },
+      {
+        amount: 555555553335555,
+        bidderName: "jony",
+        bidderId: "646f4354e4287d9a14894d88",
+        bidderEmail: "ex44@gmail.com",
+        bidderNumber: "44443",
+        bidderPhoto:
+          "uploads\\user-photos\\1685013332170-599813467-WhatsApp Image 2023-05-18 at 16.06.33.jpg",
+        productName: "fffff",
+        timestamp: "2023-05-25T11:32:56.070Z"
+      },
+      {
+        amount: 4.4444444444444443e86,
+        bidderName: "jony",
+        bidderId: "646f4354e4287d9a14894d88",
+        bidderEmail: "ex44@gmail.com",
+        bidderNumber: "44443",
+        bidderPhoto:
+          "uploads\\user-photos\\1685013332170-599813467-WhatsApp Image 2023-05-18 at 16.06.33.jpg",
+        productName: "fffff",
+        timestamp: "2023-05-25T13:03:59.678Z"
+      },
+      {
+        amount: 6.666666666666667e118,
+        bidderName: "jony",
+        bidderId: "646f4354e4287d9a14894d88",
+        bidderEmail: "ex44@gmail.com",
+        bidderNumber: "44443",
+        bidderPhoto:
+          "uploads\\user-photos\\1685013332170-599813467-WhatsApp Image 2023-05-18 at 16.06.33.jpg",
+        productName: "fffff",
+        timestamp: "2023-05-25T13:08:51.179Z"
+      }
+    ]
+  }
+];

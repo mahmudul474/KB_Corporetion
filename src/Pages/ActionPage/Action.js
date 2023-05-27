@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Product from "../../Shared/ProductCard/Product";
 import { getAllProducts } from "../../api/allProduct";
+import LoadingSpiner from "../../Shared/LoadingSpiner/LoadingSpiner";
 
 export default function Action() {
   const [loading, setLoading] = useState(false);
@@ -19,7 +20,7 @@ export default function Action() {
   }, []);
 
   if (loading) {
-    return <h1>loading .........</h1>;
+    return <LoadingSpiner></LoadingSpiner>;
   }
 
   return (

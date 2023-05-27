@@ -42,7 +42,7 @@ export default function AdminSaidbar({ isOpen }) {
                   <span class="text-sm font-medium">All Product</span>
                 </p>
               </li>
-              <Link to="/adminDashboard/productUpload">
+              <Link to="/admin-dashboard/productUpload">
                 <li>
                   <p class="flex flex-row items-center cursor-pointer pl-4 h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
                     <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">

@@ -6,116 +6,181 @@ import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const { currentUser, logOut } = useContext(AuthContext);
-  console.log(currentUser);
+   
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
+ 
 
-  const handleLogOut = () => {
-    logOut().then(() => {
-      window.location.reload(true);
-      toast.error("user Log-Out successfully");
-    });
-  };
+   const [isMenuOpen, setIsMenuOpen] = useState(false);
+   const [isAuctionOpen, setIsAuctionOpen] = useState(false);
+   const [isProflieOpen, setIsProflieOpen] = useState(false);
 
-  const navitem = (
-    <>
-      <Link to="/">
-        <li>
-          <p
-            title="Our product"
-            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-          >
-            Home
-          </p>
-        </li>
-      </Link>
-      <Link to="/action">
-        <li>
-          <p
-            title="Our product"
-            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-          >
-            Actions
-          </p>
-        </li>
-      </Link>
+   const handleLogOut = () => {
+     logOut().then(() => {
+       window.location.reload(true);
+       toast.error("user Log-Out successfully");
+     });
+   };
 
-      {currentUser ? (
-        <div className="relative ml-3">
-          <div>
-            <button
-              type="button"
-              className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              id="user-menu-button"
-              aria-expanded="false"
-              aria-haspopup="true"
-            >
-              <div className="h-14 w-14">
-                <img
-                  className=" rounded-full  "
-                  src={`${process.env.REACT_APP_API_URL}/${currentUser?.userPhoto}`}
-                  alt=""
-                />
-              </div>
-            </button>
-          </div>
+   const navitem = (
+     <>
+       <Link to="/">
+         <li>
+           <p
+             title="Our product"
+             className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+           >
+             Home
+           </p>
+         </li>
+       </Link>
 
-          <div
-            className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="user-menu-button"
-            tabindex="-1"
-          >
-            <Link to="/my-dashboard">
-            <li
-              className="block px-4 py-2 text-sm text-gray-700"
-              role="menuitem"
-              tabindex="-1"
-              id="user-menu-item-0"
-            >
-              Dashboard
-            </li>
-            </Link>
+       <div className="relative ml-3">
+         <div>
+           <button
+             onClick={() => setIsAuctionOpen(true)}
+             type="button"
+             className="flex  focus:outline-none   focus:ring-offset-2 focus:ring-offset-gray-800"
+             id="user-menu-button"
+             aria-expanded="false"
+             aria-haspopup="true"
+           >
+             <li>
+               <p
+                 title="Our product"
+                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+               >
+                 Auctions
+               </p>
+             </li>
+           </button>
+         </div>
 
-            <li
-              onClick={handleLogOut}
-              className="block px-4 py-2 text-sm text-red-600 cursor-pointer"
-              role="menuitem"
-              tabindex="-1"
-              id="user-menu-item-2"
-            >
-              Sign out
-            </li>
-          </div>
-        </div>
-      ) : (
-        <>
-          <Link to="/login">
-            <li>
-              <p
-                title="Our product"
-                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                Login
-              </p>
-            </li>
-          </Link>
-          <Link to="/register">
-            <li>
-              <p
-                title="Our product"
-                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                Sing-up
-              </p>
-            </li>
-          </Link>
-        </>
-      )}
-    </>
-  );
+         {isAuctionOpen && (
+           <div
+             className="absolute left-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 text-left ring-black ring-opacity-5 focus:outline-none"
+             role="menu"
+             aria-orientation="vertical"
+             aria-labelledby="user-menu-button"
+             tabindex="-1"
+           >
+             <Link to="/this-week">
+               <li
+                 onClick={() => setIsAuctionOpen(false)}
+                 className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover:text-white "
+                 role="menuitem"
+                 tabindex="-1"
+                 id="user-menu-item-0"
+               >
+                 This Week
+               </li>
+             </Link>
+             <Link to="/this-month">
+               <li
+                 onClick={() => setIsAuctionOpen(false)}
+                 className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover:text-white "
+                 role="menuitem"
+                 tabindex="-1"
+                 id="user-menu-item-0"
+               >
+                 This Month
+               </li>
+             </Link>
+             <Link to="/others">
+               <li
+                 onClick={() => setIsAuctionOpen(false)}
+                 className="block px-2 py-2  hover:bg-green-600 hover:text-white text-md text-gray-700"
+                 role="menuitem"
+                 tabindex="-1"
+                 id="user-menu-item-0"
+               >
+                 Others
+               </li>
+             </Link>
+           </div>
+         )}
+       </div>
+
+       {currentUser ? (
+         <div className="relative ml-3">
+           <div>
+             <button
+               onClick={() => {
+                 setIsProflieOpen(true);
+               }}
+               type="button"
+               className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+               id="user-menu-button"
+               aria-expanded="false"
+               aria-haspopup="true"
+             >
+               <div className="h-14 w-14">
+                 <img
+                   className=" rounded-full  "
+                   src={`${process.env.REACT_APP_API_URL}/${currentUser?.userPhoto}`}
+                   alt=""
+                 />
+               </div>
+             </button>
+           </div>
+
+           {isProflieOpen && (
+             <div
+               className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+               role="menu"
+               aria-orientation="vertical"
+               aria-labelledby="user-menu-button"
+               tabindex="-1"
+             >
+               <Link to="/my-dashboard">
+                 <li
+                   onClick={() => setIsProflieOpen(false)}
+                   className="block px-4 py-2 text-sm text-gray-700"
+                   role="menuitem"
+                   tabindex="-1"
+                   id="user-menu-item-0"
+                 >
+                   Dashboard
+                 </li>
+               </Link>
+
+               <li
+                 onClick={handleLogOut}
+                 className="block px-4 py-2 text-sm text-red-600 cursor-pointer"
+                 role="menuitem"
+                 tabindex="-1"
+                 id="user-menu-item-2"
+               >
+                 Sign out
+               </li>
+             </div>
+           )}
+         </div>
+       ) : (
+         <>
+           <Link to="/login">
+             <li>
+               <p
+                 title="Our product"
+                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+               >
+                 Login
+               </p>
+             </li>
+           </Link>
+           <Link to="/register">
+             <li>
+               <p
+                 title="Our product"
+                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+               >
+                 Sing-up
+               </p>
+             </li>
+           </Link>
+         </>
+       )}
+     </>
+   );
 
   return (
     <div className="bg-[#442db9] text-white">

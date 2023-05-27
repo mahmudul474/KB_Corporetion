@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { loginUser } = useContext(AuthContext);
@@ -7,40 +8,44 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = event => {
     event.preventDefault();
     loginUser(email, password).then(result => {
       const user = result.user;
       console.log(user);
-      checkUserDb(user.email);
+      navigate(from, { replace: true });
     });
   };
 
-  const checkUserDb = async userEmail => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ userEmail, password })
-      });
+  // const checkUserDb = async userEmail => {
+  //   try {
+  //     const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({ userEmail, password })
+  //     });
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (response.ok) {
-        // Login successful
-        console.log(data.message);
-        // Redirect to the dashboard or desired page
-      } else {
-        // Login failed
-        setErrorMessage(data.message);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     if (response.ok) {
+  //       // Login successful
+  //       console.log(data.message);
+  //       navigate(from, { replace: true });
+  //       // Redirect to the dashboard or desired page
+  //     } else {
+  //       // Login failed
+  //       setErrorMessage(data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <>

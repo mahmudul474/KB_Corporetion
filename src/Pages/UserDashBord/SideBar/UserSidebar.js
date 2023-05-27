@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GrUserSettings } from "react-icons/gr";
 import { GiThorHammer } from "react-icons/gi";
 import { FaRegSmileWink } from "react-icons/fa";
 import { AiOutlineMoneyCollect } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
+
 export default function UserSidebar() {
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
+
   return (
     <div>
       <div className="h-full p-3 space-y-2 text-2xl bg-slate-100 rounded rounded-lg">
         <div className="flex flex-col items-center justify-center p-2 space-x-4">
           <img
-            src="https://source.unsplash.com/100x100/?portrait"
+            src={`${process.env.REACT_APP_API_URL}/${currentUser?.userPhoto}`}
             alt=""
             className="w-20 h-20 rounded-full dark:bg-gray-500"
           />
           <div className="tex-center">
-            <h2 className=" font-semibold">Leroy Jenkins</h2>
-            <span className="text-sm">Example.@gmail.com</span>
+            <h2 className=" font-semibold">{currentUser?.name}</h2>
+            <span className="text-sm">{currentUser?.email}</span>
           </div>
         </div>
         <div className="divide-y divide-gray-700">
