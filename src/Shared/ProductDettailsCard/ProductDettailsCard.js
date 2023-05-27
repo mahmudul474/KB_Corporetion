@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 export default function ProductDettailsCard({ data }) {
   const { currentUser } = useContext(AuthContext);
 
-
+  console.log(data);
 
   const [subimageUrl, setSubImgUrl] = useState(null);
   const [newPrice, setNewPrice] = useState("");
@@ -19,7 +19,6 @@ export default function ProductDettailsCard({ data }) {
     const bidPrice = parseFloat(event.target.value);
     setNewPrice(bidPrice);
   };
-    const currentBids = data?.bids[data?.bids.length - 1];
 
   const handlePlcebid = e => {
     e.preventDefault();
@@ -32,7 +31,7 @@ export default function ProductDettailsCard({ data }) {
       bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
       productName: data.name,
-      productPhoto:data.mainImage
+      productPhoto: data.mainImage
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/bids`, {
@@ -173,14 +172,10 @@ export default function ProductDettailsCard({ data }) {
           <div className="w-full px-4 lg:w-3/5 h-full  ">
             <div className=" h-64 lg:h-[600px]   ">
               {subimageUrl ? (
-                <img
-                  src={`${process.env.REACT_APP_API_URL}/uploads/sub-images/${subimageUrl}`}
-                  alt=""
-                  className="  w-full h-full   "
-                />
+                <img src={subimageUrl} alt="" className="  w-full h-full   " />
               ) : (
                 <img
-                  src={`${process.env.REACT_APP_API_URL}/uploads/main-images/${data?.mainImage}`}
+                  src={data?.mainImage}
                   alt=""
                   className="h-full    w-full   "
                 />
@@ -215,11 +210,7 @@ export default function ProductDettailsCard({ data }) {
                 <div className="flex justify-between items-center text-xl font-bold text-green-600  dark:text-green-100">
                   <span>Current bidding Price:</span>
 
-                  {currentBids ? (
-                    <span>{currentBids?.amount} $</span>
-                  ) : (
-                    <span>No Bids</span>
-                  )}
+                  <span>{data.bids[data.bids.length - 1].amount}$</span>
                 </div>
               </div>
 
@@ -339,14 +330,20 @@ export default function ProductDettailsCard({ data }) {
               "
               >
                 <h1>Total Bids</h1>
-                {/* <h1>{data?.bids?.length} Bids</h1> */}
+                <h1>
+                  {" "}
+                  {data && data?.bids?.length
+                    ? data?.bids?.length + "bids"
+                    : "No Bids Available"}
+                </h1>
               </div>
             </div>
           </div>
         </div>
 
         <div>
-          <ActionHistory bids={data?.bids}> </ActionHistory>
+          {" "}
+          <ActionHistory bids={data?.bids}> </ActionHistory>{" "}
         </div>
       </div>
     </div>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Product({ data }) {
-  /////
+  
+
   const calculateRemainingTime = endTime => {
     const currentTime = new Date().getTime();
     const endTimeValue = new Date(endTime).getTime();
@@ -75,13 +76,11 @@ export default function Product({ data }) {
 
   return (
     <div>
-     
-
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="border ">
           <img
             className="rounded-t-lg w-full text-center h-60 object-contain "
-            src={`${process.env.REACT_APP_API_URL}/uploads/main-images/${data?.mainImage}`}
+            src={data?.mainImage}
             alt=""
           />
           <div className="  bottom-0 text-center ">
@@ -110,7 +109,7 @@ export default function Product({ data }) {
           </h5>
 
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {data?.description } <Link> ...</Link>
+            {data?.description} <Link> ...</Link>
           </p>
           <div className="flex my-2 justify-between items-center">
             <p className="flex flex-col text-green-500  items-center ">

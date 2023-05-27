@@ -127,10 +127,11 @@ const ProductUploadForm = () => {
       subImages: subImageUrls,
       pdfFile: pdfUrl,
       author: currentUser?.name,
-      authorEmail: currentUser?.email
+      authorEmail: currentUser?.email,
+      bids: []
     };
 
-    fetch(` https://kb-corporate.vercel.app/products`, {
+    fetch(`${process.env.REACT_APP_API_URL}/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -321,7 +322,7 @@ const ProductUploadForm = () => {
           </label>
         </div>
       </div>
-
+      <p className="text-center my-3 ">Upload Sub Images</p>
       <input
         type="file"
         id="subImages"

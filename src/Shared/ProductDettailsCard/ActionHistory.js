@@ -28,31 +28,39 @@ return (
           </tr>
         </thead>
         <tbody>
-          {bids.reverse().map(bid => (
-            <tr className="bg-green-600 border-b border-green-400">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium bg-green-500 text-blue-50 whitespace-nowrap dark:text-blue-100"
-              >
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src={`${process.env.REACT_APP_API_URL}/${bid.bidderPhoto}`}
-                        alt="Avatar"
-                      />
+          {bids.length === 0 ? (
+            <tr>
+              <h3 className="text-center mx-auto text-red-600  block text-xl   text-capitalize text-capitalize font-font-semibold my-5">
+                No Bids yet
+              </h3>
+            </tr>
+          ) : (
+            bids.map(bid => (
+              <tr className="bg-green-600 border-b border-green-400">
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium bg-green-500 text-blue-50 whitespace-nowrap dark:text-blue-100"
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img
+                          src={`${process.env.REACT_APP_API_URL}/${bid.bidderPhoto}`}
+                          alt="Avatar"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{bid?.bidderName}</div>
                     </div>
                   </div>
-                  <div>
-                    <div className="font-bold">{bid?.bidderName}</div>
-                  </div>
-                </div>
-              </th>
-              <td className="px-6 py-4">{bid?.productName}</td>
+                </th>
+                <td className="px-6 py-4">{bid?.productName}</td>
 
-              <td className="px-6 py-4">$ {bid.amount}</td>
-            </tr>
-          ))}
+                <td className="px-6 py-4">$ {bid.amount}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
