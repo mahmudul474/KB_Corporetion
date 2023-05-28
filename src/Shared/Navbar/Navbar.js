@@ -99,7 +99,26 @@ const Navbar = () => {
            </div>
          )}
        </div>
-
+       <Link to="/winners">
+         <li>
+           <p
+             title="Our product"
+             className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+           >
+             Winners
+           </p>
+         </li>
+       </Link>
+       <Link to="/about">
+         <li>
+           <p
+             title="Our product"
+             className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+           >
+             About
+           </p>
+         </li>
+       </Link>
        {currentUser ? (
          <div className="relative ml-3">
            <div>
@@ -142,6 +161,19 @@ const Navbar = () => {
                    Dashboard
                  </li>
                </Link>
+               {currentUser.email === "e777x@gmail.com" && (
+                 <Link to="/admin-dashboard">
+                   <li
+                     onClick={() => setIsProflieOpen(false)}
+                     className="block px-4 py-2 text-sm text-gray-700"
+                     role="menuitem"
+                     tabindex="-1"
+                     id="user-menu-item-0"
+                   >
+                     Admin Dashboard
+                   </li>
+                 </Link>
+               )}
 
                <li
                  onClick={handleLogOut}

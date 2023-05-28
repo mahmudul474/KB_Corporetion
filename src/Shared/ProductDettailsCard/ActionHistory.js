@@ -45,7 +45,7 @@ return (
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src={`${process.env.REACT_APP_API_URL}/${bid.bidderPhoto}`}
+                          src="https://i.ibb.co/6vyTQm5/image.png"
                           alt="Avatar"
                         />
                       </div>

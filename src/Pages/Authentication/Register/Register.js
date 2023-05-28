@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 export default function Register() {
@@ -52,7 +52,6 @@ export default function Register() {
         updateUser(userInfo)
           .then(() => {
             saveData(user.email);
-            
           })
           .catch(err => console.log(err));
       })
@@ -87,7 +86,7 @@ export default function Register() {
         }
       );
       toast.success(response.data.message);
-       navigate(from, { replace: true });
+      navigate(from, { replace: true });
       window.location.reload(true);
     } catch (err) {
       console.error(err);
@@ -349,12 +348,14 @@ export default function Register() {
                 <h2>Log in and go to your Dashboard.</h2>
               </div>{" "}
               <div className="mb-4 mx-4 ">
-                <button
-                  type="button"
-                  className="flex justify-center items-center max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
-                >
-                  Login
-                </button>
+                <Link to="/login">
+                  <button
+                    type="button"
+                    className="flex justify-center items-center max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
+                  >
+                    Login
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

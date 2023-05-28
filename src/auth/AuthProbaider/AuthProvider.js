@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (user?.email) {
+    if (user) {
       fetch(`${process.env.REACT_APP_API_URL}/user/${user?.email}`)
         .then(res => res.json())
         .then(data => {
@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
         })
         .catch(error => {});
     }
-  }, [user?.email]);
+  }, [user]);
 
   const authInfo = {
     loading,

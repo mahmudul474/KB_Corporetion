@@ -16,6 +16,11 @@ import Buy from "../Pages/UserDashBord/Buy/Buy";
 import Private from "./PraivetRout/Privet";
 import ThisWeek from "../Pages/ThisWeekEnd/ThisWeek";
 import ThisMonth from "../Pages/ThisMonthEnd/ThisMonth";
+import Winers from "../Pages/Winners/Winers";
+import Users from "../Pages/AdminDashBord/Users/Users";
+import Order from "../Pages/AdminDashBord/Orders/Order";
+import Allproducts from "../Pages/AdminDashBord/AllProducts/Allproducts";
+import About from "../Pages/About/About";
 
 export const routs = createBrowserRouter([
   {
@@ -33,6 +38,10 @@ export const routs = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>
+      },
+      {
+        path: "/winners",
+        element: <Winers></Winers>
       },
       {
         path: "/my-dashboard",
@@ -91,6 +100,10 @@ export const routs = createBrowserRouter([
         path: "/others",
         element: <Action></Action>
       },
+      {
+        path: "/about",
+        element: <About></About>
+      },
 
       {
         path: "/action/:id",
@@ -107,15 +120,51 @@ export const routs = createBrowserRouter([
   },
   {
     path: "/admin-dashboard",
-    element: <AdminDashBordLayot></AdminDashBordLayot>,
+    element: (
+      <Private>
+        {" "}
+        <AdminDashBordLayot></AdminDashBordLayot>
+      </Private>
+    ),
     children: [
       {
         path: "/admin-dashboard",
-        element: <AdminDashBoard></AdminDashBoard>
+        element: (
+          <Private>
+            {" "}
+            <AdminDashBoard></AdminDashBoard>
+          </Private>
+        )
       },
       {
         path: "/admin-dashboard/productUpload",
-        element: <ProductUploadForm></ProductUploadForm>
+        element: (
+          <Private>
+            <ProductUploadForm></ProductUploadForm>
+          </Private>
+        )
+      },
+      {
+        path: "/admin-dashboard/users",
+        element: (
+          <Private>
+            {" "}
+            <Users></Users>
+          </Private>
+        )
+      },
+      {
+        path: "/admin-dashboard/orders",
+        element: (
+          <Private>
+            {" "}
+            <Order></Order>
+          </Private>
+        )
+      },
+      {
+        path: "/admin-dashboard/products",
+        element: <Allproducts></Allproducts>
       }
     ]
   }

@@ -10,45 +10,42 @@ export default function WinningBids() {
 
   const fetchWinnerBids = () => {
     // Replace with your actual bidder ID
-
-    
-      
-     
   };
 
   useEffect(() => {
     fetchWinnerBids();
   }, []);
 
-
-  useEffect(()=>{
-    if(currentUser){
-        fetch(
-            `${process.env.REACT_APP_API_URL}/bids/bidder/${currentUser._id}/products/won`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              // Process the retrieved winning bids
-              setWinBidds(data.wonProducts);
-            })
-            .catch((error) => {
-              console.error("Error retrieving winner bids", error);
-            });
-    }else{
-
+  useEffect(() => {
+    if (currentUser) {
+      fetch(
+        `${process.env.REACT_APP_API_URL}/bids/bidder/${currentUser._id}/products/won`
+      )
+        .then(response => response.json())
+        .then(data => {
+          // Process the retrieved winning bids
+          setWinBidds(data.wonProducts);
+        })
+        .catch(error => {
+          console.error("Error retrieving winner bids", error);
+        });
+    } else {
     }
-  },[currentUser])
+  }, [currentUser]);
 
+  console.log(winBidds);
   return (
     <div className="mt-10">
-          <h1 className="text-4xl capitalize  text-left mb-3 pt-10 px-5 font-semibold">Win Bids</h1>
+      <h1 className="text-4xl capitalize  text-left mb-3 pt-10 px-5 font-semibold">
+        Win Bids
+      </h1>
       <div className="grid px-5 grid-cols-1 lg:grid-cols-2 gap-5">
-        {winBidds?.map((data) => (
+        {winBidds?.map(data => (
           <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div className="border ">
               <img
                 className="rounded-t-lg w-full text-center h-60 object-contain "
-                src={`${process.env.REACT_APP_API_URL}/uploads/main-images/${data?.productPhoto}`}
+                src={data.highestBid.productPhoto}
                 alt=""
               />
             </div>

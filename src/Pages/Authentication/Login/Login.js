@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { loginUser } = useContext(AuthContext);
@@ -14,39 +14,14 @@ export default function Login() {
 
   const handleLogin = event => {
     event.preventDefault();
-    loginUser(email, password).then(result => {
+    loginUser(email, password)
+    .then(result => {
       const user = result.user;
-      console.log(user);
       navigate(from, { replace: true });
-    });
+    }).catch((e)=>{setErrorMessage(e.message)})
   };
 
-  // const checkUserDb = async userEmail => {
-  //   try {
-  //     const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({ userEmail, password })
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (response.ok) {
-  //       // Login successful
-  //       console.log(data.message);
-  //       navigate(from, { replace: true });
-  //       // Redirect to the dashboard or desired page
-  //     } else {
-  //       // Login failed
-  //       setErrorMessage(data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
+   
   return (
     <>
       <div className=" px-4 py-10  mt-10 shadow-2xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:mx-16 md:px-24 lg:px-8  bottom-0 bg-white rounded-2xl  ">
@@ -143,12 +118,14 @@ export default function Login() {
                 <h2>Sign up and create your Account</h2>
               </div>{" "}
               <div className="mb-4 mx-4 ">
-                <button
-                  type="button"
-                  className="flex justify-center items-center max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
-                >
-                  Sing Up
-                </button>
+                <Link to="/register">
+                  <button
+                    type="button"
+                    className="flex justify-center items-center max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
+                  >
+                    Sing Up
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

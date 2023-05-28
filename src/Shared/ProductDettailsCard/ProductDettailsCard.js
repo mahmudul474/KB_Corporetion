@@ -266,7 +266,7 @@ export default function ProductDettailsCard({ data }) {
                  <a
                    className=" mx-3 my-2 text-center w-full  "
                    target="_blank"
-                   href={`${process.env.REACT_APP_API_URL}/uploads/pdf-files/${data.pdfFile}`}
+                   href={data?.pdfFile}
                    download="product-description"
                  >
                    <button
@@ -301,7 +301,7 @@ export default function ProductDettailsCard({ data }) {
                    <div className="flex">
                      <img
                        className="object-cover w-20 h-20 mr-4 rounded-full shadow"
-                       src={`${process.env.REACT_APP_API_URL}/${winner.bidderPhoto}`}
+                       src="https://i.ibb.co/6vyTQm5/image.png"
                        alt="Person"
                      />
                      <div className="flex flex-col items-start justify-center">
