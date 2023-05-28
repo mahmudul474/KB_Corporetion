@@ -28,14 +28,14 @@ return (
           </tr>
         </thead>
         <tbody>
-          {bids.length === 0 ? (
+          {bids && bids.length === 0 ? (
             <tr>
               <h3 className="text-center mx-auto text-red-600  block text-xl   text-capitalize text-capitalize font-font-semibold my-5">
                 No Bids yet
               </h3>
             </tr>
           ) : (
-            bids.map(bid => (
+            bids?.map(bid => (
               <tr className="bg-green-600 border-b border-green-400">
                 <th
                   scope="row"

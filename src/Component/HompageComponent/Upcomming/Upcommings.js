@@ -24,28 +24,11 @@ function Upcommings() {
         </p>
       </div>
       <div>
-        <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-          <Tab.List className="w-full   shadow-xl px-2 flex-wrap  flex justify-between items-center">
-            <Tab className={` flex items-center  text-center ${selectedIndex === 0 ? 'active-tab' : ''} `}  >
-              <span className='mr-2'><MdArrowRightAlt /></span> All
-            </Tab>
-            <Tab className={` flex items-center  text-center ${selectedIndex === 1 ? 'active-tab' : ''} `}>
-              <span className='mr-2'><RiAuctionFill /></span> Live Auction
-            </Tab>
-            <Tab className={` flex items-center  text-center ${selectedIndex === 2 ? 'active-tab' : ''} `}>
-              <span className='mr-2'><FaShoppingCart /></span> Buy Now
-            </Tab>
-            <Tab className={` flex items-center  text-center ${selectedIndex === 3 ? 'active-tab' : ''} `}>
-              <span className='mr-2'><HiOutlineBan /></span> Sold Out
-            </Tab>
-          </Tab.List>
-          <Tab.Panels>
-            <Tab.Panel><All></All></Tab.Panel>
-            <Tab.Panel><Live></Live></Tab.Panel>
-            <Tab.Panel><BuyNow></BuyNow></Tab.Panel>
-            <Tab.Panel><SoldOut></SoldOut></Tab.Panel>
-          </Tab.Panels>
-        </Tab.Group>
+       
+<All></All>
+
+
+
       </div>
     </div>
   );

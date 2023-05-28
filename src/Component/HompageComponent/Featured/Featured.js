@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import featuredBg from "../../../assets/featured-bg-1.jpg";
-import actionimg1 from "../../../assets/auction (1).png";
-import price from "../../../assets/price (2).png";
 import { Link } from "react-router-dom";
 import Product from "../../../Shared/ProductCard/Product";
+
 export default function Featured() {
   const [futureds, setFutureds] = useState([]);
- 
-  console.log(futureds);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/products`)
@@ -23,11 +20,17 @@ export default function Featured() {
       style={{ backgroundImage: `url(${featuredBg})` }}
     >
       <div className="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-        <div className="text-left  my-5">
-          <h2 className="text-4xl capitalize font-semibold">Featured Items</h2>
-          <h3 className="text-lg text-gray-400">
-            Start winning cars with comfort
-          </h3>
+        <div className="text-center my-5">
+          <h1 className="flex item-center justify-center text-4xl  font-bold">
+            Live Auction
+          </h1>
+          <span className="w-24 bg-green-600 h-[3px] block mb-5 m-auto  "></span>
+          <p className="text-grey-400 mt-2 text-center ">
+            Explore on the world's best & largest Bidding marketplace with our
+            beautiful
+            <br /> Bidding products. We want to be a part of your<br></br>
+            smile, success and future growth.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 ">
