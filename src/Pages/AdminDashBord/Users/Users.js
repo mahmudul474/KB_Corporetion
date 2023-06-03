@@ -35,6 +35,9 @@ export default function Users() {
                 <th scope="col" class="px-6 py-3">
                   Action
                 </th>
+                <th scope="col" class="px-6 py-3">
+                  Edit
+                </th>
               </tr>
             </thead>
             {users?.map(user => (
@@ -66,6 +69,14 @@ export default function Users() {
                       <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>{" "}
                       Make Admin
                     </div>
+                  </td>
+                  <td class="px-6 py-4">
+                    <a
+                      href="#"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Active
+                    </a>
                   </td>
                   <td class="px-6 py-4">
                     <a

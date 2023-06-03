@@ -15,7 +15,7 @@ export default function UserSidebar() {
       <div className="h-full p-3 space-y-2 text-2xl bg-slate-100 rounded rounded-lg">
         <div className="flex flex-col items-center justify-center p-2 space-x-4">
           <img
-            src="https://i.ibb.co/6vyTQm5/image.png"
+            src={currentUser.userPhoto}
             alt=""
             className="w-20 h-20 rounded-full dark:bg-gray-500"
           />

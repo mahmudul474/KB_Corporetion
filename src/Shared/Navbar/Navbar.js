@@ -135,8 +135,8 @@ const Navbar = () => {
                <div className="h-14 w-14">
                  <img
                    className=" rounded-full  "
-                   src={`${process.env.REACT_APP_API_URL}/${currentUser?.userPhoto}`}
-                   alt=""
+                   src={currentUser.userPhoto}
+                   alt="user photo"
                  />
                </div>
              </button>
