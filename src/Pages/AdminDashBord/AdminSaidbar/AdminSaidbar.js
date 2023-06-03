@@ -11,9 +11,6 @@ export default function AdminSaidbar({ isOpen }) {
         {/* Drawer content */}
         <div class="min-h-screen flex flex-row bg-gray-100">
           <div class="flex flex-col w-56 bg-white rounded-r-3xl overflow-hidden">
-            <div class="flex items-center justify-center h-20 shadow-md">
-              <h1 class="text-3xl uppercase text-indigo-500">KB</h1>
-            </div>
             <ul class="flex flex-col py-4">
               <Link to="/admin-dashboard">
                 <li>
@@ -86,12 +83,12 @@ export default function AdminSaidbar({ isOpen }) {
 
       {/* Small Devices (sm) */}
       <div
-        className={`fixed inset-0 lg:hidden bg-gray-800 bg-opacity-50 transition-transform duration-300 ease-in-out transform ${
+        className={`fixed inset-0 lg:hidden w-64   bg-gray-800   transition-transform duration-300 ease-in-out transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         {/* Drawer content */}
-        <div className="p-4 h-full flex items-center">
+        <div className="p-4 h-full   flex items-center">
           <h2 className="text-xl font-bold text-white">Drawer Content</h2>
           {/* Add your drawer content here */}
         </div>
