@@ -137,12 +137,12 @@ export default function AdminProductDettailsCard() {
 
   return (
     <div>
-      <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-        <div className="flex  flex-col lg:flex-row   ">
+      <div className="max-w-6xl px-4  mx-auto   md:px-6">
+        <div className="flex  flex-col lg:flex-row   border   border-gray-400 ">
           <div className="w-full px-4 lg:w-3/5 h-full  ">
             <div className=" h-64 lg:h-[500px]   ">
               {subimageUrl ? (
-                <img src={subimageUrl} alt="" className="  w-full h-full   " />
+                <img src={subimageUrl} alt="" className="   w-full h-full   " />
               ) : (
                 <img
                   src={data?.mainImage}
@@ -150,6 +150,22 @@ export default function AdminProductDettailsCard() {
                   className="h-full    w-full   "
                 />
               )}
+            </div>
+
+            <div className="mt-3">
+              <a
+                className="    text-center w-full  "
+                target="_blank"
+                href={data?.pdfFile}
+                download="product-description"
+              >
+                <button
+                  type="button"
+                  className="  px- py-2.5 text-sm font-medium   w-full text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
+                >
+                  Download PDF
+                </button>
+              </a>
             </div>
           </div>
           <div className="w-full lg:w-2/5 text-left px-4  h-full lg:h-[600px]   overflow-auto     ">
@@ -160,7 +176,7 @@ export default function AdminProductDettailsCard() {
           </div>
         </div>
 
-        <div className="flex justify-between  mt-10 flex-col ">
+        <div className="flex justify-between    flex-col ">
           <div className="w-full    capitalize">
             <div>
               <h2 className="  mt-1 mb-6 text-2xl font-bold  text-left md:text-4xl">
@@ -191,7 +207,7 @@ export default function AdminProductDettailsCard() {
             </div>
           </div>
           <div className=" w-full     border bg-slate-200 border-gray-300  rounded-lg  p-5">
-            <div className="flex justify-center    items-center  text-xl text-left  ">
+            <div className="flex justify-center  flex-col lg:flex-row   items-center  text-xl text-left  ">
               <div className="text-center my-2">
                 <h4 className="text-red-500">This Auction Ends in</h4>
                 <h2 className="text-red-500">{remainingTime}</h2>
