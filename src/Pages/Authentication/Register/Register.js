@@ -3,6 +3,13 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import AWS from "aws-sdk";
+
+AWS.config.update({
+  region: "ap-southeast-1",
+  accessKeyId: "AKIA3VQV4Q3NDVIL2HTO",
+  secretAccessKey: "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"
+});
 
 export default function Register() {
   const { signUpUser, updateUser } = useContext(AuthContext);
@@ -12,26 +19,61 @@ export default function Register() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userPhoto, setUserPhoto] = useState("");
-  const [nidCardImg, setNidCardImg] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [businessName, setBusinessName] = useState("");
   const [businessAddress, setBusinessAddress] = useState("");
   const [tinNum, setTinNo] = useState("");
   const [tradeLN, setTradeLC] = useState("");
-
   const [message, setMessage] = useState("");
-
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const handlePhotoChange = e => {
-    setUserPhoto(e.target.files[0]);
+  const [profileImageUrl, setProfileImageUrl] = useState(null);
+  const [nidImageUrl, setNidImageUrl] = useState(null);
+
+  const handleProfileImageUpload = event => {
+    const file = event.target.files[0];
+    const s3 = new AWS.S3();
+
+    const params = {
+      Bucket: "kb-corporetion",
+      Key: file.name,
+      Body: file
+      // Set the appropriate ACL based on your requirements
+    };
+
+    s3.upload(params, (error, data) => {
+      if (error) {
+        console.error("Error:", error);
+      } else {
+        setProfileImageUrl(data.Location);
+        console.log("Profile image uploaded successfully:", data.Location);
+        // Do something with the uploaded profile image URL
+      }
+    });
   };
 
-  const handleNIDCardChange = e => {
-    setNidCardImg(e.target.files[0]);
+  const handleNidImageUpload = event => {
+    const file = event.target.files[0];
+    const s3 = new AWS.S3();
+
+    const params = {
+      Bucket: "kb-corporetion",
+      Key: file.name,
+      Body: file
+      // Set the appropriate ACL based on your requirements
+    };
+
+    s3.upload(params, (error, data) => {
+      if (error) {
+        console.error("Error:", error);
+      } else {
+        setNidImageUrl(data.Location);
+        console.log("NID photo uploaded successfully:", data.Location);
+        // Do something with the uploaded NID photo URL
+      }
+    });
   };
 
   const handleRegistration = e => {
@@ -51,47 +93,50 @@ export default function Register() {
         };
         updateUser(userInfo)
           .then(() => {
-            saveData(user.email);
+            ///save user in db
+            saveData(user);
           })
           .catch(err => console.log(err));
       })
       .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        toast.error(error.message);
         // ..
       });
   };
 
-  const saveData = async userEmail => {
-    try {
-      const formData = new FormData();
-      formData.append("name", firstName + lastName);
-      formData.append("email", userEmail);
-      formData.append("password", password);
-      formData.append("userPhoto", userPhoto);
-      formData.append("nidCardImg", nidCardImg);
-      formData.append("phoneNumber", phoneNumber);
-      formData.append("businessName", businessName);
-      formData.append("businessAddress", businessAddress);
-      formData.append("tinNum", tinNum);
-      formData.append("tradeLN", tradeLN);
+  const saveData = user => {
+    const userInfo = {
+      userPhoto: profileImageUrl,
+      nidCardImg: nidImageUrl,
+      name: user?.displayName,
+      email: user?.email,
+      password: user?.password,
 
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/register`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
+      phoneNumber: phoneNumber,
+      businessName,
+      businessAddress,
+      tinNum,
+      tradeLN
+    };
+
+    fetch(`${process.env.REACT_APP_API_URL}/registrations`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userInfo)
+    })
+      .then(res => res.json())
+      .then(data => {
+      
+         navigate(from, { replace: true });
+           window.location.reload(true);
+        if (data.acknowledged) {
+          toast.success(`registered successfully  ${user?.displayName}`);
+         
+          
         }
-      );
-      toast.success(response.data.message);
-      navigate(from, { replace: true });
-      window.location.reload(true);
-    } catch (err) {
-      console.error(err);
-      setMessage("Registration failed");
-    }
+      });
   };
 
   return (
@@ -114,7 +159,7 @@ export default function Register() {
                   <div className="my-1   w-full">
                     <label
                       for="Fname"
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 "
                     >
                       First Name
                     </label>
@@ -124,7 +169,7 @@ export default function Register() {
                       type="text"
                       name="Fname"
                       id="Fname"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5    dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="john "
                       required
                     />
@@ -132,7 +177,7 @@ export default function Register() {
                   <div className="my-1 w-full">
                     <label
                       for="Lname"
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 "
                     >
                       Last Name
                     </label>
@@ -142,7 +187,7 @@ export default function Register() {
                       onChange={e => setLastName(e.target.value)}
                       value={lastName}
                       id="Lname"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5       dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="doe"
                       required=""
                     />
@@ -153,7 +198,7 @@ export default function Register() {
                   <div className="my-1 w-full">
                     <label
                       for="email"
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 "
                     >
                       Your email
                     </label>
@@ -163,7 +208,7 @@ export default function Register() {
                       type="email"
                       name="email"
                       id="email"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5      dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="example@gmail.com"
                       required
                     />
@@ -171,7 +216,7 @@ export default function Register() {
                   <div className="my-1 w-full">
                     <label
                       for="Phone"
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 "
                     >
                       Phone Number
                     </label>
@@ -181,7 +226,7 @@ export default function Register() {
                       value={phoneNumber}
                       onChange={e => setPhoneNumber(e.target.value)}
                       id="Phone"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5      dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Mobile number"
                       required
                     />
@@ -192,38 +237,48 @@ export default function Register() {
                   <div className="my-1 w-full">
                     <label
                       for="ProfilePic"
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 "
                     >
                       Your Photo
                     </label>
                     <input
                       type="file"
-                      accept="image/*"
-                      onChange={handlePhotoChange}
+                      id="profileImage"
+                      onChange={handleProfileImageUpload}
                       name="profile"
-                      id="profile"
                       placeholder="profile"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5     dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                     />
+                    {profileImageUrl && (
+                      <img
+                        className="w-full h-60  my-3"
+                        src={profileImageUrl}
+                      />
+                    )}
                   </div>
                   <div className="my-1 w-full">
                     <label
                       for="nidPas"
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900  "
                     >
                       Nid or Passport
                     </label>
                     <input
-                      name="nidPas"
-                      id="nidPas"
                       type="file"
-                      accept="image/*"
-                      onChange={handleNIDCardChange}
+                      id="nidPhoto"
+                      onChange={handleNidImageUpload}
                       placeholder="upload nid or passport"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                     />
+
+                    {nidImageUrl && (
+                      <img
+                        className="w-full h-60  object-contain my-3"
+                        src={nidImageUrl}
+                      />
+                    )}
                   </div>
                 </div>
 
@@ -231,7 +286,7 @@ export default function Register() {
                   <div className="my-1 w-full">
                     <label
                       for="business name."
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900  "
                     >
                       Business Name
                     </label>
@@ -239,14 +294,14 @@ export default function Register() {
                       onChange={e => setBusinessName(e.target.value)}
                       type="text"
                       placeholder="Trade license No."
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5       dark:focus:ring-blue-500  "
                       required
                     />
                   </div>
                   <div className="my-1 w-full">
                     <label
                       for="business Address"
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 "
                     >
                       Business Address
                     </label>
@@ -254,7 +309,7 @@ export default function Register() {
                       onChange={e => setBusinessAddress(e.target.value)}
                       type="text"
                       placeholder="business tin number"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5    dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                     />
                   </div>
@@ -263,7 +318,7 @@ export default function Register() {
                   <div className="my-1 w-full">
                     <label
                       for="Trade license No."
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 "
                     >
                       Trade license No.
                     </label>
@@ -271,14 +326,14 @@ export default function Register() {
                       onChange={e => setTradeLC(e.target.value)}
                       type="number"
                       placeholder="Trade license No."
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                     />
                   </div>
                   <div className="my-1 w-full">
                     <label
                       for="nidPas"
-                      className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block text-left mb-2 text-sm font-medium text-gray-900 "
                     >
                       Business Tin Number
                     </label>
@@ -286,7 +341,7 @@ export default function Register() {
                       onChange={e => setTinNo(e.target.value)}
                       type="number"
                       placeholder="business tin number"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                     />
                   </div>
@@ -295,7 +350,7 @@ export default function Register() {
                 <div className="my-1 w-full">
                   <label
                     for="password"
-                    className="block text-left mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block text-left mb-2 text-sm font-medium text-gray-900 "
                   >
                     Password
                   </label>
@@ -306,7 +361,7 @@ export default function Register() {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                   />
                 </div>
@@ -318,7 +373,7 @@ export default function Register() {
                         id="remember"
                         aria-describedby="remember"
                         type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                         required=""
                       />
                     </div>
@@ -365,9 +420,7 @@ export default function Register() {
   );
 }
 
-
-
 //////buissnes name
-// trade licencse no. 
-// business  tin no. 
-// business address 
+// trade licencse no.
+// business  tin no.
+// business address

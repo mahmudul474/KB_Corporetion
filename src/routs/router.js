@@ -21,6 +21,7 @@ import Users from "../Pages/AdminDashBord/Users/Users";
 import Order from "../Pages/AdminDashBord/Orders/Order";
 import Allproducts from "../Pages/AdminDashBord/AllProducts/Allproducts";
 import About from "../Pages/About/About";
+import AdminProductDettailsCard from "../Pages/AdminDashBord/AllProducts/ProductDettailsCard/AdminProductDettailsCard";
 
 export const routs = createBrowserRouter([
   {
@@ -165,6 +166,17 @@ export const routs = createBrowserRouter([
       {
         path: "/admin-dashboard/products",
         element: <Allproducts></Allproducts>
+      },
+      {
+        path: "/admin-dashboard/action/:id",
+        loader: ({ params }) =>
+          fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
+        element: (
+          <Private>
+            {" "}
+            <AdminProductDettailsCard></AdminProductDettailsCard>
+          </Private>
+        )
       }
     ]
   }

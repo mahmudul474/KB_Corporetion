@@ -247,7 +247,7 @@ export default function ProductDettailsCard({ data }) {
                      onChange={handlePriceChange}
                      min={data.startBiddingPrice}
                      step="any"
-                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  -gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                      placeholder="$00:00"
                      required
                    />
@@ -256,7 +256,7 @@ export default function ProductDettailsCard({ data }) {
                  <button
                    disabled={isBiddingClosed}
                    type="submit"
-                   className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-600 dark:focus:ring-green-800"
+                   className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 "
                  >
                    Place Bid
                  </button>
@@ -271,7 +271,7 @@ export default function ProductDettailsCard({ data }) {
                  >
                    <button
                      type="button"
-                     className="  px-5 py-2.5 text-sm font-medium   w-full text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
+                     className="  px-5 py-2.5 text-sm font-medium   w-full text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
                    >
                      Download PDF
                    </button>
@@ -279,7 +279,7 @@ export default function ProductDettailsCard({ data }) {
                  <button
                    disabled={isBiddingClosed}
                    type="button"
-                   className=" mx-3 my-2 text-center w-full     py-2.5 text-sm font-medium  cursor-pointer  text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
+                   className=" mx-3 my-2 text-center w-full     py-2.5 text-sm font-medium  cursor-pointer  text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
                  >
                    Buy now for
                    <span className="inline-flex items-center justify-center  ml-2 text-xs font-semibold text-white ">
