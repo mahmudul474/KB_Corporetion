@@ -4,9 +4,19 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Popup from "../../../Shared/Pop_UP/Popup";
 import UserSpinner from "../../../Shared/UserSpinner/UserSpinner";
+import useToken from "../../../Hooks/useToken";
 
 export default function Login() {
   const { loginUser, loading, setLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const [createUserEmail, setCreateUserEmail] = useState("");
+  const [token] = useToken(createUserEmail);
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -21,9 +31,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = event => {
     event.preventDefault();
@@ -55,8 +62,8 @@ export default function Login() {
     })
       .then(res => res.json())
       .then(data => {
+        setCreateUserEmail(email);
         toast.success(data.message);
-        navigate(from, { replace: true });
       })
       .catch(er => {
         toast.error(er.message);
