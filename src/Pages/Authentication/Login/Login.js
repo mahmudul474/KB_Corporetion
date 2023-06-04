@@ -1,9 +1,21 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import Popup from "../../../Shared/Pop_UP/Popup";
 
 export default function Login() {
   const { loginUser } = useContext(AuthContext);
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,13 +27,40 @@ export default function Login() {
   const handleLogin = event => {
     event.preventDefault();
     loginUser(email, password)
-    .then(result => {
-      const user = result.user;
-      navigate(from, { replace: true });
-    }).catch((e)=>{setErrorMessage(e.message)})
+      .then(userCredential => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        checkuser(user?.email);
+        console.log(user, "this is user for my site is betting ");
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage, errorCode);
+      });
   };
 
-   
+  //sava user  data based
+  const checkuser = email => {
+    fetch(`${process.env.REACT_APP_API_URL}/login`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email: email })
+    })
+      .then(res => res.json())
+      .then(data => {
+        toast.success(data.message);
+        navigate(from, { replace: true });
+      })
+      .catch(er => {
+        toast.error(er.message);
+      });
+  };
+
   return (
     <>
       <div className=" px-4 py-10  mt-10 shadow-2xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:mx-16 md:px-24 lg:px-8  bottom-0 bg-white rounded-2xl  ">
@@ -97,12 +136,16 @@ export default function Login() {
                       </label>
                     </div>
                   </div>
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Forgot password?
-                  </a>
+
+                  <div>
+                    <button
+                      onClick={openPopup}
+                      className="   py-2 px-4  "
+                    >
+                      Forgot password?
+                    </button>
+                    {showPopup && <Popup onClose={closePopup} />}
+                  </div>
                 </div>
                 <button
                   type="submit"

@@ -49,6 +49,21 @@ export default function Profile() {
           </h1>
         </div>
       </div>
+      <div className=" mt-10 shadow-gray-400 p-10 shadow-2xl ">
+        <h1 className="text-4xl capitalize  text-left mb-3 font-semibold">
+          NID/PASSPORT
+        </h1>
+        <span className="w-20 h-[2px] bg-green-600 block mb-10"></span>
+        <div className="text-lg  font-semibold capitalize">
+          <div>
+            <img
+              className="w-full h-full "
+              src={currentUser.nidCardImg}
+              alt="nid/passport"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

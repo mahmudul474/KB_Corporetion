@@ -12,7 +12,7 @@ AWS.config.update({
 });
 
 export default function Register() {
-  const { signUpUser, updateUser } = useContext(AuthContext);
+  const { signUpUser, updateUser, emailVerification } = useContext(AuthContext);
   const navigete = useNavigate("");
 
   const [firstName, setFirstName] = useState("");
@@ -79,7 +79,11 @@ export default function Register() {
   const handleRegistration = e => {
     e.preventDefault();
     if (password.length < 5) {
-      alert("password must be 7 digit ");
+      toast.error("password must be 7 digit ");
+    } else if (tinNum.length < 8) {
+      toast.error("Tin number must be 9 digit ");
+    } else if (phoneNumber < 10) {
+      toast.error("Phone number must be 11 digit");
     }
 
     signUpUser(email, password)
@@ -93,10 +97,14 @@ export default function Register() {
         };
         updateUser(userInfo)
           .then(() => {
-            ///save user in db
-            saveData(user);
+            emailVerification().then(() => {
+              toast.success("check your email and  verify your email address");
+
+              saveData(user);
+              // ...
+            });
           })
-          .catch(err => console.log(err));
+          .catch(err => toast.error(err.message));
       })
       .catch(error => {
         toast.error(error.message);
@@ -110,8 +118,7 @@ export default function Register() {
       nidCardImg: nidImageUrl,
       name: user?.displayName,
       email: user?.email,
-      password: user?.password,
-
+      password: password,
       phoneNumber: phoneNumber,
       businessName,
       businessAddress,
@@ -128,13 +135,10 @@ export default function Register() {
     })
       .then(res => res.json())
       .then(data => {
-      
-         navigate(from, { replace: true });
-           window.location.reload(true);
+        navigate(from, { replace: true });
+        window.location.reload(true);
         if (data.acknowledged) {
           toast.success(`registered successfully  ${user?.displayName}`);
-         
-          
         }
       });
   };
