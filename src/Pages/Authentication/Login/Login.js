@@ -3,9 +3,10 @@ import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Popup from "../../../Shared/Pop_UP/Popup";
+import UserSpinner from "../../../Shared/UserSpinner/UserSpinner";
 
 export default function Login() {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, loading, setLoading } = useContext(AuthContext);
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -35,6 +36,7 @@ export default function Login() {
         console.log(user, "this is user for my site is betting ");
       })
       .catch(error => {
+        setLoading(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage, errorCode);
@@ -95,7 +97,7 @@ export default function Login() {
                     onChange={e => setEmail(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="example@gmail.com"
-                    required=""
+                    required
                   />
                 </div>
                 <div className="my-1">
@@ -113,7 +115,7 @@ export default function Login() {
                     onChange={e => setPassword(e.target.value)}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
+                    required
                   />
                 </div>
                 <div className="flex items-center my-2 justify-between">
@@ -138,21 +140,23 @@ export default function Login() {
                   </div>
 
                   <div>
-                    <button
-                      onClick={openPopup}
-                      className="   py-2 px-4  "
-                    >
+                    <button onClick={openPopup} className="   py-2 px-4  ">
                       Forgot password?
                     </button>
                     {showPopup && <Popup onClose={closePopup} />}
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  className="w-1/3 text-white bg-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
-                >
-                  Sign in
-                </button>
+
+                {loading ? (
+                  <UserSpinner></UserSpinner>
+                ) : (
+                  <button
+                    type="submit"
+                    className="w-1/3 text-white bg-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
+                  >
+                    Sign in
+                  </button>
+                )}
               </form>
             </div>
             <div className="lg:w-1/4 sm:w-full bg-[#442db9] rounded-md py-16 ">

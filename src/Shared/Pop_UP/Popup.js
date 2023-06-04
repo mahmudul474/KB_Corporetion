@@ -18,6 +18,7 @@ const Popup = ({ onClose }) => {
         const errorCode = error.code;
         toast.error(error.message);
         const errorMessage = error.message;
+         toast.error(errorMessage);
         // ..
       });
     onClose();

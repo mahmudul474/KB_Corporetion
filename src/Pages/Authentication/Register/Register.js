@@ -4,6 +4,8 @@ import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import AWS from "aws-sdk";
+import UserSpinner from "../../../Shared/UserSpinner/UserSpinner";
+import useToken from "../../../Hooks/useToken";
 
 AWS.config.update({
   region: "ap-southeast-1",
@@ -12,8 +14,19 @@ AWS.config.update({
 });
 
 export default function Register() {
-  const { signUpUser, updateUser, emailVerification } = useContext(AuthContext);
-  const navigete = useNavigate("");
+  const { signUpUser, updateUser, emailVerification, setLoading, loading } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const [createUserEmail, setCreateUserEmail] = useState("");
+  const [token] = useToken(createUserEmail);
+
+  if (token) {
+    navigate(from, { replace: true });
+    window.location.reload(true);
+  }
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -25,9 +38,6 @@ export default function Register() {
   const [tinNum, setTinNo] = useState("");
   const [tradeLN, setTradeLC] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
   const [profileImageUrl, setProfileImageUrl] = useState(null);
   const [nidImageUrl, setNidImageUrl] = useState(null);
@@ -98,15 +108,21 @@ export default function Register() {
         updateUser(userInfo)
           .then(() => {
             emailVerification().then(() => {
-              toast.success("check your email and  verify your email address");
+              toast.success("check your email and  verify your email address", {
+                autoClose: 5000 // Set the duration to 5000 milliseconds (5 seconds)
+              });
 
               saveData(user);
               // ...
             });
           })
-          .catch(err => toast.error(err.message));
+          .catch(err => {
+            toast.error(err.message);
+            setLoading(false);
+          });
       })
       .catch(error => {
+        setLoading(false);
         toast.error(error.message);
         // ..
       });
@@ -135,8 +151,8 @@ export default function Register() {
     })
       .then(res => res.json())
       .then(data => {
-        navigate(from, { replace: true });
-        window.location.reload(true);
+        setCreateUserEmail(user?.email);
+
         if (data.acknowledged) {
           toast.success(`registered successfully  ${user?.displayName}`);
         }
@@ -391,12 +407,17 @@ export default function Register() {
                     </div>
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  className="w-1/3 text-white bg-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
-                >
-                  Sign up
-                </button>
+
+                {loading ? (
+                  <UserSpinner> </UserSpinner>
+                ) : (
+                  <button
+                    type="submit"
+                    className="w-1/3 text-white bg-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
+                  >
+                    Sign up
+                  </button>
+                )}
               </form>
             </div>
             <div className="lg:w-1/4 sm:w-full bg-[#442db9] rounded-md py-16 ">
