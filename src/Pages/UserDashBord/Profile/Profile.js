@@ -58,7 +58,7 @@ export default function Profile() {
           <div>
             <img
               className="w-full h-full "
-              src={currentUser.nidCardImg}
+              src={currentUser?.nidCardImg}
               alt="nid/passport"
             />
           </div>

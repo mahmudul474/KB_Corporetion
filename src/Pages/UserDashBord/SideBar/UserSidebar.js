@@ -1,29 +1,49 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GrUserSettings } from "react-icons/gr";
 import { GiThorHammer } from "react-icons/gi";
 import { FaRegSmileWink } from "react-icons/fa";
 import { AiOutlineMoneyCollect } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
+import { AiFillEdit } from "react-icons/ai";
+import EditProfilePopup from "../../../Shared/UserProfileEditPopUp/EditProfilePopup";
 
 export default function UserSidebar() {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
   return (
     <div>
+      <div>{showPopup && <EditProfilePopup onClose={closePopup} />}</div>
+
       <div className="h-full p-3 space-y-2 text-2xl bg-slate-100 rounded rounded-lg">
+        <div className="flex justify-end items-end">
+          <span onClick={openPopup} className="bg-slate-400 p-3 rounded-lg">
+            <AiFillEdit></AiFillEdit>
+          </span>
+        </div>
         <div className="flex flex-col items-center justify-center p-2 space-x-4">
           <img
-            src={currentUser.userPhoto}
+            src={currentUser?.userPhoto}
             alt=""
             className="w-20 h-20 rounded-full dark:bg-gray-500"
           />
+
           <div className="tex-center">
             <h2 className=" font-semibold">{currentUser?.name}</h2>
             <span className="text-sm">{currentUser?.email}</span>
           </div>
         </div>
+        <h1></h1>
         <div className="divide-y divide-gray-700">
           <ul className="pt-2 pb-4 space-y-1 px-5  text-lg  font-semibold">
             <Link to="/my-dashboard">
