@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Animation from "../../../Shared/Animation/Animation";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+import ActiveBidder from "./Active_Bidder/ActiveBidder";
 
 export default function Users() {
   const { data: users, refetch } = useQuery({
@@ -22,12 +23,18 @@ export default function Users() {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.accessToken === true) {
-          toast.success("make admin succefully ");
-          refetch();
-        }
-        toast.error(data.message);
+        toast.success("make admin succefully ");
+        refetch();
       });
+  };
+  const [showPopup, setShowPopup] = useState(false);
+
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -46,16 +53,16 @@ export default function Users() {
                   Phone Number
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Make seller
-                </th>
-                <th scope="col" className="px-6 py-3">
                   Make Admin
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Action
+                  Make Bidder
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Edit
+                  Message
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Action
                 </th>
               </tr>
             </thead>
@@ -81,12 +88,7 @@ export default function Users() {
                     </div>
                   </th>
                   <td className="px-6 py-4">{user?.phoneNumber}</td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center">
-                      <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>{" "}
-                      Make seller
-                    </div>
-                  </td>
+
                   <td className="px-6 py-4">
                     <div className="flex items-center">
                       {" "}
@@ -111,12 +113,21 @@ export default function Users() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <a
-                      href="#"
+                    <p
+                      onClick={openPopup}
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Active
-                    </a>
+                    </p>
+                    <div>
+                      {showPopup && <ActiveBidder onClose={closePopup} />}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center">
+                      <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>{" "}
+                      Make seller
+                    </div>
                   </td>
                   <td className="px-6 py-4">
                     <a
