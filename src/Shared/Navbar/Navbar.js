@@ -3,216 +3,216 @@ import logo from "../../assets/logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 import { toast } from "react-hot-toast";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { currentUser, logOut } = useContext(AuthContext);
-   
 
- 
+  const [isAdmin] = useAdmin(currentUser?.email);
 
-   const [isMenuOpen, setIsMenuOpen] = useState(false);
-   const [isAuctionOpen, setIsAuctionOpen] = useState(false);
-   const [isProflieOpen, setIsProflieOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuctionOpen, setIsAuctionOpen] = useState(false);
+  const [isProflieOpen, setIsProflieOpen] = useState(false);
 
-   const handleLogOut = () => {
-     logOut().then(() => {
-       window.location.reload(true);
-       toast.error("user Log-Out successfully");
-     });
-   };
+  const handleLogOut = () => {
+    logOut().then(() => {
+      window.location.reload(true);
+      toast.error("user Log-Out successfully");
+    });
+  };
 
-   const navitem = (
-     <>
-       <Link to="/">
-         <li>
-           <p
-             title="Our product"
-             className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-           >
-             Home
-           </p>
-         </li>
-       </Link>
+  const navitem = (
+    <>
+      <Link to="/">
+        <li>
+          <p
+            title="Our product"
+            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+            Home
+          </p>
+        </li>
+      </Link>
 
-       <div className="relative ml-3">
-         <div>
-           <button
-             onClick={() => setIsAuctionOpen(true)}
-             type="button"
-             className="flex  focus:outline-none   focus:ring-offset-2 focus:ring-offset-gray-800"
-             id="user-menu-button"
-             aria-expanded="false"
-             aria-haspopup="true"
-           >
-             <li>
-               <p
-                 title="Our product"
-                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-               >
-                 Auctions
-               </p>
-             </li>
-           </button>
-         </div>
+      <div className="relative ml-3">
+        <div>
+          <button
+            onClick={() => setIsAuctionOpen(true)}
+            type="button"
+            className="flex  focus:outline-none   focus:ring-offset-2 focus:ring-offset-gray-800"
+            id="user-menu-button"
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            <li>
+              <p
+                title="Our product"
+                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+              >
+                Auctions
+              </p>
+            </li>
+          </button>
+        </div>
 
-         {isAuctionOpen && (
-           <div
-             className="absolute left-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 text-left ring-black ring-opacity-5 focus:outline-none"
-             role="menu"
-             aria-orientation="vertical"
-             aria-labelledby="user-menu-button"
-             tabindex="-1"
-           >
-             <Link to="/this-week">
-               <li
-                 onClick={() => setIsAuctionOpen(false)}
-                 className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover:text-white "
-                 role="menuitem"
-                 tabindex="-1"
-                 id="user-menu-item-0"
-               >
-                 This Week
-               </li>
-             </Link>
-             <Link to="/this-month">
-               <li
-                 onClick={() => setIsAuctionOpen(false)}
-                 className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover:text-white "
-                 role="menuitem"
-                 tabindex="-1"
-                 id="user-menu-item-0"
-               >
-                 This Month
-               </li>
-             </Link>
-             <Link to="/others">
-               <li
-                 onClick={() => setIsAuctionOpen(false)}
-                 className="block px-2 py-2  hover:bg-green-600 hover:text-white text-md text-gray-700"
-                 role="menuitem"
-                 tabindex="-1"
-                 id="user-menu-item-0"
-               >
-                 Others
-               </li>
-             </Link>
-           </div>
-         )}
-       </div>
-       <Link to="/winners">
-         <li>
-           <p
-             title="Our product"
-             className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-           >
-             Winners
-           </p>
-         </li>
-       </Link>
-       <Link to="/about">
-         <li>
-           <p
-             title="Our product"
-             className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-           >
-             About
-           </p>
-         </li>
-       </Link>
-       {currentUser ? (
-         <div className="relative ml-3">
-           <div>
-             <button
-               onClick={() => {
-                 setIsProflieOpen(true);
-               }}
-               type="button"
-               className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-               id="user-menu-button"
-               aria-expanded="false"
-               aria-haspopup="true"
-             >
-               <div className="h-14 w-14 object-contain">
-                 <img
-                   className=" rounded-full  object-contain "
-                   src={currentUser.userPhoto}
-                   alt="user photo"
-                 />
-               </div>
-             </button>
-           </div>
+        {isAuctionOpen && (
+          <div
+            className="absolute left-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 text-left ring-black ring-opacity-5 focus:outline-none"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu-button"
+            tabindex="-1"
+          >
+            <Link to="/this-week">
+              <li
+                onClick={() => setIsAuctionOpen(false)}
+                className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover:text-white "
+                role="menuitem"
+                tabindex="-1"
+                id="user-menu-item-0"
+              >
+                This Week
+              </li>
+            </Link>
+            <Link to="/this-month">
+              <li
+                onClick={() => setIsAuctionOpen(false)}
+                className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover:text-white "
+                role="menuitem"
+                tabindex="-1"
+                id="user-menu-item-0"
+              >
+                This Month
+              </li>
+            </Link>
+            <Link to="/others">
+              <li
+                onClick={() => setIsAuctionOpen(false)}
+                className="block px-2 py-2  hover:bg-green-600 hover:text-white text-md text-gray-700"
+                role="menuitem"
+                tabindex="-1"
+                id="user-menu-item-0"
+              >
+                Others
+              </li>
+            </Link>
+          </div>
+        )}
+      </div>
+      <Link to="/winners">
+        <li>
+          <p
+            title="Our product"
+            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+            Winners
+          </p>
+        </li>
+      </Link>
+      <Link to="/about">
+        <li>
+          <p
+            title="Our product"
+            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+            About
+          </p>
+        </li>
+      </Link>
+      {currentUser ? (
+        <div className="relative ml-3">
+          <div>
+            <button
+              onClick={() => {
+                setIsProflieOpen(true);
+              }}
+              type="button"
+              className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              id="user-menu-button"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              <div className="h-14 w-14 object-contain">
+                <img
+                  className=" rounded-full  object-contain "
+                  src={currentUser.userPhoto}
+                  alt="user photo"
+                />
+              </div>
+            </button>
+          </div>
 
-           {isProflieOpen && (
-             <div
-               className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-               role="menu"
-               aria-orientation="vertical"
-               aria-labelledby="user-menu-button"
-               tabindex="-1"
-             >
-               <Link to="/my-dashboard">
-                 <li
-                   onClick={() => setIsProflieOpen(false)}
-                   className="block px-4 py-2 text-sm text-gray-700"
-                   role="menuitem"
-                   tabindex="-1"
-                   id="user-menu-item-0"
-                 >
-                   Dashboard
-                 </li>
-               </Link>
-               {currentUser.email === "e777x@gmail.com" && (
-                 <Link to="/admin-dashboard">
-                   <li
-                     onClick={() => setIsProflieOpen(false)}
-                     className="block px-4 py-2 text-sm text-gray-700"
-                     role="menuitem"
-                     tabindex="-1"
-                     id="user-menu-item-0"
-                   >
-                     Admin Dashboard
-                   </li>
-                 </Link>
-               )}
+          {isProflieOpen && (
+            <div
+              className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="user-menu-button"
+              tabindex="-1"
+            >
+              <Link to="/my-dashboard">
+                <li
+                  onClick={() => setIsProflieOpen(false)}
+                  className="block px-4 py-2 text-sm text-gray-700"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="user-menu-item-0"
+                >
+                  Dashboard
+                </li>
+              </Link>
+              { isAdmin  && (
+                <Link to="/admin-dashboard">
+                  <li
+                    onClick={() => setIsProflieOpen(false)}
+                    className="block px-4 py-2 text-sm text-gray-700"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-0"
+                  >
+                    Admin Dashboard
+                  </li>
+                </Link>
+              )}
 
-               <li
-                 onClick={handleLogOut}
-                 className="block px-4 py-2 text-sm text-red-600 cursor-pointer"
-                 role="menuitem"
-                 tabindex="-1"
-                 id="user-menu-item-2"
-               >
-                 Sign out
-               </li>
-             </div>
-           )}
-         </div>
-       ) : (
-         <>
-           <Link to="/login">
-             <li>
-               <p
-                 title="Our product"
-                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-               >
-                 Login
-               </p>
-             </li>
-           </Link>
-           <Link to="/register">
-             <li>
-               <p
-                 title="Our product"
-                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-               >
-                 Sing-up
-               </p>
-             </li>
-           </Link>
-         </>
-       )}
-     </>
-   );
+              <li
+                onClick={handleLogOut}
+                className="block px-4 py-2 text-sm text-red-600 cursor-pointer"
+                role="menuitem"
+                tabindex="-1"
+                id="user-menu-item-2"
+              >
+                Sign out
+              </li>
+            </div>
+          )}
+        </div>
+      ) : (
+        <>
+          <Link to="/login">
+            <li>
+              <p
+                title="Our product"
+                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+              >
+                Login
+              </p>
+            </li>
+          </Link>
+          <Link to="/register">
+            <li>
+              <p
+                title="Our product"
+                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+              >
+                Sing-up
+              </p>
+            </li>
+          </Link>
+        </>
+      )}
+    </>
+  );
 
   return (
     <div className="bg-[#442db9] text-white">

@@ -22,6 +22,7 @@ import Order from "../Pages/AdminDashBord/Orders/Order";
 import Allproducts from "../Pages/AdminDashBord/AllProducts/Allproducts";
 import About from "../Pages/About/About";
 import AdminProductDettailsCard from "../Pages/AdminDashBord/AllProducts/ProductDettailsCard/AdminProductDettailsCard";
+import Adminrout from "./AdminRout/Adminrout";
 
 export const routs = createBrowserRouter([
   {
@@ -123,8 +124,10 @@ export const routs = createBrowserRouter([
     path: "/admin-dashboard",
     element: (
       <Private>
-        {" "}
-        <AdminDashBordLayot></AdminDashBordLayot>
+        <Adminrout>
+          {" "}
+          <AdminDashBordLayot></AdminDashBordLayot>
+        </Adminrout>
       </Private>
     ),
     children: [
@@ -132,8 +135,9 @@ export const routs = createBrowserRouter([
         path: "/admin-dashboard",
         element: (
           <Private>
-            {" "}
-            <AdminDashBoard></AdminDashBoard>
+            <Adminrout>
+              <AdminDashBoard></AdminDashBoard>
+            </Adminrout>
           </Private>
         )
       },
@@ -141,7 +145,9 @@ export const routs = createBrowserRouter([
         path: "/admin-dashboard/productUpload",
         element: (
           <Private>
-            <ProductUploadForm></ProductUploadForm>
+            <Adminrout>
+              <ProductUploadForm></ProductUploadForm>
+            </Adminrout>
           </Private>
         )
       },
@@ -149,8 +155,9 @@ export const routs = createBrowserRouter([
         path: "/admin-dashboard/users",
         element: (
           <Private>
-            {" "}
-            <Users></Users>
+            <Adminrout>
+              <Users></Users>
+            </Adminrout>
           </Private>
         )
       },
@@ -158,14 +165,19 @@ export const routs = createBrowserRouter([
         path: "/admin-dashboard/orders",
         element: (
           <Private>
-            {" "}
-            <Order></Order>
+            <Adminrout>
+              <Order></Order>
+            </Adminrout>
           </Private>
         )
       },
       {
         path: "/admin-dashboard/products",
-        element: <Allproducts></Allproducts>
+        element: (
+          <Adminrout>
+            <Allproducts></Allproducts>
+          </Adminrout>
+        )
       },
       {
         path: "/admin-dashboard/action/:id",
@@ -174,7 +186,9 @@ export const routs = createBrowserRouter([
         element: (
           <Private>
             {" "}
-            <AdminProductDettailsCard></AdminProductDettailsCard>
+            <Adminrout>
+              <AdminProductDettailsCard></AdminProductDettailsCard>
+            </Adminrout>
           </Private>
         )
       }

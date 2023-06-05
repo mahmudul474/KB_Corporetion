@@ -4,18 +4,14 @@ import { AuthContext } from '../../auth/AuthProbaider/AuthProvider';
 import LoadingSpiner from "../../Shared/LoadingSpiner/LoadingSpiner";
 
 const Private = ({ children }) => {
-  const { currentUser, loading ,user} = useContext(AuthContext);
-
-  console.log(user, "fb")
-   console.log(currentUser, "curent ")
-
+  const { currentUser, loading, user } = useContext(AuthContext);
 
   const location = useLocation();
   if (loading) {
     return <LoadingSpiner></LoadingSpiner>;
   }
 
-  if (currentUser ||user) {
+  if (currentUser || user) {
     return children;
   }
 
