@@ -132,9 +132,9 @@ const Navbar = () => {
                aria-expanded="false"
                aria-haspopup="true"
              >
-               <div className="h-14 w-14">
+               <div className="h-14 w-14 object-contain">
                  <img
-                   className=" rounded-full  "
+                   className=" rounded-full  object-contain "
                    src={currentUser.userPhoto}
                    alt="user photo"
                  />
