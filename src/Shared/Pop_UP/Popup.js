@@ -30,7 +30,7 @@ const Popup = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex  m-auto items-center justify-center">
+    <div className="fixed z-50 inset-0 flex  m-auto items-center justify-center">
       <div className="bg-slate-400 rounded-lg p-8">
         <h2 className="text-2xl mb-4">Please give acount email </h2>
         <form onSubmit={handleSubmit}>

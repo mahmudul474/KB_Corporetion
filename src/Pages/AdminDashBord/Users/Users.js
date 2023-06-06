@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import ActiveBidder from "./Active_Bidder/ActiveBidder";
 import AdminMessageSent from "../../../Component/AdminMessageSent/AdminMessageSent";
+import ConfirmationModal from "../../../Shared/ConfirmationModal/ConfirmationModal";
 
 export default function Users() {
   const [userInfo, setUserinfo] = useState({});
@@ -31,7 +32,11 @@ export default function Users() {
         refetch();
       });
   };
+
+  ///delete user
+
   const [showPopup, setShowPopup] = useState(false);
+  const [showConfirmationPopup, setConfirmationPopup] = useState(false);
 
   const openPopup = () => {
     setShowPopup(true);
@@ -39,6 +44,30 @@ export default function Users() {
 
   const closePopup = () => {
     setShowPopup(false);
+  };
+  const openConfirmationPopup = () => {
+    setConfirmationPopup(true);
+  };
+
+  const closeConfirmationPopup = () => {
+    setConfirmationPopup(false);
+  };
+
+  //delete user
+  const [deleteuser, setDeleteuser] = useState(null);
+  const handleDlete = () => {
+    fetch(`${process.env.REACT_APP_API_URL}/delete/user/${deleteuser?._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        refetch();
+        toast.success(data.message);
+        closeConfirmationPopup();
+      });
   };
 
   return (
@@ -124,7 +153,7 @@ export default function Users() {
                     ) : (
                       <p
                         onClick={openPopup}
-                        className="font-medium text-green-600 dark:text-green-600 hover:underline"
+                        className="font-medium cursor-pointer text-green-600 dark:text-green-600 hover:underline"
                       >
                         Active
                       </p>
@@ -133,13 +162,16 @@ export default function Users() {
                   <td className="px-6 py-4">
                     <AdminMessageSent user={user}></AdminMessageSent>
                   </td>
-                  <td className="px-6 py-4">
-                    <a
-                      href="#"
-                      className="font-medium text-green-600 dark:text-green-600 hover:underline"
-                    >
+                  <td
+                    onClick={() => {
+                      setDeleteuser(user);
+                      openConfirmationPopup();
+                    }}
+                    className="px-6 py-4 cursor-pointer"
+                  >
+                    <p className="font-medium text-green-600 dark:text-green-600 hover:underline">
                       X
-                    </a>
+                    </p>
                   </td>
                 </tr>
               </tbody>
@@ -149,6 +181,15 @@ export default function Users() {
       </div>
       <div>
         {showPopup && <ActiveBidder userInfo={userInfo} onClose={closePopup} />}
+      </div>
+      <div>
+        {showConfirmationPopup && (
+          <ConfirmationModal
+            data={"are you sure   delete " + deleteuser?.name}
+            submit={handleDlete}
+            onClose={closeConfirmationPopup}
+          ></ConfirmationModal>
+        )}
       </div>
     </div>
   );

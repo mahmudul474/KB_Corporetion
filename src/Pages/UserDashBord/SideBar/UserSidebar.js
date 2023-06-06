@@ -69,40 +69,48 @@ export default function UserSidebar() {
               </li>
             </Link>
 
-            <Link to="/my-dashboard/request/seller">
-              <li className="dark:bg-gray-800  dark:text-gray-50">
-                <span className="flex items-center p-2 space-x-3 rounded-md">
-                  <MdSell></MdSell>
-                  <span> Become a Seller</span>
-                </span>
-              </li>
-            </Link>
-            <Link to="/my-dashboard/my-bids">
-              <li className="dark:bg-gray-800  dark:text-gray-50">
-                <span className="flex items-center p-2 space-x-3 rounded-md">
-                  <GiThorHammer></GiThorHammer>
-                  <span>My Bids</span>
-                </span>
-              </li>
-            </Link>
+            {currentUser?.role === "seller" && (
+              <Link to="/my-dashboard/request/seller">
+                <li className="dark:bg-gray-800  dark:text-gray-50">
+                  <span className="flex items-center p-2 space-x-3 rounded-md">
+                    <MdSell></MdSell>
+                    <span> Become a Seller</span>
+                  </span>
+                </li>
+              </Link>
+            )}
 
-            <Link to="/my-dashboard/win-bids">
-              <li className="dark:bg-gray-800  dark:text-gray-50">
-                <span className="flex items-center p-2 space-x-3 rounded-md">
-                  <FaRegSmileWink></FaRegSmileWink>
-                  <span>Winning Bids</span>
-                </span>
-              </li>
-            </Link>
+            {currentUser?.role === "bidder" && (
+              <>
+                <Link to="/my-dashboard/my-bids">
+                  <li className="dark:bg-gray-800  dark:text-gray-50">
+                    <span className="flex items-center p-2 space-x-3 rounded-md">
+                      <GiThorHammer></GiThorHammer>
+                      <span>My Bids</span>
+                    </span>
+                  </li>
+                </Link>
 
-            <Link to="/my-dashboard/buy">
-              <li className="dark:bg-gray-800  dark:text-gray-50">
-                <span className="flex items-center p-2 space-x-3 rounded-md">
-                  <AiOutlineMoneyCollect></AiOutlineMoneyCollect>
-                  <span>Buy</span>
-                </span>
-              </li>
-            </Link>
+                <Link to="/my-dashboard/win-bids">
+                  <li className="dark:bg-gray-800  dark:text-gray-50">
+                    <span className="flex items-center p-2 space-x-3 rounded-md">
+                      <FaRegSmileWink></FaRegSmileWink>
+                      <span>Winning Bids</span>
+                    </span>
+                  </li>
+                </Link>
+
+                <Link to="/my-dashboard/buy">
+                  <li className="dark:bg-gray-800  dark:text-gray-50">
+                    <span className="flex items-center p-2 space-x-3 rounded-md">
+                      <AiOutlineMoneyCollect></AiOutlineMoneyCollect>
+                      <span>Buy</span>
+                    </span>
+                  </li>
+                </Link>
+              </>
+            )}
+
             <hr className="my-5"></hr>
             <li className="dark:bg-gray-800  dark:text-gray-50">
               <span className="flex items-center p-2 space-x-3 rounded-md">

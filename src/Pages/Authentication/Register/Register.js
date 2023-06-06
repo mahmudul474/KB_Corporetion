@@ -24,7 +24,7 @@ export default function Register() {
   const [token] = useToken(createUserEmail);
 
   if (token) {
-    navigate(from, { replace: true });
+    navigate("/my-dashboard");
     window.location.reload(true);
   }
 

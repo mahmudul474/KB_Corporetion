@@ -73,7 +73,7 @@ const EditProfilePopup = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center ">
+    <div className="fixed z-50 inset-0 flex items-center justify-center ">
       <div className="bg-slate-400 rounded-lg p-8 w-96">
         <h2 className="text-2xl mb-4">Edit Profile</h2>
         <form onSubmit={handleSubmit}>
