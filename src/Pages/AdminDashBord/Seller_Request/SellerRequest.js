@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import ConfirmationModal from "../../../Shared/ConfirmationModal/ConfirmationModal";
 
 export default function SellerRequest() {
   const { data: sellerRequest = [], refetch } = useQuery({
@@ -27,6 +28,32 @@ export default function SellerRequest() {
       .then(data => {
         refetch();
         toast.success("make seller successful");
+      });
+  };
+
+  const [deleteSelleremail, setDeleteSelleremail] = useState(null);
+  const [showConfirmationPopup, setConfirmationPopup] = useState(false);
+
+  const openConfirmationPopup = () => {
+    setConfirmationPopup(true);
+  };
+
+  const closeConfirmationPopup = () => {
+    setConfirmationPopup(false);
+  };
+
+  const handleDeleteseller = () => {
+    fetch(
+      `${process.env.REACT_APP_API_URL}/deleteseller/${deleteSelleremail}`,
+      {
+        method: "DELETE"
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        refetch();
+        toast.success(data.message);
+        closeConfirmationPopup();
       });
   };
 
@@ -75,9 +102,9 @@ export default function SellerRequest() {
               <td className="px-6 py-4">{seller?.email}</td>
               <td className="px-6 py-4 cursor-pointer">
                 {seller?.status === "seller" ? (
-                  <div className="flex items-center cursor-pointer">
-                    <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500 mr-2"></div>{" "}
-                    {seller?.status}
+                  <div className="flex items-center disabled cursor-pointer">
+                    <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-green-500 mr-2"></div>{" "}
+                    <p className=" disabled "> {seller?.status}</p>
                   </div>
                 ) : (
                   <div
@@ -89,18 +116,32 @@ export default function SellerRequest() {
                   </div>
                 )}
               </td>
+
               <td className="px-6 py-4">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                <p
+                  onClick={() => {
+                    setDeleteSelleremail(seller?.email);
+                    openConfirmationPopup();
+                  }}
+                  className="font-medium text-red-600 dark:text-red-500  cursor-pointer"
                 >
                   X
-                </a>
+                </p>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <div>
+        {showConfirmationPopup && (
+          <ConfirmationModal
+            data={"are you sure   delete " + deleteSelleremail}
+            submit={handleDeleteseller}
+            onClose={closeConfirmationPopup}
+          ></ConfirmationModal>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Animation from "../../../Shared/Animation/Animation";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import ActiveBidder from "./Active_Bidder/ActiveBidder";
 import AdminMessageSent from "../../../Component/AdminMessageSent/AdminMessageSent";
 import ConfirmationModal from "../../../Shared/ConfirmationModal/ConfirmationModal";
+import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 
 export default function Users() {
+  const { currentUser } = useContext(AuthContext);
   const [userInfo, setUserinfo] = useState({});
 
+  // get all   user
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/users`);
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/users?email=${currentUser?.email}`
+      );
       const data = await res.json();
       return data;
     }
@@ -70,6 +75,19 @@ export default function Users() {
       });
   };
 
+  const handleDisabele = email => {
+    if (email) {
+      fetch(`${process.env.REACT_APP_API_URL}/user/disabled/${email}`, {
+        method: "PUT"
+      })
+        .then(res => res.json())
+        .then(data => {
+          toast.success(data.message);
+          refetch();
+        });
+    }
+  };
+
   return (
     <div className="">
       <h1 className="capitalize text-2xl m-4 font-bold"> users</h1>
@@ -90,6 +108,9 @@ export default function Users() {
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Make Bidder
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Make disabled
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Message
@@ -159,6 +180,20 @@ export default function Users() {
                       </p>
                     )}
                   </td>
+
+                  {user?.role === "disabled" ? (
+                    <td className="px-6   text-red-600 disabled cursor-pointer py-4">
+                      {user?.role}
+                    </td>
+                  ) : (
+                    <td
+                      onClick={() => handleDisabele(user?.email)}
+                      className="px-6  cursor-pointer py-4"
+                    >
+                      make disabled
+                    </td>
+                  )}
+
                   <td className="px-6 py-4">
                     <AdminMessageSent user={user}></AdminMessageSent>
                   </td>
@@ -169,7 +204,7 @@ export default function Users() {
                     }}
                     className="px-6 py-4 cursor-pointer"
                   >
-                    <p className="font-medium text-green-600 dark:text-green-600 hover:underline">
+                    <p className="font-medium text-red-600 dark:text-red-600 hover:underline">
                       X
                     </p>
                   </td>
