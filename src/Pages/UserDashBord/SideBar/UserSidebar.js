@@ -43,6 +43,18 @@ export default function UserSidebar() {
             <h2 className=" font-semibold">{currentUser?.name}</h2>
             <span className="text-sm">{currentUser?.email}</span>
           </div>
+
+          <div className="text-left capitalize flex flex-col ">
+            {currentUser?.role && (
+              <span className="text-sm"> Role: {currentUser?.role}</span>
+            )}
+            {currentUser?.message && (
+              <span className="text-sm   text-red-500">
+                {" "}
+                Message: {currentUser?.message.message}
+              </span>
+            )}
+          </div>
         </div>
         <h1></h1>
         <div className="divide-y divide-gray-700">
