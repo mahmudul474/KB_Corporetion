@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import { AiFillEdit } from "react-icons/ai";
 import EditProfilePopup from "../../../Shared/UserProfileEditPopUp/EditProfilePopup";
+import { MdSell } from "react-icons/md";
 
 export default function UserSidebar() {
   const { currentUser } = useContext(AuthContext);
@@ -56,6 +57,14 @@ export default function UserSidebar() {
               </li>
             </Link>
 
+            <Link to="/my-dashboard/request/seller">
+              <li className="dark:bg-gray-800  dark:text-gray-50">
+                <span className="flex items-center p-2 space-x-3 rounded-md">
+                  <MdSell></MdSell>
+                  <span> Become a Seller</span>
+                </span>
+              </li>
+            </Link>
             <Link to="/my-dashboard/my-bids">
               <li className="dark:bg-gray-800  dark:text-gray-50">
                 <span className="flex items-center p-2 space-x-3 rounded-md">

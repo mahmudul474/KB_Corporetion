@@ -3,9 +3,12 @@ import Animation from "../../../Shared/Animation/Animation";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import ActiveBidder from "./Active_Bidder/ActiveBidder";
+import AdminMessageSent from "../../../Component/AdminMessageSent/AdminMessageSent";
 
 export default function Users() {
-  const { data: users, refetch } = useQuery({
+  const [userInfo, setUserinfo] = useState({});
+
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/users`);
@@ -14,6 +17,7 @@ export default function Users() {
     }
   });
 
+  ///make    admin
   const handlemakeAdmin = id => {
     fetch(`${process.env.REACT_APP_API_URL}/user/admin/${id}`, {
       method: "PUT",
@@ -96,7 +100,7 @@ export default function Users() {
                         <>
                           <div className="h-2.5 w-2.5 rounded-full bg-green-600 mr-2"></div>
                           <button className="bg-green-700 btn p-3 rounded-xl text-white disabled">
-                            Admin
+                            {user?.role}
                           </button>
                         </>
                       ) : (
@@ -112,27 +116,27 @@ export default function Users() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
-                    <p
-                      onClick={openPopup}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      Active
-                    </p>
-                    <div>
-                      {showPopup && <ActiveBidder onClose={closePopup} />}
-                    </div>
+                  <td className="px-6 py-4" onClick={() => setUserinfo(user)}>
+                    {user?.role === "bidder" ? (
+                      <p className="font-medium  disabled bg-green-600 p-2 dark:text-green-600 text-white rounded-lg hover:underline">
+                        {user?.role}
+                      </p>
+                    ) : (
+                      <p
+                        onClick={openPopup}
+                        className="font-medium text-green-600 dark:text-green-600 hover:underline"
+                      >
+                        Active
+                      </p>
+                    )}
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center">
-                      <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>{" "}
-                      Make seller
-                    </div>
+                    <AdminMessageSent user={user}></AdminMessageSent>
                   </td>
                   <td className="px-6 py-4">
                     <a
                       href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      className="font-medium text-green-600 dark:text-green-600 hover:underline"
                     >
                       X
                     </a>
@@ -142,6 +146,9 @@ export default function Users() {
             ))}
           </table>
         </div>
+      </div>
+      <div>
+        {showPopup && <ActiveBidder userInfo={userInfo} onClose={closePopup} />}
       </div>
     </div>
   );

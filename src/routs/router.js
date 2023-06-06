@@ -23,6 +23,8 @@ import Allproducts from "../Pages/AdminDashBord/AllProducts/Allproducts";
 import About from "../Pages/About/About";
 import AdminProductDettailsCard from "../Pages/AdminDashBord/AllProducts/ProductDettailsCard/AdminProductDettailsCard";
 import Adminrout from "./AdminRout/Adminrout";
+import Request from "../Pages/UserDashBord/RequestASeller/Request";
+import SellerRequest from "../Pages/AdminDashBord/Seller_Request/SellerRequest";
 
 export const routs = createBrowserRouter([
   {
@@ -60,6 +62,14 @@ export const routs = createBrowserRouter([
               <Private>
                 {" "}
                 <Profile></Profile>
+              </Private>
+            )
+          },
+          {
+            path: "/my-dashboard/request/seller",
+            element: (
+              <Private>
+                <Request></Request>
               </Private>
             )
           },
@@ -160,6 +170,10 @@ export const routs = createBrowserRouter([
             </Adminrout>
           </Private>
         )
+      },
+      {
+        path: "/admin-dashboard/users/seller-request",
+        element: <SellerRequest></SellerRequest>
       },
       {
         path: "/admin-dashboard/orders",
