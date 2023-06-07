@@ -1,19 +1,19 @@
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
-import { FiEdit } from "react-icons/fi";
-
-import { toast } from "react-hot-toast";
+import React from "react";
 
 const ConfirmationModal = ({ onClose, data, submit }) => {
   const handleCancel = () => {
     // Close the popup without submitting the form
     onClose();
   };
-
   return (
     <div className="fixed z-50 inset-0  flex items-center justify-center ">
       <div className="bg-slate-400 p-14  rounded-lg">
-        <h3 className="text-lg my-5  text-red-500">{data}</h3>
+        <h3 className="text-md my-5  ">
+          Are you sure you want to delete
+          <span className="text-2xl capitalize font-semibold text-green-800 ml-2 ">
+            {data}
+          </span>{" "}
+        </h3>
 
         <button
           onClick={submit}

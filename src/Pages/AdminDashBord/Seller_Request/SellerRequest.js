@@ -101,7 +101,7 @@ export default function SellerRequest() {
               </th>
               <td className="px-6 py-4">{seller?.email}</td>
               <td className="px-6 py-4 cursor-pointer">
-                {seller?.status === "seller" ? (
+                {seller?.status === "approved" ? (
                   <div className="flex items-center disabled cursor-pointer">
                     <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-green-500 mr-2"></div>{" "}
                     <p className=" disabled "> {seller?.status}</p>
@@ -136,7 +136,7 @@ export default function SellerRequest() {
       <div>
         {showConfirmationPopup && (
           <ConfirmationModal
-            data={"are you sure   delete " + deleteSelleremail}
+            data={deleteSelleremail}
             submit={handleDeleteseller}
             onClose={closeConfirmationPopup}
           ></ConfirmationModal>

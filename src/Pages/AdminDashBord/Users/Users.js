@@ -220,7 +220,7 @@ export default function Users() {
       <div>
         {showConfirmationPopup && (
           <ConfirmationModal
-            data={"are you sure   delete " + deleteuser?.name}
+            data={deleteuser?.name}
             submit={handleDlete}
             onClose={closeConfirmationPopup}
           ></ConfirmationModal>

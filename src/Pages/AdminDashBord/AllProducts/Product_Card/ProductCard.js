@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineDelete } from "react-icons/ai";
+import { FiEdit } from "react-icons/fi";
+import EditProductPopUp from "./ProductEditPopup/EditProductPopUp";
 
-export default function ProductCard({ data }) {
+export default function ProductCard({ data, refetch,   setDeleteProduct, openConfirmationPopup }) {
   const calculateRemainingTime = endTime => {
     const currentTime = new Date().getTime();
     const endTimeValue = new Date(endTime).getTime();
@@ -72,6 +75,16 @@ export default function ProductCard({ data }) {
     return `${formattedDate} ${formattedTime}`;
   };
 
+  const [editProduct, setEditProduct] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div>
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -106,9 +119,19 @@ export default function ProductCard({ data }) {
             {data?.name}
           </h5>
 
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {data?.description} <Link> ...</Link>
-          </p>
+          <div class="flex items-center  ">
+            <img
+              class="w-10 mr-2 h-10 rounded-full"
+              src={data?.authorPhoto}
+              alt=""
+            />
+            <div class="font-medium dark:text-white">
+              <div>{data?.author}</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">
+                {data?.authorEmail}
+              </div>
+            </div>
+          </div>
           <div className="flex my-2 justify-between items-center">
             <p className="flex flex-col text-green-500  items-center ">
               <span>Start Bidding Time</span>
@@ -144,7 +167,46 @@ export default function ProductCard({ data }) {
               </button>
             </Link>
           </div>
+
+          <div className=" flex   mt-3  justify-between flex-row items-center">
+            <button
+              onClick={() => {
+                setEditProduct(data);
+                openPopup();
+              }}
+              type="button"
+              class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+            >
+              <span>
+                <FiEdit></FiEdit>
+              </span>
+              Edit
+            </button>
+            <button
+             onClick={()=>{
+              setDeleteProduct(data)
+             openConfirmationPopup()
+             }}
+              type="button"
+              class="text-white   bg-red-600   focus:ring-4 focus:outline-none   font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+            >
+              <span>
+                <AiOutlineDelete></AiOutlineDelete>
+              </span>
+              Delete
+            </button>
+          </div>
         </div>
+      </div>
+
+      <div>
+        {showPopup && (
+          <EditProductPopUp
+            data={editProduct}
+            refetch={refetch}
+            onClose={closePopup}
+          />
+        )}
       </div>
     </div>
   );

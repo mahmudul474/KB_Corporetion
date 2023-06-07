@@ -7,7 +7,7 @@ export default function AdminNav({ toggleDrawer }) {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div class="px-4 py-5 mx-auto   w-full    md:px-24 lg:px-8">
+    <div class="px-4 py-5 mx-auto   w-full  shadow-lg  md:px-24 lg:px-8">
       <div class="relative flex items-center justify-between">
         <a
           href="/"
