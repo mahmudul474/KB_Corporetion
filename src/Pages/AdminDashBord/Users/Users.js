@@ -93,9 +93,9 @@ export default function Users() {
       <h1 className="capitalize text-2xl m-4 font-bold"> users</h1>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div className="flex items-center justify-between pb-4 bg-white dark:bg-gray-900">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div className="flex items-center justify-between pb-4 bg-white ">
+          <table className="w-full text-sm text-left text-gray-500 ">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   user
@@ -122,10 +122,10 @@ export default function Users() {
             </thead>
             {users?.map(user => (
               <tbody>
-                <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr className="bg-white  hover:bg-gray-50 ">
                   <th
                     scope="row"
-                    className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    className="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                   >
                     <img
                       className="w-10 h-10 rounded-full"
@@ -168,13 +168,13 @@ export default function Users() {
                   </td>
                   <td className="px-6 py-4" onClick={() => setUserinfo(user)}>
                     {user?.role === "bidder" ? (
-                      <p className="font-medium  disabled bg-green-600 p-2 dark:text-green-600 text-white rounded-lg hover:underline">
+                      <p className="font-medium  disabled bg-green-600 p-2 text-white rounded-lg hover:underline">
                         {user?.role}
                       </p>
                     ) : (
                       <p
                         onClick={openPopup}
-                        className="font-medium cursor-pointer text-green-600 dark:text-green-600 hover:underline"
+                        className="font-medium cursor-pointer text-green-600 hover:underline"
                       >
                         Active
                       </p>
@@ -204,7 +204,7 @@ export default function Users() {
                     }}
                     className="px-6 py-4 cursor-pointer"
                   >
-                    <p className="font-medium text-red-600 dark:text-red-600 hover:underline">
+                    <p className="font-medium text-red-600  hover:underline">
                       X
                     </p>
                   </td>

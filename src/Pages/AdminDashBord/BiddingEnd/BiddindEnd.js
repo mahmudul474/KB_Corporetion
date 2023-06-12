@@ -1,24 +1,27 @@
-import React, { useState } from "react";
-import Animation from "../../../Shared/Animation/Animation";
-import { useQuery } from "@tanstack/react-query";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ConfirmOrder from "./ConfirmOrder/ConfirmOrder";
+import AdminWiner from "./winner/AdminWiner";
+import { useQuery } from "@tanstack/react-query";
+import WinPayment from "./WinBidPayment/WinPayment";
 
-export default function Order() {
+export default function BiddindEnd() {
   const {
-    data: orders = [],
+    data: products = [],
     isLoading,
     refetch
   } = useQuery({
-    queryKey: "orders",
+    queryKey: "products",
     queryFn: async () => {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`);
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/products/closed-bids/with-bids`
+      );
       const data = await res.json();
       return data;
     }
   });
 
   const [productId, setProductId] = useState(null);
+  console.log(productId, "this  product");
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -39,7 +42,7 @@ export default function Order() {
               className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
               type="button"
             >
-              Order
+              Bidding end
             </button>
           </div>
           <label for="table-search" className="sr-only">
@@ -65,7 +68,7 @@ export default function Order() {
               type="text"
               id="table-search-users"
               className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search for  order"
+              placeholder="Search for users"
             />
           </div>
         </div>
@@ -76,24 +79,24 @@ export default function Order() {
                 Product
               </th>
               <th scope="col" className="px-6 py-3">
-                Buy-Price
+                Start bid
               </th>
               <th scope="col" className="px-6 py-3">
-                Buyer
+                Buy price
+              </th>
+              <th scope="col" className="px-6 py-3">
+                winner
               </th>
               <th scope="col" className="px-6 py-3">
                 Dittails
               </th>
               <th scope="col" className="px-6 py-3">
-                payment
-              </th>
-              <th scope="col" className="px-6 py-3">
-                message
+                Payment
               </th>
             </tr>
           </thead>
 
-          {orders?.map(product => (
+          {products?.map(product => (
             <tbody>
               <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th
@@ -102,17 +105,17 @@ export default function Order() {
                 >
                   <img
                     className="w-10 h-10 rounded-full"
-                    src={product?.productImg}
+                    src={product?.mainImage}
                     alt="product img"
                   />
                   <div className="pl-3">
                     <div className="text-base font-semibold">
-                      {product.productName}
+                      {product.name}
                     </div>
                     <div className="font-normal text-gray-500">{}</div>
                   </div>
                 </th>
-
+                <td className="px-6 py-4">{product?.startBiddingPrice}</td>
                 <td className="px-6 py-4">
                   <div className="flex items-center">
                     <div className="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>{" "}
@@ -127,18 +130,18 @@ export default function Order() {
                     <div className="flex  items-center">
                       <img
                         className="w-10 h-10 rounded-full"
-                        src={product.bidderPhoto}
+                        src={product.winner?.bidderPhoto}
                         alt="product img"
                       />
                       <div className="pl-3">
                         <div className="text-base font-semibold">
-                          {product.bidderName}
+                          {product.winner?.bidderName}
                         </div>
                         <div className="font-normal text-gray-500">
-                          {product?.bidderEmail}
+                          {product.winner?.bidderEmail}
                         </div>
                         <div className="font-normal text-gray-500">
-                          Price: {product?.amount}
+                          Price: {product.winner?.amount}
                         </div>
                       </div>
                     </div>
@@ -153,28 +156,37 @@ export default function Order() {
                   </Link>
                 </td>
 
-                <td className="px-6 py-4">
-                  <a
-                    onClick={() => {
-                      setProductId(product);
-                      openPopup();
-                    }}
-                    className="font-medium cursor-pointer text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    {product?.status}
-                  </a>
-                </td>
+                {product?.payment === "pending" ||
+                product?.payment === "approved" ? (
+                  <td className="px-6 py-4">
+                    <a
+                      onClick={() => {
+                        setProductId(product._id);
+                        openPopup();
+                      }}
+                      className="font-medium cursor-pointer text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      {product?.payment}
+                    </a>
+                  </td>
+                ) : (
+                  <td className="px-6 py-4">
+                    <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                      Not Pay
+                    </a>
+                  </td>
+                )}
               </tr>
             </tbody>
           ))}
         </table>
         <div>
           {showPopup && (
-            <ConfirmOrder
+            <WinPayment
               refetch={refetch}
               onClose={closePopup}
-              data={productId}
-            ></ConfirmOrder>
+              id={productId}
+            ></WinPayment>
           )}
         </div>
       </div>

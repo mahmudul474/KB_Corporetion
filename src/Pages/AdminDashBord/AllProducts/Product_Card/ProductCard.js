@@ -87,7 +87,7 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
 
   return (
     <div>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow   ">
         <div className="border ">
           <img
             className="rounded-t-lg w-full text-center h-60 object-contain "
@@ -115,7 +115,7 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
         </div>
 
         <div className="p-5 text-left capitalize">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
             {data?.name}
           </h5>
 
@@ -125,11 +125,9 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
               src={data?.authorPhoto}
               alt=""
             />
-            <div class="font-medium dark:text-white">
+            <div class="font-medium  ">
               <div>{data?.author}</div>
-              <div class="text-sm text-gray-500 dark:text-gray-400">
-                {data?.authorEmail}
-              </div>
+              <div class="text-sm text-gray-500  ">{data?.authorEmail}</div>
             </div>
           </div>
           <div className="flex my-2 justify-between items-center">
@@ -183,10 +181,10 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
               Edit
             </button>
             <button
-             onClick={()=>{
-              setDeleteProduct(data)
-             openConfirmationPopup()
-             }}
+              onClick={() => {
+                setDeleteProduct(data);
+                openConfirmationPopup();
+              }}
               type="button"
               class="text-white   bg-red-600   focus:ring-4 focus:outline-none   font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
             >

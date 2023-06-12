@@ -25,6 +25,9 @@ import AdminProductDettailsCard from "../Pages/AdminDashBord/AllProducts/Product
 import Adminrout from "./AdminRout/Adminrout";
 import Request from "../Pages/UserDashBord/RequestASeller/Request";
 import SellerRequest from "../Pages/AdminDashBord/Seller_Request/SellerRequest";
+import BiddindEnd from "../Pages/AdminDashBord/BiddingEnd/BiddindEnd";
+import BiddingCloseNoBids from "../Pages/AdminDashBord/BiddingCloseNobid/BiddingCloseNoBids";
+import ProductOrder from "../Pages/ProductOrders/ProductOrder";
 
 export const routs = createBrowserRouter([
   {
@@ -116,6 +119,12 @@ export const routs = createBrowserRouter([
         path: "/about",
         element: <About></About>
       },
+      {
+        path: "/product/order/:id",
+        loader: ({ params }) =>
+          fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
+        element: <ProductOrder></ProductOrder>
+      },
 
       {
         path: "/action/:id",
@@ -135,7 +144,6 @@ export const routs = createBrowserRouter([
     element: (
       <Private>
         <Adminrout>
-          {" "}
           <AdminDashBordLayot></AdminDashBordLayot>
         </Adminrout>
       </Private>
@@ -193,6 +201,15 @@ export const routs = createBrowserRouter([
           </Adminrout>
         )
       },
+      {
+        path: "/admin-dashboard/products/bidding-close-with-bid",
+        element: <BiddindEnd></BiddindEnd>
+      },
+      {
+        path: "/admin-dashboard/products/bidding-close/no-bid",
+        element: <BiddingCloseNoBids></BiddingCloseNoBids>
+      },
+
       {
         path: "/admin-dashboard/action/:id",
         loader: ({ params }) =>

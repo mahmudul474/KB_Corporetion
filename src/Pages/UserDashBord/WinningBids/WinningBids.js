@@ -1,39 +1,35 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import SendPaymentDettals from "./SendPaymentDettails/SendPaymentDettals";
 
 export default function WinningBids() {
   const { currentUser } = useContext(AuthContext);
 
-  const [winBidds, setWinBidds] = useState([]);
+  const { data: winBidds } = useQuery({
+    queryKey: ["winBidds", currentUser?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/my-wins?email=${currentUser?.email}`
+      );
+      const data = await res.json();
+      return data;
+    }
+  });
+  const [showPopup, setShowPopup] = useState(false);
 
-  const fetchWinnerBids = () => {
-    // Replace with your actual bidder ID
+  const [paymentProduct, setPaymentProduct] = useState(null);
+
+  const openPopup = () => {
+    setShowPopup(true);
   };
 
-  useEffect(() => {
-    fetchWinnerBids();
-  }, []);
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
-  useEffect(() => {
-    if (currentUser) {
-      fetch(
-        `${process.env.REACT_APP_API_URL}/bids/bidder/${currentUser._id}/products/won`
-      )
-        .then(response => response.json())
-        .then(data => {
-          // Process the retrieved winning bids
-          setWinBidds(data.wonProducts);
-        })
-        .catch(error => {
-          console.error("Error retrieving winner bids", error);
-        });
-    } else {
-    }
-  }, [currentUser]);
-
-  console.log(winBidds);
   return (
     <div className="mt-10">
       <h1 className="text-4xl capitalize  text-left mb-3 pt-10 px-5 font-semibold">
@@ -45,7 +41,7 @@ export default function WinningBids() {
             <div className="border ">
               <img
                 className="rounded-t-lg w-full text-center h-60 object-contain "
-                src={data.highestBid.productPhoto}
+                src={data?.mainImage}
                 alt=""
               />
             </div>
@@ -61,17 +57,17 @@ export default function WinningBids() {
 
               <h1>
                 <p className="text-lg text-green-700  font-semibold">
-                  winner: {data?.highestBid.bidderName}
+                  winner: {data?.winner?.bidderName}
                 </p>
 
                 <p className="text-lg text-red-600 capitalize  font-semibold">
-                  Email:{data?.highestBid.bidderEmail}
+                  Email: {data?.winner?.bidderEmail}
                 </p>
               </h1>
 
               <div className="flex justify-between items-center">
                 <h2 className="font-semibold">
-                  Winning Price: {data.highestBid.amount} $
+                  Winning Price:{data?.winner?.amount} $
                 </h2>
 
                 <Link to={`/action/${data._id}`}>
@@ -93,9 +89,24 @@ export default function WinningBids() {
                   </button>
                 </Link>
               </div>
+
+              <button
+                onClick={() => {
+                  setPaymentProduct(data);
+                  openPopup();
+                }}
+              >
+                send Payment Details{" "}
+              </button>
             </div>
           </div>
         ))}
+      </div>
+
+      <div>
+        {showPopup && (
+          <SendPaymentDettals data={paymentProduct} onClose={closePopup} />
+        )}
       </div>
     </div>
   );

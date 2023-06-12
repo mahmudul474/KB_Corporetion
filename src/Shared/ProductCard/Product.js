@@ -76,7 +76,7 @@ export default function Product({ data }) {
 
   return (
     <div>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow  ">
         <div className="border ">
           <img
             className="rounded-t-lg w-full text-center h-60 object-contain "
@@ -114,11 +114,11 @@ export default function Product({ data }) {
           <div className="flex my-2 justify-between items-center">
             <p className="flex flex-col text-green-500  items-center ">
               <span>Start Bidding Time</span>
-              <span> {formatDateTime(data.startBiddingTime)}</span>
+              <span> {formatDateTime(data?.startBiddingTime)}</span>
             </p>
             <p className="flex text-red-700 flex-col items-center ">
               <span>End Bidding Time</span>
-              <span> {formatDateTime(data.endBiddingTime)}</span>
+              <span> {formatDateTime(data?.endBiddingTime)}</span>
             </p>
           </div>
 

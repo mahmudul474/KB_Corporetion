@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 import Popup from "../../../Shared/Pop_UP/Popup";
 import UserSpinner from "../../../Shared/UserSpinner/UserSpinner";
 import useToken from "../../../Hooks/useToken";
+import LoadingSpiner from "../../../Shared/LoadingSpiner/LoadingSpiner";
 
 export default function Login() {
   const { loginUser, loading, setLoading } = useContext(AuthContext);
@@ -67,9 +68,16 @@ export default function Login() {
       })
       .catch(er => {
         toast.error(er.message);
+        setLoading(false);
       });
   };
 
+
+
+
+  if(loading){
+    return <LoadingSpiner></LoadingSpiner>
+  }
   return (
     <>
       <div className=" px-4 py-10  mt-10 shadow-2xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:mx-16 md:px-24 lg:px-8  bottom-0 bg-white rounded-2xl  ">
@@ -153,17 +161,14 @@ export default function Login() {
                     {showPopup && <Popup onClose={closePopup} />}
                   </div>
                 </div>
-
-                {loading ? (
-                  <UserSpinner></UserSpinner>
-                ) : (
+ 
                   <button
                     type="submit"
                     className="w-1/3 text-white bg-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
                   >
                     Sign in
                   </button>
-                )}
+               
               </form>
             </div>
             <div className="lg:w-1/4 sm:w-full bg-[#442db9] rounded-md py-16 ">

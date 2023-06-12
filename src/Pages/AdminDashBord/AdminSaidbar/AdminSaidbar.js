@@ -33,6 +33,26 @@ export default function AdminSaidbar({ isOpen }) {
                   </p>
                 </li>
               </Link>
+              <Link to="/admin-dashboard/products/bidding-close-with-bid">
+                <li className="w-52">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                      <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
+                    </span>
+                    <span className="text-sm font-medium">Bid close </span>
+                  </p>
+                </li>
+              </Link>
+              <Link to="/admin-dashboard/products/bidding-close/no-bid">
+                <li className="w-52">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                      <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
+                    </span>
+                    <span className="text-sm font-medium">No bids</span>
+                  </p>
+                </li>
+              </Link>
 
               <Link to="/admin-dashboard/productUpload">
                 <li className="w-52">

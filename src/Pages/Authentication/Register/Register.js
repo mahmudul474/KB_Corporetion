@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import AWS from "aws-sdk";
 import UserSpinner from "../../../Shared/UserSpinner/UserSpinner";
 import useToken from "../../../Hooks/useToken";
+import LoadingSpiner from "../../../Shared/LoadingSpiner/LoadingSpiner";
 
 AWS.config.update({
   region: "ap-southeast-1",
@@ -156,8 +157,17 @@ export default function Register() {
         if (data.acknowledged) {
           toast.success(`registered successfully  ${user?.displayName}`);
         }
-      });
+      }).catch(err =>{
+        toast.error(err.message);
+        setLoading(false)
+      })
   };
+
+
+
+  if(loading){
+    return <LoadingSpiner></LoadingSpiner>
+  }
 
   return (
     <>
@@ -408,16 +418,15 @@ export default function Register() {
                   </div>
                 </div>
 
-                {loading ? (
-                  <UserSpinner> </UserSpinner>
-                ) : (
+                
+                 
                   <button
                     type="submit"
                     className="w-1/3 text-white bg-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
                   >
                     Sign up
                   </button>
-                )}
+               
               </form>
             </div>
             <div className="lg:w-1/4 sm:w-full bg-[#442db9] rounded-md py-16 ">

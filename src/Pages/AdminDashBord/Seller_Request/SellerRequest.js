@@ -64,8 +64,8 @@ export default function SellerRequest() {
         seller request
       </h1>
 
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <table className="w-full text-sm text-left text-gray-500 ">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50   ">
           <tr>
             <th scope="col" className="px-6 py-3">
               Seller
@@ -83,10 +83,10 @@ export default function SellerRequest() {
         </thead>
         <tbody>
           {sellerRequest?.map(seller => (
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <tr className="bg-white border-b  hover:bg-gray-50 ">
               <th
                 scope="row"
-                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
               >
                 <img
                   className="w-10 h-10 rounded-full"
@@ -123,7 +123,7 @@ export default function SellerRequest() {
                     setDeleteSelleremail(seller?.email);
                     openConfirmationPopup();
                   }}
-                  className="font-medium text-red-600 dark:text-red-500  cursor-pointer"
+                  className="font-medium text-red-600 cursor-pointer"
                 >
                   X
                 </p>
