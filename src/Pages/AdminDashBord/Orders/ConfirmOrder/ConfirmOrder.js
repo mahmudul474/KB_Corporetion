@@ -34,9 +34,9 @@ export default function ConfirmOrder({ data, onClose, refetch }) {
       });
   };
 
-  const handlefaild = () => {
+  const handlereject = () => {
     const paymentId = {
-      id: paymentDetails?._id
+      id: data._id
     };
     fetch(
       `${process.env.REACT_APP_API_URL}/payment/admin/failed/${data?._id}`,
@@ -72,7 +72,7 @@ export default function ConfirmOrder({ data, onClose, refetch }) {
           <div class="flex items-center mb-4">
             <img
               onClick={openModal}
-              src="https://kb-corporetion.s3.ap-southeast-1.amazonaws.com/computer-it-web-devepment.png"
+              src={data?.productImg}
               alt="Bank Sleep"
               class="w-full h-56 mr-2"
             />
@@ -82,7 +82,7 @@ export default function ConfirmOrder({ data, onClose, refetch }) {
               <div className="bg-gray-900 bg-opacity-50 absolute inset-0"></div>
               <div className="bg-white p-8 rounded-md shadow-md z-20">
                 <img
-                  src="https://kb-corporetion.s3.ap-southeast-1.amazonaws.com/computer-it-web-devepment.png"
+                  src={data?.productImg}
                   alt="Bank Sleep"
                   className="w-500 h-500 mb-4"
                 />
@@ -96,13 +96,13 @@ export default function ConfirmOrder({ data, onClose, refetch }) {
             </div>
           )}
 
-          <p class="mb-4">Bank: 5544454543</p>
+          <p class="mb-4">Bank: {data?.bank}</p>
 
-          <p class="mb-4">Branch: 45435435435</p>
+          <p class="mb-4">Branch: {data?.branch}</p>
 
-          <p class="mb-4">Transaction: 4234342</p>
+          <p class="mb-4">Transaction: {data?.transaction}</p>
 
-          <p class="text-lg font-semibold">Amount: 22222</p>
+          <p class="text-lg font-semibold">Amount: {data?.amount}</p>
         </div>
 
         <div className="flex  justify-center my-4 ">
@@ -114,7 +114,7 @@ export default function ConfirmOrder({ data, onClose, refetch }) {
           </button>
           <button
             className="btn bg-red-700 p-3 mr-2 text-white rounded-lg "
-            onClick={handlefaild}
+            onClick={handlereject}
           >
             Reject
           </button>

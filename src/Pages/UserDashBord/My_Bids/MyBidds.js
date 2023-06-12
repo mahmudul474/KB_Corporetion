@@ -10,24 +10,22 @@ export default function MyBidds() {
    
 
 
-      useEffect(()=>{
-
-     if(currentUser){
-        fetch(`${process.env.REACT_APP_API_URL}/bids/bidder/${currentUser._id}/products`)
-        .then(response => response.json())
-        .then(data => {
-          // Process the retrieved bidder bids
-          setMybidds(data?.products);
-        })
-        .catch(error => {
-          console.error("Error retrieving bidder bids", error);
-        });
-     }else{
-
-     }
-
-
-      },[currentUser])
+      useEffect(() => {
+        if (currentUser) {
+          fetch(
+            `${process.env.REACT_APP_API_URL}/bids/bidder/${currentUser._id}/products`
+          )
+            .then(response => response.json())
+            .then(data => {
+              // Process the retrieved bidder bids
+              setMybidds(data?.products);
+            })
+            .catch(error => {
+              console.error("Error retrieving bidder bids", error);
+            });
+        } else {
+        }
+      }, [currentUser]);
       
 
 

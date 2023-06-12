@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 
 import { Link } from "react-router-dom";
@@ -50,11 +50,9 @@ export default function WinningBids() {
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {data?.name}
               </h5>
-
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                 {data?.description} <Link> ...</Link>
               </p>
-
               <h1>
                 <p className="text-lg text-green-700  font-semibold">
                   winner: {data?.winner?.bidderName}
@@ -64,7 +62,6 @@ export default function WinningBids() {
                   Email: {data?.winner?.bidderEmail}
                 </p>
               </h1>
-
               <div className="flex justify-between items-center">
                 <h2 className="font-semibold">
                   Winning Price:{data?.winner?.amount} $
@@ -89,15 +86,27 @@ export default function WinningBids() {
                   </button>
                 </Link>
               </div>
-
-              <button
-                onClick={() => {
-                  setPaymentProduct(data);
-                  openPopup();
-                }}
-              >
-                send Payment Details{" "}
-              </button>
+              {data?.payment === "pending" || data?.payment === "approved" ? (
+                <>
+                  <div className="bg-green-600 rounded-md text-center my-5 ">
+                    <button className="text-lg font-semibold text-white text-center p-2">
+                      {data?.payment}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="w-full bg-green-800 cursor-pointer"
+                    onClick={() => {
+                      setPaymentProduct(data);
+                      openPopup();
+                    }}
+                  >
+                    send Payment Details
+                  </button>
+                </>
+              )}
             </div>
           </div>
         ))}
