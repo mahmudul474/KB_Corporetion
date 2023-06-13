@@ -104,11 +104,11 @@ export default function Product({ data }) {
         </div>
 
         <div className="p-5 text-left capitalize">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-black dark:text-black">
             {data?.name}
           </h5>
 
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-black dark:text-black">
             {data?.description} <Link> ...</Link>
           </p>
           <div className="flex my-2 justify-between items-center">

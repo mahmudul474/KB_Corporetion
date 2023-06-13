@@ -1,5 +1,6 @@
 import React from "react";
 import bg from "../../../assets/call-bg.png";
+import { Link } from "react-router-dom";
 
 export default function Subscriptions() {
   return (
@@ -18,9 +19,11 @@ export default function Subscriptions() {
             </p>
           </div>
           <div>
-            <button className="btn  bg-white text-black hover:text-white hover:bg-green-600 p-4 rounded-lg text-xl font-bold transition">
-              Register
-            </button>
+            <Link to="/register">
+              <button className="btn  bg-white text-black hover:text-white hover:bg-green-600 p-4 rounded-lg text-xl font-bold transition">
+                Register
+              </button>
+            </Link>
           </div>
         </div>
       </div>

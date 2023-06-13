@@ -44,10 +44,7 @@ return (
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src="https://i.ibb.co/6vyTQm5/image.png"
-                          alt="Avatar"
-                        />
+                        <img src={bid?.bidderPhoto} alt="Avatar" />
                       </div>
                     </div>
                     <div>

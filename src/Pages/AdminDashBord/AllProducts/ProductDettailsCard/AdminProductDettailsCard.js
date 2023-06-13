@@ -161,7 +161,7 @@ export default function AdminProductDettailsCard() {
               >
                 <button
                   type="button"
-                  className="  px- py-2.5 text-sm font-medium   w-full text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 dark:hover:bg--blue700 dark:focus:ring-green-800"
+                  className="  px- py-2.5 text-sm font-medium   w-full text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600  "
                 >
                   Download PDF
                 </button>
@@ -182,18 +182,18 @@ export default function AdminProductDettailsCard() {
               <h2 className="  mt-1 mb-6 text-2xl font-bold  text-left md:text-4xl">
                 {data.name}
               </h2>
-              <p className="  mb-4 text-gray-700 text-left dark:text-gray-400">
+              <p className="  mb-4 text-gray-700 text-left  ">
                 {data?.description}
               </p>
             </div>
 
             <div>
               <div className="  bg-slate-200">
-                <div className="flex justify-between items-center text-xl font-bold text-green-600  dark:text-green-100">
+                <div className="flex justify-between items-center text-xl font-bold text-green-600   ">
                   <span>Starting bid:</span>
                   <span>{data?.startBiddingPrice} $</span>
                 </div>
-                <div className="flex justify-between items-center text-xl font-bold text-green-600  dark:text-green-100">
+                <div className="flex justify-between items-center text-xl font-bold text-green-600   ">
                   <span>Current bidding Price:</span>
 
                   <span>
