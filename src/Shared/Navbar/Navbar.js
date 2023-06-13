@@ -24,7 +24,7 @@ const Navbar = () => {
   const navitem = (
     <>
       <Link to="/">
-        <li>
+        <li onClick={() => setIsMenuOpen(false)}>
           <p
             title="Our product"
             className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -36,23 +36,22 @@ const Navbar = () => {
 
       <div className="relative ml-3">
         <div>
-          <button
-            onClick={() => setIsAuctionOpen(true)}
-            type="button"
-            className="flex  focus:outline-none   focus:ring-offset-2 focus:ring-offset-gray-800"
-            id="user-menu-button"
-            aria-expanded="false"
-            aria-haspopup="true"
-          >
-            <li>
+          
+
+            <li
+              onClick={() => {
+                setIsAuctionOpen(true);
+                setIsMenuOpen(false);
+              }}
+            >
               <p
-                title="Our product"
-                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+                title="Our product "
+                className="font-medium cursor-pointer tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Auctions
               </p>
             </li>
-          </button>
+       
         </div>
 
         {isAuctionOpen && (
@@ -100,7 +99,7 @@ const Navbar = () => {
         )}
       </div>
       <Link to="/winners">
-        <li>
+        <li onClick={() => setIsMenuOpen(false)}>
           <p
             title="Our product"
             className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -134,7 +133,7 @@ const Navbar = () => {
             >
               <div className="h-14 w-14 object-contain">
                 <img
-                  className=" rounded-full  object-contain "
+                  className=" rounded-full  object-cover w-full h-full "
                   src={currentUser.userPhoto}
                   alt="user photo"
                 />
@@ -161,7 +160,7 @@ const Navbar = () => {
                   Dashboard
                 </li>
               </Link>
-              { isAdmin  && (
+              {isAdmin && (
                 <Link to="/admin-dashboard">
                   <li
                     onClick={() => setIsProflieOpen(false)}
@@ -190,7 +189,7 @@ const Navbar = () => {
       ) : (
         <>
           <Link to="/login">
-            <li>
+            <li onClick={() => setIsMenuOpen(false)}>
               <p
                 title="Our product"
                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -200,7 +199,7 @@ const Navbar = () => {
             </li>
           </Link>
           <Link to="/register">
-            <li>
+            <li onClick={() => setIsMenuOpen(false)}>
               <p
                 title="Our product"
                 className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -225,21 +224,6 @@ const Navbar = () => {
             title="Company"
             className="inline-flex items-center"
           >
-            <svg
-              className="w-8 text-deep-purple-accent-400"
-              viewBox="0 0 24 24"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeMiterlimit="10"
-              stroke="currentColor"
-              fill="none"
-            >
-              <rect x="3" y="1" width="7" height="12" />
-              <rect x="3" y="17" width="7" height="6" />
-              <rect x="14" y="1" width="7" height="6" />
-              <rect x="14" y="11" width="7" height="12" />
-            </svg>
             <span className="ml-2 text-xl font-bold tracking-wide text-white uppercase">
               KB-Corporation
             </span>
@@ -249,12 +233,12 @@ const Navbar = () => {
           </ul>
           <div className="lg:hidden">
             <button
-              aria-label="Open Menu"
+              aria-label="Open Menu "
               title="Open Menu"
               className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
               onClick={() => setIsMenuOpen(true)}
             >
-              <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+              <svg className="w-5 text-white" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
                   d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"

@@ -150,7 +150,7 @@ export default function Users() {
                         <>
                           <div className="h-2.5 w-2.5 rounded-full bg-green-600 mr-2"></div>
                           <button className="bg-green-700 btn p-3 rounded-xl text-white disabled">
-                            {user?.role}
+                            Admin
                           </button>
                         </>
                       ) : (
@@ -215,11 +215,18 @@ export default function Users() {
         </div>
       </div>
       <div>
-        {showPopup && <ActiveBidder userInfo={userInfo} onClose={closePopup} />}
+        {showPopup && (
+          <ActiveBidder
+            refetch={refetch}
+            userInfo={userInfo}
+            onClose={closePopup}
+          />
+        )}
       </div>
       <div>
         {showConfirmationPopup && (
           <ConfirmationModal
+            refetch={refetch}
             data={deleteuser?.name}
             submit={handleDlete}
             onClose={closeConfirmationPopup}

@@ -37,12 +37,12 @@ export default function AdminMessageSent({ user }) {
       ></label>
       <div className="relative">
         <input
-          type="text"
+          type="text "
           value={message}
           onChange={e => setMessage(e.target.value)}
           placeholder="type message"
-          id="search"
-          className="block w-full p-4 pl-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-600 focus:border-green-600"
+          id="send mail "
+          className="block w-48 p-4 pl-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-600 focus:border-green-600"
           required
         />
         <button

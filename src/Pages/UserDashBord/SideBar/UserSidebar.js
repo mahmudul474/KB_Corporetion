@@ -8,9 +8,10 @@ import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import { AiFillEdit } from "react-icons/ai";
 import EditProfilePopup from "../../../Shared/UserProfileEditPopUp/EditProfilePopup";
 import { MdSell } from "react-icons/md";
+import { toast } from "react-hot-toast";
 
 export default function UserSidebar() {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, logOut } = useContext(AuthContext);
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -20,6 +21,13 @@ export default function UserSidebar() {
 
   const closePopup = () => {
     setShowPopup(false);
+  };
+
+  const handleLogOut = () => {
+    logOut().then(() => {
+      window.location.reload(true);
+      toast.error("user Log-Out successfully");
+    });
   };
 
   return (
@@ -112,7 +120,10 @@ export default function UserSidebar() {
             )}
 
             <hr className="my-5"></hr>
-            <li className="dark:bg-gray-800  dark:text-gray-50">
+            <li
+              onClick={handleLogOut}
+              className="dark:bg-gray-800   dark:text-gray-50"
+            >
               <span className="flex items-center p-2 space-x-3 rounded-md">
                 <span className="text-red-600"> Sing-out</span>
               </span>

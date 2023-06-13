@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={routs}></RouterProvider>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster />
     </div>
   );
 }

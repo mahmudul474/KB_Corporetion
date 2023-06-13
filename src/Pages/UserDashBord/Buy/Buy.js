@@ -26,7 +26,7 @@ export default function Buy() {
   return (
     <div className="mt-10">
       <h1 className="text-4xl capitalize  text-left mb-3 pt-10 px-5 font-semibold">
-        Win Bids
+        Purchase
       </h1>
       <div className="grid px-5 grid-cols-1 lg:grid-cols-2 gap-5">
         {buyproduct?.map(data => (

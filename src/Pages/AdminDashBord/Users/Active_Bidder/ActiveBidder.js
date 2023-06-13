@@ -10,12 +10,12 @@ AWS.config.update({
   secretAccessKey: "LL5Y1TIK2/sWPm4Tn/bHO7izAikXVHSuQAGCaVxU"
 });
 
-const ActiveBidder = ({ onClose, userInfo }) => {
-  const [number, setNumber] = useState("");
-  const [businessName, setBusinessName] = useState("");
-  const [businessAddress, setBusinessAddress] = useState("");
-  const [tinNum, setTinNum] = useState("");
-  const [tradelicense, setTradeLicense] = useState("");
+const ActiveBidder = ({ onClose, userInfo, refetch }) => {
+  const [number, setNumber] = useState(null);
+  const [businessName, setBusinessName] = useState(null);
+  const [businessAddress, setBusinessAddress] = useState(null);
+  const [tinNum, setTinNum] = useState(null);
+  const [tradelicense, setTradeLicense] = useState(null);
 
   const [nidImageUrl, setNidImageUrl] = useState(null);
   const handleNidImgupload = event => {
@@ -53,9 +53,12 @@ const ActiveBidder = ({ onClose, userInfo }) => {
       tradeLN: tradelicense ? tradelicense : userInfo?.tradeLN
     };
 
+    console.log(bidderinfo);
+
     fetch(`${process.env.REACT_APP_API_URL}/user/bidder/${userInfo?._id}`, {
       method: "PUT",
       headers: {
+        "Content-Type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`
       },
       body: JSON.stringify(bidderinfo)
@@ -63,7 +66,7 @@ const ActiveBidder = ({ onClose, userInfo }) => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        window.location.reload(true);
+        refetch();
         onClose();
       })
       .catch(err => toast.error(err.message));
@@ -117,7 +120,7 @@ const ActiveBidder = ({ onClose, userInfo }) => {
                 </label>
                 <input
                   id="input"
-                  onBlur={e => setNumber(e.target.value)}
+                  onChange={e => setNumber(e.target.value)}
                   type="number "
                   defaultValue={userInfo?.phoneNumber}
                   className="border border-gray-300 p-2 w-full"
@@ -131,7 +134,7 @@ const ActiveBidder = ({ onClose, userInfo }) => {
                   Business-Name
                 </label>
                 <input
-                  onBlur={e => setBusinessName(e.target.value)}
+                  onChange={e => setBusinessName(e.target.value)}
                   id="input"
                   type="text"
                   defaultValue={userInfo?.businessName}
@@ -144,7 +147,7 @@ const ActiveBidder = ({ onClose, userInfo }) => {
                   Business-Address
                 </label>
                 <input
-                  onBlur={e => setBusinessAddress(e.target.value)}
+                  onChange={e => setBusinessAddress(e.target.value)}
                   id="input"
                   type="text"
                   defaultValue={userInfo?.businessAddress}
@@ -160,7 +163,7 @@ const ActiveBidder = ({ onClose, userInfo }) => {
                   Tin-Number
                 </label>
                 <input
-                  onBlur={e => setTinNum(e.target.value)}
+                  onChange={e => setTinNum(e.target.value)}
                   id="input"
                   type="text"
                   defaultValue={userInfo?.tinNum}
@@ -174,7 +177,7 @@ const ActiveBidder = ({ onClose, userInfo }) => {
                 </label>
                 <input
                   id="input"
-                  onBlur={e => setTradeLicense(e.target.value)}
+                  onChange={e => setTradeLicense(e.target.value)}
                   type="text"
                   defaultValue={userInfo?.tradeLN}
                   className="border border-gray-300 p-2 w-full"

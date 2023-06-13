@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import AWS from "aws-sdk";
 import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 
@@ -11,6 +11,7 @@ AWS.config.update({
 
 export default function ProductOrder() {
   const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const data = useLoaderData();
   const [bankSleep, setBanSleep] = useState(null);
@@ -74,6 +75,7 @@ export default function ProductOrder() {
       .then(data => {
         console.log(data);
         if (data.acknowledged) {
+          navigate("/my-dashboard/buy");
         }
       });
   };

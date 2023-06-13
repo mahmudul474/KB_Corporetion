@@ -37,6 +37,7 @@ const Popup = ({ onClose }) => {
           <div className="mb-4">
             <label htmlFor="input" className="block mb-2"></label>
             <input
+              required
               id="input"
               type="email"
               placeholder="email"
