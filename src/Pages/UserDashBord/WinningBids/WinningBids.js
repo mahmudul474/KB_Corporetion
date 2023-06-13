@@ -97,7 +97,7 @@ export default function WinningBids() {
               ) : (
                 <>
                   <button
-                    className="w-full bg-green-800 cursor-pointer"
+                    className="w-full p-3 text-white  my-3 rounded-md bg-green-800 cursor-pointer"
                     onClick={() => {
                       setPaymentProduct(data);
                       openPopup();
