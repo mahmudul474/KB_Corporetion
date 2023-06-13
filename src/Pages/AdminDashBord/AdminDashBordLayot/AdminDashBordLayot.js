@@ -17,7 +17,10 @@ export default function AdminDashBordLayot() {
       <div className="px-4  mx-auto  w-full   md:px-24 lg:px-8">
         <div className="flex  justify-start items-start flex-row">
           <div className=" ">
-            <AdminSaidbar isOpen={isOpen}></AdminSaidbar>
+            <AdminSaidbar
+              toggleDrawer={toggleDrawer}
+              isOpen={isOpen}
+            ></AdminSaidbar>
           </div>
           <div className="w-full lg:w-2/3 shadow-2xl lg:p-20 rounded-2xl">
             <Outlet></Outlet>

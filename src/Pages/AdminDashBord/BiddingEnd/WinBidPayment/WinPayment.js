@@ -71,7 +71,7 @@ export default function WinPayment({ id, onClose, refetch }) {
            <div class="flex items-center mb-4">
              <img
                onClick={openModal}
-               src={paymentDetails?.productImg}
+               src={paymentDetails?.bankSleep}
                alt="Bank Sleep"
                class="w-full h-56 mr-2"
              />
@@ -81,7 +81,7 @@ export default function WinPayment({ id, onClose, refetch }) {
                <div className="bg-gray-900 bg-opacity-50 absolute inset-0"></div>
                <div className="bg-white p-8 rounded-md shadow-md z-20">
                  <img
-                   src={paymentDetails?.productImg}
+                   src={paymentDetails?.bankSleep}
                    alt="Bank Sleep"
                    className="w-500 h-500 mb-4"
                  />

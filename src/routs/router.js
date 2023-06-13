@@ -28,6 +28,8 @@ import SellerRequest from "../Pages/AdminDashBord/Seller_Request/SellerRequest";
 import BiddindEnd from "../Pages/AdminDashBord/BiddingEnd/BiddindEnd";
 import BiddingCloseNoBids from "../Pages/AdminDashBord/BiddingCloseNobid/BiddingCloseNoBids";
 import ProductOrder from "../Pages/ProductOrders/ProductOrder";
+import Payments from "../Pages/AdminDashBord/Payments/Payments";
+import AdminWinners from "../Pages/AdminDashBord/Winners/AdminWinners";
 
 export const routs = createBrowserRouter([
   {
@@ -208,6 +210,14 @@ export const routs = createBrowserRouter([
       {
         path: "/admin-dashboard/products/bidding-close/no-bid",
         element: <BiddingCloseNoBids></BiddingCloseNoBids>
+      },
+      {
+        path: "/admin-dashboard/payments",
+        element: <Payments></Payments>
+      },
+      {
+        path: "/admin-dashboard/winners",
+        element: <AdminWinners></AdminWinners>
       },
 
       {

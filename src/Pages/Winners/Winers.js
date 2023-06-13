@@ -4,7 +4,7 @@ export default function Winers() {
   const [winners, setWinnerrs] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/bids/winners`)
+    fetch(`${process.env.REACT_APP_API_URL}/products/winners`)
       .then(res => res.json())
       .then(data => {
         setWinnerrs(data);
@@ -19,114 +19,31 @@ export default function Winers() {
             Winners
           </p>
           <p className="text-base text-gray-700 md:text-lg">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium.
+            "During the bidding period, multiple users participated by placing
+            their bids for the product. After an active bidding process, one
+            user emerged as the highest bidder with the winning bid
           </p>
         </div>
         <div className="grid gap-10 mx-auto lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-4">
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-20 h-20 mb-2 rounded-full shadow"
-              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-              alt="Person"
-            />
+          {winners?.map(winner => (
             <div className="flex flex-col items-center">
-              <p className="text-lg font-bold">Oliver Aguilerra</p>
-              <p className="text-sm text-gray-800">product: SPA</p>
+              <img
+                className="object-cover w-20 h-20 mb-2 rounded-full shadow"
+                src={winner?.bidderPhoto}
+                alt="Person"
+              />
+              <div className="flex flex-col items-center">
+                <p className="text-lg font-bold">{winner?.bidderName}</p>
+                <p className="text-sm text-gray-800">
+                  product: {winner?.productName}
+                </p>
 
-              <p className="text-sm text-gray-800">winning price: 3333$</p>
+                <p className="text-sm text-gray-800">
+                  winning price: {winner?.amount}$
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-20 h-20 mb-2 rounded-full shadow"
-              src="https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-              alt="Person"
-            />
-            <div className="flex flex-col items-center">
-              <p className="text-lg font-bold">Marta Clermont</p>
-              <p className="text-sm text-gray-800">product: SPA</p>
-
-              <p className="text-sm text-gray-800">winning price: 3333$</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-20 h-20 mb-2 rounded-full shadow"
-              src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-              alt="Person"
-            />
-            <div className="flex flex-col items-center">
-              <p className="text-lg font-bold">Anthony Geek</p>
-              <p className="text-sm text-gray-800">product: SPA</p>
-
-              <p className="text-sm text-gray-800">winning price: 3333$</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-20 h-20 mb-2 rounded-full shadow"
-              src="https://images.pexels.com/photos/3747435/pexels-photo-3747435.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-              alt="Person"
-            />
-            <div className="flex flex-col items-center">
-              <p className="text-lg font-bold">Alice Melbourne</p>
-              <p className="text-sm text-gray-800">product: SPA</p>
-
-              <p className="text-sm text-gray-800">winning price: 3333$</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-20 h-20 mb-2 rounded-full shadow"
-              src="https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
-              alt="Person"
-            />
-            <div className="flex flex-col items-center">
-              <p className="text-lg font-bold">Martin Garix</p>
-              <p className="text-sm text-gray-800">product: SPA</p>
-
-              <p className="text-sm text-gray-800">winning price: 3333$</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-20 h-20 mb-2 rounded-full shadow"
-              src="https://images.pexels.com/photos/3931603/pexels-photo-3931603.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-              alt="Person"
-            />
-            <div className="flex flex-col items-center">
-              <p className="text-lg font-bold">Andrew Larkin</p>
-              <p className="text-sm text-gray-800">product: SPA</p>
-
-              <p className="text-sm text-gray-800">winning price: 3333$</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-20 h-20 mb-2 rounded-full shadow"
-              src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-              alt="Person"
-            />
-            <div className="flex flex-col items-center">
-              <p className="text-lg font-bold">Sophie Denmo</p>
-              <p className="text-sm text-gray-800">product: SPA</p>
-
-              <p className="text-sm text-gray-800">winning price: 3333$</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <img
-              className="object-cover w-20 h-20 mb-2 rounded-full shadow"
-              src="https://images.pexels.com/photos/3931553/pexels-photo-3931553.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-              alt="Person"
-            />
-            <div className="flex flex-col items-center">
-              <p className="text-lg font-bold">Benedict Caro</p>
-              <p className="text-sm text-gray-800">product: SPA</p>
-              <p className="text-sm text-gray-800">winning price: 3333$</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

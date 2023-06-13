@@ -248,25 +248,22 @@ export default function AdminProductDettailsCard() {
             <h1 className="text-green-600  flex items-center justify-center text-xl">
               Winner{" "}
             </h1>
-            {winner ? (
-              <div className="flex">
-                <img
-                  className="object-cover w-20 h-20 mr-4 rounded-full shadow"
-                  src="https://i.ibb.co/6vyTQm5/image.png"
-                  alt="Person"
-                />
-                <div className="flex flex-col items-start justify-center">
-                  <p className="text-lg font-bold text-left">
-                    {winner?.bidderName}
-                  </p>
-                  <p className="text-sm text-gray-800 text-left">
-                    Win Bid Price: {winner?.amount}$
-                  </p>
-                </div>
+
+            <div className="flex justify-center items-center">
+              <img
+                className="object-cover w-20 h-20 mr-4 rounded-full shadow"
+                src={data?.winner?.bidderPhoto}
+                alt="Person"
+              />
+              <div className="flex flex-col items-start justify-center">
+                <p className="text-lg font-bold text-left">
+                  {data?.winner?.bidderName}
+                </p>
+                <p className="text-sm text-gray-800 text-left">
+                  Win Bid Price: {data?.winner?.amount}$
+                </p>
               </div>
-            ) : (
-              <h2> waitting for bidding end </h2>
-            )}
+            </div>
           </div>{" "}
           <ActionHistory bids={data?.bids}> </ActionHistory>{" "}
         </div>

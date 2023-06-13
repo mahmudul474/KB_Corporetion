@@ -64,74 +64,76 @@ export default function SellerRequest() {
         seller request
       </h1>
 
-      <table className="w-full text-sm text-left text-gray-500 ">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50   ">
-          <tr>
-            <th scope="col" className="px-6 py-3">
-              Seller
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Email
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Status
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {sellerRequest?.map(seller => (
-            <tr className="bg-white border-b  hover:bg-gray-50 ">
-              <th
-                scope="row"
-                className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
-              >
-                <img
-                  className="w-10 h-10 rounded-full"
-                  src={seller?.info?.userPhoto}
-                  alt=" seller  img "
-                />
-                <div className="pl-3">
-                  <div className="text-base font-semibold">
-                    {seller?.info.name}
-                  </div>
-                </div>
+      <div className="w-full overflow-auto">
+        <table className="w-full text-sm text-left text-gray-500 ">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50   ">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Seller
               </th>
-              <td className="px-6 py-4">{seller?.email}</td>
-              <td className="px-6 py-4 cursor-pointer">
-                {seller?.status === "approved" ? (
-                  <div className="flex items-center disabled cursor-pointer">
-                    <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-green-500 mr-2"></div>{" "}
-                    <p className=" disabled "> {seller?.status}</p>
-                  </div>
-                ) : (
-                  <div
-                    onClick={() => handelmakeseller(seller.email)}
-                    className="flex items-center cursor-pointer"
-                  >
-                    <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500 mr-2"></div>{" "}
-                    {seller?.status}
-                  </div>
-                )}
-              </td>
-
-              <td className="px-6 py-4">
-                <p
-                  onClick={() => {
-                    setDeleteSelleremail(seller?.email);
-                    openConfirmationPopup();
-                  }}
-                  className="font-medium text-red-600 cursor-pointer"
-                >
-                  X
-                </p>
-              </td>
+              <th scope="col" className="px-6 py-3">
+                Email
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Status
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Action
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {sellerRequest?.map(seller => (
+              <tr className="bg-white border-b  hover:bg-gray-50 ">
+                <th
+                  scope="row"
+                  className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap "
+                >
+                  <img
+                    className="w-10 h-10 rounded-full"
+                    src={seller?.info?.userPhoto}
+                    alt=" seller  img "
+                  />
+                  <div className="pl-3">
+                    <div className="text-base font-semibold">
+                      {seller?.info.name}
+                    </div>
+                  </div>
+                </th>
+                <td className="px-6 py-4">{seller?.email}</td>
+                <td className="px-6 py-4 cursor-pointer">
+                  {seller?.status === "approved" ? (
+                    <div className="flex items-center disabled cursor-pointer">
+                      <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-green-500 mr-2"></div>{" "}
+                      <p className=" disabled "> {seller?.status}</p>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => handelmakeseller(seller.email)}
+                      className="flex items-center cursor-pointer"
+                    >
+                      <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500 mr-2"></div>{" "}
+                      {seller?.status}
+                    </div>
+                  )}
+                </td>
+
+                <td className="px-6 py-4">
+                  <p
+                    onClick={() => {
+                      setDeleteSelleremail(seller?.email);
+                      openConfirmationPopup();
+                    }}
+                    className="font-medium text-red-600 cursor-pointer"
+                  >
+                    X
+                  </p>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <div>
         {showConfirmationPopup && (
