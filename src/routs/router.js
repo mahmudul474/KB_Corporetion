@@ -30,6 +30,7 @@ import BiddingCloseNoBids from "../Pages/AdminDashBord/BiddingCloseNobid/Bidding
 import ProductOrder from "../Pages/ProductOrders/ProductOrder";
 import Payments from "../Pages/AdminDashBord/Payments/Payments";
 import AdminWinners from "../Pages/AdminDashBord/Winners/AdminWinners";
+import ExelTouploadProductUploadForm from "../Pages/AdminDashBord/ProductUpload/ExelToUploadProduct/ExelTouploadProductUploadForm";
 
 export const routs = createBrowserRouter([
   {
@@ -167,6 +168,16 @@ export const routs = createBrowserRouter([
           <Private>
             <Adminrout>
               <ProductUploadForm></ProductUploadForm>
+            </Adminrout>
+          </Private>
+        )
+      },
+      {
+        path: "/admin-dashboard/excel-to-productUpload",
+        element: (
+          <Private>
+            <Adminrout>
+              <ExelTouploadProductUploadForm></ExelTouploadProductUploadForm>
             </Adminrout>
           </Private>
         )

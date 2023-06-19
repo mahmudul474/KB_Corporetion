@@ -60,7 +60,22 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
-                    <span className="text-sm font-medium">Upload Product</span>
+                    <span className="text-sm font-medium">
+                      Upload full Product
+                    </span>
+                  </p>
+                </li>
+              </Link>
+
+              <Link to="/admin-dashboard/excel-to-productUpload">
+                <li className="w-52">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                      <TbUpload></TbUpload>
+                    </span>
+                    <span className="text-sm font-medium">
+                      Upload By koyel Product
+                    </span>
                   </p>
                 </li>
               </Link>
@@ -189,7 +204,21 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
                   <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                     <TbUpload></TbUpload>
                   </span>
-                  <span className="text-sm font-medium">Upload Product</span>
+                  <span className="text-sm font-medium">
+                    Upload Full Product{" "}
+                  </span>
+                </p>
+              </li>
+            </Link>
+            <Link to="/admin-dashboard/excel-to-productUpload">
+              <li className="w-52">
+                <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                    <TbUpload></TbUpload>
+                  </span>
+                  <span className="text-sm font-medium">
+                    Upload By koyel Product
+                  </span>
                 </p>
               </li>
             </Link>
