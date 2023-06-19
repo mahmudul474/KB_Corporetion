@@ -53,7 +53,7 @@ export default function Allproducts() {
     <div>
       <h1 className="text-2xl    capitalize  "> All products </h1>
 
-      <div className=" grid  gap-5 grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
+      <div className=" grid  gap-5 grid-cols-1 lg:grid-cols-2 md:grid-cols-2">
         {products?.map(product => (
           <ProductCard
             setDeleteProduct={setDeleteProduct}

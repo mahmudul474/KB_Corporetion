@@ -34,13 +34,13 @@ export default function Payments() {
               Name
             </th>
             <th scope="col" className="px-6 py-3">
-              Position
+              Price
             </th>
             <th scope="col" className="px-6 py-3">
-              Status
+              Buyer
             </th>
             <th scope="col" className="px-6 py-3">
-              Action
+              Bank sleep
             </th>
           </tr>
         </thead>

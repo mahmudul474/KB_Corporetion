@@ -12,9 +12,7 @@ export default function BiddindEnd() {
   } = useQuery({
     queryKey: "products",
     queryFn: async () => {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/products/closed-bids/with-bids`
-      );
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/products/closed-bids/with-bids`);
       const data = await res.json();
       return data;
     }
@@ -32,6 +30,9 @@ export default function BiddindEnd() {
   const closePopup = () => {
     setShowPopup(false);
   };
+
+   
+
 
   return (
     <div>
