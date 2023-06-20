@@ -31,6 +31,7 @@ import ProductOrder from "../Pages/ProductOrders/ProductOrder";
 import Payments from "../Pages/AdminDashBord/Payments/Payments";
 import AdminWinners from "../Pages/AdminDashBord/Winners/AdminWinners";
 import ExelTouploadProductUploadForm from "../Pages/AdminDashBord/ProductUpload/ExelToUploadProduct/ExelTouploadProductUploadForm";
+import SingelProductsDettails from "../Shared/ProductDettailsCard/SingelProductDettailsCard/SingelProductsDettails";
 
 export const routs = createBrowserRouter([
   {
@@ -138,6 +139,18 @@ export const routs = createBrowserRouter([
             {" "}
             <ProductDettails></ProductDettails>
           </Private>
+        )
+      },
+      {
+        path: "/excel/:id",
+        loader: ({ params }) =>
+          fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
+        element: (
+          <Private>
+            {" "}
+            <SingelProductsDettails></SingelProductsDettails>
+             
+             </Private>
         )
       }
     ]

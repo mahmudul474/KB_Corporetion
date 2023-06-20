@@ -8,7 +8,7 @@ export default function ActionHistory({ bids }) {
 
 return (
   <div className="my-10   ">
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className=" overflow-x-auto shadow-md sm:rounded-lg">
       <h1 className="text-green-600  font-bold text-3xl text-left my-5 ">
         Bid History{" "}
       </h1>

@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import SubImgSlider from "./SubImgSlider";
-import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 import axios from "axios";
-import ActionHistory from "./ActionHistory";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
+import SubImgSlider from "../SubImgSlider";
+import ActionHistory from "../ActionHistory";
+import ImgSlide from "./ImgSlide";
+import Koyel from "./Koyel/Koyel";
 
-export default function ProductDettailsCard({ data }) {
+export default function SingelProductsDettails() {
   const { currentUser, user } = useContext(AuthContext);
-
-  console.log(data);
+  const data = useLoaderData();
 
   const [subimageUrl, setSubImgUrl] = useState(null);
   const [newPrice, setNewPrice] = useState("");
@@ -157,13 +158,11 @@ export default function ProductDettailsCard({ data }) {
     // Call the API every 10 seconds
   }, [data._id]);
 
-  console.log(winner, "this is winner ");
-
   return (
-    <div className="max-w-6xl  mx-auto ">
+    <div className=" mx-auto ">
       <div className="flex  flex-col lg:flex-row   ">
-        <div className="w-full px-4 lg:w-3/5 h-full  ">
-          <div className=" h-64 lg:h-[600px]   ">
+        <div className="w-full   lg:w-2/5   h-full  ">
+          <div className=" h-64    ">
             {subimageUrl ? (
               <img src={subimageUrl} alt="" className="  w-full h-full   " />
             ) : (
@@ -174,15 +173,17 @@ export default function ProductDettailsCard({ data }) {
               />
             )}
           </div>
-        </div>
-        <div className="w-full lg:w-2/5 text-left px-4  h-full lg:h-[600px]   overflow-auto     ">
-          <SubImgSlider
+          <ImgSlide
             handleSubimgShow={handleSubimgShow}
             images={data.subImages}
-          ></SubImgSlider>
+          ></ImgSlide>
+        </div>
+        <div className="w-full  lg:w-3/5 text-left px-4  h-[600px]   overflow-auto     ">
+          <div>
+            <Koyel koyel={data?.koyel}></Koyel>
+          </div>
         </div>
       </div>
-
       <div className="flex justify-between  mt-10 flex-col lg:flex-row">
         <div className="w-full lg:w-2/3   capitalize">
           <div>
@@ -383,11 +384,7 @@ export default function ProductDettailsCard({ data }) {
           </div>
         </div>
       </div>
-
-  
-
-        <ActionHistory bids={data?.bids}> </ActionHistory>{" "}
- 
+      <ActionHistory bids={data?.bids}> </ActionHistory>{" "}
     </div>
   );
 }

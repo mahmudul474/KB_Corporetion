@@ -3,6 +3,7 @@ import AWS from "aws-sdk";
 import * as XLSX from "xlsx";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
+import { v4 as uuidv4 } from "uuid";
 
 // Configure AWS SDK with your credentials and region
 
@@ -154,6 +155,7 @@ const ExelTouploadProductUploadForm = () => {
   const formatData = jsonData => {
     if (jsonData) {
       const formattedKoyel = jsonData.map(row => ({
+        _id: uuidv4(),
         item: row[0],
         spec: row[1],
         Thickness: row[2],
@@ -187,7 +189,7 @@ const ExelTouploadProductUploadForm = () => {
       authorPhoto: currentUser?.userPhoto,
       bids: [],
       koyel: formData,
-      key:"koyel"
+      key: "koyel"
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/products`, {
@@ -411,6 +413,7 @@ const ExelTouploadProductUploadForm = () => {
 
         <div className="relative z-0 w-full  my-6 group">
           <input
+            required
             type="file"
             accept=".xlsx, .xls"
             onChange={handleExcelFileChange}
