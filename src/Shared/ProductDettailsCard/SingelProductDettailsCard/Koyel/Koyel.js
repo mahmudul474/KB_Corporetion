@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
-export default function Koyel({ koyel }) {
+export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
+ 
   const [selectAll, setSelectAll] = useState(false);
-  console.log(selectAll);
-
-  const [selectedItems, setSelectedItems] = useState([]);
 
   const toggleSelectAll = () => {
     setSelectAll(!selectAll);

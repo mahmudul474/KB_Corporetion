@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
-import SubImgSlider from "../SubImgSlider";
 import ActionHistory from "../ActionHistory";
 import ImgSlide from "./ImgSlide";
 import Koyel from "./Koyel/Koyel";
+import axios from "axios";
 
 export default function SingelProductsDettails() {
   const { currentUser, user } = useContext(AuthContext);
@@ -22,6 +21,9 @@ export default function SingelProductsDettails() {
     setNewPrice(bidPrice);
   };
 
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  ///hanlde place bid
   const handlePlcebid = e => {
     e.preventDefault();
 
@@ -59,6 +61,38 @@ export default function SingelProductsDettails() {
       })
       .catch(error => {
         console.error("Error placing bid", error);
+      });
+  };
+
+  const handlePlcebids = () => {
+    // Prepare the bid data for selected items
+    const koyelBids = selectedItems.map(item => ({
+      koyelId: item._id,
+      bidAmount: 40,
+      bidderName: "22",
+      bidderEmail: "3232"
+    }));
+
+    fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/koyel/bids`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(koyelBids)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Bid placed successfully", data);
+        if (data.message) {
+          toast.success(data.message);
+          window.location.reload(true);
+          setNewPrice("");
+        } else {
+          toast.error(data.error);
+          setBidError(data.error);
+        }
+
+        // Clear bid amount field
       });
   };
 
@@ -144,6 +178,7 @@ export default function SingelProductsDettails() {
     return `${formattedDate} ${formattedTime}`;
   };
 
+  ///get winner
   const [winner, setWinner] = useState(null);
 
   useEffect(() => {
@@ -180,13 +215,20 @@ export default function SingelProductsDettails() {
         </div>
         <div className="w-full  lg:w-3/5 text-left px-4  h-[600px]   overflow-auto     ">
           <div>
-            <Koyel koyel={data?.koyel}></Koyel>
+            <Koyel
+              selectedItems={selectedItems}
+              setSelectedItems={setSelectedItems}
+              koyel={data?.koyel}
+            ></Koyel>
           </div>
         </div>
       </div>
       <div className="flex justify-between  mt-10 flex-col lg:flex-row">
         <div className="w-full lg:w-2/3   capitalize">
           <div>
+            <>
+              <button onClick={handlePlcebids}>uptade price</button>
+            </>
             <h2 className="  mt-1 mb-6 text-2xl font-bold  text-left md:text-4xl">
               {data.name}
             </h2>

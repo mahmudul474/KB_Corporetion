@@ -156,6 +156,10 @@ const ExelTouploadProductUploadForm = () => {
     if (jsonData) {
       const formattedKoyel = jsonData.map(row => ({
         _id: uuidv4(),
+        minimumBid: minimumBid,
+        currentBid: minimumBid,
+        bids: [],
+        endBiddingTime,
         item: row[0],
         spec: row[1],
         Thickness: row[2],
@@ -187,7 +191,6 @@ const ExelTouploadProductUploadForm = () => {
       author: currentUser?.name,
       authorEmail: currentUser?.email,
       authorPhoto: currentUser?.userPhoto,
-      bids: [],
       koyel: formData,
       key: "koyel"
     };
