@@ -5,7 +5,7 @@ import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import ActionHistory from "../ActionHistory";
 import ImgSlide from "./ImgSlide";
 import Koyel from "./Koyel/Koyel";
-import axios from "axios";
+
 
 export default function SingelProductsDettails() {
   const { currentUser, user } = useContext(AuthContext);
@@ -23,54 +23,16 @@ export default function SingelProductsDettails() {
 
   const [selectedItems, setSelectedItems] = useState([]);
 
-  ///hanlde place bid
-  const handlePlcebid = e => {
-    e.preventDefault();
-
-    const bidData = {
-      bidAmount: newPrice,
+  const handlePlcebid = () => {
+    // Prepare the bid data for selected items
+    const koyelBids = selectedItems.map(item => ({
+      koyelId: item._id,
+      bidAmount: newPrice / selectedItems?.length,
       bidderName: currentUser?.name,
       bidderEmail: currentUser?.email,
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
-      bidderNumber: currentUser?.phoneNumber,
-      productName: data.name,
-      productPhoto: data.mainImage
-    };
-
-    fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/bids`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bidData)
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Bid placed successfully", data);
-        if (data.message) {
-          toast.success(data.message);
-          window.location.reload(true);
-          setNewPrice("");
-        } else {
-          toast.error(data.error);
-          setBidError(data.error);
-        }
-
-        // Clear bid amount field
-      })
-      .catch(error => {
-        console.error("Error placing bid", error);
-      });
-  };
-
-  const handlePlcebids = () => {
-    // Prepare the bid data for selected items
-    const koyelBids = selectedItems.map(item => ({
-      koyelId: item._id,
-      bidAmount: 40,
-      bidderName: "22",
-      bidderEmail: "3232"
+      bidderNumber: currentUser?.phoneNumber
     }));
 
     fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/koyel/bids`, {
@@ -195,25 +157,28 @@ export default function SingelProductsDettails() {
 
   return (
     <div className=" mx-auto ">
-      <div className="flex  flex-col lg:flex-row   ">
-        <div className="w-full   lg:w-2/5   h-full  ">
-          <div className=" h-64    ">
+      <div className="flex  flex-col lg:flex-row    ">
+        <div className="w-full   lg:w-2/5   h-[600px]  border-black border  ">
+          <div className="    ">
             {subimageUrl ? (
-              <img src={subimageUrl} alt="" className="  w-full h-full   " />
+              <img src={subimageUrl} alt="" className="  w-full h-full  " />
             ) : (
               <img
                 src={data?.mainImage}
                 alt=""
-                className="h-full    w-full   "
+                className=" h-full    w-full   "
               />
             )}
           </div>
-          <ImgSlide
-            handleSubimgShow={handleSubimgShow}
-            images={data.subImages}
-          ></ImgSlide>
+          <div>
+            <ImgSlide
+              handleSubimgShow={handleSubimgShow}
+              images={data.subImages}
+            ></ImgSlide>
+          </div>
         </div>
-        <div className="w-full  lg:w-3/5 text-left px-4  h-[600px]   overflow-auto     ">
+        <div className="w-full  lg:w-3/5 text-left px-4  h-[600px]   overflow-auto ">
+          <h2>Select Product</h2>
           <div>
             <Koyel
               selectedItems={selectedItems}
@@ -223,12 +188,69 @@ export default function SingelProductsDettails() {
           </div>
         </div>
       </div>
-      <div className="flex justify-between  mt-10 flex-col lg:flex-row">
-        <div className="w-full lg:w-2/3   capitalize">
+      <div className="flex justify-between  mt-10 flex-col-reverse lg:flex-row">
+        <div className=" w-full   lg:w-2/5  border bg-slate-200 border-gray-300  rounded-lg  p-5">
+          <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
+            <div className="text-center my-2">
+              <div className="my-5">
+                <h1 className="text-green-600  flex items-center justify-center text-xl">
+                  Winner{" "}
+                </h1>
+                {data?.winner ? (
+                  <div className="flex">
+                    <img
+                      className="object-cover w-20 h-20 mr-4 rounded-full shadow"
+                      src={data?.winner?.bidderPhoto}
+                      alt="Person"
+                    />
+                    <div className="flex flex-col items-start justify-center">
+                      <p className="text-lg font-bold text-left">
+                        {data?.winner?.bidderName}
+                      </p>
+                      <p className="text-sm text-gray-800 text-left">
+                        Win Bid Price: {data?.winner?.amount}$
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <h2> waitting for bidding end </h2>
+                )}
+              </div>
+
+              <h4 className="text-red-500">This Auction Ends in</h4>
+              <h2 className="text-red-500">{remainingTime}</h2>
+            </div>
+
+            <div className="text-center my-2">
+              <h4 className="text-green-600">Start Bidding Time</h4>
+              <h2 className="text-green-600">
+                {formatDateTime(data.startBiddingTime)}
+              </h2>
+            </div>
+
+            <div className="text-center my-2">
+              <h4 className="text-red-500"> End Bidding Time</h4>
+              <h2 className="text-red-500">
+                {formatDateTime(data.endBiddingTime)}
+              </h2>
+            </div>
+
+            <div
+              className="flex items-center my-5 text-green-500  flex-col justify-center text-4xl   font-bold 
+              "
+            >
+              <h1>Total Bids</h1>
+              <h1>
+                {" "}
+                {data && data?.bids?.length
+                  ? data?.bids?.length + "bids"
+                  : "No Bids Available"}
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div className="w-full lg:w-3/5   capitalize">
           <div>
-            <>
-              <button onClick={handlePlcebids}>uptade price</button>
-            </>
             <h2 className="  mt-1 mb-6 text-2xl font-bold  text-left md:text-4xl">
               {data.name}
             </h2>
@@ -362,66 +384,6 @@ export default function SingelProductsDettails() {
                   </Link>
                 )}
               </div>
-            </div>
-          </div>
-        </div>
-        <div className=" w-full   lg:w-1/3  border bg-slate-200 border-gray-300  rounded-lg  p-5">
-          <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
-            <div className="text-center my-2">
-              <div className="my-5">
-                <h1 className="text-green-600  flex items-center justify-center text-xl">
-                  Winner{" "}
-                </h1>
-                {data?.winner ? (
-                  <div className="flex">
-                    <img
-                      className="object-cover w-20 h-20 mr-4 rounded-full shadow"
-                      src={data?.winner?.bidderPhoto}
-                      alt="Person"
-                    />
-                    <div className="flex flex-col items-start justify-center">
-                      <p className="text-lg font-bold text-left">
-                        {data?.winner?.bidderName}
-                      </p>
-                      <p className="text-sm text-gray-800 text-left">
-                        Win Bid Price: {data?.winner?.amount}$
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <h2> waitting for bidding end </h2>
-                )}
-              </div>
-
-              <h4 className="text-red-500">This Auction Ends in</h4>
-              <h2 className="text-red-500">{remainingTime}</h2>
-            </div>
-
-            <div className="text-center my-2">
-              <h4 className="text-green-600">Start Bidding Time</h4>
-              <h2 className="text-green-600">
-                {formatDateTime(data.startBiddingTime)}
-              </h2>
-            </div>
-
-            <div className="text-center my-2">
-              <h4 className="text-red-500"> End Bidding Time</h4>
-              <h2 className="text-red-500">
-                {formatDateTime(data.endBiddingTime)}
-              </h2>
-            </div>
-
-            <div
-              className="flex items-center my-5 text-green-500  flex-col justify-center text-4xl   font-bold 
-              "
-            >
-              <h1>Total Bids</h1>
-              <h1>
-                {" "}
-                {data && data?.bids?.length
-                  ? data?.bids?.length + "bids"
-                  : "No Bids Available"}
-              </h1>
             </div>
           </div>
         </div>
