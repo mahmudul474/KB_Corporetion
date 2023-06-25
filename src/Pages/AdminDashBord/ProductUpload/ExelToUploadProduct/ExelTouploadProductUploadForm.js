@@ -192,7 +192,8 @@ const ExelTouploadProductUploadForm = () => {
       authorEmail: currentUser?.email,
       authorPhoto: currentUser?.userPhoto,
       koyel: formData,
-      key: "koyel"
+      key: "koyel",
+      bids: []
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/products`, {

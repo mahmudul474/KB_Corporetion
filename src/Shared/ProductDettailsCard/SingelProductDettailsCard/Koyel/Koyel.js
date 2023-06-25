@@ -22,6 +22,10 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
     }
   };
 
+
+  
+
+
   return (
     <div className="relative overflow-x-scroll overflow-y-scroll shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -89,6 +93,7 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
               >
                 {skoyel?.item}
               </th>
+
               <td className="px-6 py-4">{skoyel?.spec}</td>
               <td className="px-6 py-4">{skoyel?.Thickness}</td>
               <td className="px-6 py-4">{skoyel?.Width}</td>

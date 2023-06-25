@@ -22,11 +22,13 @@ export default function SingelProductsDettails() {
   };
 
   const [selectedItems, setSelectedItems] = useState([]);
+  console.log(selectedItems);
 
   const handlePlcebid = () => {
     // Prepare the bid data for selected items
     const koyelBids = selectedItems.map(item => ({
       koyelId: item._id,
+      koyel: item,
       bidAmount: newPrice / selectedItems?.length,
       bidderName: currentUser?.name,
       bidderEmail: currentUser?.email,
@@ -35,12 +37,21 @@ export default function SingelProductsDettails() {
       bidderNumber: currentUser?.phoneNumber
     }));
 
+    const bidder = {
+      bidAmount: newPrice,
+      bidderName: currentUser?.name,
+      bidderEmail: currentUser?.email,
+      bidderId: currentUser?._id,
+      bidderPhoto: currentUser?.userPhoto,
+      bidderNumber: currentUser?.phoneNumber
+    };
+
     fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/koyel/bids`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(koyelBids)
+      body: JSON.stringify({ koyelBids, bidder })
     })
       .then(response => response.json())
       .then(data => {
@@ -156,21 +167,25 @@ export default function SingelProductsDettails() {
   }, [data._id]);
 
   return (
-    <div className=" mx-auto ">
+    <div className="min-h-screen mt-10">
       <div className="flex  flex-col lg:flex-row    ">
-        <div className="w-full   lg:w-2/5   h-[600px]  border-black border  ">
-          <div className="    ">
+        <div className="w-full   lg:w-2/5   h-[600px]    ">
+          <div className="   w-full h-3/5   ">
             {subimageUrl ? (
-              <img src={subimageUrl} alt="" className="  w-full h-full  " />
+              <img
+                src={subimageUrl}
+                alt=""
+                className="  object-cover  w-full h-full  "
+              />
             ) : (
               <img
                 src={data?.mainImage}
                 alt=""
-                className=" h-full    w-full   "
+                className=" h-full   object-cover  w-full   "
               />
             )}
           </div>
-          <div>
+          <div className=" w-full h-3/5 ">
             <ImgSlide
               handleSubimgShow={handleSubimgShow}
               images={data.subImages}
@@ -178,7 +193,9 @@ export default function SingelProductsDettails() {
           </div>
         </div>
         <div className="w-full  lg:w-3/5 text-left px-4  h-[600px]   overflow-auto ">
-          <h2>Select Product</h2>
+          <h2 className="text-2xl text-green-500 text-center">
+            Select Product
+          </h2>
           <div>
             <Koyel
               selectedItems={selectedItems}
