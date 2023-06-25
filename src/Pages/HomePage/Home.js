@@ -6,17 +6,15 @@ import Subscriptions from '../../Component/HompageComponent/Subscriptions/Subscr
 import Upcommings from '../../Component/HompageComponent/Upcomming/Upcommings'
 import HowToWork from '../../Component/HompageComponent/HowToWork/HowToWork'
 import Review from '../../Component/HompageComponent/Review/Review'
-import WhatWeDo from '../../Component/HompageComponent/WhatWeDo/WhatWeDo'
+ 
 
 export default function Home() {
   return (
     <div>
-      <div>
+      <div >
         <Hero></Hero>
       </div>
-      <div>
-        <WhatWeDo></WhatWeDo>
-      </div>
+
       <div>
         <Category></Category>
       </div>
@@ -36,5 +34,5 @@ export default function Home() {
         <Review></Review>
       </div>
     </div>
-  )
+  );
 }

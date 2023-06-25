@@ -209,30 +209,7 @@ export default function SingelProductsDettails() {
         <div className=" w-full   lg:w-2/5  border bg-slate-200 border-gray-300  rounded-lg  p-5">
           <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
             <div className="text-center my-2">
-              <div className="my-5">
-                <h1 className="text-green-600  flex items-center justify-center text-xl">
-                  Winner{" "}
-                </h1>
-                {data?.winner ? (
-                  <div className="flex">
-                    <img
-                      className="object-cover w-20 h-20 mr-4 rounded-full shadow"
-                      src={data?.winner?.bidderPhoto}
-                      alt="Person"
-                    />
-                    <div className="flex flex-col items-start justify-center">
-                      <p className="text-lg font-bold text-left">
-                        {data?.winner?.bidderName}
-                      </p>
-                      <p className="text-sm text-gray-800 text-left">
-                        Win Bid Price: {data?.winner?.amount}$
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <h2> waitting for bidding end </h2>
-                )}
-              </div>
+              
 
               <h4 className="text-red-500">This Auction Ends in</h4>
               <h2 className="text-red-500">{remainingTime}</h2>

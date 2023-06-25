@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import logo from "../../assets/logo.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 import { toast } from "react-hot-toast";
 import useAdmin from "../../Hooks/useAdmin";
+import mainLogo from "../../assets/mainLogo.png";
 
 const Navbar = () => {
   const { currentUser, logOut } = useContext(AuthContext);
@@ -27,31 +28,45 @@ const Navbar = () => {
         <li onClick={() => setIsMenuOpen(false)}>
           <p
             title="Our product"
-            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
             Home
           </p>
         </li>
       </Link>
 
+      <div className="dropdown dropdown-hover">
+        <label tabIndex={0} className="btn m-1">
+          Hover
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li className="bg-green-500">
+            <a>Item 1</a>
+          </li>
+          <li>
+            <a>Item 2</a>
+          </li>
+        </ul>
+      </div>
+
       <div className="relative ml-3">
         <div>
-          
-
-            <li
-              onClick={() => {
-                setIsAuctionOpen(true);
-                setIsMenuOpen(false);
-              }}
+          <li
+            onClick={() => {
+              setIsAuctionOpen(true);
+              setIsMenuOpen(false);
+            }}
+          >
+            <p
+              title="Our product "
+              className="font-medium cursor-pointer tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              <p
-                title="Our product "
-                className="font-medium cursor-pointer tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                Auctions
-              </p>
-            </li>
-       
+              Auctions
+            </p>
+          </li>
         </div>
 
         {isAuctionOpen && (
@@ -65,7 +80,7 @@ const Navbar = () => {
             <Link to="/this-week">
               <li
                 onClick={() => setIsAuctionOpen(false)}
-                className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover:text-white "
+                className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover: "
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-0"
@@ -76,7 +91,7 @@ const Navbar = () => {
             <Link to="/this-month">
               <li
                 onClick={() => setIsAuctionOpen(false)}
-                className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover:text-white "
+                className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover: "
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-0"
@@ -87,7 +102,7 @@ const Navbar = () => {
             <Link to="/others">
               <li
                 onClick={() => setIsAuctionOpen(false)}
-                className="block px-2 py-2  hover:bg-green-600 hover:text-white text-md text-gray-700"
+                className="block px-2 py-2  hover:bg-green-600 hover: text-md text-gray-700"
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-0"
@@ -102,7 +117,7 @@ const Navbar = () => {
         <li onClick={() => setIsMenuOpen(false)}>
           <p
             title="Our product"
-            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
             Winners
           </p>
@@ -112,7 +127,7 @@ const Navbar = () => {
         <li>
           <p
             title="Our product"
-            className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
             About
           </p>
@@ -192,7 +207,7 @@ const Navbar = () => {
             <li onClick={() => setIsMenuOpen(false)}>
               <p
                 title="Our product"
-                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+                className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Login
               </p>
@@ -202,7 +217,7 @@ const Navbar = () => {
             <li onClick={() => setIsMenuOpen(false)}>
               <p
                 title="Our product"
-                className="font-medium tracking-wide text-white transition-colors duration-200 hover:text-deep-purple-accent-400"
+                className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Sing-up
               </p>
@@ -214,31 +229,29 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-[#442db9] text-white">
+    <div className="border border-bottom shadow-2xl bg-base-200 text-black ">
       {" "}
-      <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+      <div className="px-4 py-5 mx-auto  md:px-6 lg:px-10">
         <div className="relative flex items-center justify-between">
-          <a
-            href="/"
+          <Link
+            to="/"
             aria-label="Company"
             title="Company"
-            className="inline-flex items-center"
+            className="inline-flex w-24 h-8  items-center"
           >
-            <span className="ml-2 text-xl font-bold tracking-wide text-white uppercase">
-              KB-Corporation
-            </span>
-          </a>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
+            <img className="object-cover" src={mainLogo} />
+          </Link>
+          <ul className="flex items-center md:flex hidden space-x-8 lg:flex">
             {navitem}
           </ul>
-          <div className="lg:hidden">
+          <div className="lg:hidden md:hidden">
             <button
               aria-label="Open Menu "
               title="Open Menu"
               className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
               onClick={() => setIsMenuOpen(true)}
             >
-              <svg className="w-5 text-white" viewBox="0 0 24 24">
+              <svg className="w-5 " viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
                   d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
@@ -279,7 +292,7 @@ const Navbar = () => {
                           <rect x="14" y="1" width="7" height="6" />
                           <rect x="14" y="11" width="7" height="12" />
                         </svg>
-                        <span className="ml-2 text-xl font-bold tracking-wide text-white uppercase">
+                        <span className="ml-2 text-xl font-bold tracking-wide  uppercase">
                           KB-Corporation
                         </span>
                       </a>
@@ -291,7 +304,7 @@ const Navbar = () => {
                         className="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-white focus:bg-white focus:outline-none focus:shadow-outline"
                         onClick={() => setIsMenuOpen(false)}
                       >
-                        <svg className="w-5 text-white" viewBox="0 0 24 24">
+                        <svg className="w-5 " viewBox="0 0 24 24">
                           <path
                             fill="currentColor"
                             d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
