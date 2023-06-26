@@ -26,6 +26,9 @@ export default function Home() {
         <HowToWork></HowToWork>
       </div>
       <div>
+        <Upcommings></Upcommings>
+      </div>
+      <div>
         <Review></Review>
       </div>
     </div>

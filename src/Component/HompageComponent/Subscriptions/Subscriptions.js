@@ -21,7 +21,7 @@ export default function Subscriptions() {
               <Link to="/register">
                 <a
                   role="button"
-                  className="btn hover:text-white hover:bg-[#73471b]"
+                  className="btn hover:text-white border-none bg-white hover:bg-[#73471b]"
                 >
                   Register
                 </a>

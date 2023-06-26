@@ -109,7 +109,7 @@ export default function Product({ data }) {
           </h5>
 
           <p className="mb-3 font-normal text-black dark:text-black">
-            {data?.description.slice(0, 30)}...
+            {data?.description.slice(0, 20)}...
             <Link className="text-[#719f18]" to={`/action/${data._id}`}>
               Read more{" "}
             </Link>

@@ -229,7 +229,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="border border-bottom shadow-2xl bg-base-200 text-black ">
+    <div className="border  bg-slate-50 border-bottom shadow-2xl   text-black ">
       {" "}
       <div className="px-4 py-5 mx-auto  md:px-6 lg:px-10">
         <div className="relative flex items-center justify-between">

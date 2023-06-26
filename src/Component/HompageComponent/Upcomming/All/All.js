@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import UpcommingProductCard from '../../../../Shared/UpcommingProductCard/UpcommingProductCard'
+import UpcoomingCard from "../UpcoomingCard/UpcoomingCard";
 
 export default function All() {
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/products/upcoming`)
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data);
+      });
+  }, []);
 
-const [products,setProducts]=useState([])
-
-useEffect(() => {
-  fetch(`${process.env.REACT_APP_API_URL}/products/upcoming`)
-    .then(res => res.json())
-    .then(data => {
-      setProducts(data);
-    });
-}, []);
-
-console.log(products);
-
-return (
-  <div>
-    {products?.slice(0, 3).map(product => (
-      <UpcommingProductCard
-        key={product._id}
-        data={product}
-      ></UpcommingProductCard>
-    ))}
-  </div>
-);
+  return (
+    <div>
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5">
+        {products?.slice(0, 2).map(product => (
+          <UpcoomingCard data={product} key={product._id}></UpcoomingCard>
+        ))}
+      </div>
+    </div>
+  );
 }
