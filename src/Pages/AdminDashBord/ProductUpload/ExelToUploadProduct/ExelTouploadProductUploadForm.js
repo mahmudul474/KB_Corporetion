@@ -196,7 +196,7 @@ const ExelTouploadProductUploadForm = () => {
       bids: []
     };
 
-    fetch(`${process.env.REACT_APP_API_URL}/products`, {
+    fetch(`${process.env.REACT_APP_API_URL}/products/upload/koyel`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 export default function UpcommingProductCard({data}) {
 
-  const { _id, mainImage, name, buyNowPrice, startBiddingTime } = data;
+  const { _id, mainImage, name, koyel, startBiddingTime } = data;
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col sm:flex-row sm:divide-x sm:divide-gray-300">
+    <div className="bg-white rounded-lg shadow-lg lg:h-[400px] p-6 flex flex-col sm:flex-row sm:divide-x sm:divide-gray-300">
       <div className="w-full   lg:w-1/4">
         <img className="w-full h-full" alt="img" src={mainImage} />
       </div>
@@ -28,14 +28,33 @@ export default function UpcommingProductCard({data}) {
         </div>
         <hr />
 
-        <div className="flex  justify-start lg:justify-center items-start lg:items-center py-5 ">
-          <div className="flex ml-2">
-            <img className="w-10 h-10" alt="action" src={price} />
-            <div className="ml-2 text-lg font-semibold">
-              <h2 className="text-red-600">Buy now</h2>
-              <h1>{buyNowPrice} $</h1>
-            </div>
-          </div>
+        <div className="overflow-x-auto h-[260px]">
+          <table className="table table-xs table-pin-rows table-pin-cols">
+            <thead>
+              <tr>
+                <td> ITEM</td>
+                <td> SPEC</td>
+                <td> THICKNESS</td>
+                <td> WIDTH</td>
+                <td> TS</td>
+                <td> YP</td>
+                <td> EL</td>
+              </tr>
+            </thead>
+            <tbody>
+              {koyel?.slice(1).map(item => (
+                <tr key={item?._id}>
+                  <td>{item?.item}</td>
+                  <td>{item?.spec}</td>
+                  <td>{item?.Thickness}</td>
+                  <td>{item?.Width}</td>
+                  <td>{item?.TS}</td>
+                  <td>{item?.YP}</td>
+                  <td>{item?.EL}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         <hr></hr>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import bg from "../../../assets/call-bg.png";
+import bg from "../../../assets/nextgenaretion.png";
 import { Link } from "react-router-dom";
 
 export default function Subscriptions() {
@@ -9,7 +9,7 @@ export default function Subscriptions() {
         className="bg-no-repeat    rounded-lg bg-center  bg-cover	"
         style={{ backgroundImage: `url(${bg})` }}
       >
-        <div className="p-16 flex flex-col items-center lg:flex-row justify-between">
+        <div className="p-16 flex   items-center  ">
           <div className="text-left">
             <h1 className="text-4xl mb-2 font-semibold text-white">
               Register For Free & Start <br /> Bidding Now!
@@ -17,13 +17,16 @@ export default function Subscriptions() {
             <p className="text-lg text-white">
               From cars to diamonds to Still, we have it all
             </p>
-          </div>
-          <div>
-            <Link to="/register">
-              <button className="btn  bg-white text-black hover:text-white hover:bg-green-600 p-4 rounded-lg text-xl font-bold transition">
-                Register
-              </button>
-            </Link>
+            <div className="mt-3">
+              <Link to="/register">
+                <a
+                  role="button"
+                  className="btn hover:text-white hover:bg-[#73471b]"
+                >
+                  Register
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

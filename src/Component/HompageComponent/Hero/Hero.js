@@ -30,14 +30,14 @@ const Hero = () => {
         className="w-full bg-no-repeat h-full flex items-center justify-start    bg-cover"
         style={{ backgroundImage: `url(${banner})` }}
       >
-        <div className="lg:text-left text-center  pl-10">
+        <div className="lg:text-left md:text-left text-center  pl-10">
           <h1 className="text-white  text-[40px] font-bold capitalize ">
             Find Your <br /> Next Deal!
           </h1>
           <p className="text-lg font-semibold capitalize text-green-50 mb-2">
             Online Auction is where everyone goes to shop
           </p>
-          <button className="btn border-none hover:bg-[#995f25] bg-[#73471b]  text-white rounded-md">
+          <button className="btn border-none hover:bg-[#995f25]  bg-[#507408] text-white rounded-md">
             Get Start
           </button>
         </div>

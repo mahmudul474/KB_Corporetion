@@ -1,19 +1,7 @@
- 
+import "./Upcoommings.css";
+import All from "./All/All";
 
-import { useState } from 'react';
-import { Tab } from '@headlessui/react';
-import { MdArrowRightAlt } from 'react-icons/md';
-import { RiAuctionFill } from 'react-icons/ri';
-import { FaShoppingCart } from 'react-icons/fa';
-import { HiOutlineBan } from 'react-icons/hi';
-import "./Upcoommings.css"
-import All from './All/All';
-import Live from './Live/Live';
-import BuyNow from './BuyNow/BuyNow';
-import SoldOut from './SoldOut/SoldOut';
 function Upcommings() {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="text-center my-5">
@@ -24,11 +12,7 @@ function Upcommings() {
         </p>
       </div>
       <div>
-       
-<All></All>
-
-
-
+        <All></All>
       </div>
     </div>
   );

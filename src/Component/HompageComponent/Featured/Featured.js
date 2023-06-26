@@ -14,6 +14,8 @@ export default function Featured() {
       });
   }, []);
 
+  const reversedFeatures = futureds ? [...futureds].reverse() : [];
+
   return (
     <div
       className="bg-no-repeat my-10   bg-center  bg-cover	"
@@ -24,26 +26,24 @@ export default function Featured() {
           <h1 className="flex item-center justify-center text-4xl  font-bold">
             Live Auction
           </h1>
-          <span className="w-24 bg-green-600 h-[3px] block mb-5 m-auto  "></span>
+          <span className="w-24 bg-[#719f18] h-[3px] block mb-5 m-auto  "></span>
           <p className="text-grey-400 mt-2 text-center ">
             Explore on the world's best & largest Bidding marketplace with our
             beautiful
-            <br /> Bidding products. We want to be a part of your<br></br>
-            smile, success and future growth.
+            <br />
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 ">
-          {futureds?.slice(0, 3).map(futured => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 m-auto md:grid-cols-2 gap-5 ">
+          {reversedFeatures.slice(0, 3).map(futured => (
             <Product key={futured._id} data={futured}></Product>
           ))}
         </div>
 
         <div className="my-10">
           <Link to="/others">
-            <button className="m-auto btn bg-transparent border  p-5 rounded-md text-lg  font-semibold capitalize border-green-600">
-              {" "}
-              View All{" "}
+            <button className="btn btn-wide transition duration-300 ease-in-out hover:bg-[#73471b] text-white bg-[#719f18] ">
+              view more{" "}
             </button>
           </Link>
         </div>
