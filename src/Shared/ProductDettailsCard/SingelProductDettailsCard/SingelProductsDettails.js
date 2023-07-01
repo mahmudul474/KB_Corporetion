@@ -22,9 +22,18 @@ export default function SingelProductsDettails() {
   };
 
   const [selectedItems, setSelectedItems] = useState([]);
-  console.log(selectedItems);
+  const items = selectedItems?.map(skoyel => {
+    return skoyel.bids && skoyel.bids.length === 0
+      ? skoyel?.currentBid
+      : skoyel.bids[skoyel.bids.length - 1].bidAmount;
+  });
+  const itemCureentPrice = items.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
 
-  const handlePlcebid = () => {
+  const handlePlcebid = e => {
+    e.preventDefault();
     // Prepare the bid data for selected items
     const koyelBids = selectedItems.map(item => ({
       koyelId: item._id,
@@ -58,7 +67,7 @@ export default function SingelProductsDettails() {
         console.log("Bid placed successfully", data);
         if (data.message) {
           toast.success(data.message);
-          window.location.reload(true);
+          // window.location.reload(true);
           setNewPrice("");
         } else {
           toast.error(data.error);
@@ -209,8 +218,6 @@ export default function SingelProductsDettails() {
         <div className=" w-full   lg:w-2/5  border bg-slate-200 border-gray-300  rounded-lg  p-5">
           <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
             <div className="text-center my-2">
-              
-
               <h4 className="text-red-500">This Auction Ends in</h4>
               <h2 className="text-red-500">{remainingTime}</h2>
             </div>
@@ -256,7 +263,7 @@ export default function SingelProductsDettails() {
           <div>
             <div className="mr-5 bg-slate-200">
               <div className="flex justify-between items-center text-xl font-bold text-green-600   ">
-                <span>Starting bid:</span>
+                <span>Per Ton price:</span>
                 <span>{data?.startBiddingPrice} $</span>
               </div>
               <div className="flex justify-between items-center text-xl font-bold text-green-600   ">
@@ -281,69 +288,35 @@ export default function SingelProductsDettails() {
                 </p>
                 <span className="w-16 h-1 bg-green-600 block"></span>
               </div>
-
-              {user?.emailVerified === "false" ||
-              currentUser?.role !== "bidder" ? (
-                <>
-                  <p className="text-red-500">
-                    {" "}
-                    youse are not valid for for Bidding admin approve your
-                    account then you bid
-                  </p>
-                  <form className="flex justify-between my-5 items-center">
-                    <div className="  w-full  ">
-                      <input
-                        type="number"
-                        value={newPrice}
-                        step="any"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  -gray-700     "
-                        placeholder="$00:00"
-                        required
-                      />
-                    </div>
-
-                    <button
-                      disabled={isBiddingClosed}
-                      onClick={() =>
-                        toast.error(
-                          "admin doesn't your account approved waiting for approval"
-                        )
-                      }
-                      className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 "
-                    >
-                      {data?.status === "sold out" ? "sold out" : " Place Bid"}
-                    </button>
-                  </form>
-                </>
-              ) : (
-                <form
-                  onSubmit={handlePlcebid}
-                  className="flex justify-between my-5 items-center"
-                >
-                  <div className="  w-full  ">
-                    <input
-                      type="number"
-                      disabled={isBiddingClosed}
-                      value={newPrice}
-                      onChange={handlePriceChange}
-                      min={data.startBiddingPrice}
-                      step="any"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  -gray-700      "
-                      placeholder="$00:00"
-                      required
-                    />
-                  </div>
-
-                  <button
-                    disabled={isBiddingClosed}
-                    type="submit"
-                    className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 "
-                  >
-                    {data?.status === "sold out" ? "sold out" : " Place Bid"}
-                  </button>
-                </form>
+              {selectedItems.length !== 0 && (
+                <div>
+                  Total item = {selectedItems.length} Total price{" "}
+                  {itemCureentPrice.toFixed(2)}
+                </div>
               )}
 
+              <form onSubmit={handlePlcebid} className="flex justify-between my-5 items-center">
+                <div className="  w-full  ">
+                  <input
+                    min={itemCureentPrice+data?.minimumBid}
+                    value={newPrice}
+                    onChange={handlePriceChange}
+                    type="number"
+                    step="any"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  -gray-700     "
+                    placeholder="$00:00"
+                    required
+                  />
+                </div>
+
+                <button
+                 
+                  // disabled={selectedItems.length === 0 || newPrice === ""}
+                  className={`inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-[#719f18] rounded-lg border border-green-600   focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 `}
+                >
+                  Place Bid
+                </button>
+              </form>
               <p className="text-red-600 text-left ">{bidEroo}</p>
               <div className="flex  items-center lg:flex-row flex-col  justify-between ">
                 <a

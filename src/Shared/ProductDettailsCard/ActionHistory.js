@@ -35,9 +35,9 @@ return (
             <tbody>
               {reversedBids?.map((bid, index) => (
                 <tr key={bid._id}>
-                  <th>{index + 1}</th>
+                  <td>{index + 1}</td>
                   <td>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex  lg:flex-row items-center space-x-3">
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
                           <img src={bid?.bidderPhoto} alt="Avatar" />
@@ -70,7 +70,6 @@ return (
                       hour12: true
                     })}
                   </td>
-                  
                 </tr>
               ))}
             </tbody>

@@ -371,13 +371,13 @@ export default function ProductDettailsCard({ data }) {
             </div>
 
             <div
-              className="flex items-center my-5 text-green-500  flex-col justify-center text-4xl   font-bold 
+              className="flex items-center my-5 text-[#719f18]  flex-col justify-center text-xl   font-bold 
               "
             >
               <h1>Total Bids</h1>
               <h1>
                 {data && data?.bids?.length
-                  ? data?.bids?.length + "bids"
+                  ? data?.bids?.length + " " + "bids"
                   : "No Bids Available"}
               </h1>
             </div>

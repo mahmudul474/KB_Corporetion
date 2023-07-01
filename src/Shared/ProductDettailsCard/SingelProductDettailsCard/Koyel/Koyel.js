@@ -4,6 +4,7 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
  
   const [selectAll, setSelectAll] = useState(false);
 
+
   const toggleSelectAll = () => {
     setSelectAll(!selectAll);
     if (!selectAll) {
@@ -21,10 +22,6 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
       setSelectedItems([...selectedItems, item]);
     }
   };
-
-
-  
-
 
   return (
     <div className="relative overflow-x-scroll overflow-y-scroll shadow-md sm:rounded-lg">
@@ -66,6 +63,12 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
             <th scope="col" className="px-6 py-3">
               EL
             </th>
+            <th scope="col" className="px-6 py-3">
+              startTing Price
+            </th>
+            <th scope="col" className="px-6 py-3">
+              curent Price
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -100,19 +103,11 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
               <td className="px-6 py-4">{skoyel?.TS}</td>
               <td className="px-6 py-4">{skoyel?.YP}</td>
               <td className="px-6 py-4">{skoyel?.EL}</td>
+              <td className="px-6 py-4">{skoyel?.currentBid}</td>
               <td className="flex items-center px-6 py-4 space-x-3">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-                <a
-                  href="#"
-                  className="font-medium text-red-600 dark:text-red-500 hover:underline"
-                >
-                  Remove
-                </a>
+                {skoyel.bids && skoyel.bids.length === 0
+                  ? skoyel?.currentBid
+                  : skoyel.bids[skoyel.bids.length - 1].bidAmount.toFixed(2)}
               </td>
             </tr>
           ))}
