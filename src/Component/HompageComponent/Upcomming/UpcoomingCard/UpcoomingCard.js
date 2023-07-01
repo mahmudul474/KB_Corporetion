@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function UpcoomingCard({ data }) {
-  console.log(data);
+
   return (
     <div className="card card-side bg-base-100 shadow-2xl">
       <figure className="lg:w-2/5 md:w-1/3 w-full">
@@ -15,7 +15,9 @@ export default function UpcoomingCard({ data }) {
         </p>
 
         <div className="card-actions flex items-end justify-end ">
-          <button className="btn btn-primary">Watch</button>
+          <button className="btn bg-[#719f18] hover:bg-[#73471b] text-white">
+            Watch
+          </button>
         </div>
       </div>
     </div>

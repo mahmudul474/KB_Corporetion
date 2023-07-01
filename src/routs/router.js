@@ -136,7 +136,7 @@ export const routs = createBrowserRouter([
           fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
         element: (
           <Private>
-            {" "}
+         
             <ProductDettails></ProductDettails>
           </Private>
         )
@@ -144,13 +144,12 @@ export const routs = createBrowserRouter([
       {
         path: "/excel/:id",
         loader: ({ params }) =>
-          fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
+          fetch(`${process.env.REACT_APP_API_URL}/products/koyel/${params.id}`),
         element: (
           <Private>
-            {" "}
+          
             <SingelProductsDettails></SingelProductsDettails>
-             
-             </Private>
+          </Private>
         )
       }
     ]

@@ -7,6 +7,8 @@ export default function UpcommingProductCard({ data }) {
   const { _id, mainImage, name, koyel, startBiddingTime, endBiddingTime } =
     data;
 
+  
+
   const calculateRemainingTime = endTime => {
     const currentTime = new Date().getTime();
     const endTimeValue = new Date(endTime).getTime();
@@ -166,7 +168,7 @@ export default function UpcommingProductCard({ data }) {
         </div>
 
         <div className="mb-4 mx-4 ">
-          <Link to={`/action/${_id}`}>
+          <Link to={`/excel/${data?._id}`}>
             <button className="btn btn-wide bg-[#719f18] hover:bg-[#73471b] text-white font-semibold">
               Place a Bid
             </button>

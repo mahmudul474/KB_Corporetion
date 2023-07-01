@@ -157,20 +157,23 @@ export default function ProductDettailsCard({ data }) {
     // Call the API every 10 seconds
   }, [data._id]);
 
-  console.log(winner, "this is winner ");
-
+  
   return (
-    <div className="max-w-6xl  mx-auto ">
+    <div className="max-w-6xl  mx-auto  ">
       <div className="flex  flex-col lg:flex-row   ">
         <div className="w-full px-4 lg:w-3/5 h-full  ">
           <div className=" h-64 lg:h-[600px]   ">
             {subimageUrl ? (
-              <img src={subimageUrl} alt="" className="  w-full h-full   " />
+              <img
+                src={subimageUrl}
+                alt=""
+                className="  object-cover  w-full h-full   "
+              />
             ) : (
               <img
                 src={data?.mainImage}
                 alt=""
-                className="h-full    w-full   "
+                className="h-full  object-cover  w-full   "
               />
             )}
           </div>
@@ -182,8 +185,7 @@ export default function ProductDettailsCard({ data }) {
           ></SubImgSlider>
         </div>
       </div>
-
-      <div className="flex justify-between  mt-10 flex-col lg:flex-row">
+      <div className="flex justify-between md:mx-5  sm:mx-5  mt-10 flex-col lg:flex-row">
         <div className="w-full lg:w-2/3   capitalize">
           <div>
             <h2 className="  mt-1 mb-6 text-2xl font-bold  text-left md:text-4xl">
@@ -196,11 +198,11 @@ export default function ProductDettailsCard({ data }) {
 
           <div>
             <div className="mr-5 bg-slate-200">
-              <div className="flex justify-between items-center text-xl font-bold text-green-600   ">
+              <div className="flex justify-between items-center text-xl font-bold text-[#719f18]   ">
                 <span>Starting bid:</span>
                 <span>{data?.startBiddingPrice} $</span>
               </div>
-              <div className="flex justify-between items-center text-xl font-bold text-green-600   ">
+              <div className="flex justify-between items-center text-xl font-bold text-[#719f18]   ">
                 <span>Current bidding Price:</span>
 
                 <span>
@@ -220,7 +222,7 @@ export default function ProductDettailsCard({ data }) {
                 <p className="mb-1 font-normal text-gray-500 ">
                   Minimum Bid: {data?.minimumBid} $
                 </p>
-                <span className="w-16 h-1 bg-green-600 block"></span>
+                <span className="w-16 h-1 bg-[#719f18] block"></span>
               </div>
 
               {user?.emailVerified === "false" ||
@@ -250,7 +252,7 @@ export default function ProductDettailsCard({ data }) {
                           "admin doesn't your account approved waiting for approval"
                         )
                       }
-                      className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 "
+                      className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-[#719f18] rounded-lg border border-[#719f18] hover:bg-[#73471b] focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18] "
                     >
                       {data?.status === "sold out" ? "sold out" : " Place Bid"}
                     </button>
@@ -278,7 +280,7 @@ export default function ProductDettailsCard({ data }) {
                   <button
                     disabled={isBiddingClosed}
                     type="submit"
-                    className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 "
+                    className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-[#719f18] rounded-lg border border-[#719f18] hover:bg-[#73471b] focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18] "
                   >
                     {data?.status === "sold out" ? "sold out" : " Place Bid"}
                   </button>
@@ -295,19 +297,19 @@ export default function ProductDettailsCard({ data }) {
                 >
                   <button
                     type="button"
-                    className="  px-5 py-2.5 text-sm font-medium   w-full text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600  "
+                    className="  px-5 py-2.5 text-sm font-medium hover:bg-[#73471b]  w-full text-white bg-[#719f18] rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18]  "
                   >
                     Download PDF
                   </button>
                 </a>
 
                 {data?.status === "sold out" ? (
-                  <button className=" mx-3 my-2 text-center w-full     py-2.5 text-1sm font-medium  cursor-pointer  text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 ">
+                  <button className=" mx-3 my-2 text-center w-full     py-2.5 text-1sm font-medium  cursor-pointer  text-white bg-[#719f18]   rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18] ">
                     sold out
                   </button>
                 ) : (
                   <Link
-                    className=" mx-3 my-2 text-center w-full     py-2.5 text-1sm font-medium  cursor-pointer  text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 "
+                    className=" mx-3 my-2 text-center w-full     py-2.5 text-1sm font-medium  cursor-pointer  text-white bg-[#719f18] hover:bg-[#73471b]  rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18] "
                     to={`/product/order/${data?._id}`}
                   >
                     <button disabled={isBiddingClosed} type="button">
@@ -326,7 +328,7 @@ export default function ProductDettailsCard({ data }) {
           <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
             <div className="text-center my-2">
               <div className="my-5">
-                <h1 className="text-green-600  flex items-center justify-center text-xl">
+                <h1 className="text-[#719f18]  flex items-center justify-center text-xl">
                   Winner{" "}
                 </h1>
                 {data?.winner ? (
@@ -355,8 +357,8 @@ export default function ProductDettailsCard({ data }) {
             </div>
 
             <div className="text-center my-2">
-              <h4 className="text-green-600">Start Bidding Time</h4>
-              <h2 className="text-green-600">
+              <h4 className="text-[#719f18]">Start Bidding Time</h4>
+              <h2 className="text-[#719f18]">
                 {formatDateTime(data.startBiddingTime)}
               </h2>
             </div>
@@ -374,7 +376,6 @@ export default function ProductDettailsCard({ data }) {
             >
               <h1>Total Bids</h1>
               <h1>
-                {" "}
                 {data && data?.bids?.length
                   ? data?.bids?.length + "bids"
                   : "No Bids Available"}
@@ -383,11 +384,7 @@ export default function ProductDettailsCard({ data }) {
           </div>
         </div>
       </div>
-
-  
-
-        <ActionHistory bids={data?.bids}> </ActionHistory>{" "}
- 
+      <ActionHistory bids={data?.bids}> </ActionHistory>{" "}
     </div>
   );
 }

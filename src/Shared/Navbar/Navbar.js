@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isAdmin] = useAdmin(currentUser?.email);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAuctionOpen, setIsAuctionOpen] = useState(false);
+ 
   const [isProflieOpen, setIsProflieOpen] = useState(false);
 
   const handleLogOut = () => {
@@ -37,11 +37,11 @@ const Navbar = () => {
 
       <div className="dropdown dropdown-hover">
         <label tabIndex={0} className="btn m-1">
-          Hover
+          Koyel Item
         </label>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-52"
         >
           <li className="bg-green-500">
             <a>Item 1</a>
@@ -49,70 +49,39 @@ const Navbar = () => {
           <li>
             <a>Item 2</a>
           </li>
+          <li>
+            <a>Item 2</a>
+          </li>
         </ul>
       </div>
 
-      <div className="relative ml-3">
-        <div>
-          <li
-            onClick={() => {
-              setIsAuctionOpen(true);
-              setIsMenuOpen(false);
-            }}
-          >
-            <p
-              title="Our product "
-              className="font-medium cursor-pointer tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Auctions
-            </p>
-          </li>
-        </div>
+      <div className="dropdown dropdown-hover">
+        <label tabIndex={0} className=" m-1">
+          Auctions
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-52"
+        >
+          <Link to="/this-week">
+            <li>
+              <a> This Week</a>
+            </li>
+          </Link>
+          <Link to="/this-month">
+            <li>
+              <a>This Month</a>
+            </li>
+          </Link>
 
-        {isAuctionOpen && (
-          <div
-            className="absolute left-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 text-left ring-black ring-opacity-5 focus:outline-none"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="user-menu-button"
-            tabindex="-1"
-          >
-            <Link to="/this-week">
-              <li
-                onClick={() => setIsAuctionOpen(false)}
-                className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover: "
-                role="menuitem"
-                tabindex="-1"
-                id="user-menu-item-0"
-              >
-                This Week
-              </li>
-            </Link>
-            <Link to="/this-month">
-              <li
-                onClick={() => setIsAuctionOpen(false)}
-                className="block px-2 py-2 text-md text-gray-700 hover:bg-green-600 hover: "
-                role="menuitem"
-                tabindex="-1"
-                id="user-menu-item-0"
-              >
-                This Month
-              </li>
-            </Link>
-            <Link to="/others">
-              <li
-                onClick={() => setIsAuctionOpen(false)}
-                className="block px-2 py-2  hover:bg-green-600 hover: text-md text-gray-700"
-                role="menuitem"
-                tabindex="-1"
-                id="user-menu-item-0"
-              >
-                Others
-              </li>
-            </Link>
-          </div>
-        )}
+          <Link to="/others">
+            <li>
+              <a>Others</a>
+            </li>
+          </Link>
+        </ul>
       </div>
+
       <Link to="/winners">
         <li onClick={() => setIsMenuOpen(false)}>
           <p
@@ -134,18 +103,40 @@ const Navbar = () => {
         </li>
       </Link>
       {currentUser ? (
-        <div className="relative ml-3">
-          <div>
-            <button
-              onClick={() => {
-                setIsProflieOpen(true);
-              }}
-              type="button"
-              className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              id="user-menu-button"
-              aria-expanded="false"
-              aria-haspopup="true"
-            >
+        <>
+          <div className="relative ml-3">
+            {currentUser.role === "" ||
+              (currentUser.role === "bidder" && (
+                <Link to="/my-dashboard">
+                  <li
+                    onClick={() => setIsProflieOpen(false)}
+                    className="block px-4  text-sm text-gray-700"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-0"
+                  >
+                    Dashboard
+                  </li>
+                </Link>
+              ))}
+
+            {isAdmin && (
+              <Link to="/admin-dashboard">
+                <li
+                  onClick={() => setIsProflieOpen(false)}
+                  className="block px-4 text-sm text-gray-700"
+                  role="menuitem"
+                  tabindex="-1"
+                  id="user-menu-item-0"
+                >
+                  Admin Dashboard
+                </li>
+              </Link>
+            )}
+          </div>
+
+          <div className="dropdown dropdown-hover dropdown-end">
+            <label tabIndex={0} className=" m-1">
               <div className="h-14 w-14 object-contain">
                 <img
                   className=" rounded-full  object-cover w-full h-full "
@@ -153,54 +144,17 @@ const Navbar = () => {
                   alt="user photo"
                 />
               </div>
-            </button>
-          </div>
-
-          {isProflieOpen && (
-            <div
-              className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="user-menu-button"
-              tabindex="-1"
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-52"
             >
-              <Link to="/my-dashboard">
-                <li
-                  onClick={() => setIsProflieOpen(false)}
-                  className="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="user-menu-item-0"
-                >
-                  Dashboard
-                </li>
-              </Link>
-              {isAdmin && (
-                <Link to="/admin-dashboard">
-                  <li
-                    onClick={() => setIsProflieOpen(false)}
-                    className="block px-4 py-2 text-sm text-gray-700"
-                    role="menuitem"
-                    tabindex="-1"
-                    id="user-menu-item-0"
-                  >
-                    Admin Dashboard
-                  </li>
-                </Link>
-              )}
-
-              <li
-                onClick={handleLogOut}
-                className="block px-4 py-2 text-sm text-red-600 cursor-pointer"
-                role="menuitem"
-                tabindex="-1"
-                id="user-menu-item-2"
-              >
-                Sign out
+              <li onClick={handleLogOut} className="text-center ">
+                <a className="text-red-400">Log-out</a>
               </li>
-            </div>
-          )}
-        </div>
+            </ul>
+          </div>
+        </>
       ) : (
         <>
           <Link to="/login">
@@ -210,16 +164,6 @@ const Navbar = () => {
                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Login
-              </p>
-            </li>
-          </Link>
-          <Link to="/register">
-            <li onClick={() => setIsMenuOpen(false)}>
-              <p
-                title="Our product"
-                className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                Sing-up
               </p>
             </li>
           </Link>

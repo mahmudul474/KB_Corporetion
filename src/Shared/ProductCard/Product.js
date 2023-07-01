@@ -131,7 +131,7 @@ export default function Product({ data }) {
             </h2>
           </div>
           <Link to={`/action/${data._id}`}>
-            <button className="btn w-[160px]  transition duration-300 ease-in-out justify-center items-center hover:bg-[#73471b] flex  bg-[#719f18] text-white m-auto my-5 ">
+            <button className="btn w-[200px]  transition duration-300 ease-in-out justify-center items-center hover:bg-[#73471b] flex  bg-[#719f18] text-white m-auto my-5 ">
               show details
               <svg
                 aria-hidden="true"
