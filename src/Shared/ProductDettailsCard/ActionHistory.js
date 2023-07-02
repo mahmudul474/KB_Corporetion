@@ -7,7 +7,7 @@ const reversedBids = bids ? [...bids].reverse() : [];
 
 return (
   <div className="my-10   ">
-    <div className=" overflow-x-auto shadow-md sm:rounded-lg">
+    <div className=" overflow-auto h-[500px] shadow-md sm:rounded-lg">
       <h1 className="   font-bold text-xl text-[#719f18] text-left my-5 ">
         Bid History
       </h1>

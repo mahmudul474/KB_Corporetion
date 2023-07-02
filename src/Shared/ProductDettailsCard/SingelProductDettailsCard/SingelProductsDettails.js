@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
-import ActionHistory from "../ActionHistory";
+ 
 import ImgSlide from "./ImgSlide";
 import Koyel from "./Koyel/Koyel";
-
+import SingelProductActionHistory from "./SingelProductActionHistory";
 
 export default function SingelProductsDettails() {
   const { currentUser, user } = useContext(AuthContext);
@@ -27,10 +27,12 @@ export default function SingelProductsDettails() {
       ? skoyel?.currentBid
       : skoyel.bids[skoyel.bids.length - 1].bidAmount;
   });
-  const itemCureentPrice = items.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
+  const itemCurrentPrice = items.reduce(
+    (accumulator, currentValue) => accumulator +Number( currentValue),
     0
   );
+
+  
 
   const handlePlcebid = e => {
     e.preventDefault();
@@ -47,6 +49,9 @@ export default function SingelProductsDettails() {
     }));
 
     const bidder = {
+      productName: data?.name,
+      productID: data?._id,
+      productPhoto: data?.mainImage,
       bidAmount: newPrice,
       bidderName: currentUser?.name,
       bidderEmail: currentUser?.email,
@@ -288,17 +293,22 @@ export default function SingelProductsDettails() {
                 </p>
                 <span className="w-16 h-1 bg-green-600 block"></span>
               </div>
-              {selectedItems.length !== 0 && (
+              {selectedItems.length !== 0 ? (
                 <div>
                   Total item = {selectedItems.length} Total price{" "}
-                  {itemCureentPrice.toFixed(2)}
+                  {itemCurrentPrice.toFixed(2)}
                 </div>
+              ) : (
+                <div>select item and place bid</div>
               )}
 
-              <form onSubmit={handlePlcebid} className="flex justify-between my-5 items-center">
+              <form
+                onSubmit={handlePlcebid}
+                className="flex justify-between my-5 items-center"
+              >
                 <div className="  w-full  ">
                   <input
-                    min={itemCureentPrice+data?.minimumBid}
+                    min={itemCurrentPrice + data?.minimumBid}
                     value={newPrice}
                     onChange={handlePriceChange}
                     type="number"
@@ -310,8 +320,7 @@ export default function SingelProductsDettails() {
                 </div>
 
                 <button
-                 
-                  // disabled={selectedItems.length === 0 || newPrice === ""}
+                  disabled={selectedItems.length === 0 || newPrice === ""}
                   className={`inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-[#719f18] rounded-lg border border-green-600   focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 `}
                 >
                   Place Bid
@@ -355,7 +364,9 @@ export default function SingelProductsDettails() {
           </div>
         </div>
       </div>
-      <ActionHistory bids={data?.bids}> </ActionHistory>{" "}
+      <SingelProductActionHistory bids={data?.bids}>
+        {" "}
+      </SingelProductActionHistory>{" "}
     </div>
   );
 }

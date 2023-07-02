@@ -72,7 +72,7 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
           </tr>
         </thead>
         <tbody>
-          {koyel?.slice(1).map(skoyel => (
+          {koyel?.map(skoyel => (
             <tr className="bg-white border-b     hover:bg-gray-50  ">
               <td className="w-4 p-4">
                 <div className="flex items-center">

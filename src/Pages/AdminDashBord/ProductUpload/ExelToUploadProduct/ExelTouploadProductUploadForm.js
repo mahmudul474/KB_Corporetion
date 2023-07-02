@@ -137,6 +137,22 @@ const ExelTouploadProductUploadForm = () => {
     convertExcelToJson(file);
   };
 
+  // const convertExcelToJson = file => {
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = event => {
+  //       const data = new Uint8Array(event.target.result);
+  //       const workbook = XLSX.read(data, { type: "array" });
+  //       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+  //       const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+  //       const formattedData = formatData(jsonData);
+  //       setFormData(formattedData);
+  //     };
+  //     reader.readAsArrayBuffer(file);
+  //   }
+  // };
+
+
   const convertExcelToJson = file => {
     if (file) {
       const reader = new FileReader();
@@ -145,6 +161,10 @@ const ExelTouploadProductUploadForm = () => {
         const workbook = XLSX.read(data, { type: "array" });
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+        // Delete the first row from the jsonData array
+        jsonData.shift();
+
         const formattedData = formatData(jsonData);
         setFormData(formattedData);
       };
@@ -157,7 +177,7 @@ const ExelTouploadProductUploadForm = () => {
       const formattedKoyel = jsonData.map(row => ({
         _id: uuidv4(),
         minimumBid: minimumBid,
-        currentBid: startBiddingPrice,
+        currentBid: minimumBid,
         bids: [],
         endBiddingTime,
         item: row[0],
