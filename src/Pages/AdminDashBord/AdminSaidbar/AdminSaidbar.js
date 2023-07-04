@@ -33,6 +33,16 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
                   </p>
                 </li>
               </Link>
+              <Link to="/admin-dashboard/products/koyel-item">
+                <li className="w-52">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                      <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
+                    </span>
+                    <span className="text-sm font-medium">Koyel Items</span>
+                  </p>
+                </li>
+              </Link>
               <Link to="/admin-dashboard/products/bidding-close-with-bid">
                 <li className="w-52">
                   <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
@@ -40,6 +50,16 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
                       <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                     </span>
                     <span className="text-sm font-medium">Bid close </span>
+                  </p>
+                </li>
+              </Link>
+              <Link to="/admin-dashboard/koyel-item/bidding-close-with-bid">
+                <li className="w-52">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                      <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
+                    </span>
+                    <span className="text-sm font-medium">Item Bid close </span>
                   </p>
                 </li>
               </Link>

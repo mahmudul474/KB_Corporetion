@@ -22,17 +22,16 @@ export default function SingelProductsDettails() {
   };
 
   const [selectedItems, setSelectedItems] = useState([]);
+
   const items = selectedItems?.map(skoyel => {
     return skoyel.bids && skoyel.bids.length === 0
       ? skoyel?.currentBid
       : skoyel.bids[skoyel.bids.length - 1].bidAmount;
   });
   const itemCurrentPrice = items.reduce(
-    (accumulator, currentValue) => accumulator +Number( currentValue),
+    (accumulator, currentValue) => accumulator + Number(currentValue),
     0
   );
-
-  
 
   const handlePlcebid = e => {
     e.preventDefault();
@@ -308,7 +307,7 @@ export default function SingelProductsDettails() {
               >
                 <div className="  w-full  ">
                   <input
-                    min={itemCurrentPrice + data?.minimumBid}
+                    min={itemCurrentPrice + Number(data?.minimumBid)}
                     value={newPrice}
                     onChange={handlePriceChange}
                     type="number"

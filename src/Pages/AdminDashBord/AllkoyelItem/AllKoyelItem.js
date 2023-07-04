@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Animation from "../../../Shared/Animation/Animation";
-import ProductCard from "./Product_Card/ProductCard";
-import LoadingSpiner from "../../../Shared/LoadingSpiner/LoadingSpiner";
-import { useQuery } from "@tanstack/react-query";
-import ConfirmationModal from "../../../Shared/ConfirmationModal/ConfirmationModal";
-import { toast } from "react-hot-toast";
 
-export default function Allproducts() {
+import { useQuery } from "@tanstack/react-query";
+
+import { toast } from "react-hot-toast";
+import KoyelItem from "./KoyelITem/KoyelItem";
+import ConfirmationModal from "../../../Shared/ConfirmationModal/ConfirmationModal";
+import LoadingSpiner from "../../../Shared/LoadingSpiner/LoadingSpiner";
+
+export default function AllKoyelItem() {
   const {
     data: products = [],
     refetch,
@@ -14,7 +15,9 @@ export default function Allproducts() {
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/products`);
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/products/koyel`
+      );
       const data = await res.json();
       return data;
     }
@@ -51,17 +54,17 @@ export default function Allproducts() {
 
   return (
     <div>
-      <h1 className="text-2xl    capitalize  "> All products </h1>
+      <h1 className="text-2xl    capitalize  "> Koyel Item </h1>
 
-      <div className=" grid  gap-5 grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2">
+      <div className=" grid  gap-5 grid-cols-1 lg:grid-cols-2 md:grid-cols-2">
         {products?.map(product => (
-          <ProductCard
+          <KoyelItem
             setDeleteProduct={setDeleteProduct}
             openConfirmationPopup={openConfirmationPopup}
             key={product._id}
             refetch={refetch}
             data={product}
-          ></ProductCard>
+          ></KoyelItem>
         ))}
       </div>
       <div>

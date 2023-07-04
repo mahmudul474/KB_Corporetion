@@ -32,6 +32,9 @@ import Payments from "../Pages/AdminDashBord/Payments/Payments";
 import AdminWinners from "../Pages/AdminDashBord/Winners/AdminWinners";
 import ExelTouploadProductUploadForm from "../Pages/AdminDashBord/ProductUpload/ExelToUploadProduct/ExelTouploadProductUploadForm";
 import SingelProductsDettails from "../Shared/ProductDettailsCard/SingelProductDettailsCard/SingelProductsDettails";
+import AllKoyelItem from "../Pages/AdminDashBord/AllkoyelItem/AllKoyelItem";
+import BiddingCloseItem from "../Pages/AdminDashBord/AllkoyelItem/BiddingclosewithBidkoyeItem/BiddingCloseItem";
+import KoyelItemPayment from "../Pages/AdminDashBord/AllkoyelItem/BiddingclosewithBidkoyeItem/PaymentKoyelItem/KoyelItemPayment";
 
 export const routs = createBrowserRouter([
   {
@@ -136,7 +139,6 @@ export const routs = createBrowserRouter([
           fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
         element: (
           <Private>
-         
             <ProductDettails></ProductDettails>
           </Private>
         )
@@ -147,7 +149,6 @@ export const routs = createBrowserRouter([
           fetch(`${process.env.REACT_APP_API_URL}/products/koyel/${params.id}`),
         element: (
           <Private>
-          
             <SingelProductsDettails></SingelProductsDettails>
           </Private>
         )
@@ -226,6 +227,7 @@ export const routs = createBrowserRouter([
           </Adminrout>
         )
       },
+
       {
         path: "/admin-dashboard/products/bidding-close-with-bid",
         element: <BiddindEnd></BiddindEnd>
@@ -234,6 +236,25 @@ export const routs = createBrowserRouter([
         path: "/admin-dashboard/products/bidding-close/no-bid",
         element: <BiddingCloseNoBids></BiddingCloseNoBids>
       },
+      {
+        path: "/admin-dashboard/koyel-item/bidding-close-with-bid",
+        element: <BiddingCloseItem></BiddingCloseItem>
+      },
+      {
+        path: "/admin-dashboard/products/koyel-item",
+        element: <AllKoyelItem></AllKoyelItem>
+      },
+      {
+        path: "/admin-dashboard/products/koyel-item/payment/:id",
+        loader: ({ params }) =>
+          fetch(`${process.env.REACT_APP_API_URL}/products/koyel/${params.id}`),
+        element: (
+          <Private>
+            <KoyelItemPayment></KoyelItemPayment>
+          </Private>
+        )
+      },
+
       {
         path: "/admin-dashboard/payments",
         element: <Payments></Payments>

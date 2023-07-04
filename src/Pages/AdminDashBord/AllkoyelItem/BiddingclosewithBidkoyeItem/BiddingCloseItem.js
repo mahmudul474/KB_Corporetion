@@ -1,37 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import AdminWiner from "./winner/AdminWiner";
 import { useQuery } from "@tanstack/react-query";
-import WinPayment from "./WinBidPayment/WinPayment";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function BiddindEnd() {
+export default function BiddingCloseItem() {
   const {
-    data: products = [],
+    data: koyelItems = [],
     isLoading,
     refetch
   } = useQuery({
-    queryKey: "products",
+    queryKey: "koyelItems",
     queryFn: async () => {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/products/closed-bids/with-bids`);
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/products/koyel-item/closed-bids/with-bids`
+      );
       const data = await res.json();
       return data;
     }
   });
-
-  const [productId, setProductId] = useState(null); 
-
-  const [showPopup, setShowPopup] = useState(false);
-
-  const openPopup = () => {
-    setShowPopup(true);
-  };
-
-  const closePopup = () => {
-    setShowPopup(false);
-  };
-
-   
-
 
   return (
     <div>
@@ -42,7 +27,7 @@ export default function BiddindEnd() {
               className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5   dark:text-gray-700 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
               type="button"
             >
-              Bidding end
+              koyel item Bidding end
             </button>
           </div>
           <label for="table-search" className="sr-only">
@@ -84,9 +69,7 @@ export default function BiddindEnd() {
               <th scope="col" className="px-6 py-3">
                 Buy price
               </th>
-              <th scope="col" className="px-6 py-3">
-                winner
-              </th>
+
               <th scope="col" className="px-6 py-3">
                 Dittails
               </th>
@@ -96,7 +79,7 @@ export default function BiddindEnd() {
             </tr>
           </thead>
 
-          {products?.map(product => (
+          {koyelItems?.map(product => (
             <tbody>
               <tr className="bg-white border-b   dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th
@@ -122,31 +105,7 @@ export default function BiddindEnd() {
                     {product?.buyNowPrice}
                   </div>
                 </td>
-                <td className="px-6 py-4">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    <div className="flex  items-center">
-                      <img
-                        className="w-10 h-10 rounded-full"
-                        src={product.winner?.bidderPhoto}
-                        alt="product img"
-                      />
-                      <div className="pl-3">
-                        <div className="text-base font-semibold">
-                          {product.winner?.bidderName}
-                        </div>
-                        <div className="font-normal text-gray-500">
-                          {product.winner?.bidderEmail}
-                        </div>
-                        <div className="font-normal text-gray-500">
-                          Price: {product.winner?.amount}
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </td>
+
                 <td className="px-6 py-4">
                   <Link
                     to={`/admin-dashboard/action/${product._id} `}
@@ -155,40 +114,16 @@ export default function BiddindEnd() {
                     Details
                   </Link>
                 </td>
-
-                {product?.payment === "pending" ||
-                product?.payment === "approved" ? (
-                  <td className="px-6 py-4">
-                    <a
-                      onClick={() => {
-                        setProductId(product._id);
-                        openPopup();
-                      }}
-                      className="font-medium cursor-pointer text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      {product?.payment}
-                    </a>
-                  </td>
-                ) : (
-                  <td className="px-6 py-4">
-                    <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                      Not Pay
-                    </a>
-                  </td>
-                )}
+                <Link
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  to={`/admin-dashboard/products/koyel-item/payment/${product._id}`}
+                >
+                  <td className="px-6 py-4">payment & winners</td>
+                </Link>
               </tr>
             </tbody>
           ))}
         </table>
-        <div>
-          {showPopup && (
-            <WinPayment
-              refetch={refetch}
-              onClose={closePopup}
-              id={productId}
-            ></WinPayment>
-          )}
-        </div>
       </div>
     </div>
   );

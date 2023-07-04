@@ -4,6 +4,7 @@ import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import SendPaymentDettals from "./SendPaymentDettails/SendPaymentDettals";
+import KoyelItemWin from "./KoyelItemWin/KoyelItemWin";
 
 export default function WinningBids() {
   const { currentUser } = useContext(AuthContext);
@@ -116,6 +117,10 @@ export default function WinningBids() {
         {showPopup && (
           <SendPaymentDettals data={paymentProduct} onClose={closePopup} />
         )}
+      </div>
+
+      <div>
+        <KoyelItemWin></KoyelItemWin>
       </div>
     </div>
   );

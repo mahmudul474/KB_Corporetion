@@ -214,6 +214,7 @@ const ExelTouploadProductUploadForm = () => {
       koyel: formData,
       key: "koyel",
       bids: []
+      // winners: []
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/products/upload/koyel`, {
