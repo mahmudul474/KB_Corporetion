@@ -178,6 +178,7 @@ const ExelTouploadProductUploadForm = () => {
         _id: uuidv4(),
         minimumBid: minimumBid,
         currentBid: minimumBid,
+        buyNowPrice,
         bids: [],
         endBiddingTime,
         item: row[0],

@@ -22,7 +22,7 @@ export default function AdminDashBordLayot() {
               isOpen={isOpen}
             ></AdminSaidbar>
           </div>
-          <div className="w-full lg:w-2/3 shadow-2xl lg:p-20 rounded-2xl">
+          <div className="w-full p-10 ">
             <Outlet></Outlet>
           </div>
         </div>

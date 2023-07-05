@@ -2,60 +2,62 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import ItemWinRow from "./ItemWinRow";
 
 export default function KoyelItemWin() {
   const { currentUser } = useContext(AuthContext);
-  useEffect(() => {
-    fetch(
-      `http://localhost:5000/my-wins/${currentUser?._id}/koyel?email=${currentUser?.email}`
-    )
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      });
-  }, [currentUser]);
+
+  const {
+    data: koyelItemswin = [],
+    isLoading,
+    error
+  } = useQuery({
+    queryKey: ["koyelItemswin", currentUser],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/my-wins/${currentUser?._id}/koyel?email=${currentUser?.email}`
+      );
+      const data = await res.json();
+      return data;
+    }
+  });
 
   return (
-    <div className="overflow-y-auto h-[400px] overflow-x-auto ">
-      <table className="table table-xs table-pin-rows table-pin-cols">
-        <thead>
-          <tr>
-            <td>Product</td>
-            <td>Per Ton Price</td>
-            <td>Start Time</td>
-            <td>End Time</td>
-            <td>Details</td>
-          </tr>
-        </thead>
-        <tbody>
-          {/* {koyelbids?.map(product => (
+    <div>
+      <div className="overflow-x-auto">
+        <table className="table table-xs table-pin-rows table-pin-cols">
+          <thead>
             <tr>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src={product?.mainImage}
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">{product?.name}</div>
-                  </div>
-                </div>
-              </td>
-              <td>{product?.startBiddingPrice}$</td>
-              <td>{product?.startBiddingTime}</td>
-              <td>{product?.endBiddingTime}</td>
-
-              <td>
-                <Link to={`/excel/${product?._id}`}>view</Link>
-              </td>
+              <th></th>
+              <td>Name</td>
+              <td>Job</td>
+              <td>company</td>
+              <td>location</td>
+              <td>Last Login</td>
+              <td>Favorite Color</td>
+              <th></th>
             </tr>
-          ))} */}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {[...koyelItemswin]?.map(product => (
+              <ItemWinRow data={product}></ItemWinRow>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <td>Name</td>
+              <td>Job</td>
+              <td>company</td>
+              <td>location</td>
+              <td>Last Login</td>
+              <td>Favorite Color</td>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   );
 }
