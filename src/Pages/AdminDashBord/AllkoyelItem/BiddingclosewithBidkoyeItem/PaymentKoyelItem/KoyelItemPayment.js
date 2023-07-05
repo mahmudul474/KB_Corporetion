@@ -1,10 +1,10 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import PaymentRequestKoyelItem from "./PaymentRequestKoilItem/PaymentRequestKoyelItem";
 
 export default function KoyelItemPayment() {
   const data = useLoaderData();
 
- 
   return (
     <div>
       <div className="flex justify-between flex-col lg:flex-row ">
@@ -96,7 +96,9 @@ export default function KoyelItemPayment() {
             </table>
           </div>
         </div>
-        <div className="border w-full border-black">2</div>
+        <div className="border w-full border-black">
+          <PaymentRequestKoyelItem data={data}></PaymentRequestKoyelItem>
+        </div>
       </div>
     </div>
   );

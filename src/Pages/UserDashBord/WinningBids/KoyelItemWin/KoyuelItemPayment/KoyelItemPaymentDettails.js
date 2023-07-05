@@ -38,9 +38,11 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
     e.preventDefault();
 
     const items = data?.winners.map(item => ({
-      items: item,
-      koyelId: item._id
+      koyel: item,
+      koyelId: item.koyelId
     }));
+
+    console.log(items, "items here");
 
     const paymentDetails = {
       transaction,
@@ -55,8 +57,7 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
       bidderPhoto: currentUser?.userPhoto,
       productId: data?._id,
       productName: data?.name,
-      productImg: data?.mainImage,
-      status: "pending"
+      productImg: data?.mainImage
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/koyel-item/payment/${data?._id}`, {
@@ -71,21 +72,6 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
       .then(data => {
         console.log(data);
       });
-
-    // fetch(`${process.env.REACT_APP_API_URL}/koyel-item/payment/${data?._id}`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({ paymentDetails, items })
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     if (data.acknowledged) {
-    //       onClose();
-    //     }
-    //   });
   };
 
   return (
