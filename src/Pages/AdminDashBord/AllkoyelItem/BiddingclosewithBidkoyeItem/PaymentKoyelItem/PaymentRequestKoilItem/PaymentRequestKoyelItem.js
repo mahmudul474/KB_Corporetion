@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PaymentDettaisPopup from "./PaymentDettaisPopup/PaymentDettaisPopup";
 
 export default function PaymentRequestKoyelItem({ data }) {
   const [requests, setRequests] = useState([]);
@@ -22,6 +23,19 @@ export default function PaymentRequestKoyelItem({ data }) {
     return sum + koyelBidAmounts.reduce((subSum, amount) => subSum + amount, 0);
   }, 0);
 
+  /// payment dettails pop  up
+  const [productid, setProductid] = useState(null);
+  const [paymentItems, setPaymentItem] = useState({});
+  const [product, setProduct] = useState({});
+
+  const openPaymentPopup = id => {
+    setProductid(id);
+  };
+
+  const closePaymentPopup = () => {
+    setProductid(null);
+  };
+
   return (
     <div>
       <div className="overflow-x-auto h-[600px]">
@@ -30,9 +44,9 @@ export default function PaymentRequestKoyelItem({ data }) {
             <tr>
               <th>i</th>
               <td>item</td>
-              <td>Job</td>
-              <td>company</td>
-              <td>location</td>
+              <td>winner</td>
+              <td>amount</td>
+              <td>4</td>
               <td>Last Login</td>
               <td>Favorite Color</td>
               <th></th>
@@ -89,8 +103,38 @@ export default function PaymentRequestKoyelItem({ data }) {
                     </ul>
                   </div>
                 </td>
-                <td>Littel, Schaden and Vandervort</td>
-                <td>Canada</td>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img
+                          src={request?.paymentDetails?.bidderPhoto}
+                          alt="bidder"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">
+                        {request?.paymentDetails?.bidderName}
+                      </div>
+                      <div className="text-sm opacity-50">
+                        email:{request?.paymentDetails?.bidderEmail}
+                      </div>
+                      <div className="text-sm opacity-50">
+                        Mob:{request?.paymentDetails?.bidderNumber}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  onClick={() => {
+                    openPaymentPopup(request?._id);
+                    setProduct(request);
+                    setPaymentItem(request?.paymentDetails);
+                  }}
+                >
+                  dettails
+                </td>
                 <td>12/16/2020</td>
                 <td>Blue</td>
                 <th>1</th>
@@ -111,6 +155,16 @@ export default function PaymentRequestKoyelItem({ data }) {
           </tfoot>
         </table>
       </div>
+
+      {productid && (
+        <PaymentDettaisPopup
+          data={product}
+          closePaymentPopup={closePaymentPopup}
+          paymentDetails={paymentItems}
+        >
+          {" "}
+        </PaymentDettaisPopup>
+      )}
     </div>
   );
 }

@@ -1,66 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-export default function WinPayment({ id, onClose, refetch }) {
-  const [paymentDetails, setPaymentDetails] = useState();
-
-
-  useEffect(() => {
-    if (id) {
-      fetch(`https://kb-corporate-devsobuj910.vercel.app/product/payment/${id}`)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          setPaymentDetails(data); // Update the state with fetched payment details
-        });
-    }
-  }, [id]);
-
-  ///  approve
-
-  const handleApprovalPayment = () => {
-    const paymentId = {
-      id: paymentDetails?._id
-    };
-    fetch(`${process.env.REACT_APP_API_URL}/payment/admin/approve/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(paymentId)
-    })
-      .then(res => res.json())
-      .then(data => {
-        refetch();
-        onClose();
-      });
-  };
-
-  const handlefaild = () => {
-    const paymentId = {
-      id: paymentDetails?._id
-    };
-    fetch(`${process.env.REACT_APP_API_URL}/payment/admin/failed/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(paymentId)
-    })
-      .then(res => res.json())
-      .then(data => {
-        refetch();
-        onClose();
-      });
-  };
-
+export default function PaymentDettaisPopup({
+  paymentDetails,
+  data,
+  closePaymentPopup
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
   };
-
   const closeModal = () => {
     setIsOpen(false);
+  };
+
+  //  handle  payment
+
+  const handlePaymentApprove = () => {
+    const itemId = data?.koyel.map(item => ({
+      koyelId: item?.koyelId
+    }));
+
+    if (data?.productID) {
+      fetch(
+        `${process.env.REACT_APP_API_URL}/product/${data?.productID}/koyel-item/payment/${data?.bidderId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ itemId })
+        }
+      )
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        });
+    }
   };
 
   return (
@@ -105,20 +81,17 @@ export default function WinPayment({ id, onClose, refetch }) {
 
         <div className="flex my-4  capitalize  justify-center items-center">
           <button
+            onClick={handlePaymentApprove}
             className="bg-green-600 mr-2 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
-            onClick={handleApprovalPayment}
           >
             Approve
           </button>
-          <button
-            className="bg-red-500 mr-2 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
-            onClick={handlefaild}
-          >
+          <button className="bg-red-500 mr-2 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">
             failed
           </button>
           <button
+            onClick={closePaymentPopup}
             className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded"
-            onClick={onClose}
           >
             close
           </button>
