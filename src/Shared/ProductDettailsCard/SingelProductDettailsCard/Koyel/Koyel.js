@@ -8,7 +8,11 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
   const toggleSelectAll = () => {
     setSelectAll(!selectAll);
     if (!selectAll) {
-      setSelectedItems(koyel);
+       const filterSoldOutKoyelItem = koyel?.filter(
+         koyel => koyel.status !== "sold-out"
+       );
+
+       setSelectedItems(filterSoldOutKoyelItem);
     } else {
       setSelectedItems([]);
     }

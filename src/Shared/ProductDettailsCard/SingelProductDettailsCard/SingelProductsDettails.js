@@ -6,6 +6,7 @@ import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import ImgSlide from "./ImgSlide";
 import Koyel from "./Koyel/Koyel";
 import SingelProductActionHistory from "./SingelProductActionHistory";
+import BuyNow from "./BuyNowKoyelItem/BuyNow";
 
 export default function SingelProductsDettails() {
   const { currentUser, user } = useContext(AuthContext);
@@ -21,8 +22,8 @@ export default function SingelProductsDettails() {
     setNewPrice(bidPrice);
   };
 
+  ////selected  item
   const [selectedItems, setSelectedItems] = useState([]);
-
   const items = selectedItems?.map(skoyel => {
     return skoyel.bids && skoyel.bids.length === 0
       ? skoyel?.currentBid
@@ -33,6 +34,7 @@ export default function SingelProductsDettails() {
     0
   );
 
+  ///place bid
   const handlePlcebid = e => {
     e.preventDefault();
     // Prepare the bid data for selected items
@@ -82,10 +84,12 @@ export default function SingelProductsDettails() {
       });
   };
 
+  /// img    slider
   const handleSubimgShow = subimgUrl => {
     setSubImgUrl(subimgUrl);
   };
 
+  ///  remmenint time
   const calculateRemainingTime = endTime => {
     const currentTime = new Date().getTime();
     const endTimeValue = new Date(endTime).getTime();
@@ -341,27 +345,20 @@ export default function SingelProductsDettails() {
                   </button>
                 </a>
 
-                {data?.status === "sold out" ? (
-                  <button className=" mx-3 my-2 text-center w-full     py-2.5 text-1sm font-medium  cursor-pointer  text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 ">
-                    sold out
-                  </button>
-                ) : (
-                  <Link
-                    className=" mx-3 my-2 text-center w-full     py-2.5 text-1sm font-medium  cursor-pointer  text-white bg-green-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -green-600 "
-                    to={`/product/order/${data?._id}`}
+                <div className="w-full">
+                  <label
+                    for="my_modal_6"
+                    className="w-full btn bg-[#719f18] hover:bg-[#73471b] text-white font-semibold"
                   >
-                    <button disabled={isBiddingClosed} type="button">
-                      Buy now for
-                      <span className="inline-flex items-center justify-center  ml-2 text-xs font-semibold text-white ">
-                        {data?.buyNowPrice} $
-                      </span>
-                    </button>
-                  </Link>
-                )}
+                    {" "}
+                    Buy Now{" "}
+                  </label>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <BuyNow data={selectedItems}></BuyNow>
       </div>
       <SingelProductActionHistory bids={data?.bids}>
         {" "}

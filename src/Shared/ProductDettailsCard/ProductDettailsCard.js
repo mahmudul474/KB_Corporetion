@@ -21,6 +21,7 @@ export default function ProductDettailsCard({ data }) {
     setNewPrice(bidPrice);
   };
 
+  //palce bid
   const handlePlcebid = e => {
     e.preventDefault();
 
@@ -61,10 +62,12 @@ export default function ProductDettailsCard({ data }) {
       });
   };
 
+  ///img slider
   const handleSubimgShow = subimgUrl => {
     setSubImgUrl(subimgUrl);
   };
 
+  ///counterdown  remening time
   const calculateRemainingTime = endTime => {
     const currentTime = new Date().getTime();
     const endTimeValue = new Date(endTime).getTime();
@@ -143,6 +146,8 @@ export default function ProductDettailsCard({ data }) {
     return `${formattedDate} ${formattedTime}`;
   };
 
+  //get winner
+
   const [winner, setWinner] = useState(null);
 
   useEffect(() => {
@@ -157,7 +162,6 @@ export default function ProductDettailsCard({ data }) {
     // Call the API every 10 seconds
   }, [data._id]);
 
-  
   return (
     <div className="max-w-6xl  mx-auto  ">
       <div className="flex  flex-col lg:flex-row   ">

@@ -23,7 +23,31 @@ export default function PaymentDettaisPopup({
 
     if (data?.productID) {
       fetch(
-        `${process.env.REACT_APP_API_URL}/product/${data?.productID}/koyel-item/payment/${data?.bidderId}`,
+        `${process.env.REACT_APP_API_URL}/product/${data?.productID}/koyel-item/payment/approve/${data?.bidderId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ itemId })
+        }
+      )
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        });
+    }
+  };
+  //  handle  payment
+
+  const handlePaymentFailed = () => {
+    const itemId = data?.koyel.map(item => ({
+      koyelId: item?.koyelId
+    }));
+
+    if (data?.productID) {
+      fetch(
+        `${process.env.REACT_APP_API_URL}/product/${data?.productID}/koyel-item/payment/Failed/${data?.bidderId}`,
         {
           method: "PUT",
           headers: {
@@ -86,7 +110,10 @@ export default function PaymentDettaisPopup({
           >
             Approve
           </button>
-          <button className="bg-red-500 mr-2 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">
+          <button
+            onClick={handlePaymentFailed}
+            className="bg-red-500 mr-2 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
+          >
             failed
           </button>
           <button
