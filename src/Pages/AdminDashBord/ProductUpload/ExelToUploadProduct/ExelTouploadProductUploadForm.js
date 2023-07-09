@@ -137,22 +137,6 @@ const ExelTouploadProductUploadForm = () => {
     convertExcelToJson(file);
   };
 
-  // const convertExcelToJson = file => {
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onload = event => {
-  //       const data = new Uint8Array(event.target.result);
-  //       const workbook = XLSX.read(data, { type: "array" });
-  //       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-  //       const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-  //       const formattedData = formatData(jsonData);
-  //       setFormData(formattedData);
-  //     };
-  //     reader.readAsArrayBuffer(file);
-  //   }
-  // };
-
-
   const convertExcelToJson = file => {
     if (file) {
       const reader = new FileReader();

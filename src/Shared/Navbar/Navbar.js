@@ -135,25 +135,34 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="dropdown dropdown-hover dropdown-end">
-            <label tabIndex={0} className=" m-1">
-              <div className="h-14 w-14 object-contain">
-                <img
-                  className=" rounded-full  object-cover w-full h-full "
-                  src={currentUser.userPhoto}
-                  alt="user photo"
-                />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-52"
-            >
-              <li onClick={handleLogOut} className="text-center ">
-                <a className="text-red-400">Log-out</a>
-              </li>
-            </ul>
-          </div>
+          <li
+            className="block px-4 text-sm text-gray-700"
+            role="menuitem"
+            tabindex="-1"
+            id="user-menu-item-0"
+          >
+            {" "}
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={currentUser.userPhoto} />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <Link to="/my-dashboard">
+                  <li>
+                    <a className="justify-between">Profile</a>
+                  </li>
+                </Link>
+                <li onClick={handleLogOut}>
+                  <a className="text-red-500">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </>
       ) : (
         <>
