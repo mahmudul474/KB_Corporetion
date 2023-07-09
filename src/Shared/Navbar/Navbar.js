@@ -36,12 +36,12 @@ const Navbar = () => {
       </Link>
 
       <div className="dropdown dropdown-hover">
-        <label tabIndex={0} className="btn m-1">
+        <label tabIndex={0} className=" m-1    bg-white">
           Koyel Item
         </label>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content z-[1] menu  shadow bg-white rounded-box w-52"
         >
           <li className="bg-green-500">
             <a>Item 1</a>
@@ -61,7 +61,7 @@ const Navbar = () => {
         </label>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu  shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content z-[1] menu  shadow bg-white rounded-box w-52"
         >
           <Link to="/this-week">
             <li>
@@ -150,7 +150,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                className="mt-3 z-[1] p-2 shadow  menu menu-sm dropdown-content bg-white rounded-box w-52"
               >
                 <Link to="/my-dashboard">
                   <li>

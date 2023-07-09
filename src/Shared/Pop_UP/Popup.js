@@ -30,9 +30,11 @@ const Popup = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed z-50 inset-0 flex  m-auto items-center justify-center">
-      <div className="bg-slate-400 rounded-lg p-8">
-        <h2 className="text-2xl mb-4">Please give acount email </h2>
+    <div className="fixed z-50 inset-0 flex shadow-lg  bg-base-200    m-auto items-center justify-center">
+      <div className=" bg-white shadow-2xl  rounded-lg p-8">
+        <h2 className="text-2xl mb-4   text-black ">
+          Please Enter Your Account Email{" "}
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="input" className="block mb-2"></label>
@@ -43,18 +45,18 @@ const Popup = ({ onClose }) => {
               placeholder="email"
               value={formValue}
               onChange={e => setFormValue(e.target.value)}
-              className="border border-gray-300 p-2 w-full"
+              className="border border-gray-300 bg-white text-black  p-2 w-full"
             />
           </div>
           <button
             type="submit"
-            className="bg-blue-500 mr-2 text-white py-2 px-4 rounded"
+            className="bg-[#719f18] mr-2 text-white py-2 px-4 rounded"
           >
             Submit
           </button>
           <button
             onClick={handleCancel}
-            className="bg-blue-500 text-white py-2 px-4 rounded"
+            className="bg-[#73471b] text-white py-2 px-4 rounded"
           >
             Cancel
           </button>
