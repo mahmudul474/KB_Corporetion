@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
- 
+
 import ImgSlide from "./ImgSlide";
 import Koyel from "./Koyel/Koyel";
 import SingelProductActionHistory from "./SingelProductActionHistory";
@@ -358,7 +358,7 @@ export default function SingelProductsDettails() {
             </div>
           </div>
         </div>
-        <BuyNow data={selectedItems}></BuyNow>
+        <BuyNow id={data?._id} data={selectedItems}></BuyNow>
       </div>
       <SingelProductActionHistory bids={data?.bids}>
         {" "}

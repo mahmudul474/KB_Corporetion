@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import AdminNav from "../AdminNav/AdminNav";
 import AdminSaidbar from "../AdminSaidbar/AdminSaidbar";
 
@@ -9,6 +9,11 @@ export default function AdminDashBordLayot() {
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
   };
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
     <>
       <div className="">

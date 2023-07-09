@@ -35,6 +35,7 @@ import SingelProductsDettails from "../Shared/ProductDettailsCard/SingelProductD
 import AllKoyelItem from "../Pages/AdminDashBord/AllkoyelItem/AllKoyelItem";
 import BiddingCloseItem from "../Pages/AdminDashBord/AllkoyelItem/BiddingclosewithBidkoyeItem/BiddingCloseItem";
 import KoyelItemPayment from "../Pages/AdminDashBord/AllkoyelItem/BiddingclosewithBidkoyeItem/PaymentKoyelItem/KoyelItemPayment";
+import KoyelItemOrder from "../Pages/AdminDashBord/Orders/KoyelItemOrder/KoyelItemOrder";
 
 export const routs = createBrowserRouter([
   {
@@ -215,6 +216,16 @@ export const routs = createBrowserRouter([
           <Private>
             <Adminrout>
               <Order></Order>
+            </Adminrout>
+          </Private>
+        )
+      },
+      {
+        path: "/admin-dashboard/orders/koyel-item",
+        element: (
+          <Private>
+            <Adminrout>
+              <KoyelItemOrder></KoyelItemOrder>
             </Adminrout>
           </Private>
         )

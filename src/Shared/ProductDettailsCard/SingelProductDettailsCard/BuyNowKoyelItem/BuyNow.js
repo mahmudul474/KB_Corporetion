@@ -1,142 +1,278 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import AWS from "aws-sdk";
+import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
 
-export default function BuyNow({ data }) {
+export default function BuyNow({ id, data }) {
+  const sumBuyNowPrice = data.reduce((total, item) => {
+    const buyNowPrice = parseInt(item.buyNowPrice);
+    if (!isNaN(buyNowPrice)) {
+      return total + buyNowPrice;
+    }
+    return total;
+  }, 0);
+
+  console.log(id, "this is id use");
+
+  ////when   multyple tone
+
+  //  const totalPriceByWidth = data.reduce((total, item) => {
+  //    const buyNowPrice = parseInt(item.buyNowPrice);
+  //    const width = item.Width;
+  //    if (!isNaN(buyNowPrice) && !isNaN(width)) {
+  //      return total + buyNowPrice * width;
+  //    }
+  //    return total;
+  //  }, 0);
+
+  //  console.log(totalPriceByWidth);
+
+  const { currentUser } = useContext(AuthContext);
+  const [bankSleep, setBanSleep] = useState(null);
+  const [transaction, setTransaction] = useState("");
+  const [amount, setAmount] = useState("");
+  const [branch, setBranch] = useState("");
+  const [bank, setBankname] = useState("");
+
+  // handle bank sleep upload
+  const handleBankSleepuplod = event => {
+    const file = event.target.files[0];
+    const s3 = new AWS.S3();
+
+    const params = {
+      Bucket: "kb-corporetion",
+      Key: file.name,
+      Body: file
+      // Set the appropriate ACL based on your requirements
+    };
+
+    s3.upload(params, (error, data) => {
+      if (error) {
+        console.error("Error:", error);
+      } else {
+        setBanSleep(data.Location);
+        console.log("NID photo uploaded successfully:", data.Location);
+        // Do something with the uploaded NID photo URL
+      }
+    });
+  };
+
+  ///handle send payment   dettails
+  const handleSendPaymentDettails = e => {
+    console.log(id);
+    e.preventDefault();
+
+    const items = data.map(item => ({
+      koyelId: item._id,
+      koyel: item
+    }));
+
+    e.preventDefault();
+    const paymentDetails = {
+      transaction,
+      bankSleep,
+      amount,
+      branch,
+      bank,
+      bidderName: currentUser?.name,
+      bidderId: currentUser?._id,
+      bidderEmail: currentUser?.email,
+      bidderNumber: currentUser?.phoneNumber,
+      bidderPhoto: currentUser?.userPhoto,
+      productId: data?._id,
+      productName: data?.name,
+      productImg: data?.mainImage
+    };
+
+    fetch(`${process.env.REACT_APP_API_URL}/product/koyel-item/order/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ paymentDetails, items })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
+  };
+
   return (
     <>
       <input type="checkbox" id="my_modal_6" className="modal-toggle" />
       <div className="modal">
-        <div className="  modal-box w-11/12 max-w-5xl">
-          <body className="w-fulls">
-            <div class="w-full bg-gray-100 pt-20">
-              <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
-              <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
-                <div class="rounded-lg md:w-2/3">
-                  <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-                    <img
-                      src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                      alt="product-image"
-                      class="w-full rounded-lg sm:w-40"
-                    />
-                    <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                      <div class="mt-5 sm:mt-0">
-                        <h2 class="text-lg font-bold text-gray-900">
-                          Nike Air Max 2019
-                        </h2>
-                        <p class="mt-1 text-xs text-gray-700">36EU - 4US</p>
-                      </div>
-                      <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                        <div class="flex items-center border-gray-100">
-                          <span class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
-                            {" "}
-                            -{" "}
-                          </span>
-                          <input
-                            class="h-8 w-8 border bg-white text-center text-xs outline-none"
-                            type="number"
-                            value="2"
-                            min="1"
-                          />
-                          <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50">
-                            {" "}
-                            +{" "}
-                          </span>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                          <p class="text-sm">259.000 ₭</p>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-                    <img
-                      src="https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1131&q=80"
-                      alt="product-image"
-                      class="w-full rounded-lg sm:w-40"
-                    />
-                    <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                      <div class="mt-5 sm:mt-0">
-                        <h2 class="text-lg font-bold text-gray-900">
-                          Nike Air Max 2019
-                        </h2>
-                        <p class="mt-1 text-xs text-gray-700">36EU - 4US</p>
-                      </div>
-                      <div class="mt-4 flex justify-between im sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                        <div class="flex items-center border-gray-100">
-                          <span class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
-                            {" "}
-                            -{" "}
-                          </span>
-                          <input
-                            class="h-8 w-8 border bg-white text-center text-xs outline-none"
-                            type="number"
-                            value="2"
-                            min="1"
-                          />
-                          <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50">
-                            {" "}
-                            +{" "}
-                          </span>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                          <p class="text-sm">259.000 ₭</p>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        <div className="modal-box max-w-full">
+          <div class=" bg-gray-100 pt-20">
+            <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+            <div class="mx-auto justify-center px-6 md:flex  xl:px-0">
+              <table className=" lg:w-2/3 text-sm text-left ">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" className="px-6 py-3">
+                      ITEM
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      SPEC
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      THICKNESS
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      WIDTH
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      TS
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      YP
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      EL
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      startTing Price
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      curent Price
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Buy now
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.map(skoyel => (
+                    <tr className="bg-white border-b     hover:bg-gray-50  ">
+                      <td className="px-6 py-4"> {skoyel?.item}</td>
+                      <td className="px-6 py-4">{skoyel?.spec}</td>
+                      <td className="px-6 py-4">{skoyel?.Thickness}</td>
+                      <td className="px-6 py-4">{skoyel?.Width}</td>
+                      <td className="px-6 py-4">{skoyel?.TS}</td>
+                      <td className="px-6 py-4">{skoyel?.YP}</td>
+                      <td className="px-6 py-4">{skoyel?.EL}</td>
+                      <td className="px-6 py-4">{skoyel?.currentBid}</td>
+                      <td className="px-6 py-4 ">
+                        {skoyel.bids && skoyel.bids.length === 0
+                          ? skoyel?.currentBid
+                          : skoyel.bids[
+                              skoyel.bids.length - 1
+                            ].bidAmount.toFixed(2)}
+                        $
+                      </td>
+                      <td className="px-6 py-4">{skoyel?.buyNowPrice}$</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 lg:w-1/3">
+                <div class="mb-2 w-full  flex justify-between">
+                  <p class="text-gray-700">Subtotal</p>
+                  <p class="text-gray-700">${sumBuyNowPrice}</p>
                 </div>
 
-                <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-                  <div class="mb-2 flex justify-between">
-                    <p class="text-gray-700">Subtotal</p>
-                    <p class="text-gray-700">$129.99</p>
+                <form
+                  onSubmit={handleSendPaymentDettails}
+                  className="max-w-md  mx-auto"
+                >
+                  <div className="mb-4">
+                    <label
+                      className="block  text-left text-gray-700 text-sm font-bold mb-2"
+                      for="bank-name"
+                    >
+                      Bank Name:
+                    </label>
+                    <input
+                      onChange={e => setBankname(e.target.value)}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="bank-name"
+                      type="text"
+                      placeholder="Enter Bank Name"
+                      required
+                    />
                   </div>
-                  <div class="flex justify-between">
-                    <p class="text-gray-700">Shipping</p>
-                    <p class="text-gray-700">$4.99</p>
+                  <div className="mb-4">
+                    <label
+                      className="block  text-left text-gray-700 text-sm font-bold mb-2"
+                      for="branch"
+                    >
+                      Branch:
+                    </label>
+                    <input
+                      required
+                      onChange={e => setBranch(e.target.value)}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="branch"
+                      type="text"
+                      placeholder="Enter Branch"
+                    />
                   </div>
-                  <hr class="my-4" />
-                  <div class="flex justify-between">
-                    <p class="text-lg font-bold">Total</p>
-                    <div class="">
-                      <p class="mb-1 text-lg font-bold">$134.98 USD</p>
-                      <p class="text-sm text-gray-700">including VAT</p>
-                    </div>
+                  <div className="mb-4">
+                    <label
+                      className="block  text-left text-gray-700 text-sm font-bold mb-2"
+                      for="amount"
+                    >
+                      Amount:
+                    </label>
+                    <input
+                      required
+                      onChange={e => setAmount(e.target.value)}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="amount"
+                      min={data?.buyNowPrice}
+                      type="text"
+                      placeholder="Enter Amount"
+                    />
                   </div>
-                  <button class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
-                    Check out
-                  </button>
-                </div>
+                  <div className="mb-4">
+                    <label
+                      className="block  text-left text-gray-700 text-sm font-bold mb-2"
+                      for="transaction-id"
+                    >
+                      Transaction ID:
+                    </label>
+                    <input
+                      required
+                      onChange={e => setTransaction(e.target.value)}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="transaction-id"
+                      type="text"
+                      placeholder="Enter Transaction ID"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      className="block text-left  text-gray-700 text-sm font-bold mb-2"
+                      for="payment-slip"
+                    >
+                      Payment Slip:
+                    </label>
+                    <input
+                      required
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="payment-slip"
+                      type="file"
+                      onChange={handleBankSleepuplod}
+                    />
+                  </div>
+
+                  {bankSleep && (
+                    <img
+                      className="w-full h-60  object-contain my-3"
+                      src={bankSleep}
+                    />
+                  )}
+                  <div className="flex justify-center">
+                    <button
+                      className="bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                      type="submit"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
-          </body>
+          </div>
           <div className="modal-action">
             <label htmlFor="my_modal_6" className="btn">
               Close!
