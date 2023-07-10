@@ -82,170 +82,143 @@ export default function ProductOrder() {
 
   return (
     <>
-      <div
-        className="w-full   z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700"
-        id="checkout"
-      >
-        <div
-          className="flex items-end lg:flex-row flex-col justify-center"
-          id="cart"
-        >
-          <div
-            className="lg:w-1/2 md:w-8/12 w-full lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white  overflow-y-hidden overflow-x-hidden lg:h-screen h-auto"
-            id="scroll"
-          >
-            <div className="flex items-center text-gray-500 hover:text-gray-600 dark:text-white cursor-pointer">
-              <Link to={`/action/${data?._id}`}>
-                <p className="text-sm pl-2 leading-none dark:hover:text-gray-200">
-                  Back
-                </p>
-              </Link>
-            </div>
-
-            <div className="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50">
-              <div className="  w-full">
+   
+        <div className="  bg-gray-100 pt-20">
+          <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+          <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
+            <div className="rounded-lg md:w-2/3">
+              <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
                 <img
                   src={data?.mainImage}
-                  className="h-full object-center object-cover md:block "
+                  className="w-full rounded-lg sm:w-40"
                 />
-              </div>
-            </div>
-            <div className="md:pl-3 m   flex flex-col justify-center">
-              <div className="flex items-center justify-between w-full pt-1">
-                <p className="  text-3xl font-black leading-none text-gray-800 dark:text-white">
-                  Name: {data?.name}
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between pt-5">
-                <p className="font-black  text-3xl   leading-none text-gray-800 dark:text-white">
-                  Price: {data?.buyNowPrice} $
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="lg:w-96 md:w-8/12 w-full bg-gray-100   ">
-            <div className="flex flex-col lg:h-screen h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6 justify-between overflow-y-auto">
-              <div>
-                <p className="lg:text-4xl text-3xl font-black leading-9 text-gray-800 dark:text-white">
-                  Summary
-                </p>
-                <div className="flex items-center justify-between pt-16">
-                  <p className="text-base font-bold leading-none text-gray-800 dark:text-white">
-                    Subtotal
-                  </p>
-                  <p className="text-base leading-none text-gray-800 dark:text-white">
-                    {data?.buyNowPrice}
-                  </p>
+                <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                  <div className="mt-5 sm:mt-0">
+                    <h2 className="text-lg font-bold text-gray-900">
+                      {data?.name}
+                    </h2>
+                    <p className="mt-1 text-xs text-black">
+                      {data?.description.slice(0, 120)}
+                    </p>
+                  </div>
+                  <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+                    <div className="flex items-center space-x-4">
+                      <p className="text-md  font-semibold">
+                        Price: {data?.buyNowPrice + "$"}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
 
-                <div className="container mx-auto py-8">
-                  <form
-                    onSubmit={handlSubmitOrder}
-                    className="max-w-md mx-auto"
+            <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+              <div className="mb-2 flex justify-between">
+                <p className="text-black">Subtotal</p>
+                <p className="text-black">{data?.buyNowPrice + "$"}</p>
+              </div>
+
+              <form onSubmit={handlSubmitOrder} className="max-w-md mx-auto">
+                <div className="mb-4">
+                  <label
+                    className="block  text-left text-black text-sm font-bold mb-2"
+                    for="bank-name"
                   >
-                    <div className="mb-4">
-                      <label
-                        className="block  text-left text-gray-700 text-sm font-bold mb-2"
-                        for="bank-name"
-                      >
-                        Bank Name:
-                      </label>
-                      <input
-                        onChange={e => setBankname(e.target.value)}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="bank-name"
-                        type="text"
-                        placeholder="Enter Bank Name"
-                        required
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        className="block  text-left text-gray-700 text-sm font-bold mb-2"
-                        for="branch"
-                      >
-                        Branch:
-                      </label>
-                      <input
-                        onChange={e => setBranch(e.target.value)}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="branch"
-                        type="text"
-                        required
-                        placeholder="Enter Branch"
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        className="block  text-left text-gray-700 text-sm font-bold mb-2"
-                        for="amount"
-                      >
-                        Amount:
-                      </label>
-                      <input
-                        onChange={e => setAmount(e.target.value)}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="amount"
-                        min={data?.buyNowPrice}
-                        type="text"
-                        placeholder="Enter Amount"
-                        required
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        className="block  text-left text-gray-700 text-sm font-bold mb-2"
-                        for="transaction-id"
-                      >
-                        Transaction ID:
-                      </label>
-                      <input
-                        required
-                        onChange={e => setTransaction(e.target.value)}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="transaction-id"
-                        type="text"
-                        placeholder="Enter Transaction ID"
-                      />
-                    </div>
-                    <div className="mb-4">
-                      <label
-                        className="block text-left  text-gray-700 text-sm font-bold mb-2"
-                        for="payment-slip"
-                      >
-                        Payment Slip:
-                      </label>
-                      <input
-                        required
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="payment-slip"
-                        type="file"
-                        onChange={handleBankSleepuplod}
-                      />
-                    </div>
-
-                    {bankSleep && (
-                      <img
-                        className="w-full h-60  object-contain my-3"
-                        src={bankSleep}
-                      />
-                    )}
-                    <div className="flex justify-center">
-                      <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </form>
+                    Bank Name:
+                  </label>
+                  <input
+                    onChange={e => setBankname(e.target.value)}
+                    className="shadow  bg-white  appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                    id="bank-name"
+                    type="text"
+                    placeholder="Enter Bank Name"
+                    required
+                  />
                 </div>
-              </div>
+                <div className="mb-4">
+                  <label
+                    className="block  text-left text-black text-sm font-bold mb-2"
+                    for="branch"
+                  >
+                    Branch:
+                  </label>
+                  <input
+                    onChange={e => setBranch(e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
+                    id="branch"
+                    type="text"
+                    required
+                    placeholder="Enter Branch"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    className="block  text-left text-black text-sm font-bold mb-2"
+                    for="amount"
+                  >
+                    Amount:
+                  </label>
+                  <input
+                    onChange={e => setAmount(e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
+                    id="amount"
+                    min={data?.buyNowPrice}
+                    type="text"
+                    placeholder="Enter Amount"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    className="block  text-left text-black text-sm font-bold mb-2"
+                    for="transaction-id"
+                  >
+                    Transaction ID:
+                  </label>
+                  <input
+                    required
+                    onChange={e => setTransaction(e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
+                    id="transaction-id"
+                    type="text"
+                    placeholder="Enter Transaction ID"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    className="block text-left  text-black text-sm font-bold mb-2"
+                    for="payment-slip"
+                  >
+                    Payment Slip:
+                  </label>
+                  <input
+                    required
+                    className="shadow bg-white appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                    id="payment-slip"
+                    type="file"
+                    onChange={handleBankSleepuplod}
+                  />
+                </div>
+
+                {bankSleep && (
+                  <img
+                    className="w-full h-60  object-contain my-3"
+                    src={bankSleep}
+                  />
+                )}
+                <div className="flex justify-center">
+                  <button
+                    className="bg-[#719f18] hover:[#73471b] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </div>
+      
     </>
   );
 }

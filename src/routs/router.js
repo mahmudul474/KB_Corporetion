@@ -145,9 +145,9 @@ export const routs = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`${process.env.REACT_APP_API_URL}/products/koyel/${params.id}`),
         element: (
-          <Private>
+       
             <SingelProductsDettails></SingelProductsDettails>
-          </Private>
+        
         )
       }
     ]
