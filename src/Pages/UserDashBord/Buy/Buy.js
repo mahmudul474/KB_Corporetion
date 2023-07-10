@@ -30,7 +30,7 @@ export default function Buy() {
       </h1>
       <div className="grid px-5 grid-cols-1 lg:grid-cols-2 gap-5">
         {buyproduct?.map(data => (
-          <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
             <div className="border ">
               <img
                 className="rounded-t-lg w-full text-center h-60 object-contain "

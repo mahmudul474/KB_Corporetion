@@ -47,7 +47,7 @@ export default function UserSidebar() {
           <img
             src={currentUser?.userPhoto}
             alt=""
-            className="w-20 h-20 rounded-full dark:bg-gray-500"
+            className="w-20 h-20 rounded-full "
           />
 
           <div className="tex-center text-black">

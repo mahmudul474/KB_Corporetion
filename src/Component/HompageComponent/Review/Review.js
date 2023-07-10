@@ -106,15 +106,15 @@ const Review = () => {
       </div>
 
       <Slider {...settings} ref={sliderRef}>
-        {cardData.map((card) => (
-          <div class="w-full mr-6 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        {cardData.map(card => (
+          <div class="w-full mr-6 max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
             <div class="flex bg-slate-50 flex-col items-center pb-10">
               <img
                 alt=""
                 className="w-24 h-24 mb-3 rounded-full shadow-lg"
                 src={card?.img}
               />
-              <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+              <h5 class="mb-1 text-xl font-medium text-gray-900 ">
                 Bonnie Green
               </h5>
 
@@ -162,7 +162,7 @@ const Review = () => {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="w-5 h-5 text-gray-300 dark:text-gray-500"
+                    class="w-5 h-5 text-gray-300 "
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +173,7 @@ const Review = () => {
                 </div>
               </div>
 
-              <span class="text-sm text-center text-gray-500 dark:text-gray-400">
+              <span class="text-sm text-center text-gray-500 ">
                 "We have used this taxi service before and have had the same
                 great service"
               </span>

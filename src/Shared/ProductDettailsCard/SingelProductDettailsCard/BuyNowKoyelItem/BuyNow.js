@@ -105,7 +105,7 @@ export default function BuyNow({ id, data }) {
             <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
             <div class="mx-auto justify-center px-6 md:flex  xl:px-0">
               <table className=" lg:w-2/3 text-sm text-left ">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <thead className="text-xs text-black uppercase bg-gray-50 ">
                   <tr>
                     <th scope="col" className="px-6 py-3">
                       ITEM

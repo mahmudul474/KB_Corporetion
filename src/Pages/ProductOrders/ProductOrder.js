@@ -91,7 +91,7 @@ export default function ProductOrder() {
           id="cart"
         >
           <div
-            className="lg:w-1/2 md:w-8/12 w-full lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-gray-800 overflow-y-hidden overflow-x-hidden lg:h-screen h-auto"
+            className="lg:w-1/2 md:w-8/12 w-full lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white  overflow-y-hidden overflow-x-hidden lg:h-screen h-auto"
             id="scroll"
           >
             <div className="flex items-center text-gray-500 hover:text-gray-600 dark:text-white cursor-pointer">
@@ -124,7 +124,7 @@ export default function ProductOrder() {
               </div>
             </div>
           </div>
-          <div className="lg:w-96 md:w-8/12 w-full bg-gray-100 dark:bg-gray-900  ">
+          <div className="lg:w-96 md:w-8/12 w-full bg-gray-100   ">
             <div className="flex flex-col lg:h-screen h-auto lg:px-8 md:px-7 px-4 lg:py-20 md:py-10 py-6 justify-between overflow-y-auto">
               <div>
                 <p className="lg:text-4xl text-3xl font-black leading-9 text-gray-800 dark:text-white">

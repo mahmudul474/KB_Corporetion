@@ -184,7 +184,7 @@ export default function SingelProductsDettails() {
   }, [data._id]);
 
   return (
-    <div className="min-h-screen mt-10">
+    <div className=" mt-10">
       <div className="flex  flex-col lg:flex-row    ">
         <div className="w-full   lg:w-2/5   h-[600px]    ">
           <div className="   w-full h-3/5   ">
@@ -209,9 +209,9 @@ export default function SingelProductsDettails() {
             ></ImgSlide>
           </div>
         </div>
-        <div className="w-full  lg:w-3/5 text-left px-4  h-[600px]   overflow-auto ">
-          <h2 className="text-2xl text-green-500 text-center">
-            Select Product
+        <div className="w-full  lg:w-3/5 text-left px-4   ">
+          <h2 className="text-2xl text-[#719f18] text-center">
+            Select Items
           </h2>
           <div>
             <Koyel
