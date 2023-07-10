@@ -7,6 +7,7 @@ import ImgSlide from "./ImgSlide";
 import Koyel from "./Koyel/Koyel";
 import SingelProductActionHistory from "./SingelProductActionHistory";
 import BuyNow from "./BuyNowKoyelItem/BuyNow";
+import SubImgSlider from "../SubImgSlider";
 
 export default function SingelProductsDettails() {
   const { currentUser, user } = useContext(AuthContext);
@@ -184,10 +185,10 @@ export default function SingelProductsDettails() {
   }, [data._id]);
 
   return (
-    <div className=" mt-10">
+    <div className=" mt-10 px-5 lg:px-12">
       <div className="flex  flex-col lg:flex-row    ">
-        <div className="w-full   lg:w-2/5   h-[600px]    ">
-          <div className="   w-full h-3/5   ">
+        <div className="w-full   lg:w-2/5   h-[600px]  mb-5   ">
+          <div className="   w-full h-3/5    mb-4">
             {subimageUrl ? (
               <img
                 src={subimageUrl}
@@ -202,17 +203,15 @@ export default function SingelProductsDettails() {
               />
             )}
           </div>
-          <div className=" w-full h-3/5 ">
-            <ImgSlide
+          <div className=" w-full h-[250px] overflow-auto grid  mb-4 gap-4 grid-cols-1  ">
+            <SubImgSlider
               handleSubimgShow={handleSubimgShow}
               images={data.subImages}
-            ></ImgSlide>
+            ></SubImgSlider>
           </div>
         </div>
         <div className="w-full  lg:w-3/5 text-left px-4   ">
-          <h2 className="text-2xl text-[#719f18] text-center">
-            Select Items
-          </h2>
+          <h2 className="text-2xl text-[#719f18] text-center">Select Items</h2>
           <div>
             <Koyel
               selectedItems={selectedItems}
@@ -222,7 +221,7 @@ export default function SingelProductsDettails() {
           </div>
         </div>
       </div>
-      <div className="flex justify-between  mt-10 flex-col-reverse lg:flex-row">
+      <div className="flex justify-between   mt-20 flex-col-reverse lg:flex-row">
         <div className=" w-full   lg:w-2/5  border bg-slate-200 border-gray-300  rounded-lg  p-5">
           <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
             <div className="text-center my-2">

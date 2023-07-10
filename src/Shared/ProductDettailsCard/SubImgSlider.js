@@ -7,7 +7,7 @@ const SubImgSlider = ({ images, handleSubimgShow }) => {
       {images?.map(imageUrl => (
         <img
           onClick={() => handleSubimgShow(imageUrl)}
-          className="lg:h-52 h-full  w-full  object-contain border"
+          className="lg:h-52 h-full  w-full  object-cover border"
           src={imageUrl}
         />
       ))}
