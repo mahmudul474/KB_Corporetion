@@ -4,10 +4,15 @@ import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 import axios from "axios";
 import ActionHistory from "./ActionHistory";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function ProductDettailsCard({ data }) {
   const { currentUser, user } = useContext(AuthContext);
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   console.log(data);
 
@@ -163,9 +168,9 @@ export default function ProductDettailsCard({ data }) {
   }, [data._id]);
 
   return (
-    <div className="max-w-6xl  mx-auto  ">
+    <div className="max-w-6xl  mx-auto my-16  ">
       <div className="flex  flex-col lg:flex-row   ">
-        <div className="w-full px-4 lg:w-3/5 h-full  ">
+        <div className="w-full mb-3 px-4 lg:w-3/5 h-full  ">
           <div className=" h-64 lg:h-[600px]   ">
             {subimageUrl ? (
               <img
@@ -182,7 +187,7 @@ export default function ProductDettailsCard({ data }) {
             )}
           </div>
         </div>
-        <div className="w-full lg:w-2/5 text-left px-4  h-full lg:h-[600px]   overflow-auto     ">
+        <div className="w-full lg:w-2/5 text-left px-4   md:h-[500px] h-[200px]  lg:h-[600px]   overflow-auto     ">
           <SubImgSlider
             handleSubimgShow={handleSubimgShow}
             images={data.subImages}
@@ -192,16 +197,43 @@ export default function ProductDettailsCard({ data }) {
       <div className="flex justify-between md:mx-5  sm:mx-5  mt-10 flex-col lg:flex-row">
         <div className="w-full lg:w-2/3   capitalize">
           <div>
-            <h2 className="  mt-1 mb-6 text-2xl font-bold  text-left md:text-4xl">
+            <h2 className="  text-black  mt-1 mb-6 text-2xl font-bold  text-left md:text-4xl">
               {data.name}
             </h2>
             <p className="  mb-4 text-gray-700 text-left  ">
-              {data?.description}
+              {data?.description?.slice(0, 100)}
+
+              <label
+                htmlFor="productDesc"
+                className=" underline cursor-pointer ml-3"
+              >
+                ...Read more
+              </label>
+
+              <input
+                type="checkbox"
+                id="productDesc"
+                className="modal-toggle"
+              />
+              <div className="modal ">
+                <div className="modal-box bg-white text-black">
+                  <h3 className="font-bold text-lg"></h3>
+                  <p className="py-4">{data?.description}</p>
+                  <div className="modal-action">
+                    <label
+                      htmlFor="productDesc"
+                      className="btn bg-[#719f18]  text-white hover:bg-[#73471b]"
+                    >
+                      Close!
+                    </label>
+                  </div>
+                </div>
+              </div>
             </p>
           </div>
 
           <div>
-            <div className="mr-5 bg-slate-200">
+            <div className="mr-5 bg-white shadow-2xl p-3">
               <div className="flex justify-between items-center text-xl font-bold text-[#719f18]   ">
                 <span>Starting bid:</span>
                 <span>{data?.startBiddingPrice} $</span>
@@ -282,7 +314,6 @@ export default function ProductDettailsCard({ data }) {
                   </div>
 
                   <button
-                    disabled={isBiddingClosed}
                     type="submit"
                     className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-[#719f18] rounded-lg border border-[#719f18] hover:bg-[#73471b] focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18] "
                   >
@@ -328,11 +359,11 @@ export default function ProductDettailsCard({ data }) {
             </div>
           </div>
         </div>
-        <div className=" w-full   lg:w-1/3  border bg-slate-200 border-gray-300  rounded-lg  p-5">
+        <div className=" w-full   lg:w-1/3  border bg-[#719f18] text-white rounded-lg  p-5">
           <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
             <div className="text-center my-2">
               <div className="my-5">
-                <h1 className="text-[#719f18]  flex items-center justify-center text-xl">
+                <h1 className="  flex items-center justify-center text-xl">
                   Winner{" "}
                 </h1>
                 {data?.winner ? (
@@ -343,33 +374,33 @@ export default function ProductDettailsCard({ data }) {
                       alt="Person"
                     />
                     <div className="flex flex-col items-start justify-center">
-                      <p className="text-lg font-bold text-left">
+                      <p className="text-lg font-bold  text-left">
                         {data?.winner?.bidderName}
                       </p>
-                      <p className="text-sm text-gray-800 text-left">
+                      <p className="text-sm  text-left">
                         Win Bid Price: {data?.winner?.amount}$
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <h2> waitting for bidding end </h2>
+                  <h2 className="text-white"> waiting for bidding end </h2>
                 )}
               </div>
 
-              <h4 className="text-red-500">This Auction Ends in</h4>
-              <h2 className="text-red-500">{remainingTime}</h2>
+              <h4 className=" text-[#73471b]">This Auction Ends in</h4>
+              <h2 className=" text-[#73471b]">{remainingTime}</h2>
             </div>
 
             <div className="text-center my-2">
-              <h4 className="text-[#719f18]">Start Bidding Time</h4>
-              <h2 className="text-[#719f18]">
+              <h4 className="text-white">Start Bidding Time</h4>
+              <h2 className="text-[white]">
                 {formatDateTime(data.startBiddingTime)}
               </h2>
             </div>
 
             <div className="text-center my-2">
-              <h4 className="text-red-500"> End Bidding Time</h4>
-              <h2 className="text-red-500">
+              <h4 className="text-[#73471b]"> End Bidding Time</h4>
+              <h2 className="text-[#73471b]">
                 {formatDateTime(data.endBiddingTime)}
               </h2>
             </div>
@@ -378,8 +409,8 @@ export default function ProductDettailsCard({ data }) {
               className="flex items-center my-5 text-[#719f18]  flex-col justify-center text-xl   font-bold 
               "
             >
-              <h1>Total Bids</h1>
-              <h1>
+              <h1 className="text-white">Total Bids</h1>
+              <h1 className="text-white">
                 {data && data?.bids?.length
                   ? data?.bids?.length + " " + "bids"
                   : "No Bids Available"}

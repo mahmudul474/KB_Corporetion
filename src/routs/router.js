@@ -138,11 +138,7 @@ export const routs = createBrowserRouter([
         path: "/action/:id",
         loader: ({ params }) =>
           fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
-        element: (
-          <Private>
-            <ProductDettails></ProductDettails>
-          </Private>
-        )
+        element: <ProductDettails></ProductDettails>
       },
       {
         path: "/excel/:id",
