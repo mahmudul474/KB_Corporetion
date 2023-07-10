@@ -6,11 +6,11 @@ export default function Profile() {
   return (
     <div className="px-5  ">
       <div className="shadow-gray-400 mt-24 p-10 shadow-2xl ">
-        <h1 className="text-4xl capitalize  text-left mb-3 font-semibold">
+        <h1 className="text-4xl capitalize  text-black text-left mb-3 font-semibold">
           Personal Details
         </h1>
-        <span className="w-20 h-[2px] bg-green-600 block mb-10"></span>
-        <div className="text-lg  font-semibold capitalize">
+        <span className="w-20 h-[2px] bg-[#719f18] block mb-10"></span>
+        <div className="text-lg  text-black font-semibold capitalize">
           <h1 className="flex justify-start my-2">
             <span className="mr-5 ">Name:</span>
             <span> {currentUser?.name}</span>
@@ -26,11 +26,11 @@ export default function Profile() {
         </div>
       </div>
       <div className=" mt-10 shadow-gray-400 p-10 shadow-2xl ">
-        <h1 className="text-4xl capitalize  text-left mb-3 font-semibold">
+        <h1 className="text-4xl  text-black  capitalize  text-left mb-3 font-semibold">
           security
         </h1>
-        <span className="w-20 h-[2px] bg-green-600 block mb-10"></span>
-        <div className="text-lg  font-semibold capitalize">
+        <span className="w-20 h-[2px] bg-[#719f18] block mb-10"></span>
+        <div className="text-lg  text-black font-semibold capitalize">
           <h1 className="flex justify-start my-2">
             <span className="mr-5 ">Business-Name:</span>
             <span> {currentUser?.businessName}</span>
@@ -50,10 +50,10 @@ export default function Profile() {
         </div>
       </div>
       <div className=" mt-10 shadow-gray-400 p-10 shadow-2xl ">
-        <h1 className="text-4xl capitalize  text-left mb-3 font-semibold">
+        <h1 className="text-4xl  text-black  capitalize  text-left mb-3 font-semibold">
           NID/PASSPORT
         </h1>
-        <span className="w-20 h-[2px] bg-green-600 block mb-10"></span>
+        <span className="w-20 h-[2px] bg-[#719f18] block mb-10"></span>
         <div className="text-lg  font-semibold capitalize">
           <div>
             <img

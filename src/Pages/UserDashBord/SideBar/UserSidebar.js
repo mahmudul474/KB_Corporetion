@@ -34,9 +34,12 @@ export default function UserSidebar() {
     <div>
       <div>{showPopup && <EditProfilePopup onClose={closePopup} />}</div>
 
-      <div className="h-full p-3 space-y-2 text-2xl bg-slate-100 rounded rounded-lg">
+      <div className="h-full text-black  p-3 space-y-2 text-2xl  bg-white shadow-2xl rounded rounded-lg">
         <div className="flex justify-end items-end">
-          <span onClick={openPopup} className="bg-slate-400 p-3 rounded-lg">
+          <span
+            onClick={openPopup}
+            className="shadow-2xl bg-emerald-100 cursor-pointer text-black p-3 rounded-lg"
+          >
             <AiFillEdit></AiFillEdit>
           </span>
         </div>
@@ -47,8 +50,8 @@ export default function UserSidebar() {
             className="w-20 h-20 rounded-full dark:bg-gray-500"
           />
 
-          <div className="tex-center">
-            <h2 className=" font-semibold">{currentUser?.name}</h2>
+          <div className="tex-center text-black">
+            <h2 className=" font-semibold  ">{currentUser?.name}</h2>
             <span className="text-sm">{currentUser?.email}</span>
           </div>
 
@@ -68,30 +71,28 @@ export default function UserSidebar() {
         <div className="divide-y divide-gray-700">
           <ul className="pt-2 pb-4 space-y-1 px-5  text-lg  font-semibold">
             <Link to="/my-dashboard">
-              <li className="dark:bg-gray-800  dark:text-gray-50">
+              <li className=" bg-white cursor-pointer  text-black ">
                 <span className="flex items-center p-2 space-x-3 rounded-md">
                   <GrUserSettings></GrUserSettings>
 
-                  <span>Personal Details</span>
+                  <span className="text-black">Personal Details</span>
                 </span>
               </li>
             </Link>
 
-            {currentUser?.role === "seller" && (
-              <Link to="/my-dashboard/request/seller">
-                <li className="dark:bg-gray-800  dark:text-gray-50">
-                  <span className="flex items-center p-2 space-x-3 rounded-md">
-                    <MdSell></MdSell>
-                    <span> Become a Seller</span>
-                  </span>
-                </li>
-              </Link>
-            )}
-
             {currentUser?.role === "bidder" && (
               <>
+                <Link to="/my-dashboard/request/seller">
+                  <li className=" bg-white  cursor-pointer  text-black ">
+                    <span className="flex items-center p-2 space-x-3 rounded-md">
+                      <MdSell></MdSell>
+                      <span className="text-black"> Become a Seller</span>
+                    </span>
+                  </li>
+                </Link>
+
                 <Link to="/my-dashboard/my-bids">
-                  <li className="dark:bg-gray-800  dark:text-gray-50">
+                  <li className=" bg-white  cursor-pointer text-black ">
                     <span className="flex items-center p-2 space-x-3 rounded-md">
                       <GiThorHammer></GiThorHammer>
                       <span>My Bids</span>
@@ -100,7 +101,7 @@ export default function UserSidebar() {
                 </Link>
 
                 <Link to="/my-dashboard/win-bids">
-                  <li className="dark:bg-gray-800  dark:text-gray-50">
+                  <li className=" cursor-pointer bg-white  text-black ">
                     <span className="flex items-center p-2 space-x-3 rounded-md">
                       <FaRegSmileWink></FaRegSmileWink>
                       <span>Winning Bids</span>
@@ -109,7 +110,7 @@ export default function UserSidebar() {
                 </Link>
 
                 <Link to="/my-dashboard/buy">
-                  <li className="dark:bg-gray-800  dark:text-gray-50">
+                  <li className=" cursor-pointer bg-white  text-black ">
                     <span className="flex items-center p-2 space-x-3 rounded-md">
                       <AiOutlineMoneyCollect></AiOutlineMoneyCollect>
                       <span>Buy</span>
@@ -122,7 +123,7 @@ export default function UserSidebar() {
             <hr className="my-5"></hr>
             <li
               onClick={handleLogOut}
-              className="dark:bg-gray-800   dark:text-gray-50"
+              className="cursor-pointer  bg-white   text-black "
             >
               <span className="flex items-center p-2 space-x-3 rounded-md">
                 <span className="text-red-600"> Sing-out</span>

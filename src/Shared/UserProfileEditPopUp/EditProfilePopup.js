@@ -68,13 +68,12 @@ const EditProfilePopup = ({ onClose }) => {
   };
 
   const handleCancel = () => {
-    // Close the popup without submitting the form
     onClose();
   };
 
   return (
-    <div className="fixed z-50 inset-0 flex items-center justify-center ">
-      <div className="bg-slate-400 rounded-lg p-8 w-96">
+    <div className="fixed z-50    bg-base-100  inset-0 flex items-center justify-center ">
+      <div className="bg-white  shadow-2xl rounded-lg p-8 w-96">
         <h2 className="text-2xl mb-4">Edit Profile</h2>
         <form onSubmit={handleSubmit}>
           {profileImageUrl ? (
@@ -82,11 +81,11 @@ const EditProfilePopup = ({ onClose }) => {
               <img
                 src={profileImageUrl}
                 alt="Profile Photo"
-                className="rounded-full m-auto  w-32 h-32"
+                className="rounded-full m-auto   w-32 h-32"
               />
               <label
                 htmlFor="fileInput"
-                className="absolute bottom-0 right-1/4 bg-white rounded-full p-2 cursor-pointer"
+                className="absolute cursor-pointer bottom-0 right-1/4 bg-white rounded-full p-2 cursor-pointer"
               >
                 <FiEdit size={24} />
               </label>
@@ -130,7 +129,7 @@ const EditProfilePopup = ({ onClose }) => {
               type="text"
               defaultValue={currentUser?.name}
               onChange={e => setName(e.target.value)}
-              className="border border-gray-300 p-2 w-full"
+              className="border    bg-white  border-gray-300 p-2 w-full"
             />
 
             <label htmlFor="input" className="block mb-2 text-left ">
@@ -141,13 +140,13 @@ const EditProfilePopup = ({ onClose }) => {
               type="number "
               defaultValue={currentUser?.phoneNumber}
               onChange={e => setPhoneNumber(e.target.value)}
-              className="border border-gray-300 p-2 w-full"
+              className="border  bg-white  border-gray-300 p-2 w-full"
             />
           </div>
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-blue-500 mr-2 text-white py-2 px-4 rounded"
+              className="bg-[#719f18]  hover:bg-[#73471b] mr-2 text-white  py-2 px-4 rounded"
             >
               Submit
             </button>
@@ -155,7 +154,7 @@ const EditProfilePopup = ({ onClose }) => {
             <button
               type="button"
               onClick={handleCancel}
-              className="bg-gray-300 text-gray-700 py-2 px-4 rounded "
+              className="bg-[#73471b]  hover:bg-[#719f18] text-white py-2 px-4 rounded "
             >
               Cancel
             </button>
