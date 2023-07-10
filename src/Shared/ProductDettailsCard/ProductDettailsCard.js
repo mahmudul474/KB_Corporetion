@@ -4,7 +4,7 @@ import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 import axios from "axios";
 import ActionHistory from "./ActionHistory";
 import { toast } from "react-hot-toast";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function ProductDettailsCard({ data }) {
   const { currentUser, user } = useContext(AuthContext);
@@ -13,8 +13,7 @@ export default function ProductDettailsCard({ data }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
-
-  console.log(data);
+  const navigate = useNavigate();
 
   const [subimageUrl, setSubImgUrl] = useState(null);
   const [newPrice, setNewPrice] = useState("");
@@ -24,47 +23,6 @@ export default function ProductDettailsCard({ data }) {
     setBidError("");
     const bidPrice = parseFloat(event.target.value);
     setNewPrice(bidPrice);
-  };
-
-  //palce bid
-  const handlePlcebid = e => {
-    e.preventDefault();
-
-    const bidData = {
-      bidAmount: newPrice,
-      bidderName: currentUser?.name,
-      bidderEmail: currentUser?.email,
-      bidderId: currentUser?._id,
-      bidderPhoto: currentUser?.userPhoto,
-      bidderNumber: currentUser?.phoneNumber,
-      productName: data.name,
-      productPhoto: data.mainImage
-    };
-
-    fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/bids`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bidData)
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Bid placed successfully", data);
-        if (data.message) {
-          toast.success(data.message);
-          window.location.reload(true);
-          setNewPrice("");
-        } else {
-          toast.error(data.error);
-          setBidError(data.error);
-        }
-
-        // Clear bid amount field
-      })
-      .catch(error => {
-        console.error("Error placing bid", error);
-      });
   };
 
   ///img slider
@@ -152,6 +110,55 @@ export default function ProductDettailsCard({ data }) {
   };
 
   //get winner
+
+  //palce bid
+  const handlePlcebid = e => {
+    e.preventDefault();
+
+    if (!currentUser || !user) {
+      return navigate("/login");
+    } else if (user?.emailVerified === "false") {
+      return alert("Please  check your email and noreply! and verify email");
+    } else if (currentUser?.role !== "bidder") {
+      return alert("please waiting for admin approval");
+    }
+
+    const bidData = {
+      bidAmount: newPrice,
+      bidderName: currentUser?.name,
+      bidderEmail: currentUser?.email,
+      bidderId: currentUser?._id,
+      bidderPhoto: currentUser?.userPhoto,
+      bidderNumber: currentUser?.phoneNumber,
+      productName: data.name,
+      productPhoto: data.mainImage
+    };
+
+    fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/bids`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bidData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Bid placed successfully", data);
+        if (data.message) {
+          toast.success(data.message);
+          window.location.reload(true);
+          setNewPrice("");
+        } else {
+          toast.error(data.error);
+          setBidError(data.error);
+        }
+
+        // Clear bid amount field
+      })
+      .catch(error => {
+        console.error("Error placing bid", error);
+      });
+  };
 
   const [winner, setWinner] = useState(null);
 
@@ -260,69 +267,32 @@ export default function ProductDettailsCard({ data }) {
                 </p>
                 <span className="w-16 h-1 bg-[#719f18] block"></span>
               </div>
+              <p className="text-red-600  text-center  capitalize">{bidEroo}</p>
+              <form
+                onSubmit={handlePlcebid}
+                className="flex justify-between my-5 items-center"
+              >
+                <div className="  w-full  ">
+                  <input
+                    type="number"
+                    value={newPrice}
+                    onChange={handlePriceChange}
+                    min={data.startBiddingPrice}
+                    step="any"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  -gray-700      "
+                    placeholder="$00:00"
+                    required
+                  />
+                </div>
 
-              {user?.emailVerified === "false" ||
-              currentUser?.role !== "bidder" ? (
-                <>
-                  <p className="text-red-500">
-                    {" "}
-                    youse are not valid for for Bidding admin approve your
-                    account then you bid
-                  </p>
-                  <form className="flex justify-between my-5 items-center">
-                    <div className="  w-full  ">
-                      <input
-                        type="number"
-                        value={newPrice}
-                        step="any"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  -gray-700     "
-                        placeholder="$00:00"
-                        required
-                      />
-                    </div>
-
-                    <button
-                      disabled={isBiddingClosed}
-                      onClick={() =>
-                        toast.error(
-                          "admin doesn't your account approved waiting for approval"
-                        )
-                      }
-                      className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-[#719f18] rounded-lg border border-[#719f18] hover:bg-[#73471b] focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18] "
-                    >
-                      {data?.status === "sold out" ? "sold out" : " Place Bid"}
-                    </button>
-                  </form>
-                </>
-              ) : (
-                <form
-                  onSubmit={handlePlcebid}
-                  className="flex justify-between my-5 items-center"
+                <button
+                  type="submit"
+                  className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-[#719f18] rounded-lg border border-[#719f18] hover:bg-[#73471b] focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18] "
                 >
-                  <div className="  w-full  ">
-                    <input
-                      type="number"
-                      disabled={isBiddingClosed}
-                      value={newPrice}
-                      onChange={handlePriceChange}
-                      min={data.startBiddingPrice}
-                      step="any"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  -gray-700      "
-                      placeholder="$00:00"
-                      required
-                    />
-                  </div>
+                  {data?.status === "sold out" ? "sold out" : " Place Bid"}
+                </button>
+              </form>
 
-                  <button
-                    type="submit"
-                    className="inline-flex lg:w-1/3 w-1/2 items-center mr-4 py-2.5 px-3 lg:px-8 ml-2 text-sm font-medium text-white bg-[#719f18] rounded-lg border border-[#719f18] hover:bg-[#73471b] focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18] "
-                  >
-                    {data?.status === "sold out" ? "sold out" : " Place Bid"}
-                  </button>
-                </form>
-              )}
-
-              <p className="text-red-600 text-left ">{bidEroo}</p>
               <div className="flex  items-center lg:flex-row flex-col  justify-between ">
                 <a
                   className=" mx-3 my-2 text-center w-full  "
