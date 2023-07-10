@@ -29,7 +29,7 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
 
   return (
     <div className="  overflow-auto  md:h-[500px] h-[300px]  lg:h-[600px] shadow-md sm:rounded-lg">
-      <table className="table table-xs table-pin-rows table-pin-cols">
+      <table className="table table-xs table-pin-rows  ">
         <thead>
           <tr>
             <th className="bg-white">
@@ -62,7 +62,7 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
         </thead>
         <tbody>
           {koyel?.map(skoyel => (
-            <tr className="bg-white border-b     hover:bg-gray-50  ">
+            <tr className="bg-white      hover:bg-gray-50  ">
               <td className="w-4 p-4">
                 {skoyel?.status === "sold-out" ? (
                   <button className="btn bg-red-500 text-white btn-xs">

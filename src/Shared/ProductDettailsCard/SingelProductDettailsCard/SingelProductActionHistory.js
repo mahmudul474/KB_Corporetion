@@ -10,7 +10,7 @@ export default function SingelProductActionHistory({ bids }) {
           Bid History
         </h1>
 
-        <div className=" overflow-auto h-[500px] shadow-md sm:rounded-lg ">
+        <div className="  shadow-md sm:rounded-lg ">
           {reversedBids && reversedBids.length === 0 ? (
             <div>
               {" "}
@@ -19,75 +19,88 @@ export default function SingelProductActionHistory({ bids }) {
               </h2>{" "}
             </div>
           ) : (
-            <table className="table table-xs table-pin-rows table-pin-cols">
-              <thead>
-                <tr>
-                  <td>index</td>
-                  <td>Bider</td>
-                  <td>Product</td>
-                  <td>Product Name</td>
-                  <td>Total Item</td>
-                  <td>Bidding Price</td>
-                  <td>item</td>
-                </tr>
-              </thead>
-              <tbody>
-                {reversedBids?.map((bid, index) => (
-                  <tr key={bid._id}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <div className="flex  lg:flex-row items-center space-x-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle w-12 h-12">
-                            <img src={bid?.bidderPhoto} alt="Avatar" />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="font-bold">{bid?.bidderName}</div>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle w-12 h-12">
-                            <img src={bid?.productPhoto} alt="Avatar" />
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td>{bid?.productName}</td>
-                    <td>{bid.item?.length}</td>
-                    <td>{bid.bidAmount}$</td>
-                    <td>
-                      <div className="dropdown dropdown-hover">
-                        <label tabIndex={0} className="btn m-1">
-                          Hover
-                        </label>
-                        <table
-                          tabIndex={0}
-                          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-                        >
-                          <thead>
-                            <tr>
-                              <td>item</td>
-                              <td>spec</td>
-                            </tr>{" "}
-                          </thead>
-                          {bid?.item?.reverse().map(i => (
-                            <tr>
-                              <td>{i?.koyel?.item}</td>
-                              <td>{i?.koyel?.spec}</td>
-                            </tr>
-                          ))}
-                        </table>
-                      </div>
-                    </td>
+            <div className="h-[400px] overflow-auto">
+              <table className="table table-xs table-pin-rows ">
+                <thead>
+                  <tr className="bg-white">
+                   
+                    <td className="text-black bg-white">Bider</td>
+                    <td className="text-black bg-white">Product</td>
+                    <td className="text-black bg-white">Product Name</td>
+                    <td className="text-black bg-white">Total Item</td>
+                    <td className="text-black bg-white">Bidding Price</td>
+                    <td className="text-black bg-white">item</td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {reversedBids?.map((bid, index) => (
+                    <tr key={bid._id}>
+                      <td>
+                        <div className="flex  lg:flex-row items-center space-x-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img src={bid?.bidderPhoto} alt="Avatar" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="font-bold  text-black">
+                              {bid?.bidderName}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div className="flex items-center space-x-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img src={bid?.productPhoto} alt="Avatar" />
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="text-black bg-white">
+                        {bid?.productName}
+                      </td>
+                      <td className="text-black bg-white">
+                        {bid.item?.length}
+                      </td>
+                      <td className="text-black bg-white">{bid.bidAmount}$</td>
+                      <td>
+                        <div className="dropdown dropdown-hover">
+                          <label tabIndex={0} className=" bg-white m-1">
+                            <details>
+                              <summary className="text-black">Items</summary>
+                            </details>
+                          </label>
+                          <table
+                            tabIndex={0}
+                            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                          >
+                            <thead className="bg-white">
+                              <tr className="bg-white">
+                                <td className="text-black bg-white">item</td>
+                                <td className="text-black bg-white">spec</td>
+                              </tr>{" "}
+                            </thead>
+                            {bid?.item?.reverse().map(i => (
+                              <tr className="bg-white">
+                                <td className="text-black bg-white">
+                                  {i?.koyel?.item}
+                                </td>
+                                <td className="text-black bg-white">
+                                  {i?.koyel?.spec}
+                                </td>
+                              </tr>
+                            ))}
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       </div>
