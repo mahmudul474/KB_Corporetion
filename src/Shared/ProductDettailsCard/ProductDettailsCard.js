@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import SubImgSlider from "./SubImgSlider";
 import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
-import axios from "axios";
 import ActionHistory from "./ActionHistory";
 import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";

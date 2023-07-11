@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import AWS from "aws-sdk";
 import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
 
-export default function BuyNow({ id, data }) {
+export default function BuyNow({ id, data, close }) {
   const sumBuyNowPrice = data.reduce((total, item) => {
     const buyNowPrice = parseInt(item.buyNowPrice);
     if (!isNaN(buyNowPrice)) {
@@ -98,14 +98,10 @@ export default function BuyNow({ id, data }) {
 
   return (
     <>
-      <input type="checkbox" id="my_modal_6" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box max-w-full  bg-white shadow-gray-50">
-          <div class=" bg-gray-100 pt-20">
-            <h1 class="mb-10 text-center text-black text-2xl font-bold">
-              {" "}
-              Items
-            </h1>
+      <div className=" fixed z-50  h-screen shadow-2xl  bg-base-100 inset-0    ">
+        <div className="max-w-full bg-white">
+          <div class=" bg-gray-100 pt-20 ">
+            <h1 class="mb-10 text-center text-black text-2xl font-bold"> Items</h1>
             <div class="mx-auto justify-center px-6  flex flex-col lg:flex-row xl:px-0">
               <div className=" lg:w-2/3 h-[400px] w-full overflow-auto">
                 <table className=" table table-xs table-pin-rows  ">
@@ -127,22 +123,16 @@ export default function BuyNow({ id, data }) {
                   <tbody>
                     {data?.map(skoyel => (
                       <tr className="bg-white border-b     hover:bg-gray-50  ">
-                        <td className="text-black bg-white"> {skoyel?.item}</td>
-                        <td className="text-black bg-white">{skoyel?.spec}</td>
-                        <td className="text-black bg-white">
-                          {skoyel?.Thickness}
-                        </td>
-                        <td className="text-black bg-white">{skoyel?.Width}</td>
-                        <td className="text-black bg-white">
-                          {skoyel?.weight}
-                        </td>
-                        <td className="text-black bg-white">{skoyel?.TS}</td>
-                        <td className="text-black bg-white">{skoyel?.YP}</td>
-                        <td className="text-black bg-white">{skoyel?.EL}</td>
-                        <td className="text-black bg-white">
-                          {skoyel?.currentBid}
-                        </td>
-                        <td className="text-black bg-white">
+                        <td> {skoyel?.item}</td>
+                        <td>{skoyel?.spec}</td>
+                        <td>{skoyel?.Thickness}</td>
+                        <td>{skoyel?.Width}</td>
+                        <td>{skoyel?.weight}</td>
+                        <td>{skoyel?.TS}</td>
+                        <td>{skoyel?.YP}</td>
+                        <td>{skoyel?.EL}</td>
+                        <td>{skoyel?.currentBid}</td>
+                        <td className="px-6 py-4 ">
                           {skoyel.bids && skoyel.bids.length === 0
                             ? skoyel?.currentBid
                             : skoyel.bids[
@@ -150,9 +140,7 @@ export default function BuyNow({ id, data }) {
                               ].bidAmount.toFixed(2)}
                           $
                         </td>
-                        <td className="text-black bg-white">
-                          {skoyel?.buyNowPrice}$
-                        </td>
+                        <td>{skoyel?.buyNowPrice}$</td>
                       </tr>
                     ))}
                   </tbody>
@@ -178,7 +166,7 @@ export default function BuyNow({ id, data }) {
                     </label>
                     <input
                       onChange={e => setBankname(e.target.value)}
-                      className="shadow bg-white appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
                       id="bank-name"
                       type="text"
                       placeholder="Enter Bank Name"
@@ -195,7 +183,7 @@ export default function BuyNow({ id, data }) {
                     <input
                       required
                       onChange={e => setBranch(e.target.value)}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
+                      className=" bg-white  shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                       id="branch"
                       type="text"
                       placeholder="Enter Branch"
@@ -211,7 +199,7 @@ export default function BuyNow({ id, data }) {
                     <input
                       required
                       onChange={e => setAmount(e.target.value)}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
+                      className="bg-white   shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                       id="amount"
                       min={data?.buyNowPrice}
                       type="text"
@@ -228,7 +216,7 @@ export default function BuyNow({ id, data }) {
                     <input
                       required
                       onChange={e => setTransaction(e.target.value)}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
+                      className="bg-white    shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                       id="transaction-id"
                       type="text"
                       placeholder="Enter Transaction ID"
@@ -243,7 +231,7 @@ export default function BuyNow({ id, data }) {
                     </label>
                     <input
                       required
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
+                      className=" bg-white  shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                       id="payment-slip"
                       type="file"
                       onChange={handleBankSleepuplod}
@@ -258,23 +246,22 @@ export default function BuyNow({ id, data }) {
                   )}
                   <div className="flex justify-center">
                     <button
-                      className="bg-[#719f18] cursor-pointer hover:bg-[#73471b] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                      className="bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                       type="submit"
                     >
                       Submit
+                    </button>
+
+                    <button
+                      onClick={close}
+                      className="bg-[#719f18] hover:bg-[#73471b] btn text-white ml-3"
+                    >
+                      Close
                     </button>
                   </div>
                 </form>
               </div>
             </div>
-          </div>
-          <div className="modal-action">
-            <label
-              htmlFor="my_modal_6"
-              className="btn text-white bg-[#719f18] hover:bg-[#73471b]"
-            >
-              Close!
-            </label>
           </div>
         </div>
       </div>

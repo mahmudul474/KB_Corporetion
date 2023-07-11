@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 
-import ImgSlide from "./ImgSlide";
 import Koyel from "./Koyel/Koyel";
 import SingelProductActionHistory from "./SingelProductActionHistory";
 import BuyNow from "./BuyNowKoyelItem/BuyNow";
@@ -12,6 +11,7 @@ import SubImgSlider from "../SubImgSlider";
 export default function SingelProductsDettails() {
   const { currentUser, user } = useContext(AuthContext);
   const data = useLoaderData();
+  const navigate = useNavigate();
 
   const [subimageUrl, setSubImgUrl] = useState(null);
   const [newPrice, setNewPrice] = useState("");
@@ -34,57 +34,6 @@ export default function SingelProductsDettails() {
     (accumulator, currentValue) => accumulator + Number(currentValue),
     0
   );
-
-  ///place bid
-  const handlePlcebid = e => {
-    e.preventDefault();
-    // Prepare the bid data for selected items
-    const koyelBids = selectedItems.map(item => ({
-      koyelId: item._id,
-      koyel: item,
-      bidAmount: newPrice / selectedItems?.length,
-      bidderName: currentUser?.name,
-      bidderEmail: currentUser?.email,
-      bidderId: currentUser?._id,
-      bidderPhoto: currentUser?.userPhoto,
-      bidderNumber: currentUser?.phoneNumber
-    }));
-
-    const bidder = {
-      productName: data?.name,
-      productID: data?._id,
-      productPhoto: data?.mainImage,
-      bidAmount: newPrice,
-      bidderName: currentUser?.name,
-      bidderEmail: currentUser?.email,
-      bidderId: currentUser?._id,
-      bidderPhoto: currentUser?.userPhoto,
-      bidderNumber: currentUser?.phoneNumber
-    };
-
-    fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/koyel/bids`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ koyelBids, bidder })
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Bid placed successfully", data);
-        if (data.message) {
-          toast.success(data.message);
-          // window.location.reload(true);
-          setNewPrice("");
-        } else {
-          toast.error(data.error);
-          setBidError(data.error);
-        }
-
-        // Clear bid amount field
-      });
-  };
-
   /// img    slider
   const handleSubimgShow = subimgUrl => {
     setSubImgUrl(subimgUrl);
@@ -183,6 +132,86 @@ export default function SingelProductsDettails() {
 
     // Call the API every 10 seconds
   }, [data._id]);
+
+  ///place bid
+  const handlePlcebid = e => {
+    e.preventDefault();
+
+    if (!currentUser || !user) {
+      return navigate("/login");
+    } else if (user?.emailVerified === "false") {
+      return alert("Please  check your email and noreply! and verify email");
+    } else if (currentUser?.role !== "bidder") {
+      return alert("please waiting for admin approval");
+    } else if (selectedItems.length === 0) {
+      return alert("Please select items"), setBidError("Please select items");
+    }
+
+    // Prepare the bid data for selected items
+    const koyelBids = selectedItems.map(item => ({
+      koyelId: item._id,
+      koyel: item,
+      bidAmount: newPrice / selectedItems?.length,
+      bidderName: currentUser?.name,
+      bidderEmail: currentUser?.email,
+      bidderId: currentUser?._id,
+      bidderPhoto: currentUser?.userPhoto,
+      bidderNumber: currentUser?.phoneNumber
+    }));
+
+    const bidder = {
+      productName: data?.name,
+      productID: data?._id,
+      productPhoto: data?.mainImage,
+      bidAmount: newPrice,
+      bidderName: currentUser?.name,
+      bidderEmail: currentUser?.email,
+      bidderId: currentUser?._id,
+      bidderPhoto: currentUser?.userPhoto,
+      bidderNumber: currentUser?.phoneNumber
+    };
+
+    fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/koyel/bids`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ koyelBids, bidder })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Bid placed successfully", data);
+        if (data.message) {
+          toast.success(data.message);
+          // window.location.reload(true);
+          setNewPrice("");
+        } else {
+          toast.error(data.error);
+          setBidError(data.error);
+        }
+
+        // Clear bid amount field
+      });
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    if (selectedItems.length === 0 || selectedItems.length < 0) {
+      return alert("Please select items");
+    } else if (!currentUser || !user) {
+      return navigate("/login");
+    } else if (user?.emailVerified === "false") {
+      return alert("Please  check your email and noreply! and verify email");
+    } else if (currentUser?.role !== "bidder") {
+      return alert("please waiting for admin approval");
+    }
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className=" mt-10 px-5 lg:px-12">
@@ -328,9 +357,14 @@ export default function SingelProductsDettails() {
                   {itemCurrentPrice.toFixed(2)}
                 </div>
               ) : (
-                <div className="text-black">select item and place bid</div>
+                <div className="text-[#719f18] capitalize text-md font-semibold">
+                  select items then place Bid & Buy
+                </div>
               )}
 
+              <p className="text-red-600 text-center font-md font-semibold ">
+                {bidEroo}
+              </p>
               <form
                 onSubmit={handlePlcebid}
                 className="flex justify-between my-5 items-center"
@@ -354,7 +388,7 @@ export default function SingelProductsDettails() {
                   Place Bid
                 </button>
               </form>
-              <p className="text-red-600 text-left ">{bidEroo}</p>
+
               <div className="flex  items-center lg:flex-row flex-col  justify-between ">
                 <a
                   className=" mx-3 my-2 text-center w-full  "
@@ -371,18 +405,24 @@ export default function SingelProductsDettails() {
                 </a>
 
                 <div className="w-full">
-                  <label
-                    for="my_modal_6"
-                    className="w-full  btn bg-[#719f18] hover:bg-[#73471b] text-white font-semibold"
+                  <button
+                    onClick={() => openModal()}
+                    className="w-full   btn bg-[#719f18] hover:bg-[#73471b] text-white font-semibold"
                   >
                     Buy Now{" "}
-                  </label>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <BuyNow id={data?._id} data={selectedItems}></BuyNow>
+        {isModalOpen && (
+          <BuyNow
+            close={closeModal}
+            id={data?._id}
+            data={selectedItems}
+          ></BuyNow>
+        )}
       </div>
       <SingelProductActionHistory bids={data?.bids}>
         {" "}

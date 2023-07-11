@@ -27,7 +27,7 @@ export default function ActionHistory({ bids }) {
                   </tr>
                 </thead>
                 <tbody className="text-black">
-                  {[...bids]?.map((bid, index) => (
+                  {[...bids]?.reverse().map((bid, index) => (
                     <tr key={bid._id}>
                       <td>{index + 1}</td>
                       <td>

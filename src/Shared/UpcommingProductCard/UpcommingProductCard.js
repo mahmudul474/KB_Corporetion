@@ -108,18 +108,20 @@ export default function UpcommingProductCard({ data }) {
                 <td> SPEC</td>
                 <td> THICKNESS</td>
                 <td> WIDTH</td>
+                <td> Weight</td>
                 <td> TS</td>
                 <td> YP</td>
                 <td> EL</td>
               </tr>
             </thead>
             <tbody>
-              {koyel?.slice(1).map(item => (
+              {koyel?.map(item => (
                 <tr key={item?._id}>
                   <td>{item?.item}</td>
                   <td>{item?.spec}</td>
                   <td>{item?.Thickness}</td>
                   <td>{item?.Width}</td>
+                  <td>{item?.weight}</td>
                   <td>{item?.TS}</td>
                   <td>{item?.YP}</td>
                   <td>{item?.EL}</td>
