@@ -36,6 +36,8 @@ export default function ProductDettailsCard({ data }) {
 
     if (currentTime > endTimeValue) {
       return "Bidding Close";
+    }else if (currentTime===endTimeValue) {
+      window.location.reload(true)
     }
 
     const remainingTime = endTimeValue - currentTime;
@@ -68,19 +70,8 @@ export default function ProductDettailsCard({ data }) {
   }, [data.endBiddingTime]);
   const isBiddingClosed = remainingTime === "Bidding Close";
 
-  const isBiddingStartSoon = startTime => {
-    const currentTime = new Date().getTime();
-    const startTimeValue = new Date(startTime).getTime();
-
-    return currentTime < startTimeValue;
-  };
-
-  const isBiddingEnd = endTime => {
-    const currentTime = new Date().getTime();
-    const endTimeValue = new Date(endTime).getTime();
-
-    return currentTime > endTimeValue;
-  };
+   
+ 
 
   const formatDateTime = dateTimeString => {
     const options = {
@@ -158,20 +149,14 @@ export default function ProductDettailsCard({ data }) {
         console.error("Error placing bid", error);
       });
   };
-
-  const [winner, setWinner] = useState(null);
-
-  useEffect(() => {
+useEffect(() => {
     if (data?._id) {
       fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/winner`)
         .then(res => res.json())
         .then(data => {
           console.log(data?.message);
         });
-    }
-
-    // Call the API every 10 seconds
-  }, [data._id]);
+    }},[data])
 
   return (
     <div className="max-w-6xl  mx-auto my-16  ">

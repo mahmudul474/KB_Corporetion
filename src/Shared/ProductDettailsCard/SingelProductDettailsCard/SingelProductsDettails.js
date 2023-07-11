@@ -119,18 +119,15 @@ export default function SingelProductsDettails() {
   };
 
   ///get winner
-  const [winner, setWinner] = useState(null);
 
   useEffect(() => {
     if (data?._id) {
-      fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/winner`)
+      fetch(
+        `${process.env.REACT_APP_API_URL}/products/${data?._id}/koyel/winner`
+      )
         .then(res => res.json())
-        .then(data => {
-          console.log(data?.message);
-        });
+        .then(data => {});
     }
-
-    // Call the API every 10 seconds
   }, [data._id]);
 
   ///place bid
