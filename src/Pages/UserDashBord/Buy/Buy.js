@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import { Link } from "react-router-dom";
+import KoyelItembuy from "./KoyelItemBuy/KoyelItembuy";
 
 export default function Buy() {
   const { currentUser } = useContext(AuthContext);
@@ -22,6 +23,18 @@ export default function Buy() {
   });
 
    
+
+
+
+
+
+
+
+
+
+
+
+ 
 
   return (
     <div className="mt-10">
@@ -87,6 +100,11 @@ export default function Buy() {
           </div>
         ))}
       </div>
+ 
+ <div>
+  <KoyelItembuy></KoyelItembuy>
+ </div>
+
     </div>
   );
 }

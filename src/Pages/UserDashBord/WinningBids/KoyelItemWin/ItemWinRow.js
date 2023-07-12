@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import KoyelItemPaymentDettails from "./KoyuelItemPayment/KoyelItemPaymentDettails";
 import ItemPopup from "../../../../Shared/ItemPopUp/ItemPopup";
+import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
 
 export default function ItemWinRow({ data }) {
   const { _id } = data;
+  const { currentUser } = useContext(AuthContext);
 
   const [product, setProduct] = useState({});
 
@@ -18,7 +22,7 @@ export default function ItemWinRow({ data }) {
     }
   }, [_id]);
 
-  const totalBidAmount = data.winners.reduce(
+  const totalBidAmount = data?.winners?.reduce(
     (sum, item) => sum + item.bidAmount,
     0
   );
@@ -57,6 +61,27 @@ export default function ItemWinRow({ data }) {
   //     return sumByBidderId;
   //   }, {});
 
+  ///payments statuse
+  const {
+    data: paymentStatues,
+    isLoading,
+    error,
+    refetch
+  } = useQuery({
+    queryKey: ["paymentStatues", _id],
+    queryFn: async () => {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/product/${_id}/koyel-item/status/${currentUser?._id}`
+      );
+      const data = await res.json();
+      return data;
+    }
+  });
+
+  if (isLoading) {
+    return <span className="loading loading-dots loading-sm"></span>;
+  }
+
   return (
     <>
       <tr>
@@ -72,16 +97,16 @@ export default function ItemWinRow({ data }) {
             </div>
           </div>
         </td>
-        <td>{data?.winners.length}</td>
+        <td>{data?.winners?.length}</td>
         <td>
           <button
             onClick={() => {
               setWinitem(data?.winners);
               openPopup(_id);
             }}
-            className="btn "
+            className=" cursor-pointer "
           >
-            view winning Item{" "}
+            Items
           </button>
         </td>
         <td>
@@ -95,8 +120,23 @@ export default function ItemWinRow({ data }) {
               openPaymentPopup(_id);
             }}
           >
-            Pay
+            Send Payment Details
           </button>
+        </td>
+
+        <td>
+          {paymentStatues?.status === "pending" ||
+          paymentStatues?.status === "approve" ? (
+            <button className="btn btn-outline btn-success">
+              {paymentStatues?.status}
+            </button>
+          ) : (
+            <button className="btn btn-error"></button>
+          )}
+        </td>
+
+        <td>
+          <Link to={`/excel/${_id}`}>View</Link>
         </td>
       </tr>
 
@@ -107,6 +147,7 @@ export default function ItemWinRow({ data }) {
       {productid && (
         <KoyelItemPaymentDettails
           close={closePaymentPopup}
+          refetch={refetch}
           data={paymentItems}
         ></KoyelItemPaymentDettails>
       )}

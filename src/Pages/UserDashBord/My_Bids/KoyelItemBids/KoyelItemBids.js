@@ -24,10 +24,10 @@ export default function KoyelItemBids() {
   }, [currentUser]);
 
   return (
-    <div className="overflow-y-auto h-[400px] overflow-x-auto ">
-      <table className="table table-xs table-pin-rows table-pin-cols">
+    <div className="overflow-auto h-[400px]   ">
+      <table className="table table-xs table-pin-rows">
         <thead>
-          <tr>
+          <tr className="bg-white">
             <td>Product</td>
             <td>Per Ton Price</td>
             <td>Start Time</td>
@@ -36,16 +36,13 @@ export default function KoyelItemBids() {
           </tr>
         </thead>
         <tbody>
-          {koyelbids?.map(product => (
+          {[...koyelbids].reverse()?.map(product => (
             <tr>
               <td>
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src={product?.mainImage}
-                        alt="Avatar Tailwind CSS Component"
-                      />
+                      <img src={product?.mainImage} alt="prroduct" />
                     </div>
                   </div>
                   <div>

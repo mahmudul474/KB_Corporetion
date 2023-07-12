@@ -2,8 +2,9 @@ import React, { useContext, useState } from "react";
 
 import AWS from "aws-sdk";
 import { AuthContext } from "../../../../../auth/AuthProbaider/AuthProvider";
+import { toast } from "react-hot-toast";
 
-export default function KoyelItemPaymentDettails({ onClose, data }) {
+export default function KoyelItemPaymentDettails({ close, data, refetch }) {
   console.log(data, "this data ");
 
   const { currentUser } = useContext(AuthContext);
@@ -70,7 +71,9 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        refetch();
+        close();
+        toast.success("Payment details send  successfully");
       });
   };
 
@@ -83,14 +86,14 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
         >
           <div className="mb-4">
             <label
-              className="block  text-left text-gray-700 text-sm font-bold mb-2"
+              className="block  text-left text-black text-sm font-bold mb-2"
               for="bank-name"
             >
               Bank Name:
             </label>
             <input
               onChange={e => setBankname(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none bg-white focus:shadow-outline"
               id="bank-name"
               type="text"
               placeholder="Enter Bank Name"
@@ -99,7 +102,7 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
           </div>
           <div className="mb-4">
             <label
-              className="block  text-left text-gray-700 text-sm font-bold mb-2"
+              className="block  text-left text-black text-sm font-bold mb-2"
               for="branch"
             >
               Branch:
@@ -107,7 +110,7 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
             <input
               required
               onChange={e => setBranch(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow bg-white  appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
               id="branch"
               type="text"
               placeholder="Enter Branch"
@@ -115,7 +118,7 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
           </div>
           <div className="mb-4">
             <label
-              className="block  text-left text-gray-700 text-sm font-bold mb-2"
+              className="block  text-left text-black text-sm font-bold mb-2"
               for="amount"
             >
               Amount:
@@ -123,7 +126,7 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
             <input
               required
               onChange={e => setAmount(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow  bg-white appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
               id="amount"
               min={data?.buyNowPrice}
               type="text"
@@ -132,7 +135,7 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
           </div>
           <div className="mb-4">
             <label
-              className="block  text-left text-gray-700 text-sm font-bold mb-2"
+              className="block  text-left text-black text-sm font-bold mb-2"
               for="transaction-id"
             >
               Transaction ID:
@@ -140,7 +143,7 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
             <input
               required
               onChange={e => setTransaction(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow bg-white appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
               id="transaction-id"
               type="text"
               placeholder="Enter Transaction ID"
@@ -148,14 +151,14 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
           </div>
           <div className="mb-4">
             <label
-              className="block text-left  text-gray-700 text-sm font-bold mb-2"
+              className="block text-left  text-black text-sm font-bold mb-2"
               for="payment-slip"
             >
               Payment Slip:
             </label>
             <input
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow  appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
               id="payment-slip"
               type="file"
               onChange={handleBankSleepuplod}
@@ -167,14 +170,15 @@ export default function KoyelItemPaymentDettails({ onClose, data }) {
           )}
           <div className="flex justify-center">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-[#719f18] hover:bg-[#73471b] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Submit
             </button>
+
             <button
-              className="rounded-md ml-3 bg-gray-500 text-white p-3"
-              onClick={onClose}
+              className="rounded-md ml-3 bg-[#73471b] text-white p-3"
+              onClick={close}
             >
               cancel
             </button>

@@ -31,29 +31,28 @@ export default function WinningBids() {
     setShowPopup(false);
   };
 
+  const winProduct = winBidds ? [...winBidds].reverse() : [];
+
   return (
     <div className="mt-10">
       <h1 className="text-4xl capitalize  text-left mb-3 pt-10 px-5 font-semibold">
         Win Bids
       </h1>
-      <div className="grid px-5 grid-cols-1 lg:grid-cols-2 gap-5">
-        {winBidds?.map(data => (
+      <div className="grid px-5  h-[500px] overflow-auto grid-cols-1 lg:grid-cols-2 gap-5">
+        {winProduct.map(data => (
           <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow  ">
             <div className="border ">
               <img
-                className="rounded-t-lg w-full text-center h-60 object-contain "
+                className="rounded-t-lg w-full text-center h-60 object-cover "
                 src={data?.mainImage}
                 alt=""
               />
             </div>
 
             <div className="p-5 text-left capitalize">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
                 {data?.name}
               </h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {data?.description} <Link> ...</Link>
-              </p>
               <h1>
                 <p className="text-lg text-green-700  font-semibold">
                   winner: {data?.winner?.bidderName}
@@ -119,7 +118,10 @@ export default function WinningBids() {
         )}
       </div>
 
-      <div>
+      <div className="mt-5">
+        <h1 className="text-lg font-semibold text-[#719f18] my-6">
+          Koyel item win{" "}
+        </h1>
         <KoyelItemWin></KoyelItemWin>
       </div>
     </div>

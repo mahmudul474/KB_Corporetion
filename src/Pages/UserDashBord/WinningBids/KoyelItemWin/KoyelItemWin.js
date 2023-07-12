@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-
-import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import ItemWinRow from "./ItemWinRow";
@@ -16,7 +14,7 @@ export default function KoyelItemWin() {
     queryKey: ["koyelItemswin", currentUser],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/my-wins/${currentUser?._id}/koyel?email=${currentUser?.email}`
+        `${process.env.REACT_APP_API_URL}/my-wins/${currentUser?._id}/koyel?email=${currentUser?.email}`
       );
       const data = await res.json();
       return data;
@@ -24,36 +22,34 @@ export default function KoyelItemWin() {
   });
 
   return (
-    <div>
-      <div className="overflow-x-auto">
-        <table className="table table-xs table-pin-rows table-pin-cols">
-          <thead>
-            <tr>
-              <th></th>
-              <td>Name</td>
-              <td>Job</td>
-              <td>company</td>
-              <td>location</td>
-              <td>Last Login</td>
-              <td>Favorite Color</td>
-              <th></th>
+    <div className="h-[400px]">
+      <div className="overflow-auto ">
+        <table className="table table-xs table-pin-rows ">
+          <thead className="bg-white text-black">
+            <tr className="bg-white text-black">
+              <td className="bg-white text-black">Product</td>
+              <td className="bg-white text-black">Total Item</td>
+              <td className="bg-white text-black">Items</td>
+              <td className="bg-white text-black">Total Price</td>
+              <td className="bg-white text-black">Payment</td>
+              <td className="bg-white text-black">status</td>
+              <td className="bg-white text-black">details</td>
             </tr>
           </thead>
           <tbody>
-            {[...koyelItemswin]?.map(product => (
+            {[...koyelItemswin]?.reverse().map(product => (
               <ItemWinRow data={product}></ItemWinRow>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <td>Name</td>
-              <td>Job</td>
-              <td>company</td>
-              <td>location</td>
-              <td>Last Login</td>
-              <td>Favorite Color</td>
-              <th></th>
+          <tfoot className="bg-white text-black">
+            <tr className="bg-white text-black">
+              <td className="bg-white text-black">Product</td>
+              <td className="bg-white text-black">Total Item</td>
+              <td className="bg-white text-black">Items</td>
+              <td className="bg-white text-black">Total Price</td>
+              <td className="bg-white text-black">Payment</td>
+              <td className="bg-white text-black">status</td>
+              <td className="bg-white text-black">details</td>
             </tr>
           </tfoot>
         </table>
