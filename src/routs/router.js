@@ -36,6 +36,7 @@ import AllKoyelItem from "../Pages/AdminDashBord/AllkoyelItem/AllKoyelItem";
 import BiddingCloseItem from "../Pages/AdminDashBord/AllkoyelItem/BiddingclosewithBidkoyeItem/BiddingCloseItem";
 import KoyelItemPayment from "../Pages/AdminDashBord/AllkoyelItem/BiddingclosewithBidkoyeItem/PaymentKoyelItem/KoyelItemPayment";
 import KoyelItemOrder from "../Pages/AdminDashBord/Orders/KoyelItemOrder/KoyelItemOrder";
+import PaymentHistory from "../Pages/UserDashBord/MyPaymentHistory/PaymentHistory";
 
 export const routs = createBrowserRouter([
   {
@@ -107,6 +108,14 @@ export const routs = createBrowserRouter([
                 <Buy></Buy>
               </Private>
             )
+          },
+          {
+            path: "/my-dashboard/payment-history",
+            element: (
+              <Private>
+                <PaymentHistory></PaymentHistory>
+              </Private>
+            )
           }
         ]
       },
@@ -144,11 +153,7 @@ export const routs = createBrowserRouter([
         path: "/excel/:id",
         loader: ({ params }) =>
           fetch(`${process.env.REACT_APP_API_URL}/products/koyel/${params.id}`),
-        element: (
-       
-            <SingelProductsDettails></SingelProductsDettails>
-        
-        )
+        element: <SingelProductsDettails></SingelProductsDettails>
       }
     ]
   },

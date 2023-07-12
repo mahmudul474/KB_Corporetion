@@ -117,6 +117,14 @@ export default function UserSidebar() {
                     </span>
                   </li>
                 </Link>
+                <Link to="/my-dashboard/payment-history">
+                  <li className=" cursor-pointer bg-white  text-black ">
+                    <span className="flex items-center p-2 space-x-3 rounded-md">
+                      <AiOutlineMoneyCollect></AiOutlineMoneyCollect>
+                      <span>Payment History</span>
+                    </span>
+                  </li>
+                </Link>
               </>
             )}
 
