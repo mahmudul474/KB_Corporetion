@@ -27,7 +27,7 @@ export default function AdminDashBordLayot() {
               isOpen={isOpen}
             ></AdminSaidbar>
           </div>
-          <div className="w-full p-10 ">
+          <div className="w-full p-10 h-screen overflow-x-scroll ">
             <Outlet></Outlet>
           </div>
         </div>

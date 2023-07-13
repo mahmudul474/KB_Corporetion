@@ -12,7 +12,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
       <>
         <Link to="/admin-dashboard">
           <li className="w-52">
-            <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+            <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
               <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                 <MdDashboard></MdDashboard>
               </span>
@@ -23,7 +23,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
 
         <Link to="/admin-dashboard/products">
           <li className="w-52">
-            <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+            <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
               <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                 <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
               </span>
@@ -35,7 +35,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
         <div className="dropdown">
           <label tabIndex={0}>
             <li className="w-52">
-              <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+              <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                 <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                   <BiChevronDown></BiChevronDown>
                 </span>
@@ -49,7 +49,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
           >
             <Link to="/admin-dashboard/products">
               <li className="w-52">
-                <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                   <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                     <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                   </span>
@@ -66,11 +66,11 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
     );
 
     return (
-      <div className=" lg:shadow-2xl lg:px-10 lg:mx-5  ">
+      <div className=" bg-[#719f18] lg:shadow-2xl lg:px-10 lg:mx-5  ">
         {/* Large Devices (lg) */}
         <div className=" lg:flex  hidden lg:w-1/4   rounded-xl   ">
           {/* Drawer content */}
-          <div className="min-h-screen flex flex-row   ">
+          <div className="h-screen flex flex-row   ">
             <div className="flex flex-col   rounded-r-3xl overflow-hidden">
               <ul className="flex flex-col py-4">{navItem}</ul>
 
@@ -79,7 +79,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
 
               <Link to="/admin-dashboard/products">
                 <li className="w-52">
-                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                     </span>
@@ -89,7 +89,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/products/koyel-item">
                 <li className="w-52">
-                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                     </span>
@@ -99,7 +99,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/products/bidding-close-with-bid">
                 <li className="w-52">
-                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                     </span>
@@ -109,7 +109,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/koyel-item/bidding-close-with-bid">
                 <li className="w-52">
-                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                     </span>
@@ -119,7 +119,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/products/bidding-close/no-bid">
                 <li className="w-52">
-                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                     </span>
@@ -130,7 +130,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
 
               <Link to="/admin-dashboard/productUpload">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -143,7 +143,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
 
               <Link to="/admin-dashboard/excel-to-productUpload">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -155,7 +155,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/users">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -165,7 +165,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/users/seller-request">
                 <li className="">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -176,7 +176,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
 
               <Link to="/admin-dashboard/orders">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -186,7 +186,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/orders/koyel-item">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -196,7 +196,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/payments">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -206,7 +206,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/winners">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -218,7 +218,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               <li className="w-52">
                 <a
                   href="#"
-                  className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
+                  className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800"
                 >
                   <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                     <i className="bx bx-log-out"></i>
@@ -242,7 +242,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
             <ul onClick={toggleDrawer} className="flex flex-col py-4">
               <Link to="/admin-dashboard">
                 <li className="w-52">
-                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <MdDashboard></MdDashboard>
                     </span>
@@ -253,7 +253,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
 
               <Link to="/admin-dashboard/products">
                 <li className="w-52">
-                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                     </span>
@@ -263,7 +263,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/products/bidding-close-with-bid">
                 <li className="w-52">
-                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                     </span>
@@ -273,7 +273,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/products/bidding-close/no-bid">
                 <li className="w-52">
-                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                     </span>
@@ -284,7 +284,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
 
               <Link to="/admin-dashboard/productUpload">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -296,7 +296,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/excel-to-productUpload">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -308,7 +308,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/users">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -318,7 +318,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/users/seller-request">
                 <li className="">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -329,7 +329,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
 
               <Link to="/admin-dashboard/orders">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -339,7 +339,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/payments">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -349,7 +349,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               </Link>
               <Link to="/admin-dashboard/winners">
                 <li className="w-52">
-                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <TbUpload></TbUpload>
                     </span>
@@ -361,7 +361,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
               <li className="w-52">
                 <a
                   href="#"
-                  className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
+                  className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800"
                 >
                   <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                     <i className="bx bx-log-out"></i>
