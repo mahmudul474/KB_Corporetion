@@ -37,6 +37,7 @@ import BiddingCloseItem from "../Pages/AdminDashBord/AllkoyelItem/Biddingclosewi
 import KoyelItemPayment from "../Pages/AdminDashBord/AllkoyelItem/BiddingclosewithBidkoyeItem/PaymentKoyelItem/KoyelItemPayment";
 import KoyelItemOrder from "../Pages/AdminDashBord/Orders/KoyelItemOrder/KoyelItemOrder";
 import PaymentHistory from "../Pages/UserDashBord/MyPaymentHistory/PaymentHistory";
+import ProductPageLayot from "../Pages/AllProductPageLayot/ProductPageLayot";
 
 export const routs = createBrowserRouter([
   {
@@ -119,19 +120,26 @@ export const routs = createBrowserRouter([
           }
         ]
       },
+      {
+        path: "/products",
+        element: <ProductPageLayot></ProductPageLayot>,
+        children: [
+          {
+            path: "/products",
+            element: <Action></Action>
+          },
+          {
+            path: "/products/end-bidding/this-week",
+            element: <ThisWeek></ThisWeek>
+          },
 
-      {
-        path: "/this-week",
-        element: <ThisWeek></ThisWeek>
+          {
+            path: "/products/end-bidding/this-month",
+            element: <ThisMonth></ThisMonth>
+          }
+        ]
       },
-      {
-        path: "/this-month",
-        element: <ThisMonth></ThisMonth>
-      },
-      {
-        path: "/others",
-        element: <Action></Action>
-      },
+
       {
         path: "/about",
         element: <About></About>

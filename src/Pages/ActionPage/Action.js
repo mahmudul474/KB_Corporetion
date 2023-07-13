@@ -6,32 +6,48 @@ import LoadingSpiner from "../../Shared/LoadingSpiner/LoadingSpiner";
 export default function Action() {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
-  console.log(products);
+   const [noOfElement, setNoOfelement] = useState(6);
 
-  useEffect(() => {
-    setLoading(true);
-    getAllProducts()
-      .then(data => {
-        console.log(data);
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch(err => console.log(err));
-  }, []);
+   useEffect(() => {
+     setLoading(true);
+     getAllProducts()
+       .then(data => {
+         console.log(data);
+         setProducts(data);
+         setLoading(false);
+       })
+       .catch(err => console.log(err));
+   }, []);
 
-  if (loading) {
-    return <LoadingSpiner></LoadingSpiner>;
-  }
+   if (loading) {
+     return <LoadingSpiner></LoadingSpiner>;
+   }
 
-  return (
-    <div className="px-4 my-12 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-      <div className="flex justify-between flex-col lg:flex-row">
-        <div className="grid grid-cols-1 lg:grid-cols-3 w-full  gap-10 ">
-          {products.map(product => (
-            <Product key={product._id} data={product}></Product>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+   ///paginetions
+
+   const pointer = products?.slice(0, noOfElement);
+   const loadmore = () => {
+     setNoOfelement(noOfElement + 3);
+   };
+   return (
+     <div className="px-4  py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+       <div className="flex justify-between flex-col lg:flex-row">
+         <div className="grid grid-cols-1 lg:grid-cols-3 w-full  gap-5 ">
+           {[...pointer].reverse().map(product => (
+             <Product key={product._id} data={product}></Product>
+           ))}
+         </div>
+       </div>
+       {products?.length > 6 && (
+         <div className="my-8">
+           <button
+             onClick={loadmore}
+             className="btn btn-wide bg-[#719f18] text-white hover:bg-[#73471b]"
+           >
+             Load More
+           </button>
+         </div>
+       )}
+     </div>
+   );
 }
