@@ -16,34 +16,25 @@ export default function KoyelItemOrder() {
 
   return (
     <div>
-      <h1>order Item</h1>
-      <div className="overflow-x-auto">
-        <table className="table table-xs table-pin-rows table-pin-cols">
+      <h1 className="text-xl font-semibold text-[#719f18]">order Item</h1>
+      <div className="overflow-auto h-screen">
+        <table className="table table-xs table-pin-rows ">
           <thead>
-            <tr>
-              <td>Name</td>
-              <td>Job</td>
-              <td>company</td>
-              <td>location</td>
-              <td>Last Login</td>
-              <td>Favorite Color</td>
+            <tr className="bg-white text-black">
+              <td>Product</td>
+              <td>Items</td>
+              <td>Show Item</td>
+              <td>Buyer</td>
+              <td>Payment </td>
+              <td>Status</td>
+              <td>Details</td>
             </tr>
           </thead>
           <tbody>
-            {koyelItemOrders?.map(order => (
+            {[...koyelItemOrders]?.reverse().map(order => (
               <OrderRow data={order} key={order._id}></OrderRow>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <td>Name</td>
-              <td>Job</td>
-              <td>company</td>
-              <td>location</td>
-              <td>Last Login</td>
-              <td>Favorite Color</td>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>

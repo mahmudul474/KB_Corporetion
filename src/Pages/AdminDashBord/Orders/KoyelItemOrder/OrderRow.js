@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import BuyPaymentDettails from "./BuyPaymentDettails";
+import { BsChevronDown } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function OrderRow({ data }) {
-  ///get img and namec
+  ///get img and  name
 
   const [productDettails, setProductDettailse] = useState({});
 
@@ -44,18 +46,26 @@ export default function OrderRow({ data }) {
             </div>
           </div>
           <div>
-            <div className="font-bold">{productDettails?.productName}</div>
+            <div className="font-bold text-black">
+              {productDettails?.productName}
+            </div>
           </div>
         </div>
       </td>
-      <td>
+      <td className="text-black">
         item:{data?.koyel?.length}
-        <p>Price: {sum}$</p>
+        <p className="text-black">Price: {sum}$</p>
       </td>
       <td>
         <td>
           <div className="dropdown dropdown-hover">
-            <label tabIndex={0} className=" m-1 cursor-pointer">
+            <label
+              tabIndex={0}
+              className=" m-1 flex text-black justify-center items-center cursor-pointer"
+            >
+              <span className="text-black">
+                <BsChevronDown></BsChevronDown>
+              </span>{" "}
               items
             </label>
             <ul
@@ -63,17 +73,17 @@ export default function OrderRow({ data }) {
               className="dropdown-content z-[1] menu p-2 shadow bg-gray-200	 rounded-box "
             >
               <div className="overflow-x-auto bg-gray-200	">
-                <table className="table table-zebra">
+                <table className="table ">
                   {/* head */}
                   <thead>
-                    <tr>
-                      <th>Item</th>
-                      <th>Spec</th>
-                      <th>Thickness</th>
-                      <th>Width</th>
-                      <th>TS</th>
-                      <th>YP</th>
-                      <th>EL</th>
+                    <tr className="text-black bg-white">
+                      <th className="text-black bg-white">Item</th>
+                      <th className="text-black bg-white">Spec</th>
+                      <th className="text-black bg-white">Thickness</th>
+                      <th className="text-black bg-white">Width</th>
+                      <th className="text-black bg-white">TS</th>
+                      <th className="text-black bg-white">YP</th>
+                      <th className="text-black bg-white">EL</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -105,10 +115,10 @@ export default function OrderRow({ data }) {
           </div>
           <div>
             <div className="font-bold">{data?.paymentDetails?.bidderName}</div>
-            <div className="text-sm opacity-50">
+            <div className="text-sm  ">
               email:{data?.paymentDetails?.bidderEmail}
             </div>
-            <div className="text-sm opacity-50">
+            <div className="text-sm  ">
               Mob:{data?.paymentDetails?.bidderNumber}
             </div>
           </div>
@@ -120,11 +130,22 @@ export default function OrderRow({ data }) {
           setProduct(data);
           setPaymentItem(data?.paymentDetails);
         }}
+        className="cursor-pointer text-black "
       >
-        dettails
+        Info
       </td>
-      <td>Blue</td>
-      <th>1</th>
+      <td>
+        {data?.status === "approve" || data?.status === "pending" ? (
+          <button className="btn btn-success">Success</button>
+        ) : (
+          <button className="btn btn-error">Field</button>
+        )}
+      </td>
+      <td className="cursor-pointer hover:underline">
+        <Link to={`/admin-dashboard/action/items/${data?.productID}`}>
+          Details
+        </Link>
+      </td>
 
       {productid && (
         <BuyPaymentDettails
