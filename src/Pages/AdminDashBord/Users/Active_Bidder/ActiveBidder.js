@@ -79,7 +79,7 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center ">
-      <div className="bg-slate-400 rounded-lg p-8 w-3/5 overflow-auto h-[600px]">
+      <div className="bg-white  rounded-lg p-8 w-3/5 overflow-auto h-[600px]">
         <form onSubmit={handleSubmit}>
           <div className="relative">
             <img
@@ -98,7 +98,7 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
               type="text"
               disabled
               value={userInfo?.name}
-              className="border border-gray-300 p-2 w-full"
+              className="border border-black rounded-md bg-white p-2 w-full"
             />
 
             <div className="flex lg:flex-row flex-col ">
@@ -111,7 +111,7 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
                   type="text"
                   disabled
                   value={userInfo?.email}
-                  className="border border-gray-300 p-2 w-full"
+                  className="border border-black rounded-md bg-white  p-2 w-full"
                 />
               </div>
               <div className="w-full">
@@ -123,14 +123,14 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
                   onChange={e => setNumber(e.target.value)}
                   type="number "
                   defaultValue={userInfo?.phoneNumber}
-                  className="border border-gray-300 p-2 w-full"
+                  className="border border-black  rounded-md bg-white p-2 w-full"
                 />
               </div>
             </div>
 
             <div className="flex lg:flex-row flex-col">
               <div className="w-full">
-                <label htmlFor="input" className="block  text-left mb-2">
+                <label htmlFor="input" className="block   text-left mb-2">
                   Business-Name
                 </label>
                 <input
@@ -138,7 +138,7 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
                   id="input"
                   type="text"
                   defaultValue={userInfo?.businessName}
-                  className="border border-gray-300 p-2 w-full"
+                  className="border border-black  rounded-md bg-white p-2 w-full"
                 />
               </div>
               <div className="w-full">
@@ -151,7 +151,7 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
                   id="input"
                   type="text"
                   defaultValue={userInfo?.businessAddress}
-                  className="border border-gray-300 p-2 w-full"
+                  className="border border-black rounded-md bg-white  rounded-md bg-white p-2 w-full"
                 />
               </div>
             </div>
@@ -167,7 +167,7 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
                   id="input"
                   type="text"
                   defaultValue={userInfo?.tinNum}
-                  className="border border-gray-300 p-2 w-full"
+                  className="border border-black  rounded-md bg-white p-2 w-full"
                 />
               </div>
               <div className="w-full">
@@ -180,7 +180,7 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
                   onChange={e => setTradeLicense(e.target.value)}
                   type="text"
                   defaultValue={userInfo?.tradeLN}
-                  className="border border-gray-300 p-2 w-full"
+                  className="border border-black rounded-md bg-white p-2 w-full"
                 />
               </div>
             </div>
@@ -225,7 +225,7 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-blue-500 mr-2 text-white py-2 px-4 rounded"
+              className="bg-[#719f18]  hover:bg-[#73471b] mr-2 text-white py-2 px-4 rounded"
             >
               Confirm
             </button>
@@ -233,7 +233,7 @@ const ActiveBidder = ({ onClose, userInfo, refetch }) => {
             <button
               type="button"
               onClick={handleCancel}
-              className="bg-gray-300 text-gray-700 py-2 px-4 rounded "
+              className="bg-[#73471b] text-white  py-2 px-4 rounded "
             >
               Cancel
             </button>
