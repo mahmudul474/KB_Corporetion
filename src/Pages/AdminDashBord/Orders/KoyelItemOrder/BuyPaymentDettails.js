@@ -35,7 +35,7 @@ export default function BuyPaymentDettails({
       )
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          closePaymentPopup();
         });
     }
   };
@@ -59,7 +59,7 @@ export default function BuyPaymentDettails({
       )
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          closePaymentPopup();
         });
     }
   };

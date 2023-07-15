@@ -10,7 +10,7 @@ export default function KoyelItemOrder() {
       .then(data => {
         setKoyelItemOrders(data);
       });
-  }, []);
+  }, [koyelItemOrders]);
 
   console.log(koyelItemOrders, " this is koyel ite order ");
 
