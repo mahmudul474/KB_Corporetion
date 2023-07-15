@@ -4,6 +4,7 @@ import * as XLSX from "xlsx";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 // Configure AWS SDK with your credentials and region
 
@@ -18,6 +19,7 @@ const s3 = new AWS.S3();
 const ExelTouploadProductUploadForm = () => {
   const { currentUser } = useContext(AuthContext);
   const [loading, setLoadinding] = useState(false);
+  const navigate=useNavigate()
 
   const [mainImage, setMainImage] = useState(null);
   const [subImages, setSubImages] = useState([]);
@@ -179,7 +181,7 @@ const ExelTouploadProductUploadForm = () => {
     }
   };
 
-  console.log(formData);
+  
 
   const handleSaveProduct = (mainImageUrl, subImageUrls, pdfUrl) => {
     const productInfo = {
@@ -214,7 +216,7 @@ const ExelTouploadProductUploadForm = () => {
 
         setLoadinding(false);
         toast.success(data.message);
-        window.location.reload(true);
+        navigate("/admin-dashboard/products/koyel-item");
       })
       .catch(error => {
         console.error(error);
@@ -239,7 +241,7 @@ const ExelTouploadProductUploadForm = () => {
 
   return (
     <>
-      <h1 className="text-green-500 text-2xl  my-5  capitalize text0-center">
+      <h1 className="text-[#719f18] text-2xl  font-semibold my-5  capitalize text0-center">
         Upload from excel
       </h1>
       <form onSubmit={handleSubmit}>
@@ -278,7 +280,7 @@ const ExelTouploadProductUploadForm = () => {
               for="buyNowPrice"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Buy-Now-Price
+              Per-Ton-Buy-Now-Price
             </label>
           </div>
         </div>
@@ -329,7 +331,7 @@ const ExelTouploadProductUploadForm = () => {
               type="datetime-local"
               id="startBiddingTime"
               name="startBiddingTime"
-              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:bg-gray-400 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -348,7 +350,7 @@ const ExelTouploadProductUploadForm = () => {
               type="datetime-local"
               id="endBiddingTime"
               name="endBiddingTime"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm  dark:bg-gray-400 text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -396,7 +398,9 @@ const ExelTouploadProductUploadForm = () => {
             </label>
           </div>
         </div>
-        <p className="text-center my-3 ">Upload Sub Images</p>
+        <p className="text-center my-3  text-black text-lg  font-semibold">
+          Upload Sub Images
+        </p>
         <input
           type="file"
           id="subImages"
@@ -428,14 +432,16 @@ const ExelTouploadProductUploadForm = () => {
             onChange={handleExcelFileChange}
             placeholder="upload excel file"
           />
-          <p className="text-center my-3 ">Upload Excel file</p>
+          <p className="text-center my-3  text-black text-lg  font-semibold ">
+            Upload Excel file
+          </p>
         </div>
 
         <button
           type="submit"
-          className="text-white my-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="text-white my-4 bg-[#719f18] hover:bg-[#73471b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  "
         >
-          Submit
+          Upload
         </button>
       </form>
     </>

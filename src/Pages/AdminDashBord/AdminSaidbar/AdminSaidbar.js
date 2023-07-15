@@ -117,6 +117,120 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
             </Link>
           </ul>
         </div>
+        <div className="dropdown">
+          <label tabIndex={0}>
+            <li className="w-full m-auto text-center text-white">
+              <p className="flex flex-row items-center  text-white  cursor-pointer text-lg h-12 transform hover:translate-x-2 transition-transform ease-in duration-200  hover:text-gray-800">
+                <span className="inline-flex items-center  text-white justify-center h-12 w-12 text-lg ">
+                  <BiChevronDown></BiChevronDown>
+                </span>
+                <span className="text-sm font-medium  text-white">
+                  Uploads Product
+                </span>
+              </p>
+            </li>
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1] menu p-2 shadow-2xl bg-white rounded-box w-52"
+          >
+            <Link to="/admin-dashboard/productUpload">
+              <li className="w-52">
+                <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
+                  <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                    <TbUpload></TbUpload>
+                  </span>
+                  <span className="text-sm font-medium">Upload Product</span>
+                </p>
+              </li>
+            </Link>
+
+            <Link to="/admin-dashboard/excel-to-productUpload">
+              <li className="w-52">
+                <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
+                  <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                    <TbUpload></TbUpload>
+                  </span>
+                  <span className="text-sm font-medium">Upload Item</span>
+                </p>
+              </li>
+            </Link>
+          </ul>
+        </div>
+        <div className="dropdown">
+          <label tabIndex={0}>
+            <li className="w-full m-auto text-center text-white">
+              <p className="flex flex-row items-center  text-white  cursor-pointer text-lg h-12 transform hover:translate-x-2 transition-transform ease-in duration-200  hover:text-gray-800">
+                <span className="inline-flex items-center  text-white justify-center h-12 w-12 text-lg ">
+                  <BiChevronDown></BiChevronDown>
+                </span>
+                <span className="text-sm font-medium  text-white">Users</span>
+              </p>
+            </li>
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1] menu p-2 shadow-2xl bg-white rounded-box w-52"
+          >
+            <Link to="/admin-dashboard/users">
+              <li className="w-52">
+                <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
+                  <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                    <TbUpload></TbUpload>
+                  </span>
+                  <span className="text-sm font-medium">Users</span>
+                </p>
+              </li>
+            </Link>
+            <Link to="/admin-dashboard/users/seller-request">
+              <li className="">
+                <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
+                  <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                    <TbUpload></TbUpload>
+                  </span>
+                  <span className="text-sm font-medium">Seller Request</span>
+                </p>
+              </li>
+            </Link>
+          </ul>
+        </div>
+        <div className="dropdown">
+          <label tabIndex={0}>
+            <li className="w-full m-auto text-center text-white">
+              <p className="flex flex-row items-center  text-white  cursor-pointer text-lg h-12 transform hover:translate-x-2 transition-transform ease-in duration-200  hover:text-gray-800">
+                <span className="inline-flex items-center  text-white justify-center h-12 w-12 text-lg ">
+                  <BiChevronDown></BiChevronDown>
+                </span>
+                <span className="text-sm font-medium  text-white">Orders</span>
+              </p>
+            </li>
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1] menu p-2 shadow-2xl bg-white rounded-box w-52"
+          >
+            <Link to="/admin-dashboard/orders">
+              <li className="w-52">
+                <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
+                  <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                    <TbUpload></TbUpload>
+                  </span>
+                  <span className="text-sm font-medium">Orders</span>
+                </p>
+              </li>
+            </Link>
+            <Link to="/admin-dashboard/orders/koyel-item">
+              <li className="w-52">
+                <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
+                  <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                    <TbUpload></TbUpload>
+                  </span>
+                  <span className="text-sm font-medium">koyel-Orders</span>
+                </p>
+              </li>
+            </Link>
+          </ul>
+        </div>
       </>
     );
 

@@ -59,7 +59,7 @@ export default function SellerRequest() {
 
   return (
     <div>
-      <h1 className=" text-3xl capitalize font-semibold text-green ">
+      <h1 className=" text-3xl   text-black  capitalize font-semibold text-green ">
         {" "}
         seller request
       </h1>
