@@ -6,7 +6,7 @@ export default function WinPayment({ id, onClose, refetch }) {
 
   useEffect(() => {
     if (id) {
-      fetch(`https://kb-corporate-devsobuj910.vercel.app/product/payment/${id}`)
+      fetch(`${process.env.REACT_APP_API_URL}/product/payment/${id}`)
         .then(res => res.json())
         .then(data => {
           console.log(data);

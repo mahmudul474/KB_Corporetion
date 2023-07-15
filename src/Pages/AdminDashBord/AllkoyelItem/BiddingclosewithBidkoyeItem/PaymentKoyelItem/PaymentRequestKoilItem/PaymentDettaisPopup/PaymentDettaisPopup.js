@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function PaymentDettaisPopup({
   paymentDetails,
@@ -34,7 +35,9 @@ export default function PaymentDettaisPopup({
       )
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          toast.success("updated successfully");
+
+          closePaymentPopup();
         });
     }
   };
@@ -58,14 +61,15 @@ export default function PaymentDettaisPopup({
       )
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          toast.success("update successfully");
+          closePaymentPopup();
         });
     }
   };
 
   return (
-    <div className="fixed z-50 inset-0 flex items-center justify-center ">
-      <div className="bg-slate-200 shadow-xl ">
+    <div className="fixed z-50 inset-0  bg-base-100 flex items-center justify-center ">
+      <div className="bg-white shadow-xl ">
         <div class="max-w-md mx-auto  shadow-md rounded-md p-6">
           <div class="flex items-center mb-4">
             <img
@@ -106,7 +110,7 @@ export default function PaymentDettaisPopup({
         <div className="flex my-4  capitalize  justify-center items-center">
           <button
             onClick={handlePaymentApprove}
-            className="bg-green-600 mr-2 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+            className="bg-[#719f18] mr-2 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
           >
             Approve
           </button>
@@ -118,7 +122,7 @@ export default function PaymentDettaisPopup({
           </button>
           <button
             onClick={closePaymentPopup}
-            className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded"
+            className="bg-[#73471b] hover:bg-[#719f18] text-white font-semibold py-2 px-4 rounded"
           >
             close
           </button>

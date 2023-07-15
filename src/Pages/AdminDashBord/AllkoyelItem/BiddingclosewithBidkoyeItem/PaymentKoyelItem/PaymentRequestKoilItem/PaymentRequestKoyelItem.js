@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PaymentDettaisPopup from "./PaymentDettaisPopup/PaymentDettaisPopup";
+import { BsChevronBarDown } from "react-icons/bs";
 
 export default function PaymentRequestKoyelItem({ data }) {
   const [requests, setRequests] = useState([]);
@@ -13,7 +14,7 @@ export default function PaymentRequestKoyelItem({ data }) {
       .then(data => {
         setRequests(data);
       });
-  }, []);
+  }, [requests]);
 
   //sum  bid amaount
   const TotalBidAmount = requests.reduce((sum, item) => {
@@ -38,23 +39,21 @@ export default function PaymentRequestKoyelItem({ data }) {
 
   return (
     <div>
-      <div className="overflow-x-auto h-[600px]">
-        <table className="table table-xs table-pin-rows table-pin-cols">
-          <thead>
-            <tr>
+      <div className="overflow-auto h-[600px]">
+        <table className="table table-xs table-pin-rows ">
+          <thead className="bg-white text-black">
+            <tr className="bg-white text-black">
               <th>i</th>
               <td>item</td>
+              <td>Wins</td>
               <td>winner</td>
-              <td>amount</td>
-              <td>4</td>
-              <td>Last Login</td>
-              <td>Favorite Color</td>
-              <th></th>
+              <td>Payments</td>
+              <td>status</td>
             </tr>
           </thead>
-          <tbody className="h-[600px]">
-            {requests?.map((request, index) => (
-              <tr key={request?._id}>
+          <tbody>
+            {[...requests]?.reverse().map((request, index) => (
+              <tr className="bg-white text-black" key={request?._id}>
                 <td>{index + 1}</td>
                 <td>
                   {request?.koyel?.length}
@@ -63,8 +62,8 @@ export default function PaymentRequestKoyelItem({ data }) {
                 </td>
                 <td>
                   <div className="dropdown dropdown-hover">
-                    <label tabIndex={0} className=" m-1 cursor-pointer">
-                      items
+                    <label tabIndex={0} className="flex justify-center items-end  m-1 cursor-pointer">
+                    <span><BsChevronBarDown></BsChevronBarDown></span>   items
                     </label>
                     <ul
                       tabIndex={0}
@@ -74,7 +73,7 @@ export default function PaymentRequestKoyelItem({ data }) {
                         <table className="table table-zebra">
                           {/* head */}
                           <thead>
-                            <tr>
+                            <tr className="bg-white text-black">
                               <th>Item</th>
                               <th>Spec</th>
                               <th>Thickness</th>
@@ -86,15 +85,34 @@ export default function PaymentRequestKoyelItem({ data }) {
                           </thead>
                           <tbody>
                             {request?.koyel?.map(item => (
-                              <tr key={item?.koyel?._id}>
-                                <td>{item?.koyel?.item}</td>
-                                <td>{item?.koyel?.spec}</td>
-                                <td>{item?.koyel?.Thickness}</td>
-                                <td>{item?.koyel?.Width}</td>
-                                <td>{item?.koyel?.weight}</td>
-                                <td>{item?.koyel?.TS}</td>
-                                <td>{item?.koyel?.YP}</td>
-                                <td>{item?.koyel?.EL}</td>
+                              <tr
+                                className="bg-white text-black"
+                                key={item?.koyel?._id}
+                              >
+                                <td className="bg-white text-black">
+                                  {item?.koyel?.item}
+                                </td>
+                                <td className="bg-white text-black">
+                                  {item?.koyel?.spec}
+                                </td>
+                                <td className="bg-white text-black">
+                                  {item?.koyel?.Thickness}
+                                </td>
+                                <td className="bg-white text-black">
+                                  {item?.koyel?.Width}
+                                </td>
+                                <td className="bg-white text-black">
+                                  {item?.koyel?.weight}
+                                </td>
+                                <td className="bg-white text-black">
+                                  {item?.koyel?.TS}
+                                </td>
+                                <td className="bg-white text-black">
+                                  {item?.koyel?.YP}
+                                </td>
+                                <td className="bg-white text-black">
+                                  {item?.koyel?.EL}
+                                </td>
                               </tr>
                             ))}
                           </tbody>
@@ -132,27 +150,20 @@ export default function PaymentRequestKoyelItem({ data }) {
                     setProduct(request);
                     setPaymentItem(request?.paymentDetails);
                   }}
-                >
-                  dettails
+                className="hover:underline cursor-pointer">
+                  Payment
                 </td>
-                <td>12/16/2020</td>
-                <td>Blue</td>
-                <th>1</th>
+                <td>
+                  {request?.status === "pending" ||
+                  request?.status === "approve" ? (
+                    <button className="btn btn-success">Success</button>
+                  ) : (
+                    <button className="btn btn-error">felid</button>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <th></th>
-              <td>Name</td>
-              <td>Job</td>
-              <td>company</td>
-              <td>location</td>
-              <td>Last Login</td>
-              <td>Favorite Color</td>
-              <th></th>
-            </tr>
-          </tfoot>
         </table>
       </div>
 

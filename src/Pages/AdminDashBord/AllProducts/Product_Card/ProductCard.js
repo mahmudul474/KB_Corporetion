@@ -90,7 +90,7 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow   ">
         <div className="border ">
           <img
-            className="rounded-t-lg w-full text-center h-60 object-contain "
+            className="rounded-t-lg w-full text-center h-60 object-cover "
             src={data?.mainImage}
             alt=""
           />
@@ -98,7 +98,7 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
             <h1>
               {isBiddingStartSoon(data.startBiddingTime) &&
               !isBiddingEnd(data.endBiddingTime) ? (
-                <p className="text-lg text-green-700  font-semibold">
+                <p className="text-lg text-[#719f18]  font-semibold">
                   Start Bidding Soon
                 </p>
               ) : isBiddingEnd(data.endBiddingTime) ? (
@@ -115,7 +115,7 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
         </div>
 
         <div className="p-5 text-left capitalize">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-black">
             {data?.name}
           </h5>
 
@@ -126,16 +126,16 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
               alt=""
             />
             <div class="font-medium  ">
-              <div>{data?.author}</div>
-              <div class="text-sm text-gray-500  ">{data?.authorEmail}</div>
+              <div className="text-black">{data?.author}</div>
+              <div class="text-sm text-black ">{data?.authorEmail}</div>
             </div>
           </div>
           <div className="flex my-2 justify-between items-center">
-            <p className="flex flex-col text-green-500  items-center ">
+            <p className="flex flex-col text-[#719f18]  items-center ">
               <span>Start Bidding Time</span>
               <span> {formatDateTime(data.startBiddingTime)}</span>
             </p>
-            <p className="flex text-red-700 flex-col items-center ">
+            <p className="flex text-[#73471b] flex-col items-center ">
               <span>End Bidding Time</span>
               <span> {formatDateTime(data.endBiddingTime)}</span>
             </p>
@@ -147,7 +147,7 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
             </h2>
 
             <Link to={`/admin-dashboard/action/${data._id}`}>
-              <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#719f18] rounded-lg hover:bg-[#73471b]     ">
                 View Details
                 <svg
                   aria-hidden="true"
@@ -173,7 +173,7 @@ export default function ProductCard({ data, refetch,   setDeleteProduct, openCon
                 openPopup();
               }}
               type="button"
-              class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+              class="text-white bg-[#73471b] hover:bg-[#719f18] focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
             >
               <span>
                 <FiEdit></FiEdit>

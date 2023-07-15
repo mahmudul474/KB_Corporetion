@@ -38,6 +38,7 @@ import KoyelItemPayment from "../Pages/AdminDashBord/AllkoyelItem/Biddingclosewi
 import KoyelItemOrder from "../Pages/AdminDashBord/Orders/KoyelItemOrder/KoyelItemOrder";
 import PaymentHistory from "../Pages/UserDashBord/MyPaymentHistory/PaymentHistory";
 import ProductPageLayot from "../Pages/AllProductPageLayot/ProductPageLayot";
+import AdminKoyelItemDettails from "../Pages/AdminDashBord/AllkoyelItem/KoyelITem/AdminKoyelItemDettails/SingelProductDettailsCard/AdminKoyelItemDettails";
 
 export const routs = createBrowserRouter([
   {
@@ -293,6 +294,19 @@ export const routs = createBrowserRouter([
             {" "}
             <Adminrout>
               <AdminProductDettailsCard></AdminProductDettailsCard>
+            </Adminrout>
+          </Private>
+        )
+      },
+      {
+        path: "/admin-dashboard/action/items/:id",
+        loader: ({ params }) =>
+          fetch(`${process.env.REACT_APP_API_URL}/products/koyel/${params.id}`),
+        element: (
+          <Private>
+            {" "}
+            <Adminrout>
+              <AdminKoyelItemDettails></AdminKoyelItemDettails>
             </Adminrout>
           </Private>
         )

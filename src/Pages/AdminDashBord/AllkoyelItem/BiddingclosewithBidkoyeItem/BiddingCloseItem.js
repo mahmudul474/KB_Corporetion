@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import LoadingSpiner from "../../../../Shared/LoadingSpiner/LoadingSpiner";
 
 export default function BiddingCloseItem() {
   const {
@@ -18,113 +19,76 @@ export default function BiddingCloseItem() {
     }
   });
 
-  return (
-    <div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div className="flex items-center justify-between pb-4 bg-white  ">
-          <div>
-            <button
-              className="inline-flex items-center text-black bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 "
-              type="button"
-            >
-              koyel item Bidding end
-            </button>
-          </div>
-          <label for="table-search" className="sr-only">
-            Search
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                className="w-5 h-5 text-black "
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </div>
-            <input
-              type="text"
-              id="table-search-users"
-              className="block p-2 pl-10 text-sm text-black border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500    dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search for users"
-            />
-          </div>
-        </div>
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Product
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Start bid
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Buy price
-              </th>
 
-              <th scope="col" className="px-6 py-3">
-                Dittails
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Payment
-              </th>
-            </tr>
-          </thead>
+ if(isLoading){
+  return <LoadingSpiner></LoadingSpiner>
+ }
+   return (
+     <div>
+       <div className="  shadow-md sm:rounded-lg">
+         <div className="flex items-center justify-between pb-4 bg-white  ">
+           <div>
+             <button
+               className="inline-flex items-center text-black bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 "
+               type="button"
+             >
+               Bidding End
+             </button>
+           </div>
+         </div>
+         <table className="w-full text-sm text-left text-black ">
+           <thead className="text-xs text-black first-line:uppercase bg-gray-50">
+             <tr>
+               <th text-black>Product</th>
+               <th text-black>Start bid</th>
 
-          {koyelItems?.map(product => (
-            <tbody>
-              <tr className="bg-white border-b   dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th
-                  scope="row"
-                  className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap  "
-                >
-                  <img
-                    className="w-10 h-10 rounded-full"
-                    src={product?.mainImage}
-                    alt="product img"
-                  />
-                  <div className="pl-3">
-                    <div className="text-base font-semibold">
-                      {product.name}
-                    </div>
-                    <div className="font-normal text-gray-500">{}</div>
-                  </div>
-                </th>
-                <td className="px-6 py-4">{product?.startBiddingPrice}</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center">
-                    <div className="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>{" "}
-                    {product?.buyNowPrice}
-                  </div>
-                </td>
+               <th text-black>Details</th>
+               <th text-black>Payment</th>
+             </tr>
+           </thead>
 
-                <td className="px-6 py-4">
-                  <Link
-                    to={`/admin-dashboard/action/${product._id} `}
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    Details
-                  </Link>
-                </td>
-                <Link
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  to={`/admin-dashboard/products/koyel-item/payment/${product._id}`}
-                >
-                  <td className="px-6 py-4">payment & winners</td>
-                </Link>
-              </tr>
-            </tbody>
-          ))}
-        </table>
-      </div>
-    </div>
-  );
+           {[...koyelItems]?.reverse().map(product => (
+             <tbody>
+               <tr className="bg-white border-b     hover:bg-gray-50  ">
+                 <th
+                   scope="row"
+                   className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap  "
+                 >
+                   <img
+                     className="w-10 h-10 rounded-full"
+                     src={product?.mainImage}
+                     alt="product img"
+                   />
+                   <div className="pl-3">
+                     <div className="text-base font-semibold">
+                       {product.name}
+                     </div>
+                   </div>
+                 </th>
+                 <td text-black>{product?.startBiddingPrice}</td>
+
+                 <td text-black>
+                   <Link
+                     to={`/admin-dashboard/action/items/${product._id}`}
+                     className="font-medium text-black hover:underline"
+                   >
+                     Details
+                   </Link>
+                 </td>
+                 <td text-black>
+                   {" "}
+                   <Link
+                     className="font-medium text-black  hover:underline"
+                     to={`/admin-dashboard/products/koyel-item/payment/${product._id}`}
+                   >
+                     Payment & winners
+                   </Link>
+                 </td>
+               </tr>
+             </tbody>
+           ))}
+         </table>
+       </div>
+     </div>
+   );
 }

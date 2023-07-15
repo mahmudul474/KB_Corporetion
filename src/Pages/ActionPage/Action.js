@@ -25,7 +25,7 @@ export default function Action() {
 
    ///paginetions
 
-   const pointer = products?.slice(0, noOfElement);
+   const paginetions = products?.slice(0, noOfElement);
    const loadmore = () => {
      setNoOfelement(noOfElement + 3);
    };
@@ -33,7 +33,7 @@ export default function Action() {
      <div className="px-4  py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
        <div className="flex justify-between flex-col lg:flex-row">
          <div className="grid grid-cols-1 lg:grid-cols-3 w-full  gap-5 ">
-           {[...pointer].reverse().map(product => (
+           {[...paginetions].reverse().map(product => (
              <Product key={product._id} data={product}></Product>
            ))}
          </div>

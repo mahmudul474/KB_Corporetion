@@ -7,8 +7,8 @@ const ConfirmationModal = ({ onClose, data, submit }) => {
   };
   return (
     <div className="fixed z-50 inset-0  flex items-center justify-center ">
-      <div className="bg-slate-400 p-14  rounded-lg">
-        <h3 className="text-md my-5  ">
+      <div className="bg-white shadow-2xl  p-14  rounded-lg">
+        <h3 className="text-md my-5   text-black ">
           Are you sure you want to delete
           <span className="text-2xl capitalize font-semibold text-green-800 ml-2 ">
             {data}
@@ -25,7 +25,7 @@ const ConfirmationModal = ({ onClose, data, submit }) => {
         <button
           type="button"
           onClick={handleCancel}
-          className="bg-green-600 text-white py-2 px-4 rounded "
+          className="bg-[#719f18] text-white py-2 px-4 rounded "
         >
           Cancel
         </button>

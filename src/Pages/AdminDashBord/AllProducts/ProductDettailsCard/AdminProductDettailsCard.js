@@ -12,8 +12,6 @@ export default function AdminProductDettailsCard() {
 
   const { currentUser } = useContext(AuthContext);
 
-  console.log(data);
-
   const [subimageUrl, setSubImgUrl] = useState(null);
   const [newPrice, setNewPrice] = useState("");
   const [bidEroo, setBidError] = useState("");
@@ -66,20 +64,6 @@ export default function AdminProductDettailsCard() {
   }, [data.endBiddingTime]);
   const isBiddingClosed = remainingTime === "Bidding Close";
 
-  const isBiddingStartSoon = startTime => {
-    const currentTime = new Date().getTime();
-    const startTimeValue = new Date(startTime).getTime();
-
-    return currentTime < startTimeValue;
-  };
-
-  const isBiddingEnd = endTime => {
-    const currentTime = new Date().getTime();
-    const endTimeValue = new Date(endTime).getTime();
-
-    return currentTime > endTimeValue;
-  };
-
   const formatDateTime = dateTimeString => {
     const options = {
       year: "numeric",
@@ -105,7 +89,7 @@ export default function AdminProductDettailsCard() {
 
     return `${formattedDate} ${formattedTime}`;
   };
-  const [winner, setWinner] = useState(null);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -114,7 +98,7 @@ export default function AdminProductDettailsCard() {
         const response = await axios.get(
           `${process.env.REACT_APP_API_URL}/products/${data._id}/winner`
         );
-        setWinner(response.data.winner);
+
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -137,17 +121,21 @@ export default function AdminProductDettailsCard() {
 
   return (
     <div>
-      <div className="max-w-6xl px-4  mx-auto   md:px-6">
-        <div className="flex  flex-col lg:flex-row   border   border-gray-400 ">
+      <div className="    mx-auto   ">
+        <div className="flex  flex-col lg:flex-row    ">
           <div className="w-full px-4 lg:w-3/5 h-full  ">
             <div className=" h-64 lg:h-[500px]   ">
               {subimageUrl ? (
-                <img src={subimageUrl} alt="" className="   w-full h-full   " />
+                <img
+                  src={subimageUrl}
+                  alt=""
+                  className=" object-cover	  w-full h-full   "
+                />
               ) : (
                 <img
                   src={data?.mainImage}
                   alt=""
-                  className="h-full    w-full   "
+                  className="h-full  object-cover	  w-full   "
                 />
               )}
             </div>
@@ -178,22 +166,49 @@ export default function AdminProductDettailsCard() {
 
         <div className="flex justify-between    flex-col ">
           <div className="w-full    capitalize">
-            <div>
-              <h2 className="  mt-1 mb-6 text-2xl font-bold  text-left md:text-4xl">
+            <div className="px-6">
+              <h2 className="  mt-1 mb-6 text-xl font-bold text-black  text-left">
                 {data.name}
               </h2>
               <p className="  mb-4 text-gray-700 text-left  ">
-                {data?.description}
+                {data?.description?.slice(0, 100)}
+
+                <label
+                  htmlFor="productDesc"
+                  className=" underline cursor-pointer ml-3"
+                >
+                  ...Read more
+                </label>
+
+                <input
+                  type="checkbox"
+                  id="productDesc"
+                  className="modal-toggle"
+                />
+                <div className="modal ">
+                  <div className="modal-box bg-white text-black">
+                    <h3 className="font-bold text-lg"></h3>
+                    <p className="py-4">{data?.description}</p>
+                    <div className="modal-action">
+                      <label
+                        htmlFor="productDesc"
+                        className="btn bg-[#719f18]  text-white hover:bg-[#73471b]"
+                      >
+                        Close!
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </p>
             </div>
 
             <div>
-              <div className="  bg-slate-200">
-                <div className="flex justify-between items-center text-xl font-bold text-green-600   ">
+              <div className="  bg-white shadow-md px-6 py-6">
+                <div className="flex justify-between items-center text-xl font-bold text-[#719f18]  ">
                   <span>Starting bid:</span>
                   <span>{data?.startBiddingPrice} $</span>
                 </div>
-                <div className="flex justify-between items-center text-xl font-bold text-green-600   ">
+                <div className="flex justify-between items-center text-xl font-bold text-[#719f18]  ">
                   <span>Current bidding Price:</span>
 
                   <span>
@@ -206,33 +221,33 @@ export default function AdminProductDettailsCard() {
               </div>
             </div>
           </div>
-          <div className=" w-full     border bg-slate-200 border-gray-300  rounded-lg  p-5">
+          <div className=" w-full  my-6    bg-[#719f18]  rounded-lg  p-5">
             <div className="flex justify-center  flex-col lg:flex-row   items-center  text-xl text-left  ">
               <div className="text-center my-2">
-                <h4 className="text-red-500">This Auction Ends in</h4>
-                <h2 className="text-red-500">{remainingTime}</h2>
+                <h4 className="text-[#73471b]">This Auction Ends in</h4>
+                <h2 className="text-[#73471b]">{remainingTime}</h2>
               </div>
 
               <div className="text-center my-2">
-                <h4 className="text-green-600">Start Bidding Time</h4>
-                <h2 className="text-green-600">
+                <h4 className="text-[#73471b]">Start Bidding Time</h4>
+                <h2 className="text-[#73471b]">
                   {formatDateTime(data.startBiddingTime)}
                 </h2>
               </div>
 
               <div className="text-center my-2">
-                <h4 className="text-red-500"> End Bidding Time</h4>
-                <h2 className="text-red-500">
+                <h4 className="text-[#73471b]"> End Bidding Time</h4>
+                <h2 className="text-[#73471b]">
                   {formatDateTime(data.endBiddingTime)}
                 </h2>
               </div>
 
               <div
-                className="flex items-center my-5 text-green-500  flex-col justify-center text-4xl   font-bold 
+                className="flex items-center my-5 text-white  flex-col justify-center text-xl   font-bold 
               "
               >
-                <h1>Total Bids</h1>
-                <h1>
+                <h1 className="text-white ">Total Bids</h1>
+                <h1 className="text-white ">
                   {" "}
                   {data && data?.bids?.length
                     ? data?.bids?.length + "bids"
@@ -244,27 +259,31 @@ export default function AdminProductDettailsCard() {
         </div>
 
         <div>
-          <div className="my-5">
-            <h1 className="text-green-600  flex items-center justify-center text-xl">
-              Winner{" "}
-            </h1>
+          {data?.winner ? (
+            <div className="my-5">
+              <h1 className="text-green-600  flex items-center justify-center text-xl">
+                Winner
+              </h1>
 
-            <div className="flex justify-center items-center">
-              <img
-                className="object-cover w-20 h-20 mr-4 rounded-full shadow"
-                src={data?.winner?.bidderPhoto}
-                alt="Person"
-              />
-              <div className="flex flex-col items-start justify-center">
-                <p className="text-lg font-bold text-left">
-                  {data?.winner?.bidderName}
-                </p>
-                <p className="text-sm text-gray-800 text-left">
-                  Win Bid Price: {data?.winner?.amount}$
-                </p>
+              <div className="flex justify-center items-center">
+                <img
+                  className="object-cover w-20 h-20 mr-4 rounded-full shadow"
+                  src={data?.winner?.bidderPhoto}
+                  alt="Person"
+                />
+                <div className="flex flex-col items-start justify-center">
+                  <p className="text-lg font-bold text-left">
+                    {data?.winner?.bidderName}
+                  </p>
+                  <p className="text-sm text-gray-800 text-left">
+                    Win Bid Price: {data?.winner?.amount}$
+                  </p>
+                </div>
               </div>
             </div>
-          </div>{" "}
+          ) : (
+            <p className="text-white text-lg text-black">Not Winner find yet</p>
+          )}
           <ActionHistory bids={data?.bids}> </ActionHistory>{" "}
         </div>
       </div>

@@ -4,7 +4,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import EditKoyelItemPopUp from "./ProductKoyelItemEditPopup/EditKoyelItemPopUp";
 
-export default function KoyelItem({
+export default function AdminKoyelITemDettails({
   data,
   refetch,
   setDeleteProduct,
@@ -95,7 +95,7 @@ export default function KoyelItem({
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow   ">
         <div className="border ">
           <img
-            className="rounded-t-lg w-full text-center h-60 object-contain "
+            className="rounded-t-lg w-full text-center h-60 object-cover "
             src={data?.mainImage}
             alt=""
           />
@@ -151,8 +151,8 @@ export default function KoyelItem({
               Bidding Price: {data.startBiddingPrice} ${" "}
             </h2>
 
-            <Link to={`/admin-dashboard/action/${data._id}`}>
-              <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <Link to={`/admin-dashboard/action/items/${data._id}`}>
+              <button className="inline-flex  rounded-md items-center px-3 py-2 text-sm font-medium text-center text-white -600 bg-[#719f18]   hover:bg-[#73471b] ">
                 View Details
                 <svg
                   aria-hidden="true"
@@ -178,7 +178,7 @@ export default function KoyelItem({
                 openPopup();
               }}
               type="button"
-              class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+              class="text-white bg-[#73471b] hover:bg-[#719f18] focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
             >
               <span>
                 <FiEdit></FiEdit>
