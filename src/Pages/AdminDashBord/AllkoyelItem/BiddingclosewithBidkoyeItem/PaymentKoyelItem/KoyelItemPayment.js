@@ -21,9 +21,10 @@ export default function KoyelItemPayment() {
   return (
     <>
       <div>
-        <div className="flex justify-between flex-col lg:flex-row ">
-          <div className=" w-full">
-            <div className=" h-[600px] overflow-auto  ">
+        <div className="flex justify-between items-start flex-col lg:flex-row ">
+          <div className=" lg:w-2/4 w-full border border-black">
+            <h1 className="text-[#719f18] text-lg  font-semibold">Winners</h1>
+            <div className=" h-[400px] lg:h-[600px] overflow-auto w-full ">
               <table className=" table table-xs table-pin-rows   ">
                 <thead className="bg-white  text-black">
                   <tr className="bg-white  text-black">
@@ -120,43 +121,16 @@ export default function KoyelItemPayment() {
               </table>
             </div>
           </div>
-          <div className="border w-full border-black">
+          <div className="h-[400px] lg:h-[600px] overflow-auto w-full    ">
             <PaymentRequestKoyelItem data={data}></PaymentRequestKoyelItem>
           </div>
         </div>
+        <div className="mt-[20px]">
+          <h1 className="text-[#719f18] text-lg  font-semibold">
+            Payment Success
+          </h1>
 
-        <div>
-          <div className="overflow-x-auto">
-            <table className="table table-xs table-pin-rows table-pin-cols">
-              <thead>
-                <tr>
-                  <th></th>
-                  <td>Name</td>
-                  <td>Job</td>
-                  <td>company</td>
-                  <td>location</td>
-                  <td>Last Login</td>
-                  <td>Favorite Color</td>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <SucceFullPayment data={successfulPayment}></SucceFullPayment>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th></th>
-                  <td>Name</td>
-                  <td>Job</td>
-                  <td>company</td>
-                  <td>location</td>
-                  <td>Last Login</td>
-                  <td>Favorite Color</td>
-                  <th></th>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+          <SucceFullPayment data={successfulPayment}></SucceFullPayment>
         </div>
       </div>
     </>

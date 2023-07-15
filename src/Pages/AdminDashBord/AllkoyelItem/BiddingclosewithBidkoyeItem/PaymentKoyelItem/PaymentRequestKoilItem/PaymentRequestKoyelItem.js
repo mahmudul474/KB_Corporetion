@@ -39,8 +39,11 @@ export default function PaymentRequestKoyelItem({ data }) {
 
   return (
     <div>
-      <div className="overflow-auto h-[600px]">
-        <table className="table table-xs table-pin-rows ">
+      <div className="overflow-auto h-[400px] lg:h-[600px]  border border-black ">
+        <h1 className="text-[#719f18] text-lg  font-semibold">
+          Payment Requests
+        </h1>
+        <table className="table  table-pin-rows ">
           <thead className="bg-white text-black">
             <tr className="bg-white text-black">
               <th>i</th>
@@ -62,8 +65,14 @@ export default function PaymentRequestKoyelItem({ data }) {
                 </td>
                 <td>
                   <div className="dropdown dropdown-hover">
-                    <label tabIndex={0} className="flex justify-center items-end  m-1 cursor-pointer">
-                    <span><BsChevronBarDown></BsChevronBarDown></span>   items
+                    <label
+                      tabIndex={0}
+                      className="flex justify-center items-end  m-1 cursor-pointer"
+                    >
+                      <span>
+                        <BsChevronBarDown></BsChevronBarDown>
+                      </span>{" "}
+                      items
                     </label>
                     <ul
                       tabIndex={0}
@@ -150,7 +159,8 @@ export default function PaymentRequestKoyelItem({ data }) {
                     setProduct(request);
                     setPaymentItem(request?.paymentDetails);
                   }}
-                className="hover:underline cursor-pointer">
+                  className="hover:underline cursor-pointer"
+                >
                   Payment
                 </td>
                 <td>
