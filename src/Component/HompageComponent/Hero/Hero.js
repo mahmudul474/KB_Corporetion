@@ -1,29 +1,44 @@
 import React from "react";
 import banner from "./hero.jpeg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
     <div className="	 h-[350px]  flex justify-start items-center ">
       <div className="bg-[#719f18]  h-full hidden lg:flex items-center justify-center lg:w-[250px]">
         <ul className="w-full rounded-md ">
-          <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-            Category
-          </li>
-          <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-            24 to sell
-          </li>
-          <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-            mis
-          </li>
-          <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-            333
-          </li>
-          <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-            mis
-          </li>
-          <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-            333
-          </li>
+          <Link to="/products">
+            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
+              Hot Deal
+            </li>
+          </Link>
+
+          <Link to="/products/end-bidding/this-week">
+            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
+              7 Day to sell
+            </li>
+          </Link>
+          <Link to="/products/end-bidding/this-month">
+            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
+              30 Day Product
+            </li>
+          </Link>
+
+          <Link to="/items">
+            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
+              Top Items
+            </li>
+          </Link>
+          <Link to="/items/end-week">
+            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
+              7 Days Items
+            </li>
+          </Link>
+          <Link to="/items/this-month">
+            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
+               30 day Sell
+            </li>
+          </Link>
         </ul>
       </div>
       <div

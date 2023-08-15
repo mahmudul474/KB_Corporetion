@@ -39,6 +39,10 @@ import KoyelItemOrder from "../Pages/AdminDashBord/Orders/KoyelItemOrder/KoyelIt
 import PaymentHistory from "../Pages/UserDashBord/MyPaymentHistory/PaymentHistory";
 import ProductPageLayot from "../Pages/AllProductPageLayot/ProductPageLayot";
 import AdminKoyelItemDettails from "../Pages/AdminDashBord/AllkoyelItem/KoyelITem/AdminKoyelItemDettails/SingelProductDettailsCard/AdminKoyelItemDettails";
+import KoyelItemPageLayot from "../Pages/AllKoyelItemPageLayot/KoyelItemPageLayot";
+import AllkoyelItem from "../Pages/AllKoyelItem/AllkoyelItem";
+import ItemThisWeekEnd from "../Pages/AllKoyelItem/ThisWeekEnd/ItemThisWeekEnd";
+import ItemThisMonth from "../Pages/AllKoyelItem/ThisMonth/ItemThisMonth";
 
 export const routs = createBrowserRouter([
   {
@@ -137,6 +141,24 @@ export const routs = createBrowserRouter([
           {
             path: "/products/end-bidding/this-month",
             element: <ThisMonth></ThisMonth>
+          }
+        ]
+      },
+      {
+        path: "/items",
+        element: <KoyelItemPageLayot></KoyelItemPageLayot>,
+        children: [
+          {
+            path: "/items",
+            element: <AllkoyelItem></AllkoyelItem>
+          },
+          {
+            path: "/items/end-week",
+            element: <ItemThisWeekEnd></ItemThisWeekEnd>
+          },
+          {
+            path: "/items/this-month",
+            element: <ItemThisMonth></ItemThisMonth>
           }
         ]
       },

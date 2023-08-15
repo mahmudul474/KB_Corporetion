@@ -41,7 +41,7 @@ export default function Featured() {
         </div>
 
         <div className="my-10">
-          <Link to="/others">
+          <Link to="/products">
             <button className="btn btn-wide transition duration-300 ease-in-out hover:bg-[#73471b] text-white bg-[#719f18] ">
               view more{" "}
             </button>

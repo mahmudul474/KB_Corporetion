@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import BuyItemrow from "./BuyItemrow";
+import LoadingSpiner from "../../../../Shared/LoadingSpiner/LoadingSpiner";
 
 export default function KoyelItembuy() {
   const { currentUser } = useContext(AuthContext);
@@ -21,9 +22,13 @@ export default function KoyelItembuy() {
     }
   });
 
+  if (isLoading) {
+    return <LoadingSpiner></LoadingSpiner>;
+  }
+
   return (
-    <div className="h-[400px]">
-      <div className="overflow-auto ">
+    <div className="">
+      <div className="overflow-auto h-[400px] ">
         <table className="table table-xs table-pin-rows ">
           <thead className="bg-white  text-black">
             <tr className="bg-white  text-black">

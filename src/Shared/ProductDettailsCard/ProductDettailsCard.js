@@ -136,7 +136,7 @@ export default function ProductDettailsCard({ data }) {
         console.log("Bid placed successfully", data);
         if (data.message) {
           toast.success(data.message);
-          window.location.reload(true);
+          navigate("/my-dashboard/my-bids");
           setNewPrice("");
         } else {
           toast.error(data.error);

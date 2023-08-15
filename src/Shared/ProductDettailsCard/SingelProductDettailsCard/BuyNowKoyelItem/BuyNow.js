@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import AWS from "aws-sdk";
 import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function BuyNow({ id, data, close }) {
   const sumBuyNowPrice = data.reduce((total, item) => {
@@ -33,6 +34,7 @@ export default function BuyNow({ id, data, close }) {
   const [branch, setBranch] = useState("");
   const [bank, setBankname] = useState("");
 
+  const navigate = useNavigate();
   // handle bank sleep upload
   const handleBankSleepuplod = event => {
     const file = event.target.files[0];
@@ -92,7 +94,7 @@ export default function BuyNow({ id, data, close }) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        navigate("/my-dashboard/buy");
       });
   };
 
@@ -101,7 +103,10 @@ export default function BuyNow({ id, data, close }) {
       <div className=" fixed z-50  h-screen shadow-2xl  bg-base-100 inset-0    ">
         <div className="max-w-full bg-white">
           <div class=" bg-gray-100 pt-20 ">
-            <h1 class="mb-10 text-center text-black text-2xl font-bold"> Items</h1>
+            <h1 class="mb-10 text-center text-black text-2xl font-bold">
+              {" "}
+              Items
+            </h1>
             <div class="mx-auto justify-center px-6  flex flex-col lg:flex-row xl:px-0">
               <div className=" lg:w-2/3 h-[400px] w-full overflow-auto">
                 <table className=" table table-xs table-pin-rows  ">

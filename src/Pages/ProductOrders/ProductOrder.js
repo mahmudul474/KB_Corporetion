@@ -73,10 +73,10 @@ export default function ProductOrder() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        if (data.acknowledged) {
+      
+       
           navigate("/my-dashboard/buy");
-        }
+       
       });
   };
 

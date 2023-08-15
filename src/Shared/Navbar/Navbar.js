@@ -34,47 +34,55 @@ const Navbar = () => {
           </p>
         </li>
       </Link>
-
-      <div className="dropdown dropdown-hover">
-        <label tabIndex={0} className=" m-1    bg-white">
-          Koyel Item
+ 
+      <div className="dropdown block dropdown-hover">
+        <label tabIndex={0} className=" font-semibold  m-1">
+          Items
         </label>
         <ul
           tabIndex={0}
           className="dropdown-content z-[1] menu  shadow bg-white rounded-box w-52"
         >
-          <li className="bg-green-500">
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
+          <Link to="/items/end-week">
+            <li>
+              <a> This Week</a>
+            </li>
+          </Link>
+          <Link to="/items/this-month">
+            <li>
+              <a>This Month</a>
+            </li>
+          </Link>
+
+          <Link to="/items">
+            <li>
+              <a>Others</a>
+            </li>
+          </Link>
         </ul>
       </div>
 
+
       <div className="dropdown dropdown-hover">
-        <label tabIndex={0} className=" m-1">
+        <label tabIndex={0} className=" font-semibold  m-1">
           Auctions
         </label>
         <ul
           tabIndex={0}
           className="dropdown-content z-[1] menu  shadow bg-white rounded-box w-52"
         >
-          <Link to="/this-week">
+          <Link to="/products/end-bidding/this-week">
             <li>
               <a> This Week</a>
             </li>
           </Link>
-          <Link to="/this-month">
+          <Link to="/products/end-bidding/this-month">
             <li>
               <a>This Month</a>
             </li>
           </Link>
 
-          <Link to="/others">
+          <Link to="/products">
             <li>
               <a>Others</a>
             </li>

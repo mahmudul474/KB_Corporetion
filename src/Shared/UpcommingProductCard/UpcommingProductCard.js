@@ -82,7 +82,7 @@ export default function UpcommingProductCard({ data }) {
   return (
     <div className="bg-white rounded-lg shadow-lg lg:h-[400px] p-6 flex flex-col sm:flex-row sm:divide-x sm:divide-gray-300">
       <div className="w-full   lg:w-1/4">
-        <img className="w-full h-full" alt="img" src={mainImage} />
+        <img className="w-full h-full object-cover" alt="img" src={mainImage} />
       </div>
       <div className="w-full lg:w-1/2 px-4 mt-4 lg:mt-0">
         <div className=" text-left lg:text-center">
@@ -100,7 +100,7 @@ export default function UpcommingProductCard({ data }) {
         </div>
         <hr />
 
-        <div className="overflow-x-auto h-[260px]">
+        <div className="overflow-auto h-[260px]">
           <table className="table table-xs table-pin-rows table-pin-cols">
             <thead className="">
               <tr className="dark:bg-white dark:text-black">
@@ -171,7 +171,7 @@ export default function UpcommingProductCard({ data }) {
 
         <div className="mb-4 mx-4 ">
           <Link to={`/excel/${data?._id}`}>
-            <button className="btn btn-wide bg-[#719f18] hover:bg-[#73471b] text-white font-semibold">
+            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg bg-[#719f18] hover:bg-[#73471b] text-white font-semibold">
               Place a Bid
             </button>
           </Link>

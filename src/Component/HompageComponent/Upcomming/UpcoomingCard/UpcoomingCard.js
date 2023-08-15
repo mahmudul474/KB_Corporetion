@@ -1,9 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function UpcoomingCard({ data }) {
-
   return (
-    <div className="card card-side bg-base-100 shadow-2xl">
+    <div className="card card-side bg-white shadow-2xl">
       <figure className="lg:w-2/5 md:w-1/3 w-full">
         <img src={data?.mainImage} alt="mainImg" />
       </figure>
@@ -15,9 +15,11 @@ export default function UpcoomingCard({ data }) {
         </p>
 
         <div className="card-actions flex items-end justify-end ">
-          <button className="btn bg-[#719f18] hover:bg-[#73471b] text-white">
-            Watch
-          </button>
+          <Link to={`/products}`}>
+            <button className="btn bg-[#719f18] hover:bg-[#73471b] text-white">
+              Watch
+            </button>
+          </Link>
         </div>
       </div>
     </div>

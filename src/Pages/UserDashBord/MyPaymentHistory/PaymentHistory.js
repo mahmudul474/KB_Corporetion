@@ -12,7 +12,7 @@ export default function PaymentHistory() {
         </h1>
         <ProductPaymentHistory></ProductPaymentHistory>
       </div>
-      <div className="h-[400px]">
+      <div className="h-[400px] mt-14">
         <h1 className="text-[#719f18] font-semibold text-lg  capitalize">
           {" "}
           Koyel Item

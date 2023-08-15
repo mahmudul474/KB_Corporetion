@@ -17,7 +17,7 @@ export default function KoyelItemPaymentHistory() {
   }, []);
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-auto">
       <table className="table table-xs table-pin-rows  ">
         <thead className="bg-white text-black">
           <tr className="bg-white text-black">

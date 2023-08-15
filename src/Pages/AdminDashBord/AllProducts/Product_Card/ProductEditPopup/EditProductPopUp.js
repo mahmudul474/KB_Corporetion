@@ -27,7 +27,8 @@ const EditProductPopUp = ({ data, onClose, refetch }) => {
     e.target.blur();
   };
 
-  const handleUpadeteProduct = () => {
+  const handleUpadeteProduct = e => {
+    e.preventDefault();
     const productInfo = {
       name: name ? name : data.name,
       description: description ? description : data.description,
