@@ -1,63 +1,40 @@
 import React from "react";
-import banner from "./hero.jpeg";
+import herobg from "./herobg.jpg";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="	 h-[350px]  flex justify-start items-center ">
-      <div className="bg-[#719f18]  h-full hidden lg:flex items-center justify-center lg:w-[250px]">
-        <ul className="w-full rounded-md ">
-          <Link to="/products">
-            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-              Hot Deal
-            </li>
-          </Link>
+    <section
+      style={{
+        backgroundImage: `url(${herobg})`
+      }}
+      className={`relative   bg-cover bg-center bg-no-repeat`}
+    >
+      <div className="absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
 
-          <Link to="/products/end-bidding/this-week">
-            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-              7 Day to sell
-            </li>
-          </Link>
-          <Link to="/products/end-bidding/this-month">
-            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-              30 Day Product
-            </li>
-          </Link>
-
-          <Link to="/items">
-            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-              Top Items
-            </li>
-          </Link>
-          <Link to="/items/end-week">
-            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-              7 Days Items
-            </li>
-          </Link>
-          <Link to="/items/this-month">
-            <li className="hover:bg-[#73471b] cursor-pointer  transition duration-300 ease-in-out w-full my-[2px] p-2 text-xl capitalize font-semibold text-white">
-               30 day Sell
-            </li>
-          </Link>
-        </ul>
-      </div>
-      <div
-        className="w-full bg-no-repeat h-full flex items-center justify-start    bg-cover"
-        style={{ backgroundImage: `url(${banner})` }}
-      >
-        <div className="lg:text-left md:text-left text-center  pl-10">
-          <h1 className="text-white  text-[40px] font-bold capitalize ">
-            Find Your <br /> Next Deal!
+      <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-[710px] lg:items-center lg:px-8">
+        <div className="max-w-xl text-left ltr:sm:text-left ">
+          <h4 className="text-lg font-semibold">Next Generation Auction</h4>
+          <h1 className="text-3xl font-extrabold sm:text-5xl">
+            Find Your Next Deal!
           </h1>
-          <p className="text-lg font-semibold capitalize text-green-50 mb-2">
-            Online Auction is where everyone goes to shop
+
+          <p className="mt-4 max-w-lg sm:text-xl/relaxed">
+            Online Auction is where everyone goes to shop, sell,and give, while
+            discovering variety and affordability.!
           </p>
-          <button className="btn border-none hover:bg-[#995f25]  bg-[#507408] text-white rounded-md">
-            Get Start
-          </button>
+
+          <div className="mt-8 flex flex-wrap gap-4 text-center">
+            <a
+              href="#"
+              className="block w-full rounded  border  bg-transparent  px-12 py-3 text-sm font-medium text-black  border-black focus:outline-none focus:ring  sm:w-auto"
+            >
+              Get Started
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
