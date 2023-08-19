@@ -24,7 +24,7 @@ export default function ProductInfo() {
           <div className="relative mr-6 cursor-pointer">
             <img className="w-full h-full" src={infoImg1} />
             <div className="absolute flex p-3 w-full justify-between  items-center top-4">
-              <h1 className="text-2xl text-black text-white font-semibold  ">
+              <h1 className="text-2xl text-white font-semibold  ">
                 Cold Rolled Products
               </h1>
               <img src={plusImage} />

@@ -194,14 +194,17 @@ const Navbar = () => {
       {" "}
       <div className="px-4 py-5  m-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
-          <Link
-            to="/"
+          <a
+            href="/"
             aria-label="Company"
             title="Company"
-            className="inline-flex w-24 h-8  items-center"
+            class="inline-flex    items-center"
           >
-            <img className="object-cover" src={mainLogo} />
-          </Link>
+            <img className=" h-[50px]  object-contain" src={logo} />
+            <span class="   text-3xl  font-semibold  text-black uppercase">
+              Auction KB
+            </span>
+          </a>
           <ul className="flex items-center md:flex hidden space-x-8 lg:flex">
             {navitem}
           </ul>
