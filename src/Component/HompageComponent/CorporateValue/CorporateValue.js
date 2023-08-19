@@ -18,21 +18,74 @@ export default function CorporateValue() {
           </p>
         </div>
 
-        <div className="grid gap-5 my-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-4"></div>
+        <div className="grid gap-5 my-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <a
+              href="#"
+              class="block rounded-tl-[120px]  max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border    shadow  "
+            >
+              <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
+                Corporate Citizenship
+              </h5>
+              <p class="font-normal text-gray-700  text-white ">
+                What is the Lorem Ipsum quote? A 1914 English translation by
+                Harris Rackham reads: “Nor is there anyone who loves or pursues
+                or desires to obtain pain of itself, because it is pain, but
+                occasionally
+              </p>
+            </a>
+          </div>
 
-        <div>
-          <a
-            href="#"
-            class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-lg shadow  "
-          >
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Noteworthy technology acquisitions 2021
-            </h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
-            </p>
-          </a>
+          <div>
+            <a
+              href="#"
+              class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-lg shadow  "
+            >
+              <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
+                Corporate Citizenship
+              </h5>
+              <p class="font-normal text-gray-700  text-white ">
+                What is the Lorem Ipsum quote? A 1914 English translation by
+                Harris Rackham reads: “Nor is there anyone who loves or pursues
+                or desires to obtain pain of itself, because it is pain, but
+                occasionally
+              </p>
+            </a>
+          </div>
+
+          <div>
+            <a
+              href="#"
+              class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-lg shadow  "
+            >
+              <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
+                Corporate Citizenship
+              </h5>
+              <p class="font-normal text-gray-700  text-white ">
+                What is the Lorem Ipsum quote? A 1914 English translation by
+                Harris Rackham reads: “Nor is there anyone who loves or pursues
+                or desires to obtain pain of itself, because it is pain, but
+                occasionally
+              </p>
+            </a>
+          </div>
+
+          <div>
+            <a
+              href="#"
+              class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-br-[120px] shadow  "
+            >
+              <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
+                Corporate Citizenship
+              </h5>
+              <p class="font-normal text-gray-700  text-white ">
+                What is the Lorem Ipsum quote? A 1914 English translation by
+                Harris Rackham reads: “Nor is there anyone who loves or pursues
+                or desires to obtain pain of itself, because it is pain, but
+                occasionally
+              </p>
+            </a>
+          </div>
         </div>
       </div>
     </div>
