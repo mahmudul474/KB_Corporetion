@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import ProductInfo from "../../Component/HompageComponent/ProductInfo/ProductInfo";
 import Category from "../../Component/HompageComponent/Category/Category";
 import CorporateValue from "../../Component/HompageComponent/CorporateValue/CorporateValue";
+import Services from "../../Component/HompageComponent/Services/Services";
 
 export default function Home() {
   const location = useLocation();
@@ -22,8 +23,8 @@ export default function Home() {
       <Category></Category>
       <CorporateValue></CorporateValue>
       <ProductInfo></ProductInfo>
-
-      <KoyelItem></KoyelItem>
+      <Services></Services>
+      
     </div>
   );
 }
