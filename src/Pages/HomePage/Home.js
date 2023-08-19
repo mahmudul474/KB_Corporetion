@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import Hero from "../../Component/HompageComponent/Hero/Hero";
-import Featured from "../../Component/HompageComponent/Featured/Featured";
-import Subscriptions from "../../Component/HompageComponent/Subscriptions/Subscriptions";
-import Upcommings from "../../Component/HompageComponent/Upcomming/Upcommings";
+
 
 
 import KoyelItem from "../../Component/HompageComponent/KoyelItem/KoyelItem";
 import { useLocation } from "react-router-dom";
 import ProductInfo from "../../Component/HompageComponent/ProductInfo/ProductInfo";
+import Category from "../../Component/HompageComponent/Category/Category";
+import CorporateValue from "../../Component/HompageComponent/CorporateValue/CorporateValue";
 
 export default function Home() {
   const location = useLocation();
@@ -19,11 +19,11 @@ export default function Home() {
   return (
     <div>
       <Hero></Hero>
+      <Category></Category>
+      <CorporateValue></CorporateValue>
       <ProductInfo></ProductInfo>
-      <Featured></Featured>
-      <Subscriptions></Subscriptions>
+
       <KoyelItem></KoyelItem>
-      <Upcommings></Upcommings>
     </div>
   );
 }
