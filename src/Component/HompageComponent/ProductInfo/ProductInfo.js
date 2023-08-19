@@ -8,10 +8,10 @@ export default function ProductInfo() {
     <div className="lg:h-[500px] lg:my-16 my-5">
       <div className="lg:relative flex flex-col lg:flex-row px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="text-left  ">
-          <h1 className="text-3xl  mb-5 capitalize   font-semibold">
+          <h1 className="text-3xl text-black  mb-5 capitalize   font-semibold">
             Product information
           </h1>
-          <p className=" mb-5">
+          <p className="text-black  mb-5">
             Kb Steel's products are of the highest quality and fast service.
             <br></br> We guarantee the highest customer satisfaction
           </p>
@@ -24,7 +24,7 @@ export default function ProductInfo() {
           <div className="relative mr-6 cursor-pointer">
             <img className="w-full h-full" src={infoImg1} />
             <div className="absolute flex p-3 w-full justify-between  items-center top-4">
-              <h1 className="text-2xl text-white font-semibold  ">
+              <h1 className="text-2xl text-black text-white font-semibold  ">
                 Cold Rolled Products
               </h1>
               <img src={plusImage} />
