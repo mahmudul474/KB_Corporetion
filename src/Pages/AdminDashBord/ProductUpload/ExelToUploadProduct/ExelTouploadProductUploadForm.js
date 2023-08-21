@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 AWS.config.update({
   region: "ap-southeast-1",
   accessKeyId: "AKIA3VQV4Q3NDVIL2HTO",
-  secretAccessKey: "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"
+  secretAccessKey: "LL5Y1TIK2/sWPm4Tn/bHO7izAikXVHSuQAGCaVxU",
 });
 
 const s3 = new AWS.S3();
@@ -19,7 +19,7 @@ const s3 = new AWS.S3();
 const ExelTouploadProductUploadForm = () => {
   const { currentUser } = useContext(AuthContext);
   const [loading, setLoadinding] = useState(false);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const [mainImage, setMainImage] = useState(null);
   const [subImages, setSubImages] = useState([]);
@@ -35,13 +35,13 @@ const ExelTouploadProductUploadForm = () => {
   const [startBiddingTime, setStartBiddingTime] = useState("");
   const [endBiddingTime, setEndBiddingTime] = useState("");
 
-  const handleEndbiddingTimeChange = e => {
+  const handleEndbiddingTimeChange = (e) => {
     setEndBiddingTime(e.target.value);
 
     // Close the date and time picker
     e.target.blur();
   };
-  const handleStartbiddingTimeChange = e => {
+  const handleStartbiddingTimeChange = (e) => {
     setStartBiddingTime(e.target.value);
 
     // Close the date and time picker
@@ -50,19 +50,19 @@ const ExelTouploadProductUploadForm = () => {
 
   console.log(mainImageUrl, subImageUrls, pdfUrl);
 
-  const handleMainImageChange = e => {
+  const handleMainImageChange = (e) => {
     setMainImage(e.target.files[0]);
   };
 
-  const handleSubImagesChange = e => {
+  const handleSubImagesChange = (e) => {
     setSubImages([...e.target.files]);
   };
 
-  const handleFileChange = e => {
+  const handleFileChange = (e) => {
     setPdfFile(e.target.files[0]);
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     setLoadinding(true);
     e.preventDefault();
 
@@ -113,7 +113,7 @@ const ExelTouploadProductUploadForm = () => {
         {
           Bucket: "kb-corporetion",
           Key: key,
-          Body: file
+          Body: file,
         },
         (error, data) => {
           if (error) {
@@ -127,22 +127,22 @@ const ExelTouploadProductUploadForm = () => {
     });
   };
 
-  const generateS3Url = key => {
+  const generateS3Url = (key) => {
     return `https://kb-corporetion.s3.ap-southeast-1.amazonaws.com/${key}`;
   };
 
   ///exel file upload
   const [formData, setFormData] = useState(null);
 
-  const handleExcelFileChange = event => {
+  const handleExcelFileChange = (event) => {
     const file = event.target.files[0];
     convertExcelToJson(file);
   };
 
-  const convertExcelToJson = file => {
+  const convertExcelToJson = (file) => {
     if (file) {
       const reader = new FileReader();
-      reader.onload = event => {
+      reader.onload = (event) => {
         const data = new Uint8Array(event.target.result);
         const workbook = XLSX.read(data, { type: "array" });
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -158,9 +158,9 @@ const ExelTouploadProductUploadForm = () => {
     }
   };
 
-  const formatData = jsonData => {
+  const formatData = (jsonData) => {
     if (jsonData) {
-      const formattedKoyel = jsonData.map(row => ({
+      const formattedKoyel = jsonData.map((row) => ({
         _id: uuidv4(),
         endBiddingTime,
         item: row[0],
@@ -174,14 +174,12 @@ const ExelTouploadProductUploadForm = () => {
         buyNowPrice,
         minimumBid: minimumBid,
         currentBid: minimumBid,
-        bids: []
+        bids: [],
       }));
 
       return formattedKoyel;
     }
   };
-
-  
 
   const handleSaveProduct = (mainImageUrl, subImageUrls, pdfUrl) => {
     const productInfo = {
@@ -199,26 +197,26 @@ const ExelTouploadProductUploadForm = () => {
       authorPhoto: currentUser?.userPhoto,
       koyel: formData,
       key: "koyel",
-      bids: []
+      bids: [],
       // winners: []
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/products/upload/koyel`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(productInfo)
+      body: JSON.stringify(productInfo),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
 
         setLoadinding(false);
         toast.success(data.message);
         navigate("/admin-dashboard/products/koyel-item");
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };
@@ -252,7 +250,7 @@ const ExelTouploadProductUploadForm = () => {
               name="name"
               id="name"
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
@@ -269,7 +267,7 @@ const ExelTouploadProductUploadForm = () => {
             <input
               type="number"
               value={buyNowPrice}
-              onChange={e => setBuyNowPrice(e.target.value)}
+              onChange={(e) => setBuyNowPrice(e.target.value)}
               name="buyNowPrice"
               id="buyNowPrice"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -291,7 +289,7 @@ const ExelTouploadProductUploadForm = () => {
               name="minimumBid"
               id="minimumBid"
               value={minimumBid}
-              onChange={e => setMinimumBid(e.target.value)}
+              onChange={(e) => setMinimumBid(e.target.value)}
               className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
@@ -307,7 +305,7 @@ const ExelTouploadProductUploadForm = () => {
           <div className="relative z-0 w-full mb-6 group">
             <input
               value={startBiddingPrice}
-              onChange={e => setStartBiddingPrice(e.target.value)}
+              onChange={(e) => setStartBiddingPrice(e.target.value)}
               type="number"
               name="pertonPrice"
               id="pertonPrice"
@@ -384,6 +382,27 @@ const ExelTouploadProductUploadForm = () => {
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="file"
+              id="subImages"
+              accept="image/*"
+              multiple
+              onChange={handleSubImagesChange}
+              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="subImg"
+              className="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Upload Sub Img
+            </label>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 md:gap-6">
+          <div className="relative z-0 w-full mb-6 group">
+            <input
+              type="file"
               id="pdfFile"
               onChange={handleFileChange}
               className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -397,17 +416,20 @@ const ExelTouploadProductUploadForm = () => {
               Upload Pdf
             </label>
           </div>
+          <div className="relative z-0 w-full mb-6 group">
+             
+            <select
+              id="countries"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option selected>Choose a country</option>
+              <option value="US">United States</option>
+              <option value="CA">Canada</option>
+              <option value="FR">France</option>
+              <option value="DE">Germany</option>
+            </select>
+          </div>
         </div>
-        <p className="text-center my-3  text-black text-lg  font-semibold">
-          Upload Sub Images
-        </p>
-        <input
-          type="file"
-          id="subImages"
-          accept="image/*"
-          multiple
-          onChange={handleSubImagesChange}
-        />
 
         <label
           for="message"
@@ -419,7 +441,7 @@ const ExelTouploadProductUploadForm = () => {
           id="message"
           rows="4"
           value={description}
-          onChange={e => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
           className="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500   "
           placeholder="Leave a comment..."
         ></textarea>
