@@ -122,7 +122,7 @@ export default function Product({ data }) {
             </p>
           </div>
  <div className="flex justify-start items-center">
- <Link to="">
+ <Link to={`/product/${data?._id}`}>
             <button className=" px-3 rounded-md text-sm border   border-black hover:bg-transparent hover:outline-dotted transition duration-300 ease-in-out justify-center items-center flex  bg-transparent text-black m-auto  ">
               show details
               <svg

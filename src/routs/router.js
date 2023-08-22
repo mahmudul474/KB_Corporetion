@@ -76,6 +76,13 @@ export const routs = createBrowserRouter([
       element:<Events></Events>
      },
 
+     {
+      path: "/product/:id",
+      loader: ({ params }) =>
+        fetch(`${process.env.REACT_APP_API_URL}/products/koyel/${params.id}`),
+      element: <SingelProductsDettails></SingelProductsDettails>
+    },
+
       {
         path: "/winners",
         element: <Winers></Winers>
@@ -153,18 +160,7 @@ export const routs = createBrowserRouter([
         element: <ProductOrder></ProductOrder>
       },
 
-      {
-        path: "/action/:id",
-        loader: ({ params }) =>
-          fetch(`${process.env.REACT_APP_API_URL}/products/${params.id}`),
-        element: <ProductDettails></ProductDettails>
-      },
-      {
-        path: "/excel/:id",
-        loader: ({ params }) =>
-          fetch(`${process.env.REACT_APP_API_URL}/products/koyel/${params.id}`),
-        element: <SingelProductsDettails></SingelProductsDettails>
-      }
+      
     ]
   },
   {
