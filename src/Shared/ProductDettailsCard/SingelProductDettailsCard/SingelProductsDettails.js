@@ -239,11 +239,11 @@ export default function SingelProductsDettails() {
         <div className="w-full  lg:w-3/5 text-left px-1   ">
           <h2 className="text-2xl text-[#719f18] text-center">Select Items</h2>
           <div>
-            <Koyel
+            {/* <Koyel
               selectedItems={selectedItems}
               setSelectedItems={setSelectedItems}
               koyel={data?.koyel}
-            ></Koyel>
+            ></Koyel> */}
           </div>
         </div>
       </div>
@@ -391,13 +391,13 @@ export default function SingelProductsDettails() {
                   className=" mx-3 my-2 text-center w-full  "
                   target="_blank"
                   href={data?.pdfFile}
-                  download="product-description"
+                  download="product-description.xlsx"
                 >
                   <button
                     type="button"
                     className="  px-5 py-3.5 rounded-md text-sm font-medium   w-full text-white bg-[#719f18] hover:bg-[#73471b]  "
                   >
-                    Download PDF
+                    Download  Product
                   </button>
                 </a>
 

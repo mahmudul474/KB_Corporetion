@@ -282,13 +282,13 @@ useEffect(() => {
                   className=" mx-3 my-2 text-center w-full  "
                   target="_blank"
                   href={data?.pdfFile}
-                  download="product-description"
+                  download="product-description.xlsx"
                 >
                   <button
                     type="button"
                     className="  px-5 py-2.5 text-sm font-medium hover:bg-[#73471b]  w-full text-white bg-[#719f18] rounded-lg focus:ring-4 focus:outline-none focus:ring-green-300 -[#719f18]  "
                   >
-                    Download PDF
+                    Download   Product
                   </button>
                 </a>
 

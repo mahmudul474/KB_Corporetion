@@ -24,89 +24,55 @@ const Navbar = () => {
 
   const navitem = (
     <>
-      <Link to="/">
-        <li onClick={() => setIsMenuOpen(false)}>
-          <p
-            title="Our product"
-            className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
-          >
-            Home
-          </p>
-        </li>
-      </Link>
- 
-      <div className="dropdown block dropdown-hover">
-        <label tabIndex={0} className=" font-semibold  m-1">
-          Items
-        </label>
-        <ul
-          tabIndex={0}
-          className="dropdown-content z-[1] menu  shadow bg-white rounded-box w-52"
-        >
-          <Link to="/items/end-week">
-            <li>
-              <a> This Week</a>
-            </li>
-          </Link>
-          <Link to="/items/this-month">
-            <li>
-              <a>This Month</a>
-            </li>
-          </Link>
-
-          <Link to="/items">
-            <li>
-              <a>Others</a>
-            </li>
-          </Link>
-        </ul>
-      </div>
-
-
-      <div className="dropdown dropdown-hover">
-        <label tabIndex={0} className=" font-semibold  m-1">
-          Auctions
-        </label>
-        <ul
-          tabIndex={0}
-          className="dropdown-content z-[1] menu  shadow bg-white rounded-box w-52"
-        >
-          <Link to="/products/end-bidding/this-week">
-            <li>
-              <a> This Week</a>
-            </li>
-          </Link>
-          <Link to="/products/end-bidding/this-month">
-            <li>
-              <a>This Month</a>
-            </li>
-          </Link>
-
-          <Link to="/products">
-            <li>
-              <a>Others</a>
-            </li>
-          </Link>
-        </ul>
-      </div>
-
-      <Link to="/winners">
-        <li onClick={() => setIsMenuOpen(false)}>
-          <p
-            title="Our product"
-            className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
-          >
-            Winners
-          </p>
-        </li>
-      </Link>
+       
+  
       <Link to="/about">
         <li>
           <p
             title="Our product"
             className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
-            About
+            Company
+          </p>
+        </li>
+      </Link>
+      <Link to="/cr">
+        <li>
+          <p
+            title="Our product"
+            className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+            CR
+          </p>
+        </li>
+      </Link>
+      <Link to="/ga">
+        <li>
+          <p
+            title="Our product"
+            className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+            GA
+          </p>
+        </li>
+      </Link>
+      <Link to="/po">
+        <li>
+          <p
+            title="Our product"
+            className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+            PO
+          </p>
+        </li>
+      </Link>
+      <Link to="/events">
+        <li>
+          <p
+            title="Our product"
+            className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+          >
+           Events
           </p>
         </li>
       </Link>
