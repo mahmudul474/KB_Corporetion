@@ -240,9 +240,16 @@ At KB Corporation, we specialize in offering an extensive range of steel product
         </div>
       </section>
       <div class="bg-white">
-
+      <div className=" flex flex-col justify-center my-4 items-center  ">
+<h1 className="text-3xl capitalize font-bold  text-black  "> Why Choose use </h1>
+      
+      <p className="text-center  text-gray-700 my-4 ">Explore on the world's best & largest Bidding marketplace with <br/> our beautiful Bidding products. We want to be a part of your smile, success and future growth.</p>
+      
+       </div>
       <div class="-mx-4 flex flex-wrap p-8">
-    
+       
+
+
     <div class="w-full px-4 md:w-1/2 lg:w-1/3">
         <div class="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
             <div class="mx-auto mb-7 inline-block"><svg width="53" height="61" viewBox="0 0 53 61" fill="none"
