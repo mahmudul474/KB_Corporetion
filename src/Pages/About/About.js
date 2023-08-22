@@ -580,7 +580,7 @@ gumcheon-gu, Seoui, Korea
               </p>
               <p>Tel+82-2-6231-1219
 </p>
-              <p>Fax. +82-2-866-2438</p>
+              <p>Fax.+82-2-866-2438</p>
             </div>
           </div>
             
