@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import cr from "./cr.png";
 export default function Category() {
   return (
@@ -13,6 +14,8 @@ export default function Category() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5">
+        
+       
         <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
             <h4 className="text-lg font-semibold text-black">Steel trade</h4>
@@ -23,6 +26,7 @@ export default function Category() {
             src={cr}
           />
           <div className="flex justify-start items-start my-3 p-5">
+           <Link to="/cr" >
             <button
               type="button"
               class="text-black   border border-black bg-transparent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center    "
@@ -43,9 +47,11 @@ export default function Category() {
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
-            </button>
+            </button></Link>
           </div>
         </div>
+
+
         <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
             <h4 className="text-lg font-semibold text-black">Steel trade</h4>
@@ -56,7 +62,7 @@ export default function Category() {
             src={cr}
           />
           <div className="flex justify-start items-start my-3 p-5">
-            <button
+        <Link to="/ga">   <button
               type="button"
               class="text-black   border border-black bg-transparent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center    "
             >
@@ -76,7 +82,7 @@ export default function Category() {
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
-            </button>
+            </button></Link> 
           </div>
         </div>
         <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
@@ -89,7 +95,7 @@ export default function Category() {
             src={cr}
           />
           <div className="flex justify-start items-start my-3 p-5">
-            <button
+          <Link to="/po">   <button
               type="button"
               class="text-black   border border-black bg-transparent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center    "
             >
@@ -109,7 +115,7 @@ export default function Category() {
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
-            </button>
+            </button></Link> 
           </div>
         </div>
 
@@ -123,7 +129,8 @@ export default function Category() {
             src={cr}
           />
           <div className="flex justify-start items-start my-3 p-5">
-            <button
+      
+          <Link to="/events">   <button
               type="button"
               class="text-black   border border-black bg-transparent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center    "
             >
@@ -143,7 +150,7 @@ export default function Category() {
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
-            </button>
+            </button></Link> 
           </div>
         </div>
       </div>

@@ -14,8 +14,6 @@ import MyBidds from "../Pages/UserDashBord/My_Bids/MyBidds";
 import WinningBids from "../Pages/UserDashBord/WinningBids/WinningBids";
 import Buy from "../Pages/UserDashBord/Buy/Buy";
 import Private from "./PraivetRout/Privet";
-import ThisWeek from "../Pages/ThisWeekEnd/ThisWeek";
-import ThisMonth from "../Pages/ThisMonthEnd/ThisMonth";
 import Winers from "../Pages/Winners/Winers";
 import Users from "../Pages/AdminDashBord/Users/Users";
 import Order from "../Pages/AdminDashBord/Orders/Order";
@@ -37,12 +35,11 @@ import BiddingCloseItem from "../Pages/AdminDashBord/AllkoyelItem/Biddingclosewi
 import KoyelItemPayment from "../Pages/AdminDashBord/AllkoyelItem/BiddingclosewithBidkoyeItem/PaymentKoyelItem/KoyelItemPayment";
 import KoyelItemOrder from "../Pages/AdminDashBord/Orders/KoyelItemOrder/KoyelItemOrder";
 import PaymentHistory from "../Pages/UserDashBord/MyPaymentHistory/PaymentHistory";
-import ProductPageLayot from "../Pages/AllProductPageLayot/ProductPageLayot";
 import AdminKoyelItemDettails from "../Pages/AdminDashBord/AllkoyelItem/KoyelITem/AdminKoyelItemDettails/SingelProductDettailsCard/AdminKoyelItemDettails";
-import KoyelItemPageLayot from "../Pages/AllKoyelItemPageLayot/KoyelItemPageLayot";
-import AllkoyelItem from "../Pages/AllKoyelItem/AllkoyelItem";
-import ItemThisWeekEnd from "../Pages/AllKoyelItem/ThisWeekEnd/ItemThisWeekEnd";
-import ItemThisMonth from "../Pages/AllKoyelItem/ThisMonth/ItemThisMonth";
+import Cr from "../Pages/ProductPage/Cr";
+import Ga from "../Pages/ProductPage/Ga";
+import Po from "../Pages/ProductPage/Po";
+import Events from "../Pages/ProductPage/Events";
 
 export const routs = createBrowserRouter([
   {
@@ -61,6 +58,24 @@ export const routs = createBrowserRouter([
         path: "/login",
         element: <Login></Login>
       },
+
+     {
+      path:"/cr",
+      element:<Cr></Cr>
+     },
+     {
+      path:"/ga",
+      element:<Ga></Ga>
+     },
+      {
+        path:"/po",
+        element:<Po></Po> 
+     },
+     {
+      path:"/events",
+      element:<Events></Events>
+     },
+
       {
         path: "/winners",
         element: <Winers></Winers>
@@ -125,43 +140,7 @@ export const routs = createBrowserRouter([
           }
         ]
       },
-      {
-        path: "/products",
-        element: <ProductPageLayot></ProductPageLayot>,
-        children: [
-          {
-            path: "/products",
-            element: <Action></Action>
-          },
-          {
-            path: "/products/end-bidding/this-week",
-            element: <ThisWeek></ThisWeek>
-          },
-
-          {
-            path: "/products/end-bidding/this-month",
-            element: <ThisMonth></ThisMonth>
-          }
-        ]
-      },
-      {
-        path: "/items",
-        element: <KoyelItemPageLayot></KoyelItemPageLayot>,
-        children: [
-          {
-            path: "/items",
-            element: <AllkoyelItem></AllkoyelItem>
-          },
-          {
-            path: "/items/end-week",
-            element: <ItemThisWeekEnd></ItemThisWeekEnd>
-          },
-          {
-            path: "/items/this-month",
-            element: <ItemThisMonth></ItemThisMonth>
-          }
-        ]
-      },
+     
 
       {
         path: "/about",

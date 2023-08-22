@@ -79,7 +79,7 @@ export default function Product({ data }) {
       <div className=" m-auto mx-5 bg-white border border-gray-200 rounded-lg shadow  ">
         <div className="border ">
           <img
-            className="rounded-t-lg w-full text-center h-60 object-cover  "
+            className="rounded-t-lg w-full object-cover h-[150px] text-center   "
             src={data?.mainImage}
             alt=""
           />
@@ -87,15 +87,15 @@ export default function Product({ data }) {
             <h1>
               {isBiddingStartSoon(data.startBiddingTime) &&
               !isBiddingEnd(data.endBiddingTime) ? (
-                <p className="text-lg text-green-700  font-semibold">
+                <p className="text-md text-green-700  ">
                   Start Bidding Soon
                 </p>
               ) : isBiddingEnd(data.endBiddingTime) ? (
-                <p className="text-lg text-red-600 capitalize  font-semibold">
+                <p className="text-sm text-red-600 capitalize  ">
                   Bidding Ended
                 </p>
               ) : (
-                <p className="text-lg text-red-600 capitalize  font-semibold">
+                <p className="text-sm text-red-600 capitalize  ">
                   Bid Close : {calculateRemainingTime(data.endBiddingTime)}
                 </p>
               )}{" "}
@@ -103,8 +103,8 @@ export default function Product({ data }) {
           </div>
         </div>
 
-        <div className="p-5 text-left capitalize">
-          <h5 className="mb-2 text-lg font-semibold tracking-tight text-black dark:text-black">
+        <div className="p-2 text-left capitalize">
+          <h5 className="mb-2 text-sm    tracking-tight text-black dark:text-black">
             {data?.name}
           </h5>
 
@@ -113,17 +113,17 @@ export default function Product({ data }) {
           </p>
           <div className="flex my-2 justify-between items-center">
             <p className="flex flex-col text-[#719f18]  items-center ">
-              <span>Start Bidding Time</span>
+              <span className="text-sm">Start Bidding Time</span>
               <span> {formatDateTime(data?.startBiddingTime)}</span>
             </p>
             <p className="flex text-[#73471b] flex-col items-center ">
-              <span>End Bidding Time</span>
+              <span className="text-sm">End Bidding Time</span>
               <span> {formatDateTime(data?.endBiddingTime)}</span>
             </p>
           </div>
  <div className="flex justify-start items-center">
  <Link to="">
-            <button className="btn hover:bg-transparent hover:outline-dotted transition duration-300 ease-in-out justify-center items-center flex  bg-transparent text-black m-auto my-5 ">
+            <button className=" px-3 rounded-md text-sm border   border-black hover:bg-transparent hover:outline-dotted transition duration-300 ease-in-out justify-center items-center flex  bg-transparent text-black m-auto  ">
               show details
               <svg
                 aria-hidden="true"
