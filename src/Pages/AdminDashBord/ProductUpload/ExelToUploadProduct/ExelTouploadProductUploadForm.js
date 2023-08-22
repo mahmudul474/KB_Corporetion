@@ -35,7 +35,13 @@ const ExelTouploadProductUploadForm = () => {
   const [startBiddingTime, setStartBiddingTime] = useState("");
   const [endBiddingTime, setEndBiddingTime] = useState("");
   const [ShippingCost, setShippingCost] = useState(null);
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState('');
+
+
+
+  const handleCountryChange = (event) => {
+    setCategory(event.target.value);
+  };
 
   const handleEndbiddingTimeChange = e => {
     setEndBiddingTime(e.target.value);
@@ -199,7 +205,9 @@ const ExelTouploadProductUploadForm = () => {
       authorPhoto: currentUser?.userPhoto,
       koyel: formData,
       key: "koyel",
-      bids: []
+      bids: [],
+      ShippingCost,
+      category, 
       // winners: []
     };
 
@@ -419,16 +427,18 @@ const ExelTouploadProductUploadForm = () => {
             </label>
           </div>
           <div className="relative z-0 w-full mb-6 group">
-            <select
-              id="countries"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-              <option selected>Choose a country</option>
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
-            </select>
+          <select
+        id="countries"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        value={category}
+        onChange={handleCountryChange}
+        required // Make the select element required
+      >
+        <option value="">Choose Category</option>
+        <option value="CR">CR</option>
+        <option value="GA">GA</option>
+        <option value="PO">PO</option>
+      </select>
           </div>
         </div>
 

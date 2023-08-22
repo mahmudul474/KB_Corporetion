@@ -104,15 +104,12 @@ export default function Product({ data }) {
         </div>
 
         <div className="p-5 text-left capitalize">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-black dark:text-black">
+          <h5 className="mb-2 text-lg font-semibold tracking-tight text-black dark:text-black">
             {data?.name}
           </h5>
 
           <p className="mb-3 font-normal text-black dark:text-black">
-            {data?.description.slice(0, 20)}...
-            <Link className="text-[#719f18]" to={`/action/${data._id}`}>
-              Read more{" "}
-            </Link>
+           Category: <span className="font-bold">{data?.category}</span>
           </p>
           <div className="flex my-2 justify-between items-center">
             <p className="flex flex-col text-[#719f18]  items-center ">
@@ -124,14 +121,9 @@ export default function Product({ data }) {
               <span> {formatDateTime(data?.endBiddingTime)}</span>
             </p>
           </div>
-
-          <div className="flex justify-start items-center">
-            <h2 className="font-semibold">
-              Bidding Price: {data.startBiddingPrice}$
-            </h2>
-          </div>
-          <Link to={`/action/${data._id}`}>
-            <button className="btn w-[200px]  transition duration-300 ease-in-out justify-center items-center hover:bg-[#73471b] flex  bg-[#719f18] text-white m-auto my-5 ">
+ <div className="flex justify-start items-center">
+ <Link to="">
+            <button className="btn hover:bg-transparent hover:outline-dotted transition duration-300 ease-in-out justify-center items-center flex  bg-transparent text-black m-auto my-5 ">
               show details
               <svg
                 aria-hidden="true"
@@ -147,7 +139,13 @@ export default function Product({ data }) {
                 ></path>
               </svg>
             </button>
+
+
+            
           </Link>
+ </div>
+
+         
         </div>
       </div>
     </div>
