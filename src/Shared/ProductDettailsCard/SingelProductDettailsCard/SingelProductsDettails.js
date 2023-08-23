@@ -236,54 +236,11 @@ export default function SingelProductsDettails() {
             ></SubImgSlider>
           </div>
         </div>
-        <div className="w-full  lg:w-3/5 text-left px-1   ">
-          <h2 className="text-2xl text-[#719f18] text-center">Select Items</h2>
+        <div className="w-full  lg:w-3/5 text-left  lg:px-6 p-3   ">
+          
           <div>
-            {/* <Koyel
-              selectedItems={selectedItems}
-              setSelectedItems={setSelectedItems}
-              koyel={data?.koyel}
-            ></Koyel> */}
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-between   mt-20 flex-col-reverse lg:flex-row">
-        <div className=" w-full   lg:w-2/5  mt-3  bg-[#719f18]  shadow-2xl   rounded-lg  p-5">
-          <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
-            <div className="text-center my-2">
-              <h4 className="text-[#73471b]">This Auction Ends in</h4>
-              <h2 className="text-[#73471b]">{remainingTime}</h2>
-            </div>
 
-            <div className="text-center my-2">
-              <h4 className="text-white">Start Bidding Time</h4>
-              <h2 className="text-white">
-                {formatDateTime(data.startBiddingTime)}
-              </h2>
-            </div>
-
-            <div className="text-center my-2">
-              <h4 className="text-[#73471b]"> End Bidding Time</h4>
-              <h2 className="text-[#73471b]">
-                {formatDateTime(data.endBiddingTime)}
-              </h2>
-            </div>
-
-            <div
-              className="flex items-center my-5 text-white  flex-col justify-center text-xl   font-bold 
-              "
-            >
-              <h1>Total Bids</h1>
-              <h1>
-                {" "}
-                {data && data?.bids?.length
-                  ? data?.bids?.length + "bids"
-                  : "No Bids Available"}
-              </h1>
-            </div>
-          </div>
-        </div>
-        <div className="w-full lg:w-3/5 lg:px-8   capitalize">
+          <div className="">
           <div>
             <h2 className="  mt-1 mb-6 text-2xl font-bold text-black  text-left md:text-4xl">
               {data.name}
@@ -413,6 +370,60 @@ export default function SingelProductsDettails() {
             </div>
           </div>
         </div>
+
+
+        <div className=" w-full    mt-3  bg-[#719f18]  shadow-2xl   rounded-lg  p-5">
+          <div className="flex justify-center flex-col  items-center  text-xl text-left  ">
+            <div className="text-center my-2">
+              <h4 className="text-[#73471b]">This Auction Ends in</h4>
+              <h2 className="text-[#73471b]">{remainingTime}</h2>
+            </div>
+
+            <div className="text-center my-2">
+              <h4 className="text-white">Start Bidding Time</h4>
+              <h2 className="text-white">
+                {formatDateTime(data.startBiddingTime)}
+              </h2>
+            </div>
+
+            <div className="text-center my-2">
+              <h4 className="text-[#73471b]"> End Bidding Time</h4>
+              <h2 className="text-[#73471b]">
+                {formatDateTime(data.endBiddingTime)}
+              </h2>
+            </div>
+
+            <div
+              className="flex items-center my-5 text-white  flex-col justify-center text-xl   font-bold 
+              "
+            >
+              <h1>Total Bids</h1>
+              <h1>
+                {" "}
+                {data && data?.bids?.length
+                  ? data?.bids?.length + "bids"
+                  : "No Bids Available"}
+              </h1>
+            </div>
+          </div>
+        </div>
+
+
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-between   mt-20 flex-col-reverse lg:flex-row">
+        
+       
+           <Koyel
+              selectedItems={selectedItems}
+              setSelectedItems={setSelectedItems}
+              koyel={data?.koyel}
+            ></Koyel> 
+
+
+
+            <div>shipment system</div>
         {isModalOpen && (
           <BuyNow
             close={closeModal}

@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
 import Hero from "../../Component/HompageComponent/Hero/Hero";
-
-
-
-import KoyelItem from "../../Component/HompageComponent/KoyelItem/KoyelItem";
 import { useLocation } from "react-router-dom";
 import ProductInfo from "../../Component/HompageComponent/ProductInfo/ProductInfo";
 import Category from "../../Component/HompageComponent/Category/Category";
@@ -25,7 +21,7 @@ export default function Home() {
       <CorporateValue></CorporateValue>
       <Products></Products>
       <ProductInfo></ProductInfo>
-      <Services></Services>
+      {/* <Services></Services> */}
     </div>
   );
 }
