@@ -137,19 +137,19 @@ export default function HotRoll() {
         <img
           class="h-auto max-w-lg rounded-lg"
           src={img1}
-          alt="image description"
+          alt="img"
         />
 
         <img
           class="h-auto max-w-lg  lg:-mt-20 rounded-lg"
           src={img2}
-          alt="image description"
+          alt="img"
         />
 
         <img
           class="h-auto max-w-lg rounded-lg"
           src={img3}
-          alt="image description"
+          alt="img"
         />
       </div>
     </div>
