@@ -229,7 +229,7 @@ export default function SingelProductsDettails() {
               />
             )}
           </div>
-          <div className=" w-full h-[250px] overflow-auto grid  mb-4 gap-4 grid-cols-1  ">
+          <div className=" w-full h-[250px] overflow-hidden mb-4   ">
             <SubImgSlider
               handleSubimgShow={handleSubimgShow}
               images={data.subImages}
