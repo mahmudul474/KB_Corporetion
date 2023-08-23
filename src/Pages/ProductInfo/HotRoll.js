@@ -6,7 +6,7 @@ import img3 from "./heat4.jpg"
 
 export default function HotRoll() {
   return (
-    <div>
+    <div className="text-black ">
       <div
         style={{
           backgroundImage: `url(${bg})`,
@@ -19,10 +19,10 @@ export default function HotRoll() {
           </h1>
         </div>
       </div>
-
-      <div>
-        <h1>hot rolled product</h1>
-        <p>Introduction of item</p>
+<div className="px-4 py-16 mx-auto sm:max-w-xl  md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+      <div className="felx text-left justify-start items-start  my-3">
+        <h1 className="capitalize  text-left text-3xl font-bold  text-black ">hot rolled product</h1>
+        <p className="text-lg leading-loose text-black " >Introduction of item</p>
         <h4>
           Hot-rolled products are produced by a hot strip mill. It refers to
           hot-rolled steel strip in a coil state and hot-rolled steel sheet
@@ -151,6 +151,7 @@ export default function HotRoll() {
           src={img3}
           alt="img"
         />
+      </div>
       </div>
     </div>
   );
