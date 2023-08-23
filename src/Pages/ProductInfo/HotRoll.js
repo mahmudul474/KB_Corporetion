@@ -1,5 +1,8 @@
 import React from "react";
 import bg from "./hot-rolled.jpg";
+import img1  from "./heat1.jpg"
+import img2 from "./heat2.jpg"
+import img3 from "./heat4.jpg"
 
 export default function HotRoll() {
   return (
@@ -128,6 +131,26 @@ export default function HotRoll() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="grid px-4 overflow-hidden py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-5">
+        <img
+          class="h-auto max-w-lg rounded-lg"
+          src={img1}
+          alt="image description"
+        />
+
+        <img
+          class="h-auto max-w-lg  lg:-mt-20 rounded-lg"
+          src={img2}
+          alt="image description"
+        />
+
+        <img
+          class="h-auto max-w-lg rounded-lg"
+          src={img3}
+          alt="image description"
+        />
       </div>
     </div>
   );
