@@ -1,8 +1,8 @@
 import React from "react";
 import bg from "./hot-rolled.jpg";
-import img1  from "./heat1.jpg"
-import img2 from "./heat2.jpg"
-import img3 from "./heat4.jpg"
+import img1  from "./cold1.jpg"
+import img2 from "./cold_2.jpg"
+import img3 from "./cold3.jpg"
 
 export default function HotRoll() {
   return (
@@ -60,14 +60,11 @@ export default function HotRoll() {
                   </svg>
                   <span className="relative">The</span>
                 </span>{" "}
-                Hot rolled steel (HR)
+                Cold rolled steel (CR)
               </h2>
               <p className="text-base text-gray-700 md:text-lg">
-                Hot-rolled steel sheet is a steel sheet made thin by heating,
-                pressing, and stretching a slab, a flat-shaped steel
-                semi-finished product obtained by processing molten iron.
-                Through this, we make steel plates for automobiles, steel pipes,
-                and building materials.
+              For cold-rolled steel sheets, scale generated on the surface of hot-rolled coils is removed with hydrochloric acid or sulfuric acid in the pickling process, and after rolling thinly with rolling rolls,
+It is a product that has the thickness and mechanical properties required by customers by undergoing annealing heat treatment.
               </p>
             </div>
             <div className="grid gap-8 row-gap-10 lg:grid-cols-2">
@@ -94,8 +91,8 @@ export default function HotRoll() {
                     main purpose
                   </h6>
                   <p className="mb-3 text-left lg:text-center  text-sm text-gray-900">
-                    for mechanical and building structures; For automobile
-                    structure, general steel pipe
+                  used for general purpose
+As a steel material, home appliances, drums, furniture manufacturing, etc.
                   </p>
                 </div>
               </div>
@@ -122,9 +119,11 @@ export default function HotRoll() {
                     characteristic
                   </h6>
                   <p className="mb-3 text-left lg:text-center  text-sm text-gray-900">
-                    Heat the material to a high temperature Because the material
-                    is produced at the recrystallization temperature point Can
-                    speed up production
+                  Cold-rolled steel has a beautiful surface and good workability.
+From household items such as refrigerators and washing machines,
+From industrial equipment to various construction materials and automobiles
+It is used for various purposes and according to the advancement of industrial structure
+It is in the limelight as an essential material in modern society
                   </p>
                 </div>
               </div>
@@ -133,7 +132,7 @@ export default function HotRoll() {
         </div>
       </div>
 
-      <div className="grid px-4 overflow-hidden py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid px-4   py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-10 ">
         <img
           class="h-auto max-w-lg rounded-lg"
           src={img1}
