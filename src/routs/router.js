@@ -40,6 +40,8 @@ import Cr from "../Pages/ProductPage/Cr";
 import Ga from "../Pages/ProductPage/Ga";
 import Po from "../Pages/ProductPage/Po";
 import Events from "../Pages/ProductPage/Events";
+import ColdRoll from "../Pages/ProductInfo/ColdRoll";
+import HotRoll from "../Pages/ProductInfo/HotRoll";
 
 export const routs = createBrowserRouter([
   {
@@ -75,6 +77,15 @@ export const routs = createBrowserRouter([
       path:"/events",
       element:<Events></Events>
      },
+     { 
+      path:"/cold-rolled",
+      element:<ColdRoll></ColdRoll>
+     },
+     {
+      path:"/hot-rolled",
+       element:<HotRoll></HotRoll>
+     }
+     ,
 
      {
       path: "/product/:id",

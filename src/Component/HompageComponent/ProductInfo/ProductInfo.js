@@ -2,6 +2,7 @@ import React from "react";
 import infoImg1 from "./ProductInfo1.jpg";
 import infoImg2 from "./productinfo2.jpg";
 import plusImage from "./plus_ico.png";
+import { Link } from "react-router-dom";
 
 export default function ProductInfo() {
   return (
@@ -21,6 +22,7 @@ export default function ProductInfo() {
         </div>
 
         <div className="lg:absolute   flex justify-center items-center lg:flex-row  flex-col  right-0">
+         <Link to="/cold-rolled">
           <div className="relative mr-6 cursor-pointer">
             <img className="w-full h-full" src={infoImg1} />
             <div className="absolute flex p-3 w-full justify-between  items-center top-4">
@@ -29,7 +31,8 @@ export default function ProductInfo() {
               </h1>
               <img src={plusImage} />
             </div>
-          </div>
+          </div></Link>
+          <Link to="/hot-rolled">
           <div className="relative top-16 mr-6 cursor-pointer">
             <img className="w-full h-full" src={infoImg2} />
             <div className="absolute flex p-3 w-full justify-between  items-center top-4">
@@ -38,7 +41,7 @@ export default function ProductInfo() {
               </h1>
               <img src={plusImage} />
             </div>
-          </div>
+          </div></Link>
         </div>
       </div>
     </div>
