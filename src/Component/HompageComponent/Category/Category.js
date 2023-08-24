@@ -14,8 +14,6 @@ export default function Category() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5">
-        
-       
         <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
             <h4 className="text-lg font-semibold text-black">Steel trade</h4>
@@ -26,36 +24,35 @@ export default function Category() {
             src={cr}
           />
           <div className="flex justify-start items-start my-3 p-5">
-           <Link to="/cr" >
-           <a
-  class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-  href="/View-more"
->
-  <span class="absolute -end-full transition-all group-hover:end-4">
-    <svg
-      class="h-5 w-5 rtl:rotate-180"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M17 8l4 4m0 0l-4 4m4-4H3"
-      />
-    </svg>
-  </span>
+            <Link to="/cr">
+              <a
+                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                href="/View-more"
+              >
+                <span class="absolute -end-full transition-all group-hover:end-4">
+                  <svg
+                    class="h-5 w-5 rtl:rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
 
-  <span class="text-sm font-medium transition-all group-hover:me-4">
-    View-more
-  </span>
-</a>
-</Link>
+                <span class="text-sm font-medium transition-all group-hover:me-4">
+                  View-more
+                </span>
+              </a>
+            </Link>
           </div>
         </div>
-
 
         <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
@@ -67,32 +64,34 @@ export default function Category() {
             src={cr}
           />
           <div className="flex justify-start items-start my-3 p-5">
-        <Link to="/ga"> <a
-  class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-  href="/View-more"
->
-  <span class="absolute -end-full transition-all group-hover:end-4">
-    <svg
-      class="h-5 w-5 rtl:rotate-180"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M17 8l4 4m0 0l-4 4m4-4H3"
-      />
-    </svg>
-  </span>
+            <Link to="/ga">
+              {" "}
+              <a
+                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                href="/View-more"
+              >
+                <span class="absolute -end-full transition-all group-hover:end-4">
+                  <svg
+                    class="h-5 w-5 rtl:rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
 
-  <span class="text-sm font-medium transition-all group-hover:me-4">
-    View-more
-  </span>
-</a>
-</Link> 
+                <span class="text-sm font-medium transition-all group-hover:me-4">
+                  View-more
+                </span>
+              </a>
+            </Link>
           </div>
         </div>
         <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
@@ -105,32 +104,33 @@ export default function Category() {
             src={cr}
           />
           <div className="flex justify-start items-start my-3 p-5">
-          <Link to="/po"><a
-  class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-  href="/View-more"
->
-  <span class="absolute -end-full transition-all group-hover:end-4">
-    <svg
-      class="h-5 w-5 rtl:rotate-180"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M17 8l4 4m0 0l-4 4m4-4H3"
-      />
-    </svg>
-  </span>
+            <Link to="/po">
+              <a
+                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                href="/View-more"
+              >
+                <span class="absolute -end-full transition-all group-hover:end-4">
+                  <svg
+                    class="h-5 w-5 rtl:rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
 
-  <span class="text-sm font-medium transition-all group-hover:me-4">
-    View-more
-  </span>
-</a>
-</Link> 
+                <span class="text-sm font-medium transition-all group-hover:me-4">
+                  View-more
+                </span>
+              </a>
+            </Link>
           </div>
         </div>
 
@@ -144,33 +144,34 @@ export default function Category() {
             src={cr}
           />
           <div className="flex justify-start items-start my-3 p-5">
-      
-          <Link to="/events"> <a
-  class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-  href="/download"
->
-  <span class="absolute -end-full transition-all group-hover:end-4">
-    <svg
-      class="h-5 w-5 rtl:rotate-180"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M17 8l4 4m0 0l-4 4m4-4H3"
-      />
-    </svg>
-  </span>
+            <Link to="/events">
+              {" "}
+              <a
+                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                href="/download"
+              >
+                <span class="absolute -end-full transition-all group-hover:end-4">
+                  <svg
+                    class="h-5 w-5 rtl:rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
 
-  <span class="text-sm font-medium transition-all group-hover:me-4">
-    View-more 
-  </span>
-</a>
-</Link> 
+                <span class="text-sm font-medium transition-all group-hover:me-4">
+                  View-more
+                </span>
+              </a>
+            </Link>
           </div>
         </div>
       </div>
