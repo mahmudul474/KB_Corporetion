@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Tab } from '@headlessui/react'
 import coomingsoon from "./cooming.gif"
 
-export default function BuyNow({ id, data, close, shippingCost }) {
+export default function BuyNow({ id, data, close, shippingCost ,landing,expectedDate,shipmentType}) {
   const sumBuyNowPrice = data.reduce((total, item) => {
     const buyNowPrice = parseInt(item.buyNowPrice);
     if (!isNaN(buyNowPrice)) {
@@ -84,7 +84,8 @@ export default function BuyNow({ id, data, close, shippingCost }) {
       bidderPhoto: currentUser?.userPhoto,
       productId: data?._id,
       productName: data?.name,
-      productImg: data?.mainImage
+      productImg: data?.mainImage,
+      landing,expectedDate,shipmentType
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/product/koyel-item/order/${id}`, {
@@ -102,12 +103,12 @@ export default function BuyNow({ id, data, close, shippingCost }) {
 
   return (
     <>
-      <div className=" fixed z-50   h-screen shadow-2xl  bg-base-100 inset-0    ">
+      <div className=" fixed z-50   shadow-2xl  bg-base-100 inset-0    ">
         <div className="max-w-full p-7 bg-white">
           <div class=" bg-gray-100 pt-20 ">
           
             <div class="mx-auto justify-center px-6  flex flex-col lg:flex-row xl:px-0">
-              <div className=" lg:w-2/3 h-[400px] w-full overflow-auto">
+              <div className=" lg:w-2/3 h-[400px] w-full ">
                 <table className=" p-4 table table-xs table-pin-rows  ">
                   <thead className="text-xs text-black uppercase bg-gray-50 ">
                     <tr>
@@ -126,7 +127,7 @@ export default function BuyNow({ id, data, close, shippingCost }) {
                   </thead>
                   <tbody>
                     {data?.map(skoyel => (
-                      <tr className="bg-white border-b     hover:bg-gray-50  ">
+                      <tr className="bg-white border-b    hover:bg-gray-50  ">
                         <td> {skoyel?.item}</td>
                         <td>{skoyel?.spec}</td>
                         <td>{skoyel?.Thickness}</td>
@@ -270,15 +271,15 @@ export default function BuyNow({ id, data, close, shippingCost }) {
                     />
                   </div>
 
-                  {bankSleep && (
+                  {/* {bankSleep && (
                     <img
                       className="w-full h-60  object-contain my-3"
                       src={bankSleep}
                     />
-                  )}
+                  )} */}
                   <div className="flex justify-center">
                     <button
-                      className="bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                      className=" cursor-pointer bg-transparent border  text-black  border-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                       type="submit"
                     >
                       Submit

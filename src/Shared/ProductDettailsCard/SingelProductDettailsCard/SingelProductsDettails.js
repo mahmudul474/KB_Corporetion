@@ -228,7 +228,14 @@ return alert("Please select shipment type")
       return alert("Please  check your email and noreply! and verify email");
     } else if (currentUser?.role !== "bidder") {
       return alert("please waiting for admin approval");
+    }else  if (selectedDate===""){
+      return alert("Please select  date")
+    }else if(landingValue===""){
+      return alert("Please select landing ")
+    }else if(shipmentTypeValue===""){
+return alert("Please select shipment type")
     }
+
     setIsModalOpen(true);
   };
 
@@ -679,6 +686,10 @@ return alert("Please select shipment type")
         </div>
         {isModalOpen && (
           <BuyNow
+          shipmentType={shipmentTypeValue}
+           expectedDate={selectedDate}
+           landing={landingValue}
+           
             close={closeModal}
             id={data?._id}
             shippingCost={parseFloat(data?.ShippingCost) }
