@@ -334,8 +334,10 @@ import mainLogo from "../../assets/mainLogo.png";
                              )}
 
                              <p
-                               onClick={handleLogOut}
-                               onClick={handleToggleSidebar}
+                               onClick={() => {
+                                 handleLogOut();
+                                 handleToggleSidebar;
+                               }}
                              >
                                <a className="text-red-500 w-full shadow-md p-2 my-3 ">
                                  Logout
