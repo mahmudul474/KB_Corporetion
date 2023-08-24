@@ -14,7 +14,7 @@ export default function Category() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5">
-        <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
+        <div className=" hover:  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
             <h4 className="text-lg font-semibold text-black">Steel trade</h4>
             <h1 className="text-xl font-bold text-black">CR</h1>
@@ -26,7 +26,7 @@ export default function Category() {
           <div className="flex justify-start items-start my-3 p-5">
             <Link to="/cr">
               <a
-                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
                 href="/View-more"
               >
                 <span class="absolute -end-full transition-all group-hover:end-4">
@@ -67,7 +67,7 @@ export default function Category() {
             <Link to="/ga">
               {" "}
               <a
-                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
                 href="/View-more"
               >
                 <span class="absolute -end-full transition-all group-hover:end-4">
@@ -106,7 +106,7 @@ export default function Category() {
           <div className="flex justify-start items-start my-3 p-5">
             <Link to="/po">
               <a
-                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
                 href="/View-more"
               >
                 <span class="absolute -end-full transition-all group-hover:end-4">
@@ -147,7 +147,7 @@ export default function Category() {
             <Link to="/events">
               {" "}
               <a
-                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
                 href="/download"
               >
                 <span class="absolute -end-full transition-all group-hover:end-4">

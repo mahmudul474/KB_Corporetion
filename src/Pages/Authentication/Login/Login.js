@@ -159,14 +159,14 @@ export default function Login() {
 
                 <button
                   type="submit"
-                  className="w-1/3 text-white bg-[#719f18] hover:bg-[#73471b] focus:ring-4 focus:outline-none   font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
+                  className="w-1/3 border text-black  border-black  focus:ring-4 focus:outline-none   font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
                 >
                   Sign in
                 </button>
               </form>
             </div>
-            <div className="lg:w-1/4 sm:w-full  bg-[#73471b]  rounded-md py-16 ">
-              <div className="mt-24 text-white my-10">
+            <div className="lg:w-1/4 sm:w-full  shadow-xl  backdrop-blur-3xl   rounded-md py-16 ">
+              <div className="mt-24 text-black  my-10">
                 <h1 className="text-3xl font-semibold ">NEW HERE?</h1>
                 <h2>Sign up and create your Account</h2>
               </div>{" "}
@@ -174,7 +174,7 @@ export default function Login() {
                 <Link to="/register">
                   <button
                     type="button"
-                    className="flex justify-center items-center max-w-sm w-full  bg-[#719f18]   focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
+                    className="flex justify-center items-center max-w-sm w-full   focus:outline-none text-black  border  border-black   text-xl uppercase shadow-md rounded-lg mx-auto p-2"
                   >
                     Sing Up
                   </button>

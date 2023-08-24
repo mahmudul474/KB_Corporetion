@@ -179,7 +179,7 @@ export default function Register() {
       <div className=" px-4 py-10  m-auto mt-10 shadow-2xl mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8  bottom-0 bg-white rounded-2xl ">
         <div className="container ">
           <div className="sm:flex sm:flex-col    sm:w-full lg:flex-row lg:w-full">
-            <div className="lg:w-3/4 sm:w-full px-16">
+            <div className="lg:w-3/4 sm:w-full  px-2 lg:px-16">
               <div className="my-10 text-center">
                 <h1 className="text-3xl capitalize   text-black  mb-1 font-semibold ">
                   SIGN UP
@@ -411,14 +411,14 @@ export default function Register() {
                         id="remember"
                         aria-describedby="remember"
                         type="checkbox"
-                        className="w-4 h-4 border border-gray-300 rounded  bg-white focus:ring-3 focus:ring-primary-300 dark: dark:ring-offset-gray-800"
+                        className="w-4 h-4 border text-black border-gray-300 rounded  bg-white focus:ring-3 focus:ring-primary-300 dark: dark:ring-offset-gray-800"
                         required=""
                       />
                     </div>
                     <div className="ml-3 text-sm ">
                       <label
                         for="remember"
-                        className="text-gray-500 dark:text-gray-300"
+                        className="text-black dark:text-gray-300"
                       >
                         Remember me
                       </label>
@@ -428,14 +428,14 @@ export default function Register() {
 
                 <button
                   type="submit"
-                  className="w-1/3 text-white bg-[#719f18] hover:bg-[#73471b]  cursor-pointer focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
+                  className="w-1/ border border-black  text-black bg-transparent  cursor-pointer focus:ring-4 btn hover:bg-transparent focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
                 >
                   Sign up
                 </button>
               </form>
             </div>
-            <div className="lg:w-1/4 sm:w-full bg-[#73471b] rounded-md  justify-center  flex flex-col item-center py-16 ">
-              <div className="mt-24 text-white my-10">
+            <div className="lg:w-1/4 sm:w-full shadow-lg   border  border-black backdrop-blur-xl rounded-md  justify-center  flex flex-col item-center py-16 ">
+              <div className="mt-24 text-black my-10">
                 <h1 className="text-3xl font-semibold">
                   ALREADY HAVE AN ACCOUNT?
                 </h1>
@@ -445,7 +445,7 @@ export default function Register() {
                 <Link to="/login">
                   <button
                     type="button"
-                    className="flex justify-center items-center max-w-sm w-full  bg-[#719f18] focus:outline-none text-white text-xl uppercase shadow-md rounded-lg mx-auto p-2"
+                    className="flex justify-center items-center max-w-sm w-full border  border-black  focus:outline-none text-black text-xl uppercase shadow-md rounded-lg mx-auto p-2"
                   >
                     Login
                   </button>
@@ -459,7 +459,4 @@ export default function Register() {
   );
 }
 
-//////buissnes name
-// trade licencse no.
-// business  tin no.
-// business address
+ 
