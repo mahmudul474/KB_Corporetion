@@ -219,8 +219,9 @@ import mainLogo from "../../assets/mainLogo.png";
 
                <aside className="w-full p-6 sm:w-60   text-black ">
                  <div className="space-y-8 text-sm">
-                   <Link to="/about">
+                   <Link to="/about" onClick={handleToggleSidebar}>
                      <p
+                       onClick={handleToggleSidebar}
                        title="kb"
                        className="font-medium hover:underline w-full shadow-md p-2 my-3 tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
                      >
@@ -229,7 +230,7 @@ import mainLogo from "../../assets/mainLogo.png";
                    </Link>
 
                    <>
-                     <Link to="/cr">
+                     <Link to="/cr" onClick={handleToggleSidebar}>
                        <p
                          title="Our product"
                          className="font-medium  w-full shadow-md p-2 my-3   tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -237,7 +238,7 @@ import mainLogo from "../../assets/mainLogo.png";
                          CR
                        </p>
                      </Link>
-                     <Link to="/ga">
+                     <Link to="/ga" onClick={handleToggleSidebar}>
                        <p
                          title="Our product"
                          className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -245,7 +246,7 @@ import mainLogo from "../../assets/mainLogo.png";
                          GA
                        </p>
                      </Link>
-                     <Link to="/po">
+                     <Link to="/po" onClick={handleToggleSidebar}>
                        <p
                          title="Our product"
                          className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -253,7 +254,7 @@ import mainLogo from "../../assets/mainLogo.png";
                          PO
                        </p>
                      </Link>
-                     <Link to="/events">
+                     <Link to="/events" onClick={handleToggleSidebar}>
                        <p
                          title="Our product"
                          className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -283,7 +284,10 @@ import mainLogo from "../../assets/mainLogo.png";
                              <div className="relative ml-3">
                                {currentUser.role === "" ||
                                  (currentUser.role === "bidder" && (
-                                   <Link to="/my-dashboard">
+                                   <Link
+                                     to="/my-dashboard"
+                                     onClick={handleToggleSidebar}
+                                   >
                                      <p
                                        onClick={() => setIsProflieOpen(false)}
                                        className="block px-4  w-full shadow-md p-2 my-3  text-sm text-black "
@@ -297,7 +301,10 @@ import mainLogo from "../../assets/mainLogo.png";
                                  ))}
                              </div>
 
-                             <Link to="/my-dashboard">
+                             <Link
+                               to="/my-dashboard"
+                               onClick={handleToggleSidebar}
+                             >
                                <p
                                  className=" w-full shadow-md p-2 my-3 "
                                  block
@@ -310,7 +317,10 @@ import mainLogo from "../../assets/mainLogo.png";
                                </p>
                              </Link>
                              {isAdmin && (
-                               <Link to="/admin-dashboard">
+                               <Link
+                                 to="/admin-dashboard"
+                                 onClick={handleToggleSidebar}
+                               >
                                  <p
                                    onClick={() => setIsProflieOpen(false)}
                                    className="block px-4  w-full shadow-md p-2 my-3  text-sm text-gray-700"
@@ -323,7 +333,10 @@ import mainLogo from "../../assets/mainLogo.png";
                                </Link>
                              )}
 
-                             <p onClick={handleLogOut}>
+                             <p
+                               onClick={handleLogOut}
+                               onClick={handleToggleSidebar}
+                             >
                                <a className="text-red-500 w-full shadow-md p-2 my-3 ">
                                  Logout
                                </a>
