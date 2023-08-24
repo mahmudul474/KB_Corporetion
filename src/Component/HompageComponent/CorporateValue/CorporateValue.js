@@ -14,7 +14,7 @@ export default function CorporateValue() {
             Corporate Value
           </h1>
           <p className="text-white text-lg   capitalize lg:text-black ">
-            POSCO STILLION pursues the corporate value of coexistence .
+            Auctions-Kb pursues the corporate value of coexistence .
           </p>
         </div>
 
@@ -25,13 +25,12 @@ export default function CorporateValue() {
               class="block rounded-tl-[120px]  max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border    shadow  "
             >
               <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
-                Corporate Citizenship
+                Innovation Beyond Measure
               </h5>
               <p class="font-normal text-gray-700  text-white ">
-                What is the Lorem Ipsum quote? A 1914 English translation by
-                Harris Rackham reads: “Nor is there anyone who loves or pursues
-                or desires to obtain pain of itself, because it is pain, but
-                occasionally
+                Pioneering the steel auction landscape with cutting-edge
+                technology and forward-thinking strategies. Embracing innovation
+                to redefine how you connect and trade in the steel industry.
               </p>
             </a>
           </div>
@@ -42,13 +41,12 @@ export default function CorporateValue() {
               class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-lg shadow  "
             >
               <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
-                Corporate Citizenship
+                Unparalleled Transparency
               </h5>
               <p class="font-normal text-gray-700  text-white ">
-                What is the Lorem Ipsum quote? A 1914 English translation by
-                Harris Rackham reads: “Nor is there anyone who loves or pursues
-                or desires to obtain pain of itself, because it is pain, but
-                occasionally
+                Transparency is our cornerstone. We ensure an open and fair
+                marketplace where every bid and transaction is visible,
+                fostering trust and confidence among suppliers and buyers.
               </p>
             </a>
           </div>
@@ -59,13 +57,12 @@ export default function CorporateValue() {
               class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-lg shadow  "
             >
               <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
-                Corporate Citizenship
+                Sustainable Partnerships
               </h5>
               <p class="font-normal text-gray-700  text-white ">
-                What is the Lorem Ipsum quote? A 1914 English translation by
-                Harris Rackham reads: “Nor is there anyone who loves or pursues
-                or desires to obtain pain of itself, because it is pain, but
-                occasionally
+                Building lasting relationships is our commitment. We foster
+                sustainable partnerships by facilitating mutually beneficial
+                deals that fuel the growth and prosperity
               </p>
             </a>
           </div>
@@ -76,13 +73,12 @@ export default function CorporateValue() {
               class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-br-[120px] shadow  "
             >
               <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
-                Corporate Citizenship
+                Empowerment Through Data
               </h5>
               <p class="font-normal text-gray-700  text-white ">
-                What is the Lorem Ipsum quote? A 1914 English translation by
-                Harris Rackham reads: “Nor is there anyone who loves or pursues
-                or desires to obtain pain of itself, because it is pain, but
-                occasionally
+                Harnessing the power of data to empower your decisions. Our
+                platform provides actionable insights, enabling you to make
+                informed choices and optimize your steel sourcing strategies.
               </p>
             </a>
           </div>

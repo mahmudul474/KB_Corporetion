@@ -10,6 +10,11 @@ import "swiper/css/pagination";
 
  
 
+  
+  
+
+
+
 
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper/modules";

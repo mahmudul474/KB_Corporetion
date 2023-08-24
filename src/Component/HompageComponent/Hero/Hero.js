@@ -12,7 +12,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Slide1 from "./Slide/Slide1";
 import Slide2 from "./Slide/Slide2";
 import Slide3 from "./Slide/Slide3";
-import Slide4 from "./Slide/Slide4";
+
 
 const Hero = () => {
   return (
@@ -40,9 +40,7 @@ const Hero = () => {
         <SwiperSlide>
           <Slide3></Slide3>
         </SwiperSlide>
-        <SwiperSlide>
-          <Slide4></Slide4>
-        </SwiperSlide>
+       
       </Swiper>
     </>
   );

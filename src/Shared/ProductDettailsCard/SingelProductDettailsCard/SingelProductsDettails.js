@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
-// import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker";
 import Koyel from "./Koyel/Koyel";
 import SingelProductActionHistory from "./SingelProductActionHistory";
 import BuyNow from "./BuyNowKoyelItem/BuyNow";
 import SubImgSlider from "../SubImgSlider";
-// import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function SingelProductsDettails() {
   const { currentUser, user } = useContext(AuthContext);
@@ -575,11 +575,11 @@ return alert("Please select shipment type")
             <div className="w-full bg-white my-3">
               <div className="flex items-center ">
                 <label className="mr-2 text-black">Expected Date</label>
-                {/* <DatePicker
+                <DatePicker
         selected={selectedDate}
         onChange={handleDateChange}
         className="border text-black bg-white border-gray-300  rounded px-2 py-1"
-      /> */}
+      />
               </div>
 
               <div>
