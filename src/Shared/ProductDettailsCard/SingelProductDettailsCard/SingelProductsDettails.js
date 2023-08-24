@@ -180,6 +180,8 @@ return alert("Please select shipment type")
        shipmentType:shipmentTypeValue
     }));
 
+
+
     const bidder = {
       productName: data?.name,
       productID: data?._id,
