@@ -225,6 +225,11 @@ export default function SingelProductsDettails() {
     setIsModalOpen(false);
   };
 
+
+ console.log(data)
+
+
+
   return (
     <div className="  px-5 lg:px-12">
       {/* <div className="flex  flex-col lg:flex-row    ">
@@ -595,13 +600,17 @@ export default function SingelProductsDettails() {
                     </p>
                     <span className="w-16 h-1 bg-[#719f18] block"></span>
                   </div>
+                 
                   {selectedItems.length !== 0 ? (
-                    <div className="text-black">
-                      Total item = {selectedItems.length} Total price{" "}
-                      {itemCurrentPrice.toFixed(2)}
+                    <div className="text-black text-left font-semibold">
+                      Total item = {selectedItems.length}
+                      <p> Item price =
+                      {itemCurrentPrice.toFixed(2)+ "$"}</p>
+                      <p> Shipping = {data?.ShippingCost + "$"}</p>
+                       <p> Total = {itemCurrentPrice + parseFloat(data?.ShippingCost )+ "$"}</p>
                     </div>
                   ) : (
-                    <div className="text-[#719f18] capitalize text-md font-semibold">
+                    <div className="text-[red] capitalize text-md font-semibold">
                       select items then place Bid & Buy
                     </div>
                   )}
@@ -615,7 +624,8 @@ export default function SingelProductsDettails() {
                   >
                     <div className="  w-full  ">
                       <input
-                        min={itemCurrentPrice + Number(data?.minimumBid)}
+                      min={itemCurrentPrice + parseFloat(data?.ShippingCost) }
+                        
                         value={newPrice}
                         onChange={handlePriceChange}
                         type="number"
