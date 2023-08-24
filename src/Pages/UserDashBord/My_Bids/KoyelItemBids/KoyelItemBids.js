@@ -28,11 +28,11 @@ export default function KoyelItemBids() {
       <table className="table table-xs table-pin-rows">
         <thead>
           <tr className="bg-white">
-            <td>Product</td>
-            <td>Per Ton Price</td>
-            <td>Start Time</td>
-            <td>End Time</td>
-            <td>Details</td>
+            <td className="text-black">Product</td>
+            <td className="text-black">Per Ton Price</td>
+            <td className="text-black">Start Time</td>
+            <td className="text-black">End Time</td>
+            <td className="text-black">Details</td>
           </tr>
         </thead>
         <tbody>
@@ -43,19 +43,19 @@ export default function KoyelItemBids() {
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
                       <img src={product?.mainImage} alt="prroduct" />
-                    </div>
+                    </div> 
                   </div>
                   <div>
-                    <div className="font-bold">{product?.name}</div>
+                    <div className="font-bold text-black ">{product?.name}</div>
                   </div>
                 </div>
               </td>
-              <td>{product?.startBiddingPrice}$</td>
-              <td>{product?.startBiddingTime}</td>
-              <td>{product?.endBiddingTime}</td>
+              <td className="text-black "> {product?.startBiddingPrice}$</td>
+              <td className="text-black ">{product?.startBiddingTime}</td>
+              <td className="text-black ">{product?.endBiddingTime}</td>
 
-              <td>
-                <Link to={`/excel/${product?._id}`}>view</Link>
+              <td className="text-black ">
+                <Link to={`/product/${product?._id}`}>view</Link>
               </td>
             </tr>
           ))}

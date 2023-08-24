@@ -136,7 +136,7 @@ export default function ItemWinRow({ data }) {
         </td>
 
         <td>
-          <Link to={`/excel/${_id}`}>View</Link>
+          <Link to={`/product/${_id}`}>View</Link>
         </td>
       </tr>
 

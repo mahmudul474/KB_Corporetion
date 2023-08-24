@@ -55,26 +55,26 @@ export default function BuyItemrow({ data }) {
                 {/* head */}
                 <thead>
                   <tr>
-                    <th>Item</th>
-                    <th>Spec</th>
-                    <th>Thickness</th>
-                    <th>Width</th>
-                    <th>TS</th>
-                    <th>YP</th>
-                    <th>EL</th>
+                    <th className="text-black ">Item</th>
+                    <th className="text-black ">Spec</th>
+                    <th className="text-black ">Thickness</th>
+                    <th className="text-black ">Width</th>
+                    <th className="text-black ">TS</th>
+                    <th className="text-black ">YP</th>
+                    <th className="text-black ">EL</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data?.koyel?.map(item => (
                     <tr key={item?.koyel?._id}>
-                      <td>{item?.koyel?.item}</td>
-                      <td>{item?.koyel?.spec}</td>
-                      <td>{item?.koyel?.Thickness}</td>
-                      <td>{item?.koyel?.Width}</td>
-                      <td>{item?.koyel?.weight}</td>
-                      <td>{item?.koyel?.TS}</td>
-                      <td>{item?.koyel?.YP}</td>
-                      <td>{item?.koyel?.EL}</td>
+                      <td className="text-black ">{item?.koyel?.item}</td>
+                      <td className="text-black ">{item?.koyel?.spec}</td>
+                      <td className="text-black ">{item?.koyel?.Thickness}</td>
+                      <td className="text-black ">{item?.koyel?.Width}</td>
+                      <td className="text-black ">{item?.koyel?.weight}</td>
+                      <td className="text-black ">{item?.koyel?.TS}</td>
+                      <td className="text-black ">{item?.koyel?.YP}</td>
+                      <td className="text-black ">{item?.koyel?.EL}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -106,7 +106,7 @@ export default function BuyItemrow({ data }) {
 
       <td>{data?.status}</td>
       <td>
-        <Link to={`/excel/${data?.productID}`}>View</Link>
+        <Link to={`/product/${data?.productID}`}>View</Link>
       </td>
     </tr>
   );

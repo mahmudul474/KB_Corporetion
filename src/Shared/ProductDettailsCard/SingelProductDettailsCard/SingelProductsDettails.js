@@ -206,7 +206,7 @@ return alert("Please select shipment type")
         console.log("Bid placed successfully", data);
         if (data.message) {
           toast.success(data.message);
-          // window.location.reload(true);
+        window.location.reload(true);
           setNewPrice("");
         } else {
           toast.error(data.error);
