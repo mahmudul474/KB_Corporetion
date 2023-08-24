@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import Koyel from "./Koyel/Koyel";
 import SingelProductActionHistory from "./SingelProductActionHistory";
 import BuyNow from "./BuyNowKoyelItem/BuyNow";
 import SubImgSlider from "../SubImgSlider";
-import 'react-datepicker/dist/react-datepicker.css';
+// import 'react-datepicker/dist/react-datepicker.css';
 
 export default function SingelProductsDettails() {
   const { currentUser, user } = useContext(AuthContext);
@@ -449,7 +449,7 @@ return alert("Please select shipment type")
                       {data.name}
                     </h2>
                     <h2 className="     text-md font-bold text-black  text-left">
-                   Type :  {data?.category}  
+                      Type : {data?.category}
                     </h2>
                     <p className="  mb-4 text-gray-700 text-left  ">
                       {data?.description?.slice(0, 100)}
@@ -560,148 +560,142 @@ return alert("Please select shipment type")
           </div>
         </div>
       </section>
-     
-     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-      <div className="flex justify-between  items-center   mt-20 flex-col  lg:flex-row">
-       <div className="lg:w-[75%] w-full" >
-       <Koyel
-          selectedItems={selectedItems}
-          setSelectedItems={setSelectedItems}
-          koyel={data?.koyel}
-        ></Koyel>
-       </div>
 
-        <div className="w-full p-2">
-          <div className="w-full bg-white my-3">
-          <div className="flex items-center ">
-      <label className="mr-2 text-black">Expected Date</label>
-      <DatePicker
+      <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+        <div className="flex justify-between  items-center   mt-20 flex-col  lg:flex-row">
+          <div className="lg:w-[75%] w-full">
+            <Koyel
+              selectedItems={selectedItems}
+              setSelectedItems={setSelectedItems}
+              koyel={data?.koyel}
+            ></Koyel>
+          </div>
+
+          <div className="w-full p-2">
+            <div className="w-full bg-white my-3">
+              <div className="flex items-center ">
+                <label className="mr-2 text-black">Expected Date</label>
+                {/* <DatePicker
         selected={selectedDate}
         onChange={handleDateChange}
         className="border text-black bg-white border-gray-300  rounded px-2 py-1"
-      />
-    </div>
+      /> */}
+              </div>
 
-    <div>
-      <div className="my-4">
-        <select
-          className="select select-bordered bg-white text-black w-full max-w-xs"
-          value={landingValue}
-          onChange={(e) => setLandingValue(e.target.value)}
-        >
-          <option disabled value="">Landing</option>
-          <option value="Dhaka">Dhaka</option>
-          <option value="Chittagong">Chittagong</option>
-          <option value="Pangaon">Pangaon</option>
-        </select>
-      </div>
-      <div className="my-4">
-        <select
-          className="select select-bordered bg-white text-black w-full max-w-xs"
-          value={shipmentTypeValue}
-          onChange={(e) => setShipmentTypeValue(e.target.value)}
-        >
-          <option disabled value="">Shipment Type</option>
-          <option value="Container">Container</option>
-          <option value="Bulk">Bulk</option>
-        </select>
-      </div>
-    </div>
-     
-
-
-
-
-
-
-    <div className="mt-10">
-                  <div className="text-left">
-                    <h5 className="mb-2 text-2xl font-semibold tracking-tight text-black  ">
-                      Bid Now
-                    </h5>
-                    <p className="mb-1 font-normal text-black ">
-                      Minimum Bid: {data?.minimumBid} $
-                    </p>
-                    <span className="w-16 h-1 bg-[#719f18] block"></span>
-                  </div>
-                 
-                  {selectedItems.length !== 0 ? (
-                    <div className="text-black text-left font-semibold">
-                      Total item = {selectedItems.length}
-                      <p> Item price =
-                      {itemCurrentPrice.toFixed(2)+ "$"}</p>
-                      <p> Shipping = {data?.ShippingCost + "$"}</p>
-                       <p> Total = {itemCurrentPrice + parseFloat(data?.ShippingCost )+ "$"}</p>
-                    </div>
-                  ) : (
-                    <div className="text-[red] capitalize text-md font-semibold">
-                      select items then place Bid & Buy
-                    </div>
-                  )}
-
-                  <p className="text-red-600 text-center font-md font-semibold ">
-                    {bidEroo}
-                  </p>
-                  <form
-                    onSubmit={handlePlcebid}
-                    className="flex justify-between my-5 items-center"
+              <div>
+                <div className="my-4">
+                  <select
+                    className="select select-bordered bg-white text-black w-full max-w-xs"
+                    value={landingValue}
+                    onChange={e => setLandingValue(e.target.value)}
                   >
-                    <div className="  w-full  ">
-                      <input
-                      min={itemCurrentPrice + parseFloat(data?.ShippingCost) }
-                        
-                        value={newPrice}
-                        onChange={handlePriceChange}
-                        type="number"
-                        step="any"
-                        className="bg-gray-50 border border-black  text-black text-sm rounded-lg   block w-full pl-10 p-2.5  -gray-700     "
-                        placeholder="$00:00"
-                        required
-                      />
-                    </div>
+                    <option disabled value="">
+                      Landing
+                    </option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Pangaon">Pangaon</option>
+                  </select>
+                </div>
+                <div className="my-4">
+                  <select
+                    className="select select-bordered bg-white text-black w-full max-w-xs"
+                    value={shipmentTypeValue}
+                    onChange={e => setShipmentTypeValue(e.target.value)}
+                  >
+                    <option disabled value="">
+                      Shipment Type
+                    </option>
+                    <option value="Container">Container</option>
+                    <option value="Bulk">Bulk</option>
+                  </select>
+                </div>
+              </div>
 
-                    <button
-                      className={`w-[60%] text-black border-black   items-center  py-2.5 px-3   text-sm font-medium   rounded-lg border  `}
-                    >
-                      Place Bid
-                    </button>
-                  </form>
-
-                  <div className="flex  items-center lg:flex-row flex-col  justify-between ">
-                  
-
-                    <div className="w-full">
-                      <button
-                        onClick={() => openModal()}
-                        className="w-full   btn   text-sm bg-transparent hover:bg-transparent rounded-sm border text-black border-black  font-semibold"
-                      >
-                        Buy Now{" "}
-                      </button>
-                    </div>
-                  </div>
+              <div className="mt-10">
+                <div className="text-left">
+                  <h5 className="mb-2 text-2xl font-semibold tracking-tight text-black  ">
+                    Bid Now
+                  </h5>
+                  <p className="mb-1 font-normal text-black ">
+                    Minimum Bid: {data?.minimumBid} $
+                  </p>
+                  <span className="w-16 h-1 bg-[#719f18] block"></span>
                 </div>
 
+                {selectedItems.length !== 0 ? (
+                  <div className="text-black text-left font-semibold">
+                    Total item = {selectedItems.length}
+                    <p> Item price ={itemCurrentPrice.toFixed(2) + "$"}</p>
+                    <p> Shipping = {data?.ShippingCost + "$"}</p>
+                    <p>
+                      {" "}
+                      Total ={" "}
+                      {itemCurrentPrice + parseFloat(data?.ShippingCost) + "$"}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="text-[red] capitalize text-md font-semibold">
+                    select items then place Bid & Buy
+                  </div>
+                )}
 
+                <p className="text-red-600 text-center font-md font-semibold ">
+                  {bidEroo}
+                </p>
+                <form
+                  onSubmit={handlePlcebid}
+                  className="flex justify-between my-5 items-center"
+                >
+                  <div className="  w-full  ">
+                    <input
+                      min={itemCurrentPrice + parseFloat(data?.ShippingCost)}
+                      value={newPrice}
+                      onChange={handlePriceChange}
+                      type="number"
+                      step="any"
+                      className="bg-gray-50 border border-black  text-black text-sm rounded-lg   block w-full pl-10 p-2.5  -gray-700     "
+                      placeholder="$00:00"
+                      required
+                    />
+                  </div>
 
+                  <button
+                    className={`w-[60%] text-black border-black   items-center  py-2.5 px-3   text-sm font-medium   rounded-lg border  `}
+                  >
+                    Place Bid
+                  </button>
+                </form>
+
+                <div className="flex  items-center lg:flex-row flex-col  justify-between ">
+                  <div className="w-full">
+                    <button
+                      onClick={() => openModal()}
+                      className="w-full   btn   text-sm bg-transparent hover:bg-transparent rounded-sm border text-black border-black  font-semibold"
+                    >
+                      Buy Now{" "}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
         </div>
         {isModalOpen && (
           <BuyNow
-          shipmentType={shipmentTypeValue}
-           expectedDate={selectedDate}
-           landing={landingValue}
-           
+            shipmentType={shipmentTypeValue}
+            expectedDate={selectedDate}
+            landing={landingValue}
             close={closeModal}
             id={data?._id}
-            shippingCost={parseFloat(data?.ShippingCost) }
+            shippingCost={parseFloat(data?.ShippingCost)}
             data={selectedItems}
           ></BuyNow>
         )}
-      
-      <SingelProductActionHistory bids={data?.bids}>
-        {" "}
-      </SingelProductActionHistory>{" "}
-      </div></div>
+        <SingelProductActionHistory bids={data?.bids}>
+          {" "}
+        </SingelProductActionHistory>{" "}
+      </div>
+    </div>
   );
 }
