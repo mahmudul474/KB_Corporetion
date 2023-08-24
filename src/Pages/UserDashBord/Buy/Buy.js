@@ -9,7 +9,7 @@ export default function Buy() {
         Purchase
       </h1>
 
-      <div>
+      <div className="p-5">
         <KoyelItembuy></KoyelItembuy>
       </div>
     </div>
