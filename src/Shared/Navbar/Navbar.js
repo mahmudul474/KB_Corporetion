@@ -336,10 +336,10 @@ import mainLogo from "../../assets/mainLogo.png";
                              <p
                                onClick={() => {
                                  handleLogOut();
-                                 handleToggleSidebar;
+                                 handleToggleSidebar();
                                }}
                              >
-                               <a className="text-red-500 w-full shadow-md p-2 my-3 ">
+                               <a className="text-red-500 w-full   shadow-md p-2 my-3 ">
                                  Logout
                                </a>
                              </p>
@@ -352,7 +352,7 @@ import mainLogo from "../../assets/mainLogo.png";
                            <li onClick={() => setIsMenuOpen(false)}>
                              <p
                                title="Our product"
-                               className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+                               className="font-medium w-full shadow-md p-2 my-3 tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
                              >
                                Login
                              </p>
