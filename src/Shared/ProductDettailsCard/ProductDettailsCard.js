@@ -191,6 +191,9 @@ useEffect(() => {
             <h2 className="  text-black  mt-1 mb-6 text-2xl font-bold  text-left md:text-4xl">
               {data.name}
             </h2>
+            <h2 className="  text-black  mt-1 mb-6 text-md  font-bold  text-left md:text-4xl">
+              Type: {data?.category}  
+            </h2>
             <p className="  mb-4 text-gray-700 text-left  ">
               {data?.description?.slice(0, 100)}
 
