@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import AWS from "aws-sdk";
 import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { Tab } from '@headlessui/react'
+import coomingsoon from "./cooming.gif"
 
-export default function BuyNow({ id, data, close }) {
+export default function BuyNow({ id, data, close, shippingCost }) {
   const sumBuyNowPrice = data.reduce((total, item) => {
     const buyNowPrice = parseInt(item.buyNowPrice);
     if (!isNaN(buyNowPrice)) {
@@ -100,16 +102,13 @@ export default function BuyNow({ id, data, close }) {
 
   return (
     <>
-      <div className=" fixed z-50  h-screen shadow-2xl  bg-base-100 inset-0    ">
-        <div className="max-w-full bg-white">
+      <div className=" fixed z-50   h-screen shadow-2xl  bg-base-100 inset-0    ">
+        <div className="max-w-full p-7 bg-white">
           <div class=" bg-gray-100 pt-20 ">
-            <h1 class="mb-10 text-center text-black text-2xl font-bold">
-              {" "}
-              Items
-            </h1>
+          
             <div class="mx-auto justify-center px-6  flex flex-col lg:flex-row xl:px-0">
               <div className=" lg:w-2/3 h-[400px] w-full overflow-auto">
-                <table className=" table table-xs table-pin-rows  ">
+                <table className=" p-4 table table-xs table-pin-rows  ">
                   <thead className="text-xs text-black uppercase bg-gray-50 ">
                     <tr>
                       <th className="text-black bg-white">ITEM</th>
@@ -151,11 +150,39 @@ export default function BuyNow({ id, data, close }) {
                   </tbody>
                 </table>
               </div>
+              <div>
+              
+                <h2 className="text-lg text-black my-2">Payment</h2>
+                <div class="mb-2 w-full  flex justify-center items-center">
+                  <p class="text-black">SubTotal = {sumBuyNowPrice + shippingCost +"$"}</p>
+ 
+                </div><Tab.Group manual>
+      <Tab.List>
+        <Tab><button className="btn btn-primary mr-2">Online</button>
+ </Tab>
+        <Tab><button className="btn btn-secondary">Offline</button></Tab>
+        
+      </Tab.List>
+      <Tab.Panels>
+        <Tab.Panel>
+          <div>
+            
+<img class="rounded-full w-96 h-96" src={coomingsoon} alt="image description"/>
 
-              <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 lg:w-1/3 w-full">
+          </div>
+        </Tab.Panel>
+        <Tab.Panel> <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 w-full">
                 <div class="mb-2 w-full  flex justify-between">
-                  <p class="text-black">Subtotal</p>
-                  <p class="text-black">${sumBuyNowPrice}</p>
+                  <p class="text-black">Price = </p>
+                  <p class="text-black">{sumBuyNowPrice + "$"}</p>
+                </div>
+                <div class="mb-2 w-full  flex justify-between">
+                  <p class="text-black">Shipping = </p>
+                  <p class="text-black">{shippingCost + "$"}</p>
+                </div>
+                <div class="mb-2 w-full  flex justify-between">
+                  <p class="text-black">SubTotal = </p>
+                  <p class="text-black">{sumBuyNowPrice + shippingCost +"$"}</p>
                 </div>
 
                 <form
@@ -265,7 +292,12 @@ export default function BuyNow({ id, data, close }) {
                     </button>
                   </div>
                 </form>
+              </div></Tab.Panel>
+        
+      </Tab.Panels>
+    </Tab.Group>
               </div>
+             
             </div>
           </div>
         </div>

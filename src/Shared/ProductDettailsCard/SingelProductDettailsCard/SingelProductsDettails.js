@@ -18,14 +18,14 @@ export default function SingelProductsDettails() {
   const [shipmentTypeValue, setShipmentTypeValue] = useState('');
  
 
+  
+
 
   
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-
-
 
 
   const [subimageUrl, setSubImgUrl] = useState(null);
@@ -157,6 +157,12 @@ export default function SingelProductsDettails() {
       return alert("please waiting for admin approval");
     } else if (selectedItems.length === 0) {
       return alert("Please select items"), setBidError("Please select items");
+    }else if (selectedDate===""){
+      return alert("Please select  date")
+    }else if(landingValue===""){
+      return alert("Please select landing ")
+    }else if(shipmentTypeValue===""){
+return alert("Please select shipment type")
     }
 
     // Prepare the bid data for selected items
@@ -169,6 +175,9 @@ export default function SingelProductsDettails() {
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
+      expectedDate:selectedDate,
+       landing: landingValue,
+       shipmentType:shipmentTypeValue
     }));
 
     const bidder = {
@@ -181,6 +190,8 @@ export default function SingelProductsDettails() {
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
+      
+      
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/koyel/bids`, {
@@ -231,7 +242,7 @@ export default function SingelProductsDettails() {
 
 
   return (
-    <div className="  px-5 lg:px-12">
+    <div className="  px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       {/* <div className="flex  flex-col lg:flex-row    ">
         <div className="w-full   lg:w-2/5   h-[600px]  mb-5   ">
           <div className="   w-full h-3/5    mb-4">
@@ -540,14 +551,18 @@ export default function SingelProductsDettails() {
           </div>
         </div>
       </section>
-      <div className="flex justify-between   mt-20 flex-col-reverse lg:flex-row">
-        <Koyel
+     
+     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+      <div className="flex justify-between  items-center   mt-20 flex-col  lg:flex-row">
+       <div className="lg:w-[75%] w-full" >
+       <Koyel
           selectedItems={selectedItems}
           setSelectedItems={setSelectedItems}
           koyel={data?.koyel}
         ></Koyel>
+       </div>
 
-        <div>
+        <div className="w-full p-2">
           <div className="w-full bg-white my-3">
           <div className="flex items-center ">
       <label className="mr-2 text-black">Expected Date</label>
@@ -637,7 +652,7 @@ export default function SingelProductsDettails() {
                     </div>
 
                     <button
-                      className={`w-[40%] text-black border-black   items-center mr-4 py-2.5 px-3   text-sm font-medium   rounded-lg border  `}
+                      className={`w-[60%] text-black border-black   items-center  py-2.5 px-3   text-sm font-medium   rounded-lg border  `}
                     >
                       Place Bid
                     </button>
@@ -661,18 +676,19 @@ export default function SingelProductsDettails() {
 
           </div>
         </div>
-
+        </div>
         {isModalOpen && (
           <BuyNow
             close={closeModal}
             id={data?._id}
+            shippingCost={parseFloat(data?.ShippingCost) }
             data={selectedItems}
           ></BuyNow>
         )}
-      </div>
+      
       <SingelProductActionHistory bids={data?.bids}>
         {" "}
       </SingelProductActionHistory>{" "}
-    </div>
+      </div></div>
   );
 }

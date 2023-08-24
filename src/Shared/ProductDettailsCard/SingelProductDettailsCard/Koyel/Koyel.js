@@ -28,7 +28,7 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
   };
 
   return (
-    <div className="  overflow-auto  md:h-[500px] h-[300px]  lg:h-[600px] shadow-md sm:rounded-lg">
+    <div className="  w-full  overflow-auto  md:h-[500px] h-[300px]  lg:h-[600px] shadow-md sm:rounded-lg">
       <table className="table table-xs table-pin-rows  ">
         <thead>
           <tr>
