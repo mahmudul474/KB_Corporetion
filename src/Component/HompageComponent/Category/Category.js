@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import cr from "./cr.png";
+import cr from "./assates/CR.png";
+import gi from "./assates/GI.png";
+import hr from "./assates/HR.png";
+import event from "./assates/Event.png";
+
 export default function Category() {
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -20,7 +24,7 @@ export default function Category() {
             <h1 className="text-xl font-bold text-black">CR</h1>
           </div>
           <img
-            className="w-full p-5 h-[150px] m-auto  object-cover "
+            className="w-full p-5 h-[150px] m-auto  object-contain "
             src={cr}
           />
           <div className="flex justify-start items-start my-3 p-5">
@@ -60,8 +64,8 @@ export default function Category() {
             <h1 className="text-xl font-bold text-black">GA</h1>
           </div>
           <img
-            className="w-full p-5 h-[150px] m-auto  object-cover "
-            src={cr}
+            className="w-full p-5 h-[150px] m-auto  object-contain "
+            src={gi}
           />
           <div className="flex justify-start items-start my-3 p-5">
             <Link to="/ga">
@@ -100,8 +104,8 @@ export default function Category() {
             <h1 className="text-xl font-bold text-black">PO</h1>
           </div>
           <img
-            className="w-full p-5 h-[150px] m-auto  object-cover "
-            src={cr}
+            className="w-full p-5 h-[150px] m-auto  object-contain "
+            src={hr}
           />
           <div className="flex justify-start items-start my-3 p-5">
             <Link to="/po">
@@ -140,8 +144,8 @@ export default function Category() {
             <h1 className="text-xl font-semibold text-black ">Events</h1>
           </div>
           <img
-            className="w-full p-5 h-[150px] m-auto  object-cover "
-            src={cr}
+            className="w-full p-5 h-[150px] m-auto  object-contain "
+            src={event}
           />
           <div className="flex justify-start items-start my-3 p-5">
             <Link to="/events">
