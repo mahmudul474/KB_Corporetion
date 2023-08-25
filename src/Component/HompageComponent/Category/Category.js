@@ -20,8 +20,8 @@ export default function Category() {
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5">
         <div className=" hover:  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
-            <h4 className="text-lg font-semibold text-black">Steel trade</h4>
             <h1 className="text-xl font-bold text-black">CR</h1>
+            <h4 className="text-lg font-semibold text-black"> Cold Rolled</h4>
           </div>
           <img
             className="w-full p-5 h-[150px] m-auto  object-contain "
@@ -60,7 +60,9 @@ export default function Category() {
 
         <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
-            <h4 className="text-lg font-semibold text-black">Steel trade</h4>
+            <h4 className="text-md font-semibold text-black">
+              Galvanized steel,
+            </h4>
             <h1 className="text-xl font-bold text-black">GA</h1>
           </div>
           <img
@@ -100,7 +102,9 @@ export default function Category() {
         </div>
         <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
-            <h4 className="text-lg font-semibold text-black">Steel trade</h4>
+            <h4 className="text-md font-semibold text-black">
+              Hot Rolled Steel
+            </h4>
             <h1 className="text-xl font-bold text-black">PO</h1>
           </div>
           <img
@@ -140,7 +144,9 @@ export default function Category() {
 
         <div className="  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
-            <h4 className="text-lg font-semibold text-black ">Steel trade</h4>
+            <h4 className="text-md font-semibold text-black ">
+              Event Highlights
+            </h4>
             <h1 className="text-xl font-semibold text-black ">Events</h1>
           </div>
           <img
