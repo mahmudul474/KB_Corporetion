@@ -6,6 +6,7 @@ import Category from "../../Component/HompageComponent/Category/Category";
 import CorporateValue from "../../Component/HompageComponent/CorporateValue/CorporateValue";
 import Services from "../../Component/HompageComponent/Services/Services";
 import Products from "../../Component/HompageComponent/Products/Products";
+import Procesing from "../../Component/HompageComponent/Procesing/Procesing";
 
 export default function Home() {
   const location = useLocation();
@@ -21,7 +22,7 @@ export default function Home() {
       <CorporateValue></CorporateValue>
       <Products></Products>
       <ProductInfo></ProductInfo>
-      {/* <Services></Services> */}
+      <Procesing></Procesing>
     </div>
   );
 }
