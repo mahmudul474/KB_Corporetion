@@ -38,7 +38,7 @@ import mainLogo from "../../assets/mainLogo.png";
              title="Our product"
              className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
-            Home
+             Home
            </p>
          </li>
        </Link>
@@ -140,11 +140,11 @@ import mainLogo from "../../assets/mainLogo.png";
                </label>
                <ul
                  tabIndex={0}
-                 className="mt-3 z-[1] p-2 shadow  menu menu-sm dropdown-content bg-white rounded-box w-52"
+                 className="mt-3 z-50 p-2 shadow  menu menu-sm dropdown-content bg-gray-400 text-black rounded-box w-52"
                >
                  <Link to="/my-dashboard">
                    <li>
-                     <a className="justify-between">Profile</a>
+                     <a className="justify-between ">Profile</a>
                    </li>
                  </Link>
                  <li onClick={handleLogOut}>

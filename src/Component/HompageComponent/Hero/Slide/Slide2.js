@@ -8,7 +8,7 @@ export default function Slide2() {
       style={{
         backgroundImage: `url(${bgImg})`
       }}
-      className={`relative   bg-cover bg-center bg-no-repeat`}
+      className={`relative z-1   bg-cover bg-center bg-no-repeat`}
     >
       <div className="w-full h-full flex  justify-center items-center backdrop-brightness-50"></div>
       <div className="absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
