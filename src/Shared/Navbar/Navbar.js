@@ -32,6 +32,16 @@ import mainLogo from "../../assets/mainLogo.png";
 
    const navitem = (
      <>
+       <Link to="/">
+         <li>
+           <p
+             title="Our product"
+             className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+           >
+            Home
+           </p>
+         </li>
+       </Link>
        <Link to="/about">
          <li>
            <p
@@ -219,6 +229,15 @@ import mainLogo from "../../assets/mainLogo.png";
 
                <aside className="w-full p-6 sm:w-60   text-black ">
                  <div className="space-y-8 text-sm">
+                   <Link to="/" onClick={handleToggleSidebar}>
+                     <p
+                       onClick={handleToggleSidebar}
+                       title="kb"
+                       className="font-medium hover:underline w-full shadow-md p-2 my-3 tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+                     >
+                       Home
+                     </p>
+                   </Link>
                    <Link to="/about" onClick={handleToggleSidebar}>
                      <p
                        onClick={handleToggleSidebar}
