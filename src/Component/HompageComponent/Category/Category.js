@@ -20,8 +20,11 @@ export default function Category() {
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5">
         <div className=" hover:  bg-slate-200 cursor-pointer shadow-2xl border  rounded-md">
           <div className="text-left p-5">
+            <h4 className="text-lg font-semibold text-black"> Cold Rolled</h4>{" "}
             <h1 className="text-xl font-bold text-black">CR</h1>
-            <h4 className="text-lg font-semibold text-black"> Cold Rolled</h4>
+            <p className="text-sm">
+              Precision-grade steel for versatile applications.
+            </p>
           </div>
           <img
             className="w-full p-5 h-[150px] m-auto  object-contain "
@@ -63,7 +66,9 @@ export default function Category() {
             <h4 className="text-md font-semibold text-black">
               Galvanized steel,
             </h4>
+
             <h1 className="text-xl font-bold text-black">GA</h1>
+            <p>Corrosion-resistant steel with enduring strength.</p>
           </div>
           <img
             className="w-full p-5 h-[150px] m-auto  object-contain "
@@ -106,6 +111,7 @@ export default function Category() {
               Hot Rolled Steel
             </h4>
             <h1 className="text-xl font-bold text-black">PO</h1>
+            <p>Structural steel for robust <br/> projects.</p>
           </div>
           <img
             className="w-full p-5 h-[150px] m-auto  object-contain "
@@ -148,6 +154,7 @@ export default function Category() {
               Event Highlights
             </h4>
             <h1 className="text-xl font-semibold text-black ">Events</h1>
+            <p>Stay informed about industry insights.</p>
           </div>
           <img
             className="w-full p-5 h-[150px] m-auto  object-contain "
