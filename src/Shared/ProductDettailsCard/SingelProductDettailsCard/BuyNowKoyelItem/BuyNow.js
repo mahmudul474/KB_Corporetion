@@ -105,9 +105,8 @@ export default function BuyNow({ id, data, close, shippingCost ,landing,expected
     <>
       <div className=" fixed z-50   shadow-2xl  bg-base-100 inset-0    ">
         <div className="max-w-full p-7 bg-white">
-          <div class=" bg-gray-100 pt-20 ">
-          
-            <div class="mx-auto justify-center px-6  flex flex-col lg:flex-row xl:px-0">
+          <div className=" bg-gray-100 pt-20 ">
+            <div className="mx-auto justify-center px-6  flex flex-col lg:flex-row xl:px-0">
               <div className=" lg:w-2/3 h-[400px] w-full ">
                 <table className=" p-4 table table-xs table-pin-rows  ">
                   <thead className="text-xs text-black uppercase bg-gray-50 ">
@@ -152,153 +151,161 @@ export default function BuyNow({ id, data, close, shippingCost ,landing,expected
                 </table>
               </div>
               <div>
-              
                 <h2 className="text-lg text-black my-2">Payment</h2>
-                <div class="mb-2 w-full  flex justify-center items-center">
-                  <p class="text-black">SubTotal = {sumBuyNowPrice + shippingCost +"$"}</p>
- 
-                </div><Tab.Group manual>
-      <Tab.List>
-        <Tab><button className="btn btn-primary mr-2">Online</button>
- </Tab>
-        <Tab><button className="btn btn-secondary">Offline</button></Tab>
-        
-      </Tab.List>
-      <Tab.Panels>
-        <Tab.Panel>
-          <div>
-            
-<img class="rounded-full w-96 h-96" src={coomingsoon} alt="image description"/>
-
-          </div>
-        </Tab.Panel>
-        <Tab.Panel> <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 w-full">
-                <div class="mb-2 w-full  flex justify-between">
-                  <p class="text-black">Price = </p>
-                  <p class="text-black">{sumBuyNowPrice + "$"}</p>
+                <div className="mb-2 w-full  flex justify-center items-center">
+                  <p className="text-black">
+                    SubTotal = {sumBuyNowPrice + shippingCost + "$"}
+                  </p>
                 </div>
-                <div class="mb-2 w-full  flex justify-between">
-                  <p class="text-black">Shipping = </p>
-                  <p class="text-black">{shippingCost + "$"}</p>
-                </div>
-                <div class="mb-2 w-full  flex justify-between">
-                  <p class="text-black">SubTotal = </p>
-                  <p class="text-black">{sumBuyNowPrice + shippingCost +"$"}</p>
-                </div>
+                <Tab.Group manual>
+                  <Tab.List>
+                    <Tab>
+                      <button className="btn btn-primary mr-2">Online</button>
+                    </Tab>
+                    <Tab>
+                      <button className="btn btn-secondary">Offline</button>
+                    </Tab>
+                  </Tab.List>
+                  <Tab.Panels>
+                    <Tab.Panel>
+                      <div>
+                        <img
+                          className="rounded-full w-96 h-96"
+                          src={coomingsoon}
+                          alt="image description"
+                        />
+                      </div>
+                    </Tab.Panel>
+                    <Tab.Panel>
+                      {" "}
+                      <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 w-full">
+                        <div className="mb-2 w-full  flex justify-between">
+                          <p className="text-black">Price = </p>
+                          <p className="text-black">{sumBuyNowPrice + "$"}</p>
+                        </div>
+                        <div className="mb-2 w-full  flex justify-between">
+                          <p className="text-black">Shipping = </p>
+                          <p className="text-black">{shippingCost + "$"}</p>
+                        </div>
+                        <div className="mb-2 w-full  flex justify-between">
+                          <p className="text-black">SubTotal = </p>
+                          <p className="text-black">
+                            {sumBuyNowPrice + shippingCost + "$"}
+                          </p>
+                        </div>
 
-                <form
-                  onSubmit={handleSendPaymentDettails}
-                  className="max-w-md  mx-auto"
-                >
-                  <div className="mb-4">
-                    <label
-                      className="block  text-left text-black text-sm font-bold mb-2"
-                      for="bank-name"
-                    >
-                      Bank Name:
-                    </label>
-                    <input
-                      onChange={e => setBankname(e.target.value)}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
-                      id="bank-name"
-                      type="text"
-                      placeholder="Enter Bank Name"
-                      required
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block  text-left text-black text-sm font-bold mb-2"
-                      for="branch"
-                    >
-                      Branch:
-                    </label>
-                    <input
-                      required
-                      onChange={e => setBranch(e.target.value)}
-                      className=" bg-white  shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                      id="branch"
-                      type="text"
-                      placeholder="Enter Branch"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block  text-left text-black text-sm font-bold mb-2"
-                      for="amount"
-                    >
-                      Amount:
-                    </label>
-                    <input
-                      required
-                      onChange={e => setAmount(e.target.value)}
-                      className="bg-white   shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                      id="amount"
-                      min={data?.buyNowPrice}
-                      type="text"
-                      placeholder="Enter Amount"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block  text-left text-black text-sm font-bold mb-2"
-                      for="transaction-id"
-                    >
-                      Transaction ID:
-                    </label>
-                    <input
-                      required
-                      onChange={e => setTransaction(e.target.value)}
-                      className="bg-white    shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                      id="transaction-id"
-                      type="text"
-                      placeholder="Enter Transaction ID"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block text-left  text-black text-sm font-bold mb-2"
-                      for="payment-slip"
-                    >
-                      Payment Slip:
-                    </label>
-                    <input
-                      required
-                      className=" bg-white  shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                      id="payment-slip"
-                      type="file"
-                      onChange={handleBankSleepuplod}
-                    />
-                  </div>
+                        <form
+                          onSubmit={handleSendPaymentDettails}
+                          className="max-w-md  mx-auto"
+                        >
+                          <div className="mb-4">
+                            <label
+                              className="block  text-left text-black text-sm font-bold mb-2"
+                              for="bank-name"
+                            >
+                              Bank Name:
+                            </label>
+                            <input
+                              onChange={e => setBankname(e.target.value)}
+                              className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight bg-white focus:outline-none focus:shadow-outline"
+                              id="bank-name"
+                              type="text"
+                              placeholder="Enter Bank Name"
+                              required
+                            />
+                          </div>
+                          <div className="mb-4">
+                            <label
+                              className="block  text-left text-black text-sm font-bold mb-2"
+                              for="branch"
+                            >
+                              Branch:
+                            </label>
+                            <input
+                              required
+                              onChange={e => setBranch(e.target.value)}
+                              className=" bg-white  shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                              id="branch"
+                              type="text"
+                              placeholder="Enter Branch"
+                            />
+                          </div>
+                          <div className="mb-4">
+                            <label
+                              className="block  text-left text-black text-sm font-bold mb-2"
+                              for="amount"
+                            >
+                              Amount:
+                            </label>
+                            <input
+                              required
+                              onChange={e => setAmount(e.target.value)}
+                              className="bg-white   shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                              id="amount"
+                              min={data?.buyNowPrice}
+                              type="text"
+                              placeholder="Enter Amount"
+                            />
+                          </div>
+                          <div className="mb-4">
+                            <label
+                              className="block  text-left text-black text-sm font-bold mb-2"
+                              for="transaction-id"
+                            >
+                              Transaction ID:
+                            </label>
+                            <input
+                              required
+                              onChange={e => setTransaction(e.target.value)}
+                              className="bg-white    shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                              id="transaction-id"
+                              type="text"
+                              placeholder="Enter Transaction ID"
+                            />
+                          </div>
+                          <div className="mb-4">
+                            <label
+                              className="block text-left  text-black text-sm font-bold mb-2"
+                              for="payment-slip"
+                            >
+                              Payment Slip:
+                            </label>
+                            <input
+                              required
+                              className=" bg-white  shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                              id="payment-slip"
+                              type="file"
+                              onChange={handleBankSleepuplod}
+                            />
+                          </div>
 
-                  {/* {bankSleep && (
+                          {/* {bankSleep && (
                     <img
                       className="w-full h-60  object-contain my-3"
                       src={bankSleep}
                     />
                   )} */}
-                  <div className="flex justify-center">
-                    <button
-                      className=" cursor-pointer bg-transparent border  text-black  border-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                      type="submit"
-                    >
-                      Submit
-                    </button>
+                          <div className="flex justify-center">
+                            <button
+                              className=" cursor-pointer bg-transparent border  text-black  border-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                              type="submit"
+                            >
+                              Submit
+                            </button>
 
-                    <button
-                      onClick={close}
-                      className="bg-[#719f18] hover:bg-[#73471b] btn text-white ml-3"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </form>
-              </div></Tab.Panel>
-        
-      </Tab.Panels>
-    </Tab.Group>
+                            <button
+                              onClick={close}
+                              className="bg-[#719f18] hover:bg-[#73471b] btn text-white ml-3"
+                            >
+                              Close
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </Tab.Panel>
+                  </Tab.Panels>
+                </Tab.Group>
               </div>
-             
             </div>
           </div>
         </div>

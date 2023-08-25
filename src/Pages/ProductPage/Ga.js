@@ -40,9 +40,9 @@ export default function Ga() {
         </div>
       </div>
 
-      <div class="bg-white">
-        <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-          <h2 class="text-2xl   text-left font-bold tracking-tight text-gray-900">
+      <div className="bg-white">
+        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+          <h2 className="text-2xl   text-left font-bold tracking-tight text-gray-900">
             GI/GA (Galvanized) Steel Coils and Sheets
           </h2>
           <p className="text-black hidden lg:block text-left">
@@ -56,7 +56,7 @@ export default function Ga() {
           </p>
           <div className="divider w-full my-3 h-[2px] text-black bg-black"></div>
 
-          <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
             {products?.map(product => (
               <Product data={product} key={product._id}></Product>
             ))}

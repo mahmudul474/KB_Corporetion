@@ -30,12 +30,12 @@ export default function Category() {
           <div className="flex justify-start items-start my-3 p-5">
             <Link to="/cr">
               <a
-                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
+                className="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
                 href="/View-more"
               >
-                <span class="absolute -end-full transition-all group-hover:end-4">
+                <span className="absolute -end-full transition-all group-hover:end-4">
                   <svg
-                    class="h-5 w-5 rtl:rotate-180"
+                    className="h-5 w-5 rtl:rotate-180"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -50,7 +50,7 @@ export default function Category() {
                   </svg>
                 </span>
 
-                <span class="text-sm font-medium transition-all group-hover:me-4">
+                <span className="text-sm font-medium transition-all group-hover:me-4">
                   View-more
                 </span>
               </a>
@@ -71,12 +71,12 @@ export default function Category() {
             <Link to="/ga">
               {" "}
               <a
-                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
+                className="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
                 href="/View-more"
               >
-                <span class="absolute -end-full transition-all group-hover:end-4">
+                <span className="absolute -end-full transition-all group-hover:end-4">
                   <svg
-                    class="h-5 w-5 rtl:rotate-180"
+                    className="h-5 w-5 rtl:rotate-180"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -91,7 +91,7 @@ export default function Category() {
                   </svg>
                 </span>
 
-                <span class="text-sm font-medium transition-all group-hover:me-4">
+                <span className="text-sm font-medium transition-all group-hover:me-4">
                   View-more
                 </span>
               </a>
@@ -110,12 +110,12 @@ export default function Category() {
           <div className="flex justify-start items-start my-3 p-5">
             <Link to="/po">
               <a
-                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
+                className="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
                 href="/View-more"
               >
-                <span class="absolute -end-full transition-all group-hover:end-4">
+                <span className="absolute -end-full transition-all group-hover:end-4">
                   <svg
-                    class="h-5 w-5 rtl:rotate-180"
+                    className="h-5 w-5 rtl:rotate-180"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -130,7 +130,7 @@ export default function Category() {
                   </svg>
                 </span>
 
-                <span class="text-sm font-medium transition-all group-hover:me-4">
+                <span className="text-sm font-medium transition-all group-hover:me-4">
                   View-more
                 </span>
               </a>
@@ -151,12 +151,12 @@ export default function Category() {
             <Link to="/events">
               {" "}
               <a
-                class="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
+                className="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-black focus:outline-none focus:ring active:text-indigo-500"
                 href="/download"
               >
-                <span class="absolute -end-full transition-all group-hover:end-4">
+                <span className="absolute -end-full transition-all group-hover:end-4">
                   <svg
-                    class="h-5 w-5 rtl:rotate-180"
+                    className="h-5 w-5 rtl:rotate-180"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -171,7 +171,7 @@ export default function Category() {
                   </svg>
                 </span>
 
-                <span class="text-sm font-medium transition-all group-hover:me-4">
+                <span className="text-sm font-medium transition-all group-hover:me-4">
                   View-more
                 </span>
               </a>

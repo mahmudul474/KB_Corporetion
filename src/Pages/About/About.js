@@ -61,44 +61,33 @@ export default function About() {
               </p>
               <ul className="mb-10 list-outside hover:list-inside">
                 <li className="flex items-center mb-4 text-base text-black  ">
-                 
                   Cold Roll (CR) Coils, Sheets, and Steel
                 </li>
                 <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  
                   Excess Prime Steel
                 </li>
                 <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  
                   Cold Roll (CR) Coils, Sheets, and Steel
                 </li>
                 <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                 
                   Grade 50 and Grade 80 Steel
                 </li>
                 <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
- 
-                  
                   High Strength (HSLA) Steel
                 </li>
                 <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  
                   Hot Dip Galvanized (HD, GALV, HDG, GA) Coils and Sheets
                 </li>
                 <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                 
                   Hot Roll (HR) Coils, Sheets
                 </li>
                 <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  
                   Prime and Secondary Steel
                 </li>
                 <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                
                   Low Carbon Steel
                 </li>
                 <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                 
                   Hot Roll Pickled (HRPO) Coils, Sheets, and HRP&O
                 </li>
               </ul>
@@ -113,7 +102,7 @@ export default function About() {
           </div>
         </div>
       </section>
-      <div class="bg-white">
+      <div className="bg-white">
         <div className=" flex flex-col justify-center my-4 items-center  ">
           <h1 className="text-3xl capitalize font-bold  text-black  ">
             {" "}
@@ -126,10 +115,10 @@ export default function About() {
             smile, success and future growth.
           </p>
         </div>
-        <div class="-mx-4 flex flex-wrap p-8">
-          <div class="w-full px-4 md:w-1/2 lg:w-1/3">
-            <div class="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
-              <div class="mx-auto mb-7 inline-block">
+        <div className="-mx-4 flex flex-wrap p-8">
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3">
+            <div className="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
+              <div className="mx-auto mb-7 inline-block">
                 <svg
                   width="53"
                   height="61"
@@ -153,10 +142,10 @@ export default function About() {
                 </svg>
               </div>
               <div>
-                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
+                <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
                   Free to Get Started
                 </h3>
-                <p class="text-base font-medium text-body-color">
+                <p className="text-base font-medium text-body-color">
                   FormBold is free to use, we are offering a decent free plan
                   for experiments, personal projects and projects.
                 </p>
@@ -164,9 +153,9 @@ export default function About() {
             </div>
           </div>
 
-          <div class="w-full px-4 md:w-1/2 lg:w-1/3">
-            <div class="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
-              <div class="mx-auto mb-7 inline-block">
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3">
+            <div className="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
+              <div className="mx-auto mb-7 inline-block">
                 <svg
                   width="60"
                   height="60"
@@ -193,10 +182,10 @@ export default function About() {
                 </svg>
               </div>
               <div>
-                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
+                <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
                   Link Multiple Emails
                 </h3>
-                <p class="text-base font-medium text-body-color">
+                <p className="text-base font-medium text-body-color">
                   Link multiple email address under your parent account, use any
                   of them for your forms to recieve submissions.
                 </p>
@@ -204,9 +193,9 @@ export default function About() {
             </div>
           </div>
 
-          <div class="w-full px-4 md:w-1/2 lg:w-1/3">
-            <div class="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
-              <div class="mx-auto mb-7 inline-block">
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3">
+            <div className="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
+              <div className="mx-auto mb-7 inline-block">
                 <svg
                   width="67"
                   height="60"
@@ -263,10 +252,10 @@ export default function About() {
                 </svg>
               </div>
               <div>
-                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
+                <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
                   Easy to Use Form API
                 </h3>
-                <p class="text-base font-medium text-body-color">
+                <p className="text-base font-medium text-body-color">
                   Simple and easy-to use form API all you need to paste your
                   end-point URL on your form, rest assured by FormBold.
                 </p>
@@ -274,9 +263,9 @@ export default function About() {
             </div>
           </div>
 
-          <div class="w-full px-4 md:w-1/2 lg:w-1/3">
-            <div class="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
-              <div class="mx-auto mb-7 inline-block">
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3">
+            <div className="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
+              <div className="mx-auto mb-7 inline-block">
                 <svg
                   width="58"
                   height="60"
@@ -430,10 +419,10 @@ export default function About() {
                 </svg>
               </div>
               <div>
-                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
+                <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
                   Connect Apps
                 </h3>
-                <p class="text-base font-medium text-body-color">
+                <p className="text-base font-medium text-body-color">
                   Connect apps and integrations with your form, get notified
                   with submitter data when you recieve new submissions.
                 </p>
@@ -441,9 +430,9 @@ export default function About() {
             </div>
           </div>
 
-          <div class="w-full px-4 md:w-1/2 lg:w-1/3">
-            <div class="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
-              <div class="mx-auto mb-7 inline-block">
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3">
+            <div className="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
+              <div className="mx-auto mb-7 inline-block">
                 <svg
                   width="51"
                   height="60"
@@ -464,10 +453,10 @@ export default function About() {
                 </svg>
               </div>
               <div>
-                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
+                <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
                   Spam Free &amp; Encrypted
                 </h3>
-                <p class="text-base font-medium text-body-color">
+                <p className="text-base font-medium text-body-color">
                   We use server-side mechanism to make sure submissions are spam
                   free and all messages are end-to-end encrypted.
                 </p>
@@ -475,9 +464,9 @@ export default function About() {
             </div>
           </div>
 
-          <div class="w-full px-4 md:w-1/2 lg:w-1/3 bg-white">
-            <div class="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
-              <div class="mx-auto mb-7 inline-block">
+          <div className="w-full px-4 md:w-1/2 lg:w-1/3 bg-white">
+            <div className="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
+              <div className="mx-auto mb-7 inline-block">
                 <svg
                   width="52"
                   height="60"
@@ -536,10 +525,10 @@ export default function About() {
                 </svg>
               </div>
               <div>
-                <h3 class="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
+                <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
                   Attach Large Files
                 </h3>
-                <p class="text-base font-medium text-body-color">
+                <p className="text-base font-medium text-body-color">
                   You can allow end users to attach or upload attachments, you
                   will recieve a CDN link with submission data.
                 </p>
@@ -572,21 +561,15 @@ export default function About() {
               <img className="w-full h-full object-cover" src={korea} />
             </div>
             <div className=" felx justify-start items-start text-left mt-5 text-black">
-              <h4>Dong Haeng Steel&Trading CO.LTD
-</h4>
+              <h4>Dong Haeng Steel&Trading CO.LTD</h4>
               <p>
-              Address: 1201-1 Boeksang 2nd Star 'Tower, 165 Gasondigital 2ro
-gumcheon-gu, Seoui, Korea
+                Address: 1201-1 Boeksang 2nd Star 'Tower, 165 Gasondigital 2ro
+                gumcheon-gu, Seoui, Korea
               </p>
-              <p>Tel+82-2-6231-1219
-</p>
+              <p>Tel+82-2-6231-1219</p>
               <p>Fax.+82-2-866-2438</p>
             </div>
           </div>
-            
-          
-         
-        
         </div>
       </div>
     </div>

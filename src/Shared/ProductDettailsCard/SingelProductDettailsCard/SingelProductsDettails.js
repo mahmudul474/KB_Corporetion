@@ -411,12 +411,12 @@ return alert("Please select shipment type")
           </div>
         </div>
       </div> */}
-      <section class=" overflow-hidden bg-white font-poppins dark:bg-white">
-        <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-          <div class="flex flex-wrap -mx-4">
-            <div class="w-full px-4 md:w-1/2 ">
-              <div class="sticky top-0 z-50 overflow-hidden ">
-                <div class="relative  lg:mb-10 h-[450px]">
+      <section className=" overflow-hidden bg-white font-poppins dark:bg-white">
+        <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
+          <div className="flex flex-wrap -mx-4">
+            <div className="w-full px-4 md:w-1/2 ">
+              <div className="sticky top-0 z-50 overflow-hidden ">
+                <div className="relative  lg:mb-10 h-[450px]">
                   {subimageUrl ? (
                     <img
                       src={subimageUrl}
@@ -431,8 +431,8 @@ return alert("Please select shipment type")
                     />
                   )}
                 </div>
-                <div class="flex-wrap lg:flex  md:flex ">
-                  <div class="">
+                <div className="flex-wrap lg:flex  md:flex ">
+                  <div className="">
                     <SubImgSlider
                       handleSubimgShow={handleSubimgShow}
                       images={data.subImages}
@@ -441,9 +441,9 @@ return alert("Please select shipment type")
                 </div>
               </div>
             </div>
-            <div class="w-full px-4 md:w-1/2 ">
-              <div class="lg:pl-20">
-                <div class="pb-6 mb-8 border-b border-gray-200 dark:border-gray-700">
+            <div className="w-full px-4 md:w-1/2 ">
+              <div className="lg:pl-20">
+                <div className="pb-6 mb-8 border-b border-gray-200 dark:border-gray-700">
                   <div>
                     <h2 className="  mt-1 mb-6 text-2xl font-bold text-black  text-left md:text-4xl">
                       {data.name}
@@ -483,8 +483,8 @@ return alert("Please select shipment type")
                     </p>
                   </div>
 
-                  <div class="p-4 mb-8 border border-gray-300 dark:border-gray-700">
-                    <div class="flex   flex-col  flex-wrap items-start ">
+                  <div className="p-4 mb-8 border border-gray-300 dark:border-gray-700">
+                    <div className="flex   flex-col  flex-wrap items-start ">
                       <div className="flex  justify-between  text-lg  text-black    ">
                         <span className=" text-sm text-black  font-semibold  dark:text-black">
                           Per Ton price:
@@ -506,7 +506,7 @@ return alert("Please select shipment type")
                       </div>
                     </div>
                   </div>
-                  <div class="p-4 mb-8 border border-gray-300 dark:border-gray-700">
+                  <div className="p-4 mb-8 border border-gray-300 dark:border-gray-700">
                     <div className="flex justify-start flex-col  items-start  text-xl text-left  ">
                       <div className=" text-left flex items-start flex-col lg:flex-row   text-black  my-2">
                         <h4 className="">This Auction Ends in : </h4>
@@ -576,10 +576,10 @@ return alert("Please select shipment type")
               <div className="flex items-center ">
                 <label className="mr-2 text-black">Expected Date</label>
                 <DatePicker
-        selected={selectedDate}
-        onChange={handleDateChange}
-        className="border text-black bg-white border-gray-300  rounded px-2 py-1"
-      />
+                  selected={selectedDate}
+                  onChange={handleDateChange}
+                  className="border text-black bg-white border-gray-300  rounded px-2 py-1"
+                />
               </div>
 
               <div>

@@ -66,13 +66,13 @@ export default function WinPayment({ id, onClose, refetch }) {
   return (
     <div className="fixed z-50 inset-0 flex items-center justify-center ">
       <div className="bg-slate-200 shadow-xl ">
-        <div class="max-w-md mx-auto  shadow-md rounded-md p-6">
-          <div class="flex items-center mb-4">
+        <div className="max-w-md mx-auto  shadow-md rounded-md p-6">
+          <div className="flex items-center mb-4">
             <img
               onClick={openModal}
               src={paymentDetails?.bankSleep}
               alt="Bank Sleep"
-              class="w-full h-56 mr-2"
+              className="w-full h-56 mr-2"
             />
           </div>
           {isOpen && (
@@ -94,13 +94,15 @@ export default function WinPayment({ id, onClose, refetch }) {
             </div>
           )}
 
-          <p class="mb-4">Bank: {paymentDetails?.bank}</p>
+          <p className="mb-4">Bank: {paymentDetails?.bank}</p>
 
-          <p class="mb-4">Branch: {paymentDetails?.branch}</p>
+          <p className="mb-4">Branch: {paymentDetails?.branch}</p>
 
-          <p class="mb-4">Transaction: {paymentDetails?.transaction}</p>
+          <p className="mb-4">Transaction: {paymentDetails?.transaction}</p>
 
-          <p class="text-lg font-semibold">Amount: {paymentDetails?.amount}</p>
+          <p className="text-lg font-semibold">
+            Amount: {paymentDetails?.amount}
+          </p>
         </div>
 
         <div className="flex my-4  capitalize  justify-center items-center">

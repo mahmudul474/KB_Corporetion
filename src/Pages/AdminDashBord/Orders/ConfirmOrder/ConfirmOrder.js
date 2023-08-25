@@ -68,13 +68,13 @@ export default function ConfirmOrder({ data, onClose, refetch }) {
   return (
     <div className="fixed z-50 inset-0 flex items-center justify-center ">
       <div className="bg-white shadow-xl lg:w-[500px]  ">
-        <div class="max-w-md mx-auto  shadow-md rounded-md p-6">
-          <div class="flex items-center mb-4">
+        <div className="max-w-md mx-auto  shadow-md rounded-md p-6">
+          <div className="flex items-center mb-4">
             <img
               onClick={openModal}
               src={data?.productImg}
               alt="Bank Sleep"
-              class="w-full h-56 mr-2"
+              className="w-full h-56 mr-2"
             />
           </div>
           {isOpen && (
@@ -96,13 +96,13 @@ export default function ConfirmOrder({ data, onClose, refetch }) {
             </div>
           )}
 
-          <p class="mb-4">Bank: {data?.bank}</p>
+          <p className="mb-4">Bank: {data?.bank}</p>
 
-          <p class="mb-4">Branch: {data?.branch}</p>
+          <p className="mb-4">Branch: {data?.branch}</p>
 
-          <p class="mb-4">Transaction: {data?.transaction}</p>
+          <p className="mb-4">Transaction: {data?.transaction}</p>
 
-          <p class="text-lg font-semibold">Amount: {data?.amount}</p>
+          <p className="text-lg font-semibold">Amount: {data?.amount}</p>
         </div>
 
         <div className="flex  justify-center my-4 ">

@@ -124,15 +124,15 @@ export default function AdminKoyelITemDettails({
             {data?.name}
           </h5>
 
-          <div class="flex items-center  ">
+          <div className="flex items-center  ">
             <img
-              class="w-10 mr-2 h-10 rounded-full"
+              className="w-10 mr-2 h-10 rounded-full"
               src={data?.authorPhoto}
               alt=""
             />
-            <div class="font-medium  ">
+            <div className="font-medium  ">
               <div>{data?.author}</div>
-              <div class="text-sm text-gray-500  ">{data?.authorEmail}</div>
+              <div className="text-sm text-gray-500  ">{data?.authorEmail}</div>
             </div>
           </div>
           <div className="flex my-2 justify-between items-center">
@@ -178,7 +178,7 @@ export default function AdminKoyelITemDettails({
                 openPopup();
               }}
               type="button"
-              class="text-white bg-[#73471b] hover:bg-[#719f18] focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+              className="text-white bg-[#73471b] hover:bg-[#719f18] focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
             >
               <span>
                 <FiEdit></FiEdit>
@@ -191,7 +191,7 @@ export default function AdminKoyelITemDettails({
                 openConfirmationPopup();
               }}
               type="button"
-              class="text-white   bg-red-600   focus:ring-4 focus:outline-none   font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+              className="text-white   bg-red-600   focus:ring-4 focus:outline-none   font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
             >
               <span>
                 <AiOutlineDelete></AiOutlineDelete>

@@ -22,12 +22,12 @@ export default function CorporateValue() {
           <div>
             <a
               href="#"
-              class="block rounded-tl-[120px]  max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border    shadow  "
+              className="block rounded-tl-[120px]  max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border    shadow  "
             >
-              <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
+              <h5 className="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
                 Innovation Beyond Measure
               </h5>
-              <p class="font-normal text-gray-700  text-white ">
+              <p className="font-normal text-gray-700  text-white ">
                 Pioneering the steel auction landscape with cutting-edge
                 technology and forward-thinking strategies. Embracing innovation
                 to redefine how you connect and trade in the steel industry.
@@ -38,12 +38,12 @@ export default function CorporateValue() {
           <div>
             <a
               href="#"
-              class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-lg shadow  "
+              className="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-lg shadow  "
             >
-              <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
+              <h5 className="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
                 Unparalleled Transparency
               </h5>
-              <p class="font-normal text-gray-700  text-white ">
+              <p className="font-normal text-gray-700  text-white ">
                 Transparency is our cornerstone. We ensure an open and fair
                 marketplace where every bid and transaction is visible,
                 fostering trust and confidence among suppliers and buyers.
@@ -54,12 +54,12 @@ export default function CorporateValue() {
           <div>
             <a
               href="#"
-              class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-lg shadow  "
+              className="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-lg shadow  "
             >
-              <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
+              <h5 className="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
                 Sustainable Partnerships
               </h5>
-              <p class="font-normal text-gray-700  text-white ">
+              <p className="font-normal text-gray-700  text-white ">
                 Building lasting relationships is our commitment. We foster
                 sustainable partnerships by facilitating mutually beneficial
                 deals that fuel the growth and prosperity
@@ -70,12 +70,12 @@ export default function CorporateValue() {
           <div>
             <a
               href="#"
-              class="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-br-[120px] shadow  "
+              className="block max-w-sm p-6 bg-[#4588b4] bg-opacity-50  border  rounded-br-[120px] shadow  "
             >
-              <h5 class="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
+              <h5 className="mb-2 text-[30px] text-white  font-bold tracking-tight text-gray-900  ">
                 Empowerment Through Data
               </h5>
-              <p class="font-normal text-gray-700  text-white ">
+              <p className="font-normal text-gray-700  text-white ">
                 Harnessing the power of data to empower your decisions. Our
                 platform provides actionable insights, enabling you to make
                 informed choices and optimize your steel sourcing strategies.

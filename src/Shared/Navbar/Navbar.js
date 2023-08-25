@@ -170,10 +170,10 @@ import mainLogo from "../../assets/mainLogo.png";
              href="/"
              aria-label="Company"
              title="Company"
-             class="inline-flex    items-center"
+             className="inline-flex    items-center"
            >
              <img className=" h-[50px]  object-contain" src={logo} />
-             <span class="   text-3xl  font-semibold  text-black uppercase">
+             <span className="   text-3xl  font-semibold  text-black uppercase">
                Auction KB
              </span>
            </a>
