@@ -113,7 +113,7 @@ import  Flag  from "./flag.png";
                <Link to="/admin-dashboard">
                  <li
                    onClick={() => setIsProflieOpen(false)}
-                   className="block px-4 text-sm text-gray-700"
+                   className="block px-4 font-semibold text-sm text-gray-700"
                    role="menuitem"
                    tabindex="-1"
                    id="user-menu-item-0"
@@ -186,11 +186,11 @@ import  Flag  from "./flag.png";
              href="/"
              aria-label="Company"
              title="Company"
-             className="inline-flex    items-center"
+             className="inline-flex   justify-end  items-end "
            >
              <img className=" h-[50px]  object-contain" src={logo} />
-             <span className="   text-3xl  font-semibold  text-black uppercase">
-               Auction KB
+             <span className="   text-xl   font-semibold  text-black uppercase">
+             DHSNT KOREA
              </span>
            </a>
            <ul className="flex items-center md:flex hidden space-x-8 lg:flex">
