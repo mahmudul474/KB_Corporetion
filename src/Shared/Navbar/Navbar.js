@@ -67,7 +67,7 @@ import  Flag  from "./flag.png";
              title="Our product"
              className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
-             GA
+            GI/GA
            </p>
          </li>
        </Link>
@@ -77,7 +77,7 @@ import  Flag  from "./flag.png";
              title="Our product"
              className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
-             PO
+         PO/HR
            </p>
          </li>
        </Link>
@@ -272,7 +272,7 @@ import  Flag  from "./flag.png";
                          title="Our product"
                          className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                        >
-                         GA
+                        GI/GA
                        </p>
                      </Link>
                      <Link to="/po" onClick={handleToggleSidebar}>
@@ -280,7 +280,7 @@ import  Flag  from "./flag.png";
                          title="Our product"
                          className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                        >
-                         PO
+                     PO/HR
                        </p>
                      </Link>
                      <Link to="/events" onClick={handleToggleSidebar}>
