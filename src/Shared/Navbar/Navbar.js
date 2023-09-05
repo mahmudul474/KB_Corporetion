@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 import { toast } from "react-hot-toast";
 import useAdmin from "../../Hooks/useAdmin";
-import mainLogo from "../../assets/mainLogo.png";
- import { FaTimes } from "react-icons/fa";
-
+import { FaTimes } from "react-icons/fa";
+import  Flag  from "./flag.png";
  const Navbar = () => {
    const { currentUser, logOut } = useContext(AuthContext);
 
@@ -168,6 +167,13 @@ import mainLogo from "../../assets/mainLogo.png";
            </Link>
          </>
        )}
+  
+  <div className="   w-14 h-14">
+    <img src={Flag} className="w-full object-cover h-full" alt="badge"/>
+  </div>
+
+  
+  
      </>
    );
 
@@ -190,7 +196,8 @@ import mainLogo from "../../assets/mainLogo.png";
            <ul className="flex items-center md:flex hidden space-x-8 lg:flex">
              {navitem}
            </ul>
-           <div className="lg:hidden md:hidden">
+           <div className="lg:hidden flex flex-row space-x-3 md:hidden">
+
              <button
                aria-label="Open Menu "
                title="Open Menu"
@@ -212,6 +219,9 @@ import mainLogo from "../../assets/mainLogo.png";
                  />
                </svg>
              </button>
+             <div className="   w-10 h-10">
+    <img src={Flag} className="w-full object-cover h-full" alt="badge"/>
+  </div>
              <div
                className={`${
                  sidebarOpen
@@ -368,14 +378,14 @@ import mainLogo from "../../assets/mainLogo.png";
                      ) : (
                        <>
                          <Link to="/login">
-                           <li onClick={() => setIsMenuOpen(false)}>
+                           <p onClick={() => setIsMenuOpen(false)}>
                              <p
                                title="Our product"
                                className="font-medium tracking-wide  w-full  shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                              >
                                Login
                              </p>
-                           </li>
+                           </p>
                          </Link>
                        </>
                      )}
