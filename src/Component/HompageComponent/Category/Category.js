@@ -19,7 +19,7 @@ export default function Category() {
 
       <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-5">
        
-<div className="card   shadow-xl">
+<div className="card   shadow-2xl">
   <div className="bg-[#5e748b] rounded-t-xl">
   <div className="text-left p-5">
             <h4 className="text-lg font-semibold text-black"> Cold Rolled sell</h4>{" "}
@@ -60,7 +60,7 @@ export default function Category() {
   </div>
   <figure><img src={cr} alt="Shoes" /></figure>
 </div>
-<div className="card   shadow-xl">
+<div className="card   shadow-2xl">
   <div className="bg-[#efc686] rounded-t-xl">
   <div className="text-left p-5">
             <h4 className="text-lg font-semibold text-black">Galvanized steel  sell
@@ -105,7 +105,7 @@ export default function Category() {
 
 
 
-<div className="card   shadow-xl">
+<div className="card   shadow-2xl">
   <div className="bg-[#9cb1c4] rounded-t-xl">
   <div className="text-left p-5">
             <h4 className="text-lg font-semibold text-black">Hot Rolled Steel sell
@@ -150,7 +150,7 @@ projects.
 </div>
 
 
-<div className="card   shadow-xl">
+<div className="card   shadow-2xl">
   <div className="bg-[#d06c4c] rounded-t-xl">
   <div className="text-left p-5">
             <h4 className="text-lg font-semibold text-black">Event Highlights
