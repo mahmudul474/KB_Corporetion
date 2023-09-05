@@ -26,7 +26,6 @@ export default function Ga() {
 
   // Get the last index
  const lastIndex = products.length - 1;
-
  // Get the last product
  const lastProduct = products[lastIndex];
 
