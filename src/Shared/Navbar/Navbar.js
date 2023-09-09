@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProbaider/AuthProvider";
 import { toast } from "react-hot-toast";
@@ -189,9 +189,7 @@ import  Flag  from "./flag.png";
              className="inline-flex   justify-end  items-end "
            >
              <img className=" h-[50px]  object-contain" src={logo} />
-             <span className="   text-xl   font-semibold  text-black uppercase">
-             DHSNT KOREA
-             </span>
+             
            </a>
            <ul className="flex items-center md:flex hidden space-x-8 lg:flex">
              {navitem}

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./logo.png";
+import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import faq from "./FAQ.pdf";
 import priveciPoleci from "./PrivacyPolicy.pdf";
@@ -7,8 +7,7 @@ import refundPolecy from "./Refund.pdf";
 import returnPolecy from "./ReturnPolicy.pdf";
 import termsOfcondition from "./TermsCondition.pdf";
 import accesciblity from "./Accessibility.pdf";
-import emailImg from "./email.png";
-import locationsImg from "./location.png";
+ 
 
 export default function Footer() {
   return (
@@ -20,7 +19,7 @@ export default function Footer() {
               <div class="mb-10 w-full">
                 <a
                   href="javascript:void(0)"
-                  class="mb-6 inline-block max-w-[160px]"
+                  class="mb-6 flex  justify-start items-start max-w-[160px]"
                 >
                   <img src={logo} alt="logo" class="max-w-full" />
                 </a>
