@@ -17,28 +17,53 @@ export default function Footer() {
           <div class="-mx-4 flex flex-wrap">
             <div class="w-full px-4 sm:w-2/3 lg:w-3/12">
               <div class="mb-10 w-full">
-                <a
-                  href="javascript:void(0)"
-                  class="mb-6 flex  justify-start items-start max-w-[160px]"
-                >
+                <a href=" " class="mb-6 flex  justify-start items-start  ">
                   <img src={logo} alt="logo" class="max-w-full" />
                 </a>
-                <p class="text-body-color mb-7 text-left text-base">
-                  Auction KB: Redefining steel commerce through innovation and
-                  transparency. Join us in forging a future of prosperity and
-                  partnership.
-                </p>
+
+                <h3 className="text-xl font-bold text-left mb-3 ">
+                  KOREA CONTACT
+                </h3>
                 <p class="text-dark flex items-center text-sm font-medium">
-                  <span> +8801322674654</span>
+                  <span className="font-bold ">
+                    Dong Haeng Steel & Trading Co. LTD
+                  </span>
                 </p>
-                <p class="text-dark flex items-center text-sm font-medium">
-                  <span> kbsteelbd@gmail.com</span>
+
+                <p class="text-dark flex items-start text-left text-sm font-medium">
+                  <span className="items-start text-left ">
+                    Tel. 02-6231-1219, Fax, 02-866-2438
+                  </span>
                 </p>
                 <p class="text-dark flex items-start text-left text-sm font-medium">
                   <span className="items-start text-left ">
-                    {" "}
-                    P92V+9H3, Bonda Dekpara, Kadamtoli,
-                    <br /> Keranigoanj, Dhaka 1310
+                    Address: 1201-1 Boeksang, 2nd star Tower, 165 Gasondifital
+                    2ro ghmcheon-gu, Seoui, Korea
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div class="w-full px-4 sm:w-1/2 lg:w-3/12">
+              <div class="mb-10 w-full lg:pt-[109px]">
+                <h3 className="text-xl font-bold text-left mb-3 ">
+                  KOREA CONTACT
+                </h3>
+                <p class="text-dark flex items-center text-sm font-medium">
+                  <span className="font-bold ">
+                    Dong Haeng Steel & Trading Co. LTD
+                  </span>
+                </p>
+
+                <p class="text-dark flex items-start text-left text-sm font-medium">
+                  <span className="items-start text-left ">
+                    Tel. 02-6231-1219, Fax, 02-866-2438
+                  </span>
+                </p>
+                <p class="text-dark flex items-start text-left text-sm font-medium">
+                  <span className="items-start text-left ">
+                    Address: 1201-1 Boeksang, 2nd star Tower, 165 Gasondifital
+                    2ro ghmcheon-gu, Seoui, Korea
                   </span>
                 </p>
               </div>
@@ -55,45 +80,6 @@ export default function Footer() {
                       About us
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      to="/cr"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                    >
-                      Cold Rolled(CR)
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/po"
-                      href="javascript:void(0)"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                    >
-                      Hot Rolled(HR)
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/ga"
-                      href="javascript:void(0)"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                    >
-                      Galvanized Steel(GA)
-                    </Link>
-                  </li>
-                  <li>
-                    <a
-                      href="javascript:void(0)"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-              <div class="mb-10 w-full">
-                <h4 class="text-dark mb-9 text-lg font-semibold">Resources</h4>
-                <ul>
                   <li>
                     <a
                       href={termsOfcondition}
@@ -160,7 +146,7 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <div class="w-full px-4 sm:w-1/2 lg:w-3/12">
+            <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
               <div class="mb-10 w-full">
                 <h4 class="text-dark mb-9 text-lg font-semibold">
                   Follow Us On

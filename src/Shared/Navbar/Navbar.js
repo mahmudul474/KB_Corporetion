@@ -6,6 +6,9 @@ import { toast } from "react-hot-toast";
 import useAdmin from "../../Hooks/useAdmin";
 import { FaTimes } from "react-icons/fa";
 import  Flag  from "./flag.png";
+import  bdflage from "./bdflag.png"
+
+
  const Navbar = () => {
    const { currentUser, logOut } = useContext(AuthContext);
 
@@ -35,7 +38,7 @@ import  Flag  from "./flag.png";
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className="font-medium tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              Home
            </p>
@@ -45,7 +48,7 @@ import  Flag  from "./flag.png";
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className="font-medium tracking-wide text-xl  font-bold  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              Company
            </p>
@@ -55,7 +58,7 @@ import  Flag  from "./flag.png";
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className="font-medium tracking-wide  font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              CR
            </p>
@@ -65,9 +68,9 @@ import  Flag  from "./flag.png";
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className="font-medium tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
-            GI/GA
+             GI/GA
            </p>
          </li>
        </Link>
@@ -75,9 +78,9 @@ import  Flag  from "./flag.png";
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className="font-medium tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
-         PO/HR
+             PO/HR
            </p>
          </li>
        </Link>
@@ -85,7 +88,7 @@ import  Flag  from "./flag.png";
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className="font-medium tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              Events
            </p>
@@ -99,7 +102,7 @@ import  Flag  from "./flag.png";
                  <Link to="/my-dashboard">
                    <li
                      onClick={() => setIsProflieOpen(false)}
-                     className="block px-4  text-sm text-gray-700"
+                     className="block px-4 text-xl   font-bold  text-sm text-gray-700"
                      role="menuitem"
                      tabindex="-1"
                      id="user-menu-item-0"
@@ -113,7 +116,7 @@ import  Flag  from "./flag.png";
                <Link to="/admin-dashboard">
                  <li
                    onClick={() => setIsProflieOpen(false)}
-                   className="block px-4 font-semibold text-sm text-gray-700"
+                   className="block px-4 font-bold  text-xl text-gray-700"
                    role="menuitem"
                    tabindex="-1"
                    id="user-menu-item-0"
@@ -125,7 +128,7 @@ import  Flag  from "./flag.png";
            </div>
 
            <li
-             className="block px-4 text-sm text-gray-700"
+             className="block px-4 text-xl  text-gray-700"
              role="menuitem"
              tabindex="-1"
              id="user-menu-item-0"
@@ -143,11 +146,13 @@ import  Flag  from "./flag.png";
                >
                  <Link to="/my-dashboard">
                    <li>
-                     <a className="justify-between ">Profile</a>
+                     <a className="justify-between   font-bold text-xl">
+                       Profile
+                     </a>
                    </li>
                  </Link>
                  <li onClick={handleLogOut}>
-                   <a className="text-red-500">Logout</a>
+                   <a className="text-red-500 font-bold text-xl">Logout</a>
                  </li>
                </ul>
              </div>
@@ -159,7 +164,7 @@ import  Flag  from "./flag.png";
              <li onClick={() => setIsMenuOpen(false)}>
                <p
                  title="Our product"
-                 className="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
+                 className="font-medium tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
                >
                  Login
                </p>
@@ -167,13 +172,18 @@ import  Flag  from "./flag.png";
            </Link>
          </>
        )}
-  
-  <div className="   w-14 h-14">
-    <img src={Flag} className="w-full object-cover h-full" alt="badge"/>
-  </div>
-
-  
-  
+       <div className="flex ">
+         <div className="mr-[20px]   w-14 h-14">
+           <img src={Flag} className="w-full object-cover h-full" alt="badge" />
+         </div>
+         <div className="   w-14 h-14">
+           <img
+             src={bdflage}
+             className="w-full object-cover h-full"
+             alt="badge"
+           />
+         </div>
+       </div>
      </>
    );
 
@@ -188,14 +198,12 @@ import  Flag  from "./flag.png";
              title="Company"
              className="inline-flex   justify-end  items-end "
            >
-             <img className=" h-[50px]  object-contain" src={logo} />
-             
+             <img className="    h-[100px]  " src={logo} />
            </a>
            <ul className="flex items-center md:flex hidden space-x-8 lg:flex">
              {navitem}
            </ul>
            <div className="lg:hidden flex flex-row space-x-3 md:hidden">
-
              <button
                aria-label="Open Menu "
                title="Open Menu"
@@ -218,8 +226,12 @@ import  Flag  from "./flag.png";
                </svg>
              </button>
              <div className="   w-10 h-10">
-    <img src={Flag} className="w-full object-cover h-full" alt="badge"/>
-  </div>
+               <img
+                 src={Flag}
+                 className="w-full object-cover h-full"
+                 alt="badge"
+               />
+             </div>
              <div
                className={`${
                  sidebarOpen
@@ -270,7 +282,7 @@ import  Flag  from "./flag.png";
                          title="Our product"
                          className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                        >
-                        GI/GA
+                         GI/GA
                        </p>
                      </Link>
                      <Link to="/po" onClick={handleToggleSidebar}>
@@ -278,7 +290,7 @@ import  Flag  from "./flag.png";
                          title="Our product"
                          className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                        >
-                     PO/HR
+                         PO/HR
                        </p>
                      </Link>
                      <Link to="/events" onClick={handleToggleSidebar}>
@@ -350,7 +362,7 @@ import  Flag  from "./flag.png";
                                >
                                  <p
                                    onClick={() => setIsProflieOpen(false)}
-                                   className="block px-4  w-full shadow-md p-2 my-3  text-sm text-gray-700"
+                                   className="block px-4  w-full shadow-md p-2 my-3  text-gray-700"
                                    role="menuitem"
                                    tabindex="-1"
                                    id="user-menu-item-0"
@@ -366,7 +378,7 @@ import  Flag  from "./flag.png";
                                  handleToggleSidebar();
                                }}
                              >
-                               <a className="text-red-500 w-full  shadow-md p-2 my-3 ">
+                               <a className="text-red-500 w-full  font-bold   shadow-md p-2 my-3 ">
                                  Logout
                                </a>
                              </p>
@@ -379,7 +391,7 @@ import  Flag  from "./flag.png";
                            <p onClick={() => setIsMenuOpen(false)}>
                              <p
                                title="Our product"
-                               className="font-medium tracking-wide  w-full  shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
+                               className="font-medium tracking-wide font-bold    w-full  shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                              >
                                Login
                              </p>
