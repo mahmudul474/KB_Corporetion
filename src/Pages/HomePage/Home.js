@@ -19,9 +19,7 @@ export default function Home() {
     <div>
       <Hero></Hero>
       <Category></Category>
-      <CorporateValue></CorporateValue>
-      <Products></Products>
-      <ProductInfo></ProductInfo>
+
       <Procesing></Procesing>
     </div>
   );

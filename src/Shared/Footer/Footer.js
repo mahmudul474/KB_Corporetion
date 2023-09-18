@@ -11,7 +11,7 @@ import accesciblity from "./Accessibility.pdf";
 
 export default function Footer() {
   return (
-    <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div className="px-4 py-5 mx-auto  md:px-24 lg:px-8">
       <footer class="relative z-10 bg-white pt-20 pb-10 lg:pt-[120px] lg:pb-20">
         <div class="container mx-auto">
           <div class="-mx-4 flex flex-wrap">

@@ -188,9 +188,9 @@ import  bdflage from "./bdflag.png"
    );
 
    return (
-     <div className="border  bg-slate-50 border-bottom shadow-2xl   text-black ">
+     <div className="border  bg-slate-50 border-bottom    text-black ">
        {" "}
-       <div className="px-4 py-5  m-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+       <div className="px-4 py-5  m-auto  md:px-24 lg:px-8">
          <div className="relative flex items-center justify-between">
            <a
              href="/"
