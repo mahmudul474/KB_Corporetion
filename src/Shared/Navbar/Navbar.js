@@ -204,6 +204,21 @@ import  bdflage from "./bdflag.png"
              {navitem}
            </ul>
            <div className="lg:hidden flex flex-row space-x-3 md:hidden">
+             <div className=" ml-3  w-10 h-10">
+               <img
+                 src={Flag}
+                 className="w-full object-cover h-full"
+                 alt="badge"
+               />
+             </div>
+             <div className="   w-10 h-10">
+               <img
+                 src={bdflage}
+                 className="w-full object-cover h-full"
+                 alt="badge"
+               />
+             </div>
+
              <button
                aria-label="Open Menu "
                title="Open Menu"
@@ -225,13 +240,7 @@ import  bdflage from "./bdflag.png"
                  />
                </svg>
              </button>
-             <div className="   w-10 h-10">
-               <img
-                 src={Flag}
-                 className="w-full object-cover h-full"
-                 alt="badge"
-               />
-             </div>
+
              <div
                className={`${
                  sidebarOpen
