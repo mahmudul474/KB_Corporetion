@@ -399,6 +399,7 @@ import  bdflage from "./bdflag.png"
                          <Link to="/login">
                            <p onClick={() => setIsMenuOpen(false)}>
                              <p
+                               onClick={handleToggleSidebar}
                                title="Our product"
                                className="font-medium tracking-wide font-bold    w-full  shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                              >
