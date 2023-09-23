@@ -3,7 +3,7 @@ import queryString from "query-string";
 import WhatsAppIcon from "./icon.png";
 
 const WhatsAppChat = () => {
-  const phoneNumber = +8801906479710; // Replace with your phone number
+  const phoneNumber = +8801322674654; // Replace with your phone number
   const message = encodeURIComponent("");
 
   const handleClick = () => {

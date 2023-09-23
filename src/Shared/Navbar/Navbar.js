@@ -38,7 +38,7 @@ import  bdflage from "./bdflag.png"
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className=" tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              Home
            </p>
@@ -48,7 +48,7 @@ import  bdflage from "./bdflag.png"
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide text-xl  font-bold  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className=" tracking-wide text-xl  font-bold  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              Company
            </p>
@@ -58,7 +58,7 @@ import  bdflage from "./bdflag.png"
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide  font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className=" tracking-wide  font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              CR
            </p>
@@ -68,7 +68,7 @@ import  bdflage from "./bdflag.png"
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className=" tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              GI/GA
            </p>
@@ -78,7 +78,7 @@ import  bdflage from "./bdflag.png"
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className="tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              PO/HR
            </p>
@@ -88,7 +88,7 @@ import  bdflage from "./bdflag.png"
          <li>
            <p
              title="Our product"
-             className="font-medium tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
+             className=" tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
            >
              Events
            </p>
@@ -102,7 +102,7 @@ import  bdflage from "./bdflag.png"
                  <Link to="/my-dashboard">
                    <li
                      onClick={() => setIsProflieOpen(false)}
-                     className="block px-4 text-xl   font-bold  text-sm text-gray-700"
+                     className="block px-4 text-xl   font-bold  text-gray-700"
                      role="menuitem"
                      tabindex="-1"
                      id="user-menu-item-0"
@@ -128,7 +128,7 @@ import  bdflage from "./bdflag.png"
            </div>
 
            <li
-             className="block px-4 text-xl  text-gray-700"
+             className="block text-xl  text-gray-700"
              role="menuitem"
              tabindex="-1"
              id="user-menu-item-0"
@@ -136,7 +136,7 @@ import  bdflage from "./bdflag.png"
              {" "}
              <div className="dropdown dropdown-end">
                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                 <div className="w-10 rounded-full">
+                 <div className="w-16 rounded-full">
                    <img src={currentUser.userPhoto} />
                  </div>
                </label>
@@ -164,7 +164,7 @@ import  bdflage from "./bdflag.png"
              <li onClick={() => setIsMenuOpen(false)}>
                <p
                  title="Our product"
-                 className="font-medium tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
+                 className=" tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
                >
                  Login
                </p>
