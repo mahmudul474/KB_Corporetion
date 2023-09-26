@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="App bg-white">
       <RouterProvider router={routs}></RouterProvider>
-
       <Toaster />
     </div>
   );

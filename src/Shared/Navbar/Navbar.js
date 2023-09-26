@@ -196,9 +196,12 @@ import  bdflage from "./bdflag.png"
              href="/"
              aria-label="Company"
              title="Company"
-             className="inline-flex   justify-end  items-end "
+             className="inline-flex   justify-center  items-center "
            >
-             <img className="    h-[100px]  " src={logo} />
+             <img className=" h-[30px] md:h-[35px] lg:h-[60px]" src={logo} />
+             <p className="lg:text-[40px]  lg:font-[bold] md:text-[30px] text-[18px]">
+               Dong Heng <span className="text-[#008ece]">S&T</span>
+             </p>
            </a>
            <ul className="flex items-center md:flex hidden space-x-8 lg:flex">
              {navitem}
