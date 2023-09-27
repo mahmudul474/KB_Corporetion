@@ -40,18 +40,17 @@ const Navbar = () => {
             title="Our product"
             className=" tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
-            Home
+            {translate("navbar", "home")}
           </p>
         </li>
       </Link>{" "}
-     
       <Link to="/about">
         <li>
           <p
             title="Our product"
             className=" tracking-wide text-xl  font-bold  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
-            Company
+            {translate("navbar", "company")}
           </p>
         </li>
       </Link>
@@ -61,7 +60,7 @@ const Navbar = () => {
             title="Our product"
             className=" tracking-wide  font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
-            CR
+            {translate("navbar", "cr")}
           </p>
         </li>
       </Link>
@@ -71,7 +70,7 @@ const Navbar = () => {
             title="Our product"
             className=" tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
-            GI/GA
+            {translate("navbar", "gi")}
           </p>
         </li>
       </Link>
@@ -81,7 +80,7 @@ const Navbar = () => {
             title="Our product"
             className="tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
-            PO/HR
+            {translate("navbar", "po")}
           </p>
         </li>
       </Link>
@@ -91,7 +90,7 @@ const Navbar = () => {
             title="Our product"
             className=" tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
-            Events
+            {translate("navbar", "event")}
           </p>
         </li>
       </Link>
@@ -108,7 +107,7 @@ const Navbar = () => {
                     tabindex="-1"
                     id="user-menu-item-0"
                   >
-                    Dashboard
+                    {translate("navbar", "dashbord")}
                   </li>
                 </Link>
               ))}
@@ -122,7 +121,8 @@ const Navbar = () => {
                   tabindex="-1"
                   id="user-menu-item-0"
                 >
-                  Admin Dashboard
+                  {" "}
+                  {translate("navbar", "admin")}
                 </li>
               </Link>
             )}
@@ -148,12 +148,15 @@ const Navbar = () => {
                 <Link to="/my-dashboard">
                   <li>
                     <a className="justify-between   font-bold text-xl">
-                      Profile
+                      {translate("navbar", "profile")}
                     </a>
                   </li>
                 </Link>
                 <li onClick={handleLogOut}>
-                  <a className="text-red-500 font-bold text-xl">Logout</a>
+                  <a className="text-red-500 font-bold text-xl">
+                    {" "}
+                    {translate("navbar", "logout")}
+                  </a>
                 </li>
               </ul>
             </div>
@@ -167,7 +170,7 @@ const Navbar = () => {
                 title="Our product"
                 className=" tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
-                Login
+                   {translate("navbar", "login")}
               </p>
             </li>
           </Link>
@@ -199,12 +202,9 @@ const Navbar = () => {
             {navitem}
           </ul>
           <div className="lg:hidden flex flex-row space-x-3 md:hidden">
-            <div className=" ml-3  w-10 h-10">
-              <img src="" className="w-full object-cover h-full" alt="badge" />
-            </div>
-            <div className="   w-10 h-10">
-              <img src="" className="w-full object-cover h-full" alt="badge" />
-            </div>
+            <>
+            <LanguageSwitcher></LanguageSwitcher>
+            </>
 
             <button
               aria-label="Open Menu "
@@ -251,7 +251,7 @@ const Navbar = () => {
                       title="kb"
                       className="font-medium hover:underline w-full shadow-md p-2 my-3 tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
                     >
-                      Home
+                      {translate("navbar", "home")}
                     </p>
                   </Link>
                   <Link to="/about" onClick={handleToggleSidebar}>
@@ -260,7 +260,7 @@ const Navbar = () => {
                       title="kb"
                       className="font-medium hover:underline w-full shadow-md p-2 my-3 tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
                     >
-                      Company
+                      {translate("navbar", "company")}
                     </p>
                   </Link>
 
@@ -270,7 +270,7 @@ const Navbar = () => {
                         title="Our product"
                         className="font-medium  w-full shadow-md p-2 my-3   tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        CR
+                        {translate("navbar", "cr")}
                       </p>
                     </Link>
                     <Link to="/ga" onClick={handleToggleSidebar}>
@@ -278,7 +278,7 @@ const Navbar = () => {
                         title="Our product"
                         className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        GI/GA
+                        {translate("navbar", "gi")}
                       </p>
                     </Link>
                     <Link to="/po" onClick={handleToggleSidebar}>
@@ -286,7 +286,7 @@ const Navbar = () => {
                         title="Our product"
                         className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        PO/HR
+                        {translate("navbar", "po")}
                       </p>
                     </Link>
                     <Link to="/events" onClick={handleToggleSidebar}>
@@ -294,7 +294,7 @@ const Navbar = () => {
                         title="Our product"
                         className="font-medium tracking-wide  w-full shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Events
+                        {translate("navbar", "event")}
                       </p>
                     </Link>
                     {currentUser ? (
@@ -330,7 +330,7 @@ const Navbar = () => {
                                       tabindex="-1"
                                       id="user-menu-item-0"
                                     >
-                                      Dashboard
+                                      {translate("navbar", "dashbord")}
                                     </p>
                                   </Link>
                                 ))}
@@ -348,7 +348,10 @@ const Navbar = () => {
                                 text-gray-700
                               >
                                 {" "}
-                                <a className="justify-between">Profile</a>
+                                <a className="justify-between">
+                                  {" "}
+                                  {translate("navbar", "profile")}
+                                </a>
                               </p>
                             </Link>
                             {isAdmin && (
@@ -363,7 +366,7 @@ const Navbar = () => {
                                   tabindex="-1"
                                   id="user-menu-item-0"
                                 >
-                                  Admin Dashboard
+                                  {translate("navbar", "admin")}
                                 </p>
                               </Link>
                             )}
@@ -375,7 +378,7 @@ const Navbar = () => {
                               }}
                             >
                               <a className="text-red-500 w-full  font-bold   shadow-md p-2 my-3 ">
-                                Logout
+                                {translate("navbar", "logout")}
                               </a>
                             </p>
                           </div>
@@ -390,7 +393,7 @@ const Navbar = () => {
                               title="Our product"
                               className="font-medium tracking-wide font-bold    w-full  shadow-md p-2 my-3  transition-colors duration-200 hover:text-deep-purple-accent-400"
                             >
-                              Login
+                              {translate("navbar", "login")}
                             </p>
                           </p>
                         </Link>

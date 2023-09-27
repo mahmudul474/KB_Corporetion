@@ -1,4 +1,18 @@
 {
+  "navbar": {
+    "home": "Home",
+    "company": "Company",
+    "cr": "CR",
+    "gi": "GI/GA",
+    "po": "PO/HR",
+    "event": "Events",
+    "login": "Login",
+    "dashbord": "Dashbord",
+    "admin": "Admin Dashbord",
+    "profile": "Profile",
+    "logout": "Log-out"
+  },
+
   "slide1": {
     "h4": "Seamless Steel Sourcing",
     "h1": "Explore the Future of Auctions",
@@ -42,7 +56,7 @@
   "event": {
     "h4": "Event Highlights",
     "h1": "Events",
-    "p": "tay informed about industry insights.projects.",
+    "p": "stay informed about industry insights.projects.",
     "button": "View-more"
   },
   "about": {
