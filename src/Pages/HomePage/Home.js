@@ -7,6 +7,7 @@ import CorporateValue from "../../Component/HompageComponent/CorporateValue/Corp
 import Services from "../../Component/HompageComponent/Services/Services";
 import Products from "../../Component/HompageComponent/Products/Products";
 import Procesing from "../../Component/HompageComponent/Procesing/Procesing";
+import LanguageSwitcher from "../../Component/TranslationProvider/LanguageSwitcher";
 
 export default function Home() {
   const location = useLocation();
