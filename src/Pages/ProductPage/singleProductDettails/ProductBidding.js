@@ -1,39 +1,33 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useLoaderData, useNavigate } from "react-router-dom";
- import DatePicker from "react-datepicker";
- 
-import 'react-datepicker/dist/react-datepicker.css';
+import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../../auth/AuthProbaider/AuthProvider";
 import SubImgSlider from "../../../Shared/ProductDettailsCard/SubImgSlider";
 import Koyel from "../../../Shared/ProductDettailsCard/SingelProductDettailsCard/Koyel/Koyel";
 import BuyNow from "../../../Shared/ProductDettailsCard/SingelProductDettailsCard/BuyNowKoyelItem/BuyNow";
 import SingelProductActionHistory from "../../../Shared/ProductDettailsCard/SingelProductDettailsCard/SingelProductActionHistory";
+import { useTranslation } from "../../../Component/TranslationProvider/TranslationProvider";
 
-export default function ProductBidding({data}) {
+export default function ProductBidding({ data }) {
   const { currentUser, user } = useContext(AuthContext);
-  
+  const { translate } = useTranslation();
+
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
-  const [landingValue, setLandingValue] = useState(''); // State for landing select
-  const [shipmentTypeValue, setShipmentTypeValue] = useState('');
- 
+  const [landingValue, setLandingValue] = useState(""); // State for landing select
+  const [shipmentTypeValue, setShipmentTypeValue] = useState("");
 
-  
-
-
-  
-
-  const handleDateChange = (date) => {
+  const handleDateChange = date => {
     setSelectedDate(date);
   };
-
 
   const [subimageUrl, setSubImgUrl] = useState(null);
   const [newPrice, setNewPrice] = useState("");
   const [bidEroo, setBidError] = useState("");
 
-  const handlePriceChange = (event) => {
+  const handlePriceChange = event => {
     setBidError("");
     const bidPrice = parseFloat(event.target.value);
     setNewPrice(bidPrice);
@@ -41,7 +35,7 @@ export default function ProductBidding({data}) {
 
   ////selected  item
   const [selectedItems, setSelectedItems] = useState([]);
-  const items = selectedItems?.map((skoyel) => {
+  const items = selectedItems?.map(skoyel => {
     return skoyel.bids && skoyel.bids.length === 0
       ? skoyel?.currentBid
       : skoyel.bids[skoyel.bids.length - 1].bidAmount;
@@ -51,12 +45,12 @@ export default function ProductBidding({data}) {
     0
   );
   /// img    slider
-  const handleSubimgShow = (subimgUrl) => {
+  const handleSubimgShow = subimgUrl => {
     setSubImgUrl(subimgUrl);
   };
 
   ///  remmenint time
-  const calculateRemainingTime = (endTime) => {
+  const calculateRemainingTime = endTime => {
     const currentTime = new Date().getTime();
     const endTimeValue = new Date(endTime).getTime();
 
@@ -94,28 +88,28 @@ export default function ProductBidding({data}) {
   }, [data.endBiddingTime]);
   const isBiddingClosed = remainingTime === "Bidding Close";
 
-  const isBiddingStartSoon = (startTime) => {
+  const isBiddingStartSoon = startTime => {
     const currentTime = new Date().getTime();
     const startTimeValue = new Date(startTime).getTime();
 
     return currentTime < startTimeValue;
   };
 
-  const isBiddingEnd = (endTime) => {
+  const isBiddingEnd = endTime => {
     const currentTime = new Date().getTime();
     const endTimeValue = new Date(endTime).getTime();
 
     return currentTime > endTimeValue;
   };
 
-  const formatDateTime = (dateTimeString) => {
+  const formatDateTime = dateTimeString => {
     const options = {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
       hour: "numeric",
       minute: "numeric",
-      hour12: true,
+      hour12: true
     };
 
     const dateTime = new Date(dateTimeString);
@@ -141,13 +135,13 @@ export default function ProductBidding({data}) {
       fetch(
         `${process.env.REACT_APP_API_URL}/products/${data?._id}/koyel/winner`
       )
-        .then((res) => res.json())
-        .then((data) => {});
+        .then(res => res.json())
+        .then(data => {});
     }
   }, [data._id]);
 
   ///place bid
-  const handlePlcebid = (e) => {
+  const handlePlcebid = e => {
     e.preventDefault();
 
     if (!currentUser || !user) {
@@ -158,16 +152,16 @@ export default function ProductBidding({data}) {
       return alert("please waiting for admin approval");
     } else if (selectedItems.length === 0) {
       return alert("Please select items"), setBidError("Please select items");
-    }else if (selectedDate===""){
-      return alert("Please select  date")
-    }else if(landingValue===""){
-      return alert("Please select landing ")
-    }else if(shipmentTypeValue===""){
-return alert("Please select shipment type")
+    } else if (selectedDate === "") {
+      return alert("Please select  date");
+    } else if (landingValue === "") {
+      return alert("Please select landing ");
+    } else if (shipmentTypeValue === "") {
+      return alert("Please select shipment type");
     }
 
     // Prepare the bid data for selected items
-    const koyelBids = selectedItems.map((item) => ({
+    const koyelBids = selectedItems.map(item => ({
       koyelId: item._id,
       koyel: item,
       bidAmount: newPrice / selectedItems?.length,
@@ -176,12 +170,10 @@ return alert("Please select shipment type")
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
-      expectedDate:selectedDate,
-       landing: landingValue,
-       shipmentType:shipmentTypeValue
+      expectedDate: selectedDate,
+      landing: landingValue,
+      shipmentType: shipmentTypeValue
     }));
-
-
 
     const bidder = {
       productName: data?.name,
@@ -192,31 +184,27 @@ return alert("Please select shipment type")
       bidderEmail: currentUser?.email,
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
-      bidderNumber: currentUser?.phoneNumber,
-      
-      
+      bidderNumber: currentUser?.phoneNumber
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/koyel/bids`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({ koyelBids, bidder }),
+      body: JSON.stringify({ koyelBids, bidder })
     })
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         console.log("Bid placed successfully", data);
         if (data.message) {
           toast.success(data.message);
-        window.location.reload(true);
+          window.location.reload(true);
           setNewPrice("");
         } else {
           toast.error(data.error);
           setBidError(data.error);
         }
-
-        // Clear bid amount field
       });
   };
 
@@ -231,12 +219,12 @@ return alert("Please select shipment type")
       return alert("Please  check your email and noreply! and verify email");
     } else if (currentUser?.role !== "bidder") {
       return alert("please waiting for admin approval");
-    }else  if (selectedDate===""){
-      return alert("Please select  date")
-    }else if(landingValue===""){
-      return alert("Please select landing ")
-    }else if(shipmentTypeValue===""){
-return alert("Please select shipment type")
+    } else if (selectedDate === "") {
+      return alert("Please select  date");
+    } else if (landingValue === "") {
+      return alert("Please select landing ");
+    } else if (shipmentTypeValue === "") {
+      return alert("Please select shipment type");
     }
 
     setIsModalOpen(true);
@@ -246,14 +234,10 @@ return alert("Please select shipment type")
     setIsModalOpen(false);
   };
 
-
- console.log(data)
-
-
+  console.log(data);
 
   return (
     <div className="  px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-       
       <section className=" overflow-hidden bg-white font-poppins dark:bg-white">
         <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
           <div className="flex flex-wrap -mx-4">
@@ -288,11 +272,11 @@ return alert("Please select shipment type")
               <div className="lg:pl-20">
                 <div className="pb-6 mb-8 border-b border-gray-200 dark:border-gray-700">
                   <div>
-                    <h2 className="  mt-1 mb-6 text-2xl font-bold text-black  text-left md:text-4xl">
+                    <h2 className="  mt-1 mb-6 text-2xl font-bold text-black capitalize  text-left md:text-4xl">
                       {data.name}
                     </h2>
                     <h2 className="     text-md font-bold text-black  text-left">
-                      Type : {data?.category}
+                      {translate("navbar", "cr")} Type : {data?.category}
                     </h2>
                     <p className="  mb-4 text-gray-700 text-left  ">
                       {data?.description?.slice(0, 100)}
@@ -542,8 +526,3 @@ return alert("Please select shipment type")
     </div>
   );
 }
-
-
-
- 
-

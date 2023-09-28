@@ -119,5 +119,55 @@
     "email": "ইমেইল: kbsteelbd@gmail.com",
     "cellphone": "সেল নম্বর: +8801322674654",
     "Address": "ঠিকানা: P92V+9H3, বন্ধা ডেকপাড়া, কদমতলী, কেরানীগঞ্জ, ঢাকা 1310"
+  },
+
+  "product": {
+    "crheading": "প্রস্তাবিত CR (কোল্ড রোল্ড) স্টিলের কয়েল এবং শীট",
+    "giheading": "প্রস্তাবিত GI/GA (গ্যালভানাইজড) ইস্পাত কয়েল এবং শীট",
+    "poheading": "প্রস্তাবিত PO/HR (হট রোল্ড) স্টিলের কয়েল এবং শীট"
+  },
+  "productDettails": {
+    "type": "টাইপ",
+    "readmore": "আরও পড়ুন",
+    "pertonPrice": "প্রতি টন মূল্য",
+    "currentBid": "বর্তমান বিডিং মূল্য",
+    "enttime": "এই নিলাম শেষ হয়",
+    "endtext": "বিডিং শেষ",
+    "Start": "বিডিং সময় শুরু",
+    "end": "বিডিং সময় শেষ",
+    "totalbid": "মোট বিড",
+    "nobid": "কোন বিড নেই",
+    "download": "পণ্য ডাউনলোড করুন",
+    "Expected-Date": "প্রত্যাশিত তারিখ",
+    "landing": "অবতরণ",
+    "dhaka": "ঢাকা",
+    "cottogram": "চট্টোগ্রাম",
+    "pangon": "প্যাঙ্গন",
+    "shipment": "চালানের ধরন",
+    "container": "Container",
+    "bulk": "Bulk",
+
+    "bidnow": "বিড করুন",
+    "minimum-bid": "ন্যূনতম বিড",
+    "seletItem": "আইটেম নির্বাচন করুন তারপর বিড রাখুন এবং কিনুন",
+    "placebid": "স্থান বিড",
+    "buynow": "এখন কিনুন",
+
+    "bidhistory": "বিড ইতিহাস",
+    "nobid": "কোন বিড নেই"
+  },
+  "item": {
+    "item": "আইটেম",
+    "spec": "SPEC",
+    "thiknees": "পুরুত্ব",
+    "width": "প্রস্থ",
+    "weight": "ওজন",
+    "ts": "টিএস",
+    "yp": "YP",
+    "el": "ইএল",
+    "startPrice": "শুরু মূল্য",
+    "curentPrice": "বর্তমান মূল্য",
+    "buyPrice": "দাম কিনুন",
+    "Winner": "বিজয়ী"
   }
 }

@@ -122,5 +122,54 @@
     "email": "Email: kbsteelbd@gmail.com",
     "cellphone": "Cell number: +8801322674654",
     "Address": "Address: P92V+9H3, Bonda Dekpara, Kadamtoli, Keranigoanj, Dhaka 1310"
+  },
+  "product": {
+    "crheading": "Recommended CR (Cold Rolled) Steel Coils and Sheets",
+    "giheading": "Recommended GI/GA (Galvanized) Steel Coils and Sheets",
+    "poheading": "Recommended PO/HR (Hot Rolled) Steel Coils and Sheets"
+  },
+  "productDettails": {
+    "type": "Type",
+    "readmore": "Read More",
+    "pertonPrice": "Per Ton price",
+    "currentBid": "Current bidding Price",
+    "enttime": "This Auction Ends in",
+    "endtext": "Bidding End",
+    "Start": "Start Bidding Time",
+    "end": "End Bidding Time",
+    "totalbid": "Total Bids",
+    "nobid": "No Bids Available",
+    "download": "Download Product",
+    "Expected-Date": "Expected Date",
+    "landing": "Landing",
+    "dhaka": "dhaka",
+    "cottogram": "cottogram",
+    "pangon": "pangon",
+    "shipment": "Shipment Type",
+    "container": "Container",
+    "bulk": "Bulk",
+
+    "bidnow": "Bid Now",
+    "minimum-bid": "Minimum Bid",
+    "seletItem": "Select Items Then Place Bid & Buy",
+    "placebid": "Place Bid",
+    "buynow": "Buy Now",
+
+    "bidhistory": "Bid History",
+    "nobid": "No Bids Available"
+  },
+  "item": {
+    "item": "Item",
+    "spec": "SPEC",
+    "thiknees": "THICKNESS",
+    "width": "Width",
+    "weight": "Weight",
+    "ts": "TS",
+    "yp": "YP",
+    "el": "EL",
+    "startPrice": "Start Price",
+    "curentPrice": "Curent Price",
+    "buyPrice": "Buy Price",
+    "Winner": "Winner"
   }
 }
