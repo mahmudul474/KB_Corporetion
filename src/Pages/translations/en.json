@@ -12,6 +12,30 @@
     "profile": "Profile",
     "logout": "Log-out"
   },
+  "footer": {
+    "korea": "KOREA CONTACT",
+    "companykorea": "Dong Haeng Steel & Trading Co. LTD",
+    "telkorea": "Tel: 02-6231-1219,  ",
+    "addresskorea": "Address: 1201-1 Boeksang, 2nd star Tower, 165",
+    "addreskorea1": "Gasondifital 2ro ghmcheon-gu, Seoui, Korea",
+    "fax": " Fax, 02-866-2438",
+    "bd": "BANGLADESH CONTACT",
+    "comapnybd": "KB CORPORATION",
+    "email": "Email: kbsteelbd@gmail.com",
+    "phone": "Phone: +8801322674654",
+    "addressbd": "Address: p92V + 9H#, Bonda Dekpara, Kadamtoli Keraniganj, Dhaka-1301",
+    "Resources": "Resources",
+    "about": "About",
+    "terms": "Terms & Condition",
+    "accessibility": "Accessibility",
+    "faq": "FAQ",
+    "quick-links": "Quick Links",
+    "privecy": "Privacy Policy",
+    "return": "Return Policy",
+    "refund": "Refund Policy",
+    "follow": "Follow Us on",
+    "copyright": "© 2023 Auction-KB"
+  },
 
   "slide1": {
     "h4": "Seamless Steel Sourcing",

@@ -7,170 +7,176 @@ import refundPolecy from "./Refund.pdf";
 import returnPolecy from "./ReturnPolicy.pdf";
 import termsOfcondition from "./TermsCondition.pdf";
 import accesciblity from "./Accessibility.pdf";
- 
+import { useTranslation } from "../../Component/TranslationProvider/TranslationProvider";
 
 export default function Footer() {
+  const { translate } = useTranslation();
   return (
     <div className="px-4 py-5 mx-auto  md:px-24 lg:px-8">
-      <footer class="relative z-10 bg-white pt-20 pb-10 lg:pt-[120px] lg:pb-20">
-        <div class="container mx-auto">
-          <div class="-mx-4 flex flex-wrap">
-            <div class="w-full px-4 sm:w-2/3 lg:w-3/12">
-              <div class="mb-10 w-full">
-                <a href=" " class="mb-6 flex  justify-start items-start  ">
-                  <img src={logo} alt="logo" class="max-w-full" />
+      <footer className="relative z-10 bg-white pt-20 pb-10 lg:pt-[120px] lg:pb-20">
+        <div className="container mx-auto">
+          <div className="-mx-4 flex flex-wrap">
+            <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
+              <div className="mb-10 w-full">
+                <a href=" " className="mb-6 flex  justify-start items-start  ">
+                  <img src={logo} alt="logo" className="max-w-full" />
                 </a>
 
-                <h3 className="text-xl font-bold text-left mb-3 ">
-                  KOREA CONTACT
+                <h3 className="text-xl text-black font-bold text-left mb-3 ">
+                  {translate("footer", "korea")}
                 </h3>
-                <p class="text-dark flex items-center text-sm font-medium">
+                <p className="text-black flex items-center text-sm font-medium">
                   <span className="font-bold ">
-                    Dong Haeng Steel & Trading Co. LTD
+                    {translate("footer", "companykorea")}
                   </span>
                 </p>
 
-                <p class="text-dark flex items-start text-left text-sm font-medium">
+                <p className="text-black flex items-start text-left text-sm font-medium">
                   <span className="items-start text-left ">
-                    Tel. 02-6231-1219, Fax, 02-866-2438
+                    {translate("footer", "telkorea")}
                   </span>
                 </p>
-                <p class="text-dark flex items-start text-left text-sm font-medium">
+                <p className="text-black flex items-start text-left text-sm font-medium">
                   <span className="items-start text-left ">
-                    Address: 1201-1 Boeksang, 2nd star Tower, 165 Gasondifital
-                    2ro ghmcheon-gu, Seoui, Korea
+                    {translate("footer", "addresskorea")}
+                    {translate("footer", "addreskorea1")}
                   </span>
                 </p>
               </div>
             </div>
 
-            <div class="w-full px-4 sm:w-1/2 lg:w-3/12">
-              <div class="mb-10 w-full lg:pt-[109px]">
-                <h3 className="text-xl font-bold text-left mb-3 ">
-                  BANGLADESH CONTACT
+            <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
+              <div className="mb-10 w-full lg:pt-[109px]">
+                <h3 className="text-xl text-black font-bold text-left mb-3 ">
+                  {translate("footer", "bd")}
                 </h3>
-                <p class="text-dark flex items-center text-sm font-medium">
-                  <span className="font-bold ">KB CORPORATION</span>
+                <p className="text-black flex items-center text-sm font-medium">
+                  <span className="font-bold ">
+                    {" "}
+                    {translate("footer", "companybd")}
+                  </span>
                 </p>
 
-                <p class="text-dark flex items-start text-left text-sm font-medium">
+                <p className="text-black flex items-start text-left text-sm font-medium">
                   <span className="items-start text-left ">
-                    Email: kbsteelbd@gmail.com
+                    {translate("footer", "email")}
                   </span>
                 </p>
-                <p class="text-dark flex items-start text-left text-sm font-medium">
+                <p className="text-black flex items-start text-left text-sm font-medium">
                   <span className="items-start text-left ">
-                    Phone +8801322674654
+                    {translate("footer", "phone")}
                   </span>
                 </p>
-                <p class="text-dark flex items-start text-left text-sm font-medium">
+                <p className="text-black flex items-start text-left text-sm font-medium">
                   <span className="items-start text-left ">
-                    Address: p92V + 9H#, Bonda Dekpara, Kadamtoli Keraniganj,
-                    Dhaka-1301
+                    {translate("footer", "addressbd")}
                   </span>
                 </p>
               </div>
             </div>
-            <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-              <div class="mb-10 w-full">
-                <h4 class="text-dark mb-9 text-lg font-semibold">Resources</h4>
+            <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+              <div className="mb-10 w-full">
+                <h4 className="text-black mb-9 text-lg font-semibold">
+                  {" "}
+                  {translate("footer", "Resources")}
+                </h4>
                 <ul>
                   <li>
                     <Link
                       to="/about"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                      className=" text-black hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      About us
+                      {translate("footer", "about")}
                     </Link>
                   </li>
                   <li>
                     <a
                       href={termsOfcondition}
                       download="termsOfcondition.pdf"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                      className=" text-black hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      Terms & Condition
+                      {translate("footer", "terms")}
                     </a>
                   </li>
                   <li>
                     <a
                       href={accesciblity}
                       download="accesciblity.pdf"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                      className=" text-black hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      Accessibility
+                      {translate("footer", "accessibility")}
                     </a>
                   </li>
                   <li>
                     <a
                       href={faq}
                       download="faq.pdf"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                      className=" text-black hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      FAQ
+                      {translate("footer", "faq")}
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-              <div class="mb-10 w-full">
-                <h4 class="text-dark mb-9 text-lg font-semibold">
-                  Quick Links
+            <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
+              <div className="mb-10 w-full">
+                <h4 className="text-black mb-9 text-lg font-semibold">
+                  {translate("footer", "quick-links")}
                 </h4>
                 <ul>
                   <li>
                     <a
                       href={priveciPoleci}
                       download="priveciPoleci.pdf"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                      className=" text-black hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      Privacy Policy
+                      {translate("footer", "privecy")}
                     </a>
                   </li>
                   <li>
                     <a
                       href={returnPolecy}
                       download="returnPolecy.pdf"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                      className=" text-black hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      Return Policy
+                      {translate("footer", "return")}
                     </a>
                   </li>
                   <li>
                     <a
                       href={refundPolecy}
                       download="returnPolecy.pdf"
-                      class="text-body-color hover:text-primary mb-2 inline-block text-base leading-loose"
+                      className=" text-black hover:text-primary mb-2 inline-block text-base leading-loose"
                     >
-                      Refund Policy
+                      {translate("footer", "refund")}
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="w-full px-4 sm:w-1/2 lg:w-2/12">
-              <div class="mb-10 w-full">
-                <h4 class="text-dark mb-9 text-lg font-semibold">
-                  Follow Us On
+            <div className="w-full  sm:w-1/2 lg:w-2/12">
+              <div className="mb-10 w-full">
+                <h4 className="text-black mb-9 text-lg font-semibold">
+                  {translate("footer", "follow")}
                 </h4>
-                <div class="mb-6 flex items-center">
+                <div className="mb-6 flex justify-center items-center">
                   <a
                     href="https://www.facebook.com/auctionkb "
-                    class="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="text-black hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width="8"
                       height="16"
                       viewBox="0 0 8 16"
-                      class="fill-current"
+                      className="fill-current"
                     >
                       <path d="M7.43902 6.4H6.19918H5.75639V5.88387V4.28387V3.76774H6.19918H7.12906C7.3726 3.76774 7.57186 3.56129 7.57186 3.25161V0.516129C7.57186 0.232258 7.39474 0 7.12906 0H5.51285C3.76379 0 2.54609 1.44516 2.54609 3.5871V5.83226V6.34839H2.10329H0.597778C0.287819 6.34839 0 6.63226 0 7.04516V8.90323C0 9.26452 0.243539 9.6 0.597778 9.6H2.05902H2.50181V10.1161V15.3032C2.50181 15.6645 2.74535 16 3.09959 16H5.18075C5.31359 16 5.42429 15.9226 5.51285 15.8194C5.60141 15.7161 5.66783 15.5355 5.66783 15.3806V10.1419V9.62581H6.13276H7.12906C7.41688 9.62581 7.63828 9.41935 7.68256 9.10968V9.08387V9.05806L7.99252 7.27742C8.01466 7.09677 7.99252 6.89032 7.85968 6.68387C7.8154 6.55484 7.61614 6.42581 7.43902 6.4Z" />
                     </svg>
                   </a>
                   <a
                     href="https://instagram.com/stories/auctionkb/3127728109791938671?utm_source=ig_story_item_share&igshid=NjZiM2M3MzIxNA== "
-                    class="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="text-black hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
                     target="_blank"
                   >
                     <svg
@@ -186,7 +192,7 @@ export default function Footer() {
                   </a>
                   <a
                     href="https://maps.app.goo.gl/DaVAEr2eWfW41gTH8"
-                    class="text-dark hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="text-black hover:bg-primary hover:border-primary mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -200,13 +206,13 @@ export default function Footer() {
                     </svg>
                   </a>
                 </div>
-                <p class="text-body-color text-base">&copy; 2023 Auction-KB</p>
+                <p className=" text-black"> {translate("footer", "copyright")}</p>
               </div>
             </div>
           </div>
         </div>
         <div>
-          <span class="absolute left-0 bottom-0 z-[-1]">
+          <span className="absolute left-0 bottom-0 z-[-1]">
             <svg
               width="217"
               height="229"
@@ -233,7 +239,7 @@ export default function Footer() {
               </defs>
             </svg>
           </span>
-          <span class="absolute top-10 right-10 z-[-1]">
+          <span className="absolute top-10 right-10 z-[-1]">
             <svg
               width="75"
               height="75"
@@ -267,4 +273,4 @@ export default function Footer() {
 }
 
 
-//code chekc 
+ 
