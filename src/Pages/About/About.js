@@ -11,12 +11,14 @@ import diverImg from "./assets/Diver.png"
 import reliImg from "./assets/Reli.png"
 import tridloImg from "./assets/Tailored.png"
 import trusImg from "./assets/Trus.png"
+import { useTranslation } from "../../Component/TranslationProvider/TranslationProvider";
 
 export default function About() {
+  const { translate } = useTranslation();
   const mapStyles = {
-  width: '100%',
-  height: '400px'
-};
+    width: "100%",
+    height: "400px"
+  };
   return (
     <div>
       <section className="flex items-center py-20 bg-gray-100 font-poppins ">
@@ -52,53 +54,41 @@ export default function About() {
             </div>
             <div className="w-full px-4 mb-10 xl:w-1/2 lg:mb-8">
               <h2 className="mt-2 mb-4 text-2xl font-bold  text-left   text-black ">
-                KB Corporation: Your Steel Solution Source
+                {translate("company", "title")}
               </h2>
-              <p className="mb-4 text-base leading-7 text-gray-500 dark:text-gray-black  text-left">
-                KB Corporation is a reputable importer and distributor of steel
-                coils and sheets, serving as a reliable supplier of high-quality
-                steel products in Bangladesh. With a strategic location in South
-                Korea, we maintain close ties with top manufacturers, ensuring a
-                consistent supply of premium-grade materials that meet
-                international standards. From wholesalers to manufacturers, our
-                tailored solutions, competitive pricing, and exceptional
-                customer service set us apart in the industry. At KB
-                Corporation, we specialize in offering an extensive range of
-                steel products, backed by a comprehensive inventory and a
-                nationwide network of top-tier manufacturers. No matter the
-                scope of your project, we've got you covered with a diverse
-                selection of materials. Our inventory includes:
+              <p className="mb-4 className= leading-7 text-gray-500 dark:text-gray-black  text-left">
+                {translate("company", "description")}
               </p>
               <ul className="mb-10 list-outside hover:list-inside">
-                <li className="flex items-center mb-4 text-base text-black  ">
-                  Cold Roll (CR) Coils, Sheets, and Steel
+                <li className="flex items-center mb-4 className= text-black  ">
+                  {translate("company", "1")}
                 </li>
-                <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  Excess Prime Steel
+                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
+                  {translate("company", "2")}
                 </li>
-                <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  Cold Roll (CR) Coils, Sheets, and Steel
+                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
+                  {translate("company", "3")}
                 </li>
-                <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  Grade 50 and Grade 80 Steel
+                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
+                  {translate("company", "4")}
                 </li>
-                <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  High Strength (HSLA) Steel
+                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
+                  {translate("company", "5")}
                 </li>
-                <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  Hot Dip Galvanized (HD, GALV, HDG, GA) Coils and Sheets
+                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
+                  {translate("company", "6")}
                 </li>
-                <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  Hot Roll (HR) Coils, Sheets
+                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
+                  {translate("company", "7")}
                 </li>
-                <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  Prime and Secondary Steel
+                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
+                  {translate("company", "8")}
                 </li>
-                <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  Low Carbon Steel
+                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
+                  {translate("company", "9")}
                 </li>
-                <li className="flex items-center mb-4 text-base text-black  dark:text-gray-400">
-                  Hot Roll Pickled (HRPO) Coils, Sheets, and HRP&O
+                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
+                  {translate("company", "10")}
                 </li>
               </ul>
               <a
@@ -106,7 +96,7 @@ export default function About() {
                 download=""
                 className="px-4 py-2 text-gray-100 bg-[#719f18] rounded-md   hover:bg-[#719f18]"
               >
-                Download Company Profile
+                {translate("company", "download")}
               </a>
             </div>
           </div>
@@ -116,13 +106,11 @@ export default function About() {
         <div className=" my-5 flex flex-col justify-center my-4 items-center  ">
           <h1 className="text-3xl capitalize font-bold  text-black  ">
             {" "}
-            Why Choose KB Corporation for Your Steel Needs
+            {translate("why", "title")}
           </h1>
 
           <p className="text-center  text-gray-700 my-4 ">
-            Explore on the world's best & largest Bidding marketplace with{" "}
-            <br /> our beautiful Bidding products. We want to be a part of your
-            smile, success and future growth.
+            {translate("why", "description")}
           </p>
         </div>
         <div className="-mx-4 flex flex-wrap p-8">
@@ -133,13 +121,10 @@ export default function About() {
               </div>
               <div>
                 <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
-                  Trusted Importer and Distributor
+                  {translate("why", "title1")}
                 </h3>
-                <p className="text-base font-medium text-body-color">
-                  As a leading importer and distributor of steel coils and
-                  sheets, KB Corporation has built a solid reputation for
-                  delivering high-quality steel products to meet the diverse
-                  needs of our clients in Bangladesh.
+                <p className="className= font-medium text-body-color">
+                  {translate("why", "desk1")}
                 </p>
               </div>
             </div>
@@ -152,13 +137,10 @@ export default function About() {
               </div>
               <div>
                 <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
-                  Reliable Supplier with Global Reach
+                  {translate("why", "title2")}
                 </h3>
-                <p className="text-base font-medium text-body-color">
-                  With a strategic presence in South Korea, KB Corporation
-                  maintains strong connections with top-tier manufacturers,
-                  ensuring a steady supply of premium-grade steel materials that
-                  conform to international standards.
+                <p className="className= font-medium text-body-color">
+                  {translate("why", "desk2")}
                 </p>
               </div>
             </div>
@@ -171,13 +153,10 @@ export default function About() {
               </div>
               <div>
                 <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
-                  Tailored Solutions for Your Business:
+                  {translate("why", "title3")}
                 </h3>
-                <p className="text-base font-medium text-body-color">
-                  From wholesalers to manufacturers, our expertise lies in
-                  providing customized solutions that cater to your specific
-                  requirements. Our competitive pricing and exceptional customer
-                  service set us apart in the industry.
+                <p className="className= font-medium text-body-color">
+                  {translate("why", "desk3")}
                 </p>
               </div>
             </div>
@@ -190,14 +169,10 @@ export default function About() {
               </div>
               <div>
                 <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
-                  Diverse Selection of Materials:
+                  {translate("why", "title4")}
                 </h3>
-                <p className="text-base font-medium text-body-color">
-                  KB Corporation specializes in offering an array of steel
-                  products to suit your needs. Our inventory includes Cold Roll
-                  (CR) coils, sheets, Grade 50 and Grade 80 steel, High Strength
-                  (HSLA) steel, Hot Dip Galvanized (HDG) coils and sheets, Hot
-                  Roll (HR) coils, and more.
+                <p className="className= font-medium text-body-color">
+                  {translate("why", "desk4")}
                 </p>
               </div>
             </div>
@@ -209,13 +184,10 @@ export default function About() {
               </div>
               <div>
                 <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
-                  Comprehensive Inventory, Nationwide Network:
+                  {translate("why", "title5")}
                 </h3>
-                <p className="text-base font-medium text-body-color">
-                  Our extensive inventory encompasses a wide range of steel
-                  products, backed by a nationwide network of reputable
-                  manufacturers. Whether your project is small or large in
-                  scope, we have the materials you need.
+                <p className="className= font-medium text-body-color">
+                  {translate("why", "desk5")}
                 </p>
               </div>
             </div>
@@ -228,13 +200,10 @@ export default function About() {
               </div>
               <div>
                 <h3 className="mb-4 text-xl font-bold text-black sm:text-2xl lg:text-xl xl:text-2xl">
-                  Commitment to Quality and Excellence:
+                  {translate("why", "title6")}
                 </h3>
-                <p className="text-base font-medium text-body-color">
-                  At KB Corporation, quality is at the forefront of everything
-                  we do. Our commitment to excellence ensures that you receive
-                  steel products of the highest standard, allowing you to build
-                  and create with confidence.
+                <p className="className= font-medium text-body-color">
+                  {translate("why", "desk6")}
                 </p>
               </div>
             </div>
@@ -243,7 +212,9 @@ export default function About() {
       </div>
 
       <div>
-        <h1 className="text-3xl capitalize  font-semibold  text-black my-4 ">Our offics </h1>
+        <h1 className="text-3xl capitalize  font-semibold  text-black my-4 ">
+          {translate("why", "offics")}
+        </h1>
 
         <div className=" px-4 py-5  flex  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8flex justify-center items-center flex-col  lg:flex-row ">
           <div className="w-full">
@@ -252,25 +223,16 @@ export default function About() {
             </div>
             <div className=" felx justify-start items-start text-left mt-5 text-black">
               <h4>KB CORPORATION</h4>
-              <p>
-                Address: P92V+9H3, Bonda Dekpara, Kadamtoli, Keranigoanj, Dhaka
-                1310
-              </p>
-              <p>Email: kbsteelbd@gmail.com</p>
-              <p>Cell number: +8801322674654</p>
+              <p>{translate("why", "email")}</p>
+              <p> {translate("why", "cellphone")}</p>
+              <p> {translate("why", "Address")}</p>
             </div>
           </div>
           <div className="w-full">
-         
-              <img className="w-full  h-full object-cover" src={mapImg} />
-            
-          
-          
-          </div>
-        
+            <img className="w-full  h-full object-cover" src={mapImg} />
           </div>
         </div>
       </div>
-   
+    </div>
   );
 }

@@ -83,13 +83,44 @@
     "p": "stay informed about industry insights.projects.",
     "button": "View-more"
   },
-  "about": {
-    "title": "About Our Company",
-    "description": "Learn more about what we do."
+  "company": {
+    "title": "KB Corporation: Your Steel Solution Source",
+    "description": "KB Corporation is a reputable importer and distributor of steel coils and sheets, serving as a reliable supplier of high-quality steel products in Bangladesh. With a strategic location in South Korea, we maintain close ties with top manufacturers, ensuring a consistent supply of premium-grade materials that meet international standards. From wholesalers to manufacturers, our tailored solutions, competitive pricing, and exceptional customer service set us apart in the industry. At KB Corporation, we specialize in offering an extensive range of steel products, backed by a comprehensive inventory and a nationwide network of top-tier manufacturers. No matter the scope of your project, we've got you covered with a diverse selection of materials. Our inventory includes:",
+    "1": "Cold Roll (CR) Coils, Sheets, and Steel",
+    "2": "Excess Prime Steel",
+    "3": "Cold Roll (CR) Coils, Sheets, and Steel",
+    "4": "Grade 50 and Grade 80 Steel",
+    "5": "High Strength (HSLA) Steel",
+    "6": "Hot Dip Galvanized (HD, GALV, HDG, GA) Coils and Sheets,",
+    "7": "Hot Dip Galvanized (HD, GALV, HDG, GA) Coils and Sheets",
+    "8": "Prime and Secondary Steel",
+    "9": "Low Carbon Steel",
+    "10": "Hot Roll Pickled (HRPO) Coils, Sheets, and HRP&O",
+    "download": "Download Company Profile"
   },
-  "contact": {
-    "title": "Contact Information",
-    "email": "Email",
-    "phone": "Phone"
+  "why": {
+    "title": "Why Choose KB Corporation For Your Steel Needs",
+    "description": "Explore on the world's best & largest Bidding marketplace with our beautiful Bidding products. We want to be a part of your smile, success and future growth.",
+
+    "title1": "Trusted Importer and Distributor",
+    "desk1": "As a leading importer and distributor of steel coils and sheets, KB Corporation has built a solid reputation for delivering high-quality steel products to meet the diverse needs of our clients in Bangladesh.",
+
+    "title2": "Reliable Supplier with Global Reach",
+    "desk2": "With a strategic presence in South Korea, KB Corporation maintains strong connections with top-tier manufacturers, ensuring a steady supply of premium-grade steel materials that conform to international standards.",
+    "title3": "Comprehensive Inventory, Nationwide Network:",
+    "desk3": "At KB Corporation, quality is at the forefront of everything we do. Our commitment to excellence ensures that you receive steel products of the highest standard, allowing you to build and create with confidence.",
+
+    "title4": "Diverse Selection of Materials",
+    "desk4": "KB Corporation specializes in offering an array of steel products to suit your needs. Our inventory includes Cold Roll (CR) coils, sheets, Grade 50 and Grade 80 steel, High Strength (HSLA) steel, Hot Dip Galvanized (HDG) coils and sheets, Hot Roll (HR) coils, and more.",
+    "title5": "Tailored Solutions for Your Business",
+    "desk5": "From wholesalers to manufacturers, our expertise lies in providing customized solutions that cater to your specific requirements. Our competitive pricing and exceptional customer service set us apart in the industry.",
+
+    "title6": "Commitment to Quality and Excellence",
+    "desk6": "At KB Corporation, quality is at the forefront of everything we do. Our commitment to excellence ensures that you receive steel products of the highest standard, allowing you to build and create with confidence.",
+
+    "Offics": "Our Offics",
+    "email": "Email: kbsteelbd@gmail.com",
+    "cellphone": "Cell number: +8801322674654",
+    "Address": "Address: P92V+9H3, Bonda Dekpara, Kadamtoli, Keranigoanj, Dhaka 1310"
   }
 }
