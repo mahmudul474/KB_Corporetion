@@ -3,6 +3,14 @@ import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 
 const EditKoyelItemPopUp = ({ data, onClose, refetch }) => {
+
+
+
+  console.log(data);
+  
+
+
+
   const [loading, setLoadinding] = useState(false);
 
   const [name, setName] = useState("");

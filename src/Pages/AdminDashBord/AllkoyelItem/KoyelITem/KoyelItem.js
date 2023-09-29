@@ -95,7 +95,7 @@ export default function AdminKoyelITemDettails({
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow   ">
         <div className="border ">
           <img
-            className="rounded-t-lg w-full text-center h-60 object-cover "
+            className="rounded-t-lg w-full text-center h-[200px] object-cover "
             src={data?.mainImage}
             alt=""
           />

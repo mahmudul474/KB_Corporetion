@@ -37,17 +37,23 @@ const ExelTouploadProductUploadForm = () => {
   const [category, setCategory] = useState("");
   const [shoppingCost, setShoppingCost] = useState({
     pangon: {
-      containerPrice: 0,
-      bulkPrice: 0
+      containerPrice: null,
+      bulkPrice: null
     },
     mongla: {
-      containerPrice: 0,
-      bulkPrice: 0
+      containerPrice: null,
+      bulkPrice: null
+    },
+    chattogram: {
+      containerPrice: null,
+      bulkPrice: null
     },
     dhaka: {
-      containerPrice: 0
+      containerPrice: null
     }
   });
+
+  console.log(shoppingCost);
 
   // Event handler to update the state when input values change
   const handleInputChange = (event, location, field) => {
@@ -226,12 +232,12 @@ const ExelTouploadProductUploadForm = () => {
       koyel: formData,
       key: "koyel",
       bids: [],
-      ShippingCost,
+      ShippingCost: shoppingCost,
       category
       // winners: []
     };
 
-    fetch(`${process.env.REACT_APP_API_URL}/products/upload/koyel`, {
+    fetch(`${process.env.REACT_APP_API_URL}/products/items/v1`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -240,8 +246,6 @@ const ExelTouploadProductUploadForm = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-
         setLoadinding(false);
         toast.success(data.message);
         navigate("/admin-dashboard/products/koyel-item");
@@ -515,6 +519,7 @@ const ExelTouploadProductUploadForm = () => {
                     onChange={e =>
                       handleInputChange(e, "pangon", "containerPrice")
                     }
+                    required
                     type="number"
                     placeholder="Type here"
                     className="input input-bordered w-full text-black  bg-white "
@@ -524,6 +529,7 @@ const ExelTouploadProductUploadForm = () => {
                   <label className="label text-black "> Bulk price</label>
                   <input
                     type="number"
+                    required
                     value={shoppingCost.pangon.bulkPrice}
                     onChange={e => handleInputChange(e, "pangon", "bulkPrice")}
                     placeholder="Type here"
@@ -547,6 +553,7 @@ const ExelTouploadProductUploadForm = () => {
                       handleInputChange(e, "mongla", "containerPrice")
                     }
                     type="number"
+                    required
                     placeholder="Type here"
                     className="input input-bordered w-full text-black  bg-white "
                   />
@@ -557,6 +564,42 @@ const ExelTouploadProductUploadForm = () => {
                     value={shoppingCost.mongla.bulkPrice}
                     onChange={e => handleInputChange(e, "mongla", "bulkPrice")}
                     type="number"
+                    required
+                    placeholder="Type here"
+                    className="input input-bordered w-full text-black  bg-white "
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col ">
+              <div>
+                <h1 className="text-xl text-left mt-4 text-black font-bold">
+                  chattogram Per kg price
+                </h1>
+              </div>
+              <div className="w-full">
+                <div className="form-control w-full max-w-xs">
+                  <label className="label text-black "> Container Price</label>
+                  <input
+                    value={shoppingCost.chattogram.containerPrice}
+                    onChange={e =>
+                      handleInputChange(e, "chattogram", "containerPrice")
+                    }
+                    type="number"
+                    required
+                    placeholder="Type here"
+                    className="input input-bordered w-full text-black  bg-white "
+                  />
+                </div>
+                <div className="form-control w-full max-w-xs">
+                  <label className="label text-black ">Bulk Price</label>
+                  <input
+                    value={shoppingCost.chattogram.bulkPrice}
+                    onChange={e =>
+                      handleInputChange(e, "chattogram", "bulkPrice")
+                    }
+                    type="number"
+                    required
                     placeholder="Type here"
                     className="input input-bordered w-full text-black  bg-white "
                   />
@@ -577,6 +620,7 @@ const ExelTouploadProductUploadForm = () => {
                     onChange={e =>
                       handleInputChange(e, "dhaka", "containerPrice")
                     }
+                    required
                     type="number"
                     placeholder="Type here"
                     className="input input-bordered w-full text-black  bg-white "

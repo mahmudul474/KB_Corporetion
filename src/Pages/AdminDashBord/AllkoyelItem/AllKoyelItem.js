@@ -17,7 +17,7 @@ export default function AllKoyelItem() {
       queryKey: ["products"],
       queryFn: async () => {
         const res = await fetch(
-          `${process.env.REACT_APP_API_URL}/products/koyel`
+          `${process.env.REACT_APP_API_URL}/products/items/v1`
         );
         const data = await res.json();
         return data;
@@ -58,7 +58,7 @@ export default function AllKoyelItem() {
       <div>
         <h1 className="text-2xl my-3 text-left  font-semibold   capitalize text-[#719f18]">
           {" "}
-          Koyel-Item
+          All Products
         </h1>
 
         <div className=" grid  gap-5 grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
@@ -72,7 +72,7 @@ export default function AllKoyelItem() {
             ></KoyelItem>
           ))}
         </div>
-        
+
         <div>
           {showConfirmationPopup && (
             <ConfirmationModal

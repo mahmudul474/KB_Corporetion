@@ -22,57 +22,10 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
         <label tabIndex={0}>
           <li className="w-full m-auto text-center text-white">
             <p className="flex flex-row items-center  text-white  cursor-pointer text-lg h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
-              <span className="inline-flex items-center  text-white justify-center h-12 w-12 text-lg text-gray-400">
-                <BiChevronDown></BiChevronDown>
-              </span>
-              <span className="text-sm font-medium  text-white">Products</span>
-            </p>
-          </li>
-        </label>
-        <ul
-          tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow-2xl bg-white rounded-box w-52"
-        >
-          <Link to="/admin-dashboard/products">
-            <li className="">
-              <p className="flex flex-row  items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
-                <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                  <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
-                </span>
-                <span className="text-sm font-medium">Products</span>
-              </p>
-            </li>
-          </Link>
-          <Link to="/admin-dashboard/products/bidding-close-with-bid">
-            <li>
-              <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
-                <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                  <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
-                </span>
-                <span className="text-sm font-medium">Bid close </span>
-              </p>
-            </li>
-          </Link>
-          <Link to="/admin-dashboard/products/bidding-close/no-bid">
-            <li>
-              <p className="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
-                <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                  <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
-                </span>
-                <span className="text-sm font-medium">No bids</span>
-              </p>
-            </li>
-          </Link>
-        </ul>
-      </div>
-      <div className="dropdown">
-        <label tabIndex={0}>
-          <li className="w-full m-auto text-center text-white">
-            <p className="flex flex-row items-center  text-white  cursor-pointer text-lg h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
               <span className="inline-flex items-center  text-white justify-center h-12 w-12 text-lg ">
                 <BiChevronDown></BiChevronDown>
               </span>
-              <span className="text-sm font-medium  text-white">Items</span>
+              <span className="text-sm font-medium  text-white">Products</span>
             </p>
           </li>
         </label>
@@ -86,7 +39,7 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
                 <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                   <MdOutlineProductionQuantityLimits></MdOutlineProductionQuantityLimits>
                 </span>
-                <span className="text-sm font-medium">Items</span>
+                <span className="text-sm font-medium">All Products</span>
               </p>
             </li>
           </Link>
@@ -114,43 +67,19 @@ export default function AdminSaidbar({ isOpen, toggleDrawer }) {
       </div>
       <div className="dropdown">
         <label tabIndex={0}>
-          <li className="w-full m-auto text-center text-white">
-            <p className="flex flex-row items-center  text-white  cursor-pointer text-lg h-12 transform hover:translate-x-2 transition-transform ease-in duration-200  hover:text-gray-800">
-              <span className="inline-flex items-center  text-white justify-center h-12 w-12 text-lg ">
-                <BiChevronDown></BiChevronDown>
-              </span>
-              <span className="text-sm font-medium  text-white">
-                Uploads Product
-              </span>
-            </p>
-          </li>
-        </label>
-        <ul
-          tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow-2xl bg-white rounded-box w-52"
-        >
-          <Link to="/admin-dashboard/productUpload">
-            <li className="w-52">
-              <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
-                <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                  <TbUpload></TbUpload>
-                </span>
-                <span className="text-sm font-medium">Upload Product</span>
-              </p>
-            </li>
-          </Link>
-
           <Link to="/admin-dashboard/excel-to-productUpload">
-            <li className="w-52">
-              <p className="flex flex-row items-center cursor-pointer   h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-black hover:text-gray-800">
-                <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                  <TbUpload></TbUpload>
+            <li className="w-full m-auto text-center text-white">
+              <p className="flex flex-row items-center  text-white  cursor-pointer text-lg h-12 transform hover:translate-x-2 transition-transform ease-in duration-200  hover:text-gray-800">
+                <span className="inline-flex items-center  text-white justify-center h-12 w-12 text-lg ">
+                  <BiChevronDown></BiChevronDown>
                 </span>
-                <span className="text-sm font-medium">Upload Item</span>
+                <span className="text-sm font-medium  text-white">
+                  Product Upload
+                </span>
               </p>
             </li>
           </Link>
-        </ul>
+        </label>
       </div>
       <div className="dropdown">
         <label tabIndex={0}>

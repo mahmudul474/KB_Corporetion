@@ -169,10 +169,7 @@ export default function ProductBidding({ data }) {
       bidderEmail: currentUser?.email,
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
-      bidderNumber: currentUser?.phoneNumber,
-      expectedDate: selectedDate,
-      landing: landingValue,
-      shipmentType: shipmentTypeValue
+      bidderNumber: currentUser?.phoneNumber
     }));
 
     const bidder = {
