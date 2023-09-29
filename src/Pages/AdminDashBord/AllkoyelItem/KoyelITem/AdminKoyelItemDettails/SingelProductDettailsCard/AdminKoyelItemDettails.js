@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import Koyel from "./Koyel/Koyel";
 import SingelProductActionHistory from "./SingelProductActionHistory";
 
@@ -7,17 +7,13 @@ import SubImgSlider from "../../../../../../Shared/ProductDettailsCard/SubImgSli
 
 export default function AdminKoyelItemDettails() {
   const data = useLoaderData();
-
   const [subimageUrl, setSubImgUrl] = useState(null);
-
   ////selected  item
   const [selectedItems, setSelectedItems] = useState([]);
-
-  /// img    slider
+  /// img   slider
   const handleSubimgShow = subimgUrl => {
     setSubImgUrl(subimgUrl);
   };
-
   ///  remmenint time
   const calculateRemainingTime = endTime => {
     const currentTime = new Date().getTime();
@@ -29,7 +25,6 @@ export default function AdminKoyelItemDettails() {
 
     const remainingTime = endTimeValue - currentTime;
 
-    // Convert remaining time to days, hours, minutes, and seconds
     const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
     const hours = Math.floor(
       (remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -83,6 +78,8 @@ export default function AdminKoyelItemDettails() {
     return `${formattedDate} ${formattedTime}`;
   };
 
+  console.log(data);
+
   ///get winner
 
   useEffect(() => {
@@ -94,16 +91,6 @@ export default function AdminKoyelItemDettails() {
         .then(data => {});
     }
   }, [data._id]);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <div className=" mt-10 px-5 lg:px-12">
@@ -218,8 +205,16 @@ export default function AdminKoyelItemDettails() {
           <div>
             <div className="mr-5  shadow-lg">
               <div className="flex justify-between items-center text-xl font-bold text-[#719f18]   ">
-                <span>Per Ton price:</span>
+                <span>Per Kg Price:</span>
                 <span>{data?.startBiddingPrice} $</span>
+              </div>
+              <div className="flex justify-between items-center text-xl font-bold text-[#719f18]   ">
+                <span>Buy per kg:</span>
+                <span>{data?.buyNowPrice} $</span>
+              </div>
+              <div className="flex justify-between items-center text-xl font-bold text-[#719f18]   ">
+                <span>minimum bid:</span>
+                <span>{data?.minimumBid} $</span>
               </div>
               <div className="flex justify-between items-center text-xl font-bold text-[#719f18]   ">
                 <span>Current bidding Price:</span>
@@ -248,6 +243,90 @@ export default function AdminKoyelItemDettails() {
                     Download PDF
                   </button>
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="   my-6 ">
+        <h2 className="text-left text-black  text-xl ">Shipping cost </h2>
+
+        <div className="flex p-3  justify-between  flex-col  lg:flex-row   lg:border border-black  ">
+          <div className="flex flex-col ">
+            <div>
+              <h1 className="text-xl text-left mt-4 text-black font-bold">
+                Pangon Per kg price
+              </h1>
+            </div>
+            <div className="w-full">
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black ">Container Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.pangon?.containerPrice + "$"}
+                </h3>
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black "> Bulk price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.pangon?.bulkPrice + "$"}
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col ">
+            <div>
+              <h1 className="text-xl text-left mt-4 text-black font-bold">
+                Mongla Per kg price
+              </h1>
+            </div>
+            <div className="w-full">
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black "> Container Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.mongla?.containerPrice + "$"}
+                </h3>
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black ">Bulk Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.mongla?.bulkPrice + "$"}
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col ">
+            <div>
+              <h1 className="text-xl text-left mt-4 text-black font-bold">
+                chattogram Per kg price
+              </h1>
+            </div>
+            <div className="w-full">
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black "> Container Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.chattogram?.containerPrice + "$"}
+                </h3>
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black ">Bulk Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.chattogram?.bulkPrice + "$"}
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <div>
+              <h1 className="text-xl mt-4 text-left text-black font-bold">
+                Dhaka Per kg price
+              </h1>
+            </div>
+            <div className="w-full">
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black ">Container Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.dhaka?.containerPrice + "$"}
+                </h3>{" "}
               </div>
             </div>
           </div>

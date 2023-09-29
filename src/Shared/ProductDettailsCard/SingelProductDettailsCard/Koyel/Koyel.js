@@ -89,7 +89,7 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
               <td className="text-black">{skoyel?.spec}</td>
               <td className="text-black">{skoyel?.Thickness}</td>
               <td className="text-black">{skoyel?.Width}</td>
-              <td className="text-black">{skoyel?.weight}</td>
+              <td className="text-black">{skoyel?.weight + "kg"}</td>
               <td className="text-black">{skoyel?.TS}</td>
               <td className="text-black">{skoyel?.YP}</td>
               <td className="text-black">{skoyel?.EL}</td>

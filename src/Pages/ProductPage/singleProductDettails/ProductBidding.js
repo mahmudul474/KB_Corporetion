@@ -232,7 +232,18 @@ export default function ProductBidding({ data }) {
   };
 
   console.log(data);
+  
 
+const [selectedLocation, setSelectedLocation] = useState("pangon");
+const [selectedPriceType, setSelectedPriceType] = useState("container");
+
+const handleLocationChange = e => {
+  setSelectedLocation(e.target.value);
+};
+
+const handlePriceTypeChange = e => {
+  setSelectedPriceType(e.target.value);
+};
   return (
     <div className="  px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <section className=" overflow-hidden bg-white font-poppins dark:bg-white">
@@ -311,10 +322,26 @@ export default function ProductBidding({ data }) {
                     <div className="flex   flex-col  flex-wrap items-start ">
                       <div className="flex  justify-between  text-lg  text-black    ">
                         <span className=" text-sm text-black  font-semibold  dark:text-black">
-                          Per Ton price:
+                          Per KG price:
                         </span>
                         <span className=" text-sm text-black  font-semibold  dark:text-black">
-                          {data?.startBiddingPrice} $
+                          {data?.startBiddingPrice + " $"}
+                        </span>
+                      </div>
+                      <div className="flex  justify-between  text-lg  text-black    ">
+                        <span className=" text-sm text-black  font-semibold  dark:text-black">
+                          Buy KG price:
+                        </span>
+                        <span className=" text-sm text-black  font-semibold  dark:text-black">
+                          {data?.buyNowPrice + " $"}
+                        </span>
+                      </div>
+                      <div className="flex  justify-between  text-lg  text-black    ">
+                        <span className=" text-sm text-black  font-semibold  dark:text-black">
+                          Minimum Bid Amount:
+                        </span>
+                        <span className=" text-sm text-black  font-semibold  dark:text-black">
+                          {data?.minimumBid + " $"}
                         </span>
                       </div>
                       <div className="flex  justify-between items-center   text-lg  text-black    ">
@@ -352,7 +379,7 @@ export default function ProductBidding({ data }) {
                       </div>
 
                       <div
-                        className="flex items-center my-5     justify-center text-sm text-black  font-semibold 
+                        className="flex items-center my-5     justify-center text-sm text-black  font-semibold
               "
                       >
                         <h1>Total Bids : </h1>
@@ -385,6 +412,91 @@ export default function ProductBidding({ data }) {
         </div>
       </section>
 
+      <div className="   my-6 ">
+        <h2 className="text-left text-black  text-xl ">Shipping cost </h2>
+
+        <div className="flex p-3  justify-between  flex-col  lg:flex-row   lg:border border-black  ">
+          <div className="flex flex-col ">
+            <div>
+              <h1 className="text-xl text-left mt-4 text-black font-bold">
+                Pangon Per kg price
+              </h1>
+            </div>
+            <div className="w-full">
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black ">Container Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.pangon?.containerPrice + "$"}
+                </h3>
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black "> Bulk price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.pangon?.bulkPrice + "$"}
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col ">
+            <div>
+              <h1 className="text-xl text-left mt-4 text-black font-bold">
+                Mongla Per kg price
+              </h1>
+            </div>
+            <div className="w-full">
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black "> Container Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.mongla?.containerPrice + "$"}
+                </h3>
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black ">Bulk Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.mongla?.bulkPrice + "$"}
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col ">
+            <div>
+              <h1 className="text-xl text-left mt-4 text-black font-bold">
+                Chittagong Per kg price
+              </h1>
+            </div>
+            <div className="w-full">
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black "> Container Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.chattogram?.containerPrice + "$"}
+                </h3>
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black ">Bulk Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.chattogram?.bulkPrice + "$"}
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <div>
+              <h1 className="text-xl mt-4 text-left text-black font-bold">
+                Dhaka Per kg price
+              </h1>
+            </div>
+            <div className="w-full">
+              <div className="form-control w-full max-w-xs">
+                <label className="label text-black ">Container Price</label>
+                <h3 className="text-xl text-black font-bold  text-left">
+                  {data?.ShippingCost?.dhaka?.containerPrice + "$"}
+                </h3>{" "}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="flex justify-between  items-center   mt-20 flex-col  lg:flex-row">
           <div className="lg:w-[75%] w-full">
@@ -407,33 +519,45 @@ export default function ProductBidding({ data }) {
               </div>
 
               <div>
-                <div className="my-4">
-                  <select
-                    className="select select-bordered bg-white text-black w-full max-w-xs"
-                    value={landingValue}
-                    onChange={e => setLandingValue(e.target.value)}
-                  >
-                    <option disabled value="">
-                      Landing
-                    </option>
-                    <option value="Dhaka">Dhaka</option>
-                    <option value="Chittagong">Chittagong</option>
-                    <option value="Pangaon">Pangaon</option>
-                  </select>
-                </div>
-                <div className="my-4">
-                  <select
-                    className="select select-bordered bg-white text-black w-full max-w-xs"
-                    value={shipmentTypeValue}
-                    onChange={e => setShipmentTypeValue(e.target.value)}
-                  >
-                    <option disabled value="">
-                      Shipment Type
-                    </option>
-                    <option value="Container">Container</option>
-                    <option value="Bulk">Bulk</option>
-                  </select>
-                </div>
+                <label htmlFor="location">Select a location:</label>
+                <select  className="w-full  bg-white "
+                  id="location"
+                  value={selectedLocation}
+                  onChange={handleLocationChange}
+                >
+                  <option value="pangon">Pangon</option>
+                  <option value="mongla">Mongla</option>
+                  <option value="dhaka">Dhaka</option>
+                  <option value="chattogram">Chattogram</option>
+                </select>
+
+                <br />
+
+                <label  htmlFor="priceType">Select a price type:</label>
+                <select
+                  id="priceType"
+                  value={selectedPriceType}
+                  onChange={handlePriceTypeChange}
+                >
+                  <option value="container">Container</option>
+                  <option value="bulk">Bulk</option>
+                </select>
+
+                <br />
+
+                <p >Shipping cost for {selectedLocation}:</p>
+                {selectedLocation === "dhaka" ? (
+                  <p>
+                    Container Price:{" "}
+                    {data?.ShippingCost?.[selectedLocation].containerPrice}
+                  </p>
+                ) : (
+                  <p>
+                    {selectedPriceType === "container"
+                      ? `Container Price: ${data?.ShippingCost?.[selectedLocation].containerPrice}`
+                      : `Bulk Price: ${data?.ShippingCost?.[selectedLocation].bulkPrice}`}
+                  </p>
+                )}
               </div>
 
               <div className="mt-10">

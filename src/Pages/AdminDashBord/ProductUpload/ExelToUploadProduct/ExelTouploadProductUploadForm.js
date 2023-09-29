@@ -216,6 +216,11 @@ const ExelTouploadProductUploadForm = () => {
   };
 
   const handleSaveProduct = (mainImageUrl, subImageUrls, pdfUrl) => {
+
+ if (category === "") {
+   return alert("Please select a category");
+ }
+
     const productInfo = {
       name,
       description,
