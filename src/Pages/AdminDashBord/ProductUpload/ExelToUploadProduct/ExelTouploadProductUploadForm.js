@@ -34,12 +34,34 @@ const ExelTouploadProductUploadForm = () => {
   const [minimumBid, setMinimumBid] = useState("");
   const [startBiddingTime, setStartBiddingTime] = useState("");
   const [endBiddingTime, setEndBiddingTime] = useState("");
-  const [ShippingCost, setShippingCost] = useState(null);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState("");
+  const [shoppingCost, setShoppingCost] = useState({
+    pangon: {
+      containerPrice: 0,
+      bulkPrice: 0
+    },
+    mongla: {
+      containerPrice: 0,
+      bulkPrice: 0
+    },
+    dhaka: {
+      containerPrice: 0
+    }
+  });
 
+  // Event handler to update the state when input values change
+  const handleInputChange = (event, location, field) => {
+    const { value } = event.target;
+    setShoppingCost(prevShoppingCost => ({
+      ...prevShoppingCost,
+      [location]: {
+        ...prevShoppingCost[location],
+        [field]: parseFloat(value) || 0 // Convert input value to a number
+      }
+    }));
+  };
 
-
-  const handleCountryChange = (event) => {
+  const handleCountryChange = event => {
     setCategory(event.target.value);
   };
 
@@ -55,8 +77,6 @@ const ExelTouploadProductUploadForm = () => {
     // Close the date and time picker
     e.target.blur();
   };
-
-
 
   const handleMainImageChange = e => {
     setMainImage(e.target.files[0]);
@@ -207,7 +227,7 @@ const ExelTouploadProductUploadForm = () => {
       key: "koyel",
       bids: [],
       ShippingCost,
-      category, 
+      category
       // winners: []
     };
 
@@ -236,11 +256,11 @@ const ExelTouploadProductUploadForm = () => {
       <div className="flex justify-center items-center h-screen">
         <div className="flex items-center">
           <div className="animate-bounce mr-2">
-            <span className="font-bold text-3xl">Waitting</span>
+            <span className="font-bold text-3xl">Waiting</span>
           </div>
           <div className="bg-green-600 h-10 w-10 rounded-full animate-pulse"></div>
           <div className="animate-bounce ml-2">
-            <span className="font-bold text-3xl">Upload</span>
+            <span className="font-bold text-3xl">for Upload</span>
           </div>
         </div>
       </div>
@@ -249,9 +269,10 @@ const ExelTouploadProductUploadForm = () => {
 
   return (
     <>
-      <h1 className="text-[#719f18] text-2xl  font-semibold my-5  capitalize text0-center">
-        Upload from excel
+      <h1 className=" my-10 text-black text-2xl   font-semibold  capitalize text0-center">
+        Upload Item Product
       </h1>
+
       <form onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="relative z-0 w-full mb-6 group">
@@ -261,7 +282,7 @@ const ExelTouploadProductUploadForm = () => {
               id="name"
               value={name}
               onChange={e => setName(e.target.value)}
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 dark:border-black appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -269,7 +290,7 @@ const ExelTouploadProductUploadForm = () => {
               for="name"
               className="peer-focus:font-medium absolute  text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] left-0 peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Product Title
+              Product Name
             </label>
           </div>
 
@@ -280,7 +301,7 @@ const ExelTouploadProductUploadForm = () => {
               onChange={e => setBuyNowPrice(e.target.value)}
               name="buyNowPrice"
               id="buyNowPrice"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 dark:border-black appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -288,7 +309,7 @@ const ExelTouploadProductUploadForm = () => {
               for="buyNowPrice"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Per-Ton-Buy-Now-Price
+              Per Kg Buy Price
             </label>
           </div>
         </div>
@@ -300,7 +321,7 @@ const ExelTouploadProductUploadForm = () => {
               id="minimumBid"
               value={minimumBid}
               onChange={e => setMinimumBid(e.target.value)}
-              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 dark:border-black appearance-none dark:text-black dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -319,7 +340,7 @@ const ExelTouploadProductUploadForm = () => {
               type="number"
               name="pertonPrice"
               id="pertonPrice"
-              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 dark:border-black appearance-none dark:text-black dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=""
               required
             />
@@ -327,11 +348,11 @@ const ExelTouploadProductUploadForm = () => {
               for="pertonPrice"
               className="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Per Ton price
+              Per Kg Price
             </label>
           </div>
         </div>
-        <div className="grid md:grid-cols-2 md:gap-6">
+        <div className="grid md:grid-cols-2 md:gap-6 my-6">
           <div className="relative z-0 w-full mb-6 group">
             <input
               value={startBiddingTime}
@@ -339,13 +360,13 @@ const ExelTouploadProductUploadForm = () => {
               type="datetime-local"
               id="startBiddingTime"
               name="startBiddingTime"
-              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:bg-gray-400 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 dark:border-black appearance-none  dark:bg-gray-400 dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
               for="startBiddingTime"
-              className="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              className="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-10 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
             >
               Start-Bidding Time
             </label>
@@ -358,13 +379,13 @@ const ExelTouploadProductUploadForm = () => {
               type="datetime-local"
               id="endBiddingTime"
               name="endBiddingTime"
-              className="block py-2.5 px-0 w-full text-sm  dark:bg-gray-400 text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm  dark:bg-gray-400 text-gray-900 bg-transparent border-0 border-b-2 dark:border-black appearance-none dark:text-white dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
             <label
               for="endBiddingTime"
-              className="peer-focus:font-medium absolute  text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] left-0 peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              className="peer-focus:font-medium absolute  text-sm text-black dark:text-black duration-300 transform -translate-y-10 scale-75 top-3 -z-10 origin-[0] left-0 peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
             >
               End-Bidding-Time
             </label>
@@ -377,7 +398,7 @@ const ExelTouploadProductUploadForm = () => {
               id="mainImage"
               accept="image/*"
               onChange={handleMainImageChange}
-              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 dark:border-black appearance-none dark:text-black   dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -385,7 +406,7 @@ const ExelTouploadProductUploadForm = () => {
               for="mainImage"
               className="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Upload Main Img
+              Upload Thumbnails
             </label>
           </div>
 
@@ -396,7 +417,7 @@ const ExelTouploadProductUploadForm = () => {
               accept="image/*"
               multiple
               onChange={handleSubImagesChange}
-              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 dark:border-black appearance-none dark:text-black   dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -404,7 +425,7 @@ const ExelTouploadProductUploadForm = () => {
               for="subImg"
               className="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Upload Sub Img
+              Upload Images
             </label>
           </div>
         </div>
@@ -415,7 +436,7 @@ const ExelTouploadProductUploadForm = () => {
               type="file"
               id="pdfFile"
               onChange={handleFileChange}
-              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 dark:border-black appearance-none dark:text-black   dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
             />
@@ -423,22 +444,22 @@ const ExelTouploadProductUploadForm = () => {
               for="pdfFile"
               className="peer-focus:font-medium absolute  text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] left-0 peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Upload  downloaded file
+              Upload downloaded file
             </label>
           </div>
           <div className="relative z-0 w-full mb-6 group">
-          <select
-        id="countries"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        value={category}
-        onChange={handleCountryChange}
-        required // Make the select element required
-      >
-        <option value="">Choose Category</option>
-        <option value="CR">CR</option>
-        <option value="GA">GA</option>
-        <option value="PO">PO</option>
-      </select>
+            <select
+              id="countries"
+              className="bg-gray-50 border   text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-black dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value={category}
+              onChange={handleCountryChange}
+              required
+            >
+              <option>Choose Category</option>
+              <option value="CR">CR</option>
+              <option value="GI/GA">GI/GA</option>
+              <option value="PO/HR">PO/HR</option>
+            </select>
           </div>
         </div>
 
@@ -450,32 +471,13 @@ const ExelTouploadProductUploadForm = () => {
               accept=".xlsx, .xls"
               onChange={handleExcelFileChange}
               placeholder="upload excel file"
-              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2   appearance-none dark:text-black dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             />
             <label
               for="mainImage"
               className="peer-focus:font-medium absolute text-sm text-black dark:text-black duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Upload Product form Excel 
-            </label>
-          </div>
-
-          <div className="relative z-0 w-full mb-6 group">
-            <input
-              type="number"
-              name="shippingCost"
-              id="shippingCost"
-              value={ShippingCost}
-              onChange={e => setShippingCost(e.target.value)}
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              for="name"
-              className="peer-focus:font-medium absolute  text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] left-0 peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              shipping cost
+              upload Product File
             </label>
           </div>
         </div>
@@ -484,16 +486,106 @@ const ExelTouploadProductUploadForm = () => {
           for="message"
           className="block mb-2 text-sm font-medium text-black dark:text-black"
         >
-          About
+          Description
         </label>
         <textarea
           id="message"
           rows="4"
           value={description}
           onChange={e => setDescription(e.target.value)}
-          className="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500   "
-          placeholder="Leave a comment..."
+          className="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg border dark:border-black focus:ring-blue-500 focus:border-blue-500   "
+          placeholder="About Product description "
         ></textarea>
+
+        <div className="   my-6 ">
+          <h2 className="text-left text-black  text-xl ">Shipping cost </h2>
+
+          <div className="flex   justify-between  flex-col  lg:flex-row  lg:p-10 lg:border border-black  ">
+            <div className="flex flex-col ">
+              <div>
+                <h1 className="text-xl text-left mt-4 text-black font-bold">
+                  Pangon Per kg price
+                </h1>
+              </div>
+              <div className="w-full">
+                <div className="form-control w-full max-w-xs">
+                  <label className="label text-black ">Container Price</label>
+                  <input
+                    value={shoppingCost.pangon.containerPrice}
+                    onChange={e =>
+                      handleInputChange(e, "pangon", "containerPrice")
+                    }
+                    type="number"
+                    placeholder="Type here"
+                    className="input input-bordered w-full text-black  bg-white "
+                  />
+                </div>
+                <div className="form-control w-full max-w-xs">
+                  <label className="label text-black "> Bulk price</label>
+                  <input
+                    type="number"
+                    value={shoppingCost.pangon.bulkPrice}
+                    onChange={e => handleInputChange(e, "pangon", "bulkPrice")}
+                    placeholder="Type here"
+                    className="input input-bordered w-full text-black  bg-white "
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col ">
+              <div>
+                <h1 className="text-xl text-left mt-4 text-black font-bold">
+                  Mongla Per kg price
+                </h1>
+              </div>
+              <div className="w-full">
+                <div className="form-control w-full max-w-xs">
+                  <label className="label text-black "> Container Price</label>
+                  <input
+                    value={shoppingCost.mongla.containerPrice}
+                    onChange={e =>
+                      handleInputChange(e, "mongla", "containerPrice")
+                    }
+                    type="number"
+                    placeholder="Type here"
+                    className="input input-bordered w-full text-black  bg-white "
+                  />
+                </div>
+                <div className="form-control w-full max-w-xs">
+                  <label className="label text-black ">Bulk Price</label>
+                  <input
+                    value={shoppingCost.mongla.bulkPrice}
+                    onChange={e => handleInputChange(e, "mongla", "bulkPrice")}
+                    type="number"
+                    placeholder="Type here"
+                    className="input input-bordered w-full text-black  bg-white "
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <div>
+                <h1 className="text-xl mt-4 text-left text-black font-bold">
+                  Dhaka Per kg price
+                </h1>
+              </div>
+              <div className="w-full">
+                <div className="form-control w-full max-w-xs">
+                  <label className="label text-black ">Container Price</label>
+                  <input
+                    value={shoppingCost.dhaka.containerPrice}
+                    onChange={e =>
+                      handleInputChange(e, "dhaka", "containerPrice")
+                    }
+                    type="number"
+                    placeholder="Type here"
+                    className="input input-bordered w-full text-black  bg-white "
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <button
           type="submit"
