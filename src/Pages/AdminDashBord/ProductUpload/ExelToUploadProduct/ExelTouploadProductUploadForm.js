@@ -53,7 +53,7 @@ const ExelTouploadProductUploadForm = () => {
     }
   });
 
-  console.log(shoppingCost);
+  
 
   // Event handler to update the state when input values change
   const handleInputChange = (event, location, field) => {

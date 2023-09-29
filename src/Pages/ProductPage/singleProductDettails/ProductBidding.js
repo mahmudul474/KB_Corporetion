@@ -238,7 +238,13 @@ const [selectedLocation, setSelectedLocation] = useState("pangon");
 const [selectedPriceType, setSelectedPriceType] = useState("container");
 
 const handleLocationChange = e => {
-  setSelectedLocation(e.target.value);
+   const newLocation = e.target.value;
+   setSelectedLocation(newLocation);
+
+   // If Dhaka is selected, reset the price type to "container"
+   if (newLocation === "dhaka") {
+     setSelectedPriceType("container");
+   }
 };
 
 const handlePriceTypeChange = e => {
@@ -514,30 +520,44 @@ const handlePriceTypeChange = e => {
                 <DatePicker
                   selected={selectedDate}
                   onChange={handleDateChange}
-                  className="border text-black bg-white border-gray-300  rounded px-2 py-1"
+                  className="border bordered border-black text-black bg-white border-gray-300  rounded px-2 py-1"
                 />
               </div>
 
-              <div>
-                <label htmlFor="location">Select a location:</label>
-                <select  className="w-full  bg-white "
-                  id="location"
-                  value={selectedLocation}
-                  onChange={handleLocationChange}
-                >
-                  <option value="pangon">Pangon</option>
-                  <option value="mongla">Mongla</option>
-                  <option value="dhaka">Dhaka</option>
-                  <option value="chattogram">Chattogram</option>
-                </select>
-
+              <div className="text-left ">
+                <div className="my-1 text-left">
+                  <label
+                    htmlFor="location"
+                    className="text-left text-lg  text-black  text-black  "
+                  >
+                    Select Landing location
+                  </label>
+                  <select
+                    className="w-full  p-3 border text-black  text-xl  bordered border-black  bg-white "
+                    id="location"
+                    value={selectedLocation}
+                    onChange={handleLocationChange}
+                  >
+                    <option value="pangon">Pangon</option>
+                    <option value="mongla">Mongla</option>
+                    <option value="dhaka">Dhaka</option>
+                    <option value="chattogram">Chattogram</option>
+                  </select>
+                </div>
                 <br />
 
-                <label  htmlFor="priceType">Select a price type:</label>
+                <label
+                  className="text-left text-lg  text-black  text-black  "
+                  htmlFor="priceType"
+                >
+                  Select a price type:
+                </label>
                 <select
+                  className="w-full  p-3 border text-black  text-xl  bordered border-black  bg-white "
                   id="priceType"
                   value={selectedPriceType}
                   onChange={handlePriceTypeChange}
+                  disabled={selectedLocation === "dhaka"}
                 >
                   <option value="container">Container</option>
                   <option value="bulk">Bulk</option>
@@ -545,19 +565,21 @@ const handlePriceTypeChange = e => {
 
                 <br />
 
-                <p >Shipping cost for {selectedLocation}:</p>
-                {selectedLocation === "dhaka" ? (
-                  <p>
-                    Container Price:{" "}
-                    {data?.ShippingCost?.[selectedLocation].containerPrice}
-                  </p>
-                ) : (
-                  <p>
-                    {selectedPriceType === "container"
-                      ? `Container Price: ${data?.ShippingCost?.[selectedLocation].containerPrice}`
-                      : `Bulk Price: ${data?.ShippingCost?.[selectedLocation].bulkPrice}`}
-                  </p>
-                )}
+                <div className="mt-2 text-xl capitalize text-bold  text-black">
+                  <p>Shipping cost for {selectedLocation}</p>
+                  {selectedLocation === "dhaka" ? (
+                    <p>
+                      Container Price:{" "}
+                      {data?.ShippingCost?.[selectedLocation].containerPrice}
+                    </p>
+                  ) : (
+                    <p>
+                      {selectedPriceType === "container"
+                        ? `Container Price: ${data?.ShippingCost?.[selectedLocation].containerPrice}`
+                        : `Bulk Price: ${data?.ShippingCost?.[selectedLocation].bulkPrice}`} $
+                    </p>
+                  )}
+                </div>
               </div>
 
               <div className="mt-10">
