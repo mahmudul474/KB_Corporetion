@@ -91,86 +91,57 @@ export default function AdminKoyelITemDettails({
   };
 
   return (
-    <div>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow   ">
-        <div className="border ">
-          <img
-            className="rounded-t-lg w-full text-center h-[200px] object-cover "
-            src={data?.mainImage}
-            alt=""
-          />
-          <div className="  bottom-0 text-center ">
-            <h1>
-              {isBiddingStartSoon(data.startBiddingTime) &&
-              !isBiddingEnd(data.endBiddingTime) ? (
-                <p className="text-lg text-green-700  font-semibold">
-                  Start Bidding Soon
-                </p>
-              ) : isBiddingEnd(data.endBiddingTime) ? (
-                <p className="text-lg text-red-600 capitalize  font-semibold">
-                  Bidding Ended
-                </p>
-              ) : (
-                <p className="text-lg text-red-600 capitalize  font-semibold">
-                  Bid Close : {calculateRemainingTime(data.endBiddingTime)}
-                </p>
-              )}{" "}
-            </h1>
-          </div>
-        </div>
-
-        <div className="p-5 text-left capitalize">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
-            {data?.name}
-          </h5>
-
-          <div className="flex items-center  ">
-            <img
-              className="w-10 mr-2 h-10 rounded-full"
-              src={data?.authorPhoto}
-              alt=""
-            />
-            <div className="font-medium  ">
-              <div>{data?.author}</div>
-              <div className="text-sm text-gray-500  ">{data?.authorEmail}</div>
+    <>
+      <tr className="text-black text-xl font-bold  bg-white">
+        <td>
+          <div className="flex items-center space-x-3">
+            <div className="avatar">
+              <div className="mask mask-squircle w-12 h-12">
+                <img src={data?.mainImage} alt="product-img" />
+              </div>
+            </div>
+            <div>
+              <div className="font-bold"> {data?.name}</div>
             </div>
           </div>
-          <div className="flex my-2 justify-between items-center">
-            <p className="flex flex-col text-green-500  items-center ">
-              <span>Start Bidding Time</span>
-              <span> {formatDateTime(data.startBiddingTime)}</span>
-            </p>
-            <p className="flex text-red-700 flex-col items-center ">
-              <span>End Bidding Time</span>
-              <span> {formatDateTime(data.endBiddingTime)}</span>
-            </p>
-          </div>
+        </td>
+        <td>{data?.category}</td>
+        <td>{data?.buyNowPrice + "$"}</td>
+        <td>{data?.startBiddingPrice + "$"}</td>
+        <td>{data?.minimumBid + "$"}</td>
+        <td>
+          <p className="flex flex-col justify-start items-start text-green-500  items-center ">
+            <span>Start Bidding Time</span>
+            <span> {formatDateTime(data.startBiddingTime)}</span>
+          </p>
+          <p className="flex text-red-700 flex-col items-center ">
+            <span>End Bidding Time</span>
+            <span> {formatDateTime(data.endBiddingTime)}</span>
+          </p>
+        </td>
 
-          <div className="flex justify-between items-center">
-            <h2 className="font-semibold">
-              Bidding Price: {data.startBiddingPrice} ${" "}
-            </h2>
-
-            <Link to={`/admin-dashboard/action/items/${data._id}`}>
-              <button className="inline-flex  rounded-md items-center px-3 py-2 text-sm font-medium text-center text-white -600 bg-[#719f18]   hover:bg-[#73471b] ">
-                View Details
-                <svg
-                  aria-hidden="true"
-                  className="w-4 h-4 ml-2 -mr-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-            </Link>
-          </div>
-
+        <td>
+          <Link to={`/admin-dashboard/action/items/${data._id}`}>
+            <button className="inline-flex  rounded-md items-center px-3 py-2 text-sm font-medium text-center text-white -600 bg-[#719f18]   hover:bg-[#73471b] ">
+              View Details
+              <svg
+                aria-hidden="true"
+                className="w-4 h-4 ml-2 -mr-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </Link>
+        </td>
+        <td>
+          {" "}
           <div className=" flex   mt-3  justify-between flex-row items-center">
             <button
               onClick={() => {
@@ -199,18 +170,15 @@ export default function AdminKoyelITemDettails({
               Delete
             </button>
           </div>
-        </div>
-      </div>
-
-      <div>
-        {showPopup && (
-          <EditKoyelItemPopUp
-            data={editProduct}
-            refetch={refetch}
-            onClose={closePopup}
-          />
-        )}
-      </div>
-    </div>
+        </td>
+      </tr>{" "}
+      {showPopup && (
+        <EditKoyelItemPopUp
+          data={editProduct}
+          refetch={refetch}
+          onClose={closePopup}
+        />
+      )}
+    </>
   );
 }

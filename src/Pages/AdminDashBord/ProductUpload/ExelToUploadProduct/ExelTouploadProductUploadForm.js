@@ -232,6 +232,7 @@ const ExelTouploadProductUploadForm = () => {
       koyel: formData,
       key: "koyel",
       bids: [],
+      buyNowPrice,
       ShippingCost: shoppingCost,
       category
       // winners: []
