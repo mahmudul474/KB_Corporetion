@@ -54,9 +54,9 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
             <th className="bg-white text-black">TS</th>
             <th className="bg-white text-black">YP</th>
             <th className="bg-white text-black">EL</th>
-            <th className="bg-white text-black">start Price</th>
-            <th className="bg-white text-black">current Price</th>
-            <th className="bg-white text-black">Buy Price</th>
+            <th className="bg-white text-black">start 1kg Price</th>
+            <th className="bg-white text-black">current 1kg Price</th>
+            <th className="bg-white text-black">Buy 1kg Price</th>
             <th className="bg-white text-black">winner</th>
           </tr>
         </thead>
@@ -93,13 +93,14 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
               <td className="text-black">{skoyel?.TS}</td>
               <td className="text-black">{skoyel?.YP}</td>
               <td className="text-black">{skoyel?.EL}</td>
-              <td className="text-black">{skoyel?.currentBid}</td>
+              <td className="text-black">{skoyel?.currentBid + "$"}</td>
               <td className=" text-black ">
                 {skoyel.bids && skoyel.bids.length === 0
-                  ? skoyel?.currentBid
-                  : skoyel.bids[skoyel.bids.length - 1].bidAmount.toFixed(2)}
+                  ? skoyel?.currentBid + "$"
+                  : skoyel.bids[skoyel.bids.length - 1].bidAmount.toFixed(2) +
+                    "$"}
               </td>
-              <td className="text-black">{skoyel?.buyNowPrice}</td>
+              <td className="text-black">{skoyel?.buyNowPrice + "$"}</td>
               <td>
                 {skoyel?.winner && (
                   <div className="flex items-center space-x-3">
@@ -113,7 +114,7 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
                         {skoyel?.winner.bidderName}
                       </div>
                       <div className="text-sm text-black opacity-50">
-                        Price:{skoyel?.winner?.bidAmount + "$"}
+                        Price:{skoyel?.winner?.bidAmount + "$" + "" + "per kg"}
                       </div>
                     </div>
                   </div>

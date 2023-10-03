@@ -44,6 +44,32 @@ export default function ProductBidding({ data }) {
     (accumulator, currentValue) => accumulator + Number(currentValue),
     0
   );
+
+
+  const totals = selectedItems?.reduce(
+    (accumulator, currentItem) => {
+      // Convert the strings to numbers before multiplication
+      const currentBidNumber = parseFloat(currentItem.currentBid);
+      const currentBuyNowNumber = parseFloat(currentItem.buyNowPrice);
+
+      // Calculate the bid and buy totals for the current item
+      const bidPrice = currentBidNumber * currentItem.weight;
+      const buyNowPrice = currentBuyNowNumber * currentItem.weight;
+
+      // Accumulate the totals for biddingTotal and buyingTotal
+      accumulator.biddingTotal += bidPrice;
+      accumulator.buyingTotal += buyNowPrice;
+
+      // Accumulate the weight
+      accumulator.weight += currentItem.weight;
+
+      return accumulator;
+    },
+    { biddingTotal: 0, buyingTotal: 0, weight: 0 } // Initial accumulator values
+  );
+
+  console.log(totals);
+
   /// img    slider
   const handleSubimgShow = subimgUrl => {
     setSubImgUrl(subimgUrl);
@@ -166,8 +192,19 @@ export default function ProductBidding({ data }) {
     setIsModalOpen(false);
   };
 
-  const [selectedLocation, setSelectedLocation] = useState("pangon");
-  const [selectedPriceType, setSelectedPriceType] = useState("container");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedPriceType, setSelectedPriceType] = useState("");
+  const [shippingCost, setShippingCost] = useState(null);
+
+  useEffect(() => {
+    if (selectedLocation in data?.ShippingCost) {
+      const price =
+        selectedPriceType === "container"
+          ? data?.ShippingCost[selectedLocation].containerPrice
+          : data?.ShippingCost[selectedLocation].bulkPrice || 0; // Default to 0 if bulk price is not available
+      setShippingCost(price);
+    }
+  }, [selectedLocation, selectedPriceType]);
 
   const handleLocationChange = e => {
     const newLocation = e.target.value;
@@ -177,18 +214,11 @@ export default function ProductBidding({ data }) {
     if (newLocation === "dhaka") {
       setSelectedPriceType("container");
     }
-    
   };
 
   const handlePriceTypeChange = e => {
     setSelectedPriceType(e.target.value);
   };
-
-
-
-
-
-
 
   ///place bid
   const handlePlcebid = e => {
@@ -202,12 +232,8 @@ export default function ProductBidding({ data }) {
       return alert("please waiting for admin approval");
     } else if (selectedItems.length === 0) {
       return alert("Please select items"), setBidError("Please select items");
-    } else if (selectedDate === "") {
-      return alert("Please select  date");
-    } else if (landingValue === "") {
-      return alert("Please select landing ");
-    } else if (shipmentTypeValue === "") {
-      return alert("Please select shipment type");
+    } else if (newPrice === totals?.biddingTotal) {
+      setBidError(`please  bidding minimum ${data?.minimumBid + "$"}`);
     }
 
     // Prepare the bid data for selected items
@@ -342,7 +368,7 @@ export default function ProductBidding({ data }) {
                     </p>
                   </div>
 
-                  <div className="p-4 mb-8 border border-gray-300 dark:border-gray-700">
+                  <div className="p-4 mb-8 border dark:border-gray-700">
                     <div className="flex   flex-col  flex-wrap items-start ">
                       <div className="flex  justify-between  text-lg  text-black    ">
                         <span className=" text-sm text-black  font-semibold  dark:text-black">
@@ -381,7 +407,7 @@ export default function ProductBidding({ data }) {
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 mb-8 border border-gray-300 dark:border-gray-700">
+                  <div className="p-4 mb-8 border dark:border-gray-700">
                     <div className="flex justify-start flex-col  items-start  text-xl text-left  ">
                       <div className=" text-left flex items-start flex-col lg:flex-row   text-black  my-2">
                         <h4 className="">This Auction Ends in : </h4>
@@ -538,67 +564,46 @@ export default function ProductBidding({ data }) {
                 <DatePicker
                   selected={selectedDate}
                   onChange={handleDateChange}
-                  className="border bordered border-black text-black bg-white border-gray-300  rounded px-2 py-1"
+                  className="border bordered border-black text-black bg-white  rounded px-2 py-1"
                 />
               </div>
 
-              <div className="text-left ">
-                <div className="my-1 text-left">
-                  <label
-                    htmlFor="location"
-                    className="text-left text-lg  text-black  text-black  "
-                  >
-                    Select Landing location
-                  </label>
-                  <select
-                    className="w-full  p-3 border text-black  text-xl  bordered border-black  bg-white "
-                    id="location"
-                    value={selectedLocation}
-                    onChange={handleLocationChange}
-                  >
-                    <option value="pangon">Pangon</option>
-                    <option value="mongla">Mongla</option>
-                    <option value="dhaka">Dhaka</option>
-                    <option value="chattogram">Chattogram</option>
-                  </select>
-                </div>
+              <div>
+                <label htmlFor="location">Select a location:</label>
+                <select
+                  id="location"
+                  value={selectedLocation}
+                  onChange={handleLocationChange}
+                >
+                  <option value="pangon">Pangon</option>
+                  <option value="mongla">Mongla</option>
+                  <option value="dhaka">Dhaka</option>
+                  <option value="chattogram">Chattogram</option>
+                </select>
+
                 <br />
 
-                <label
-                  className="text-left text-lg  text-black  text-black  "
-                  htmlFor="priceType"
-                >
-                  Select a price type:
-                </label>
+                <label htmlFor="priceType">Select a price type:</label>
                 <select
-                  className="w-full  p-3 border text-black  text-xl  bordered border-black  bg-white "
                   id="priceType"
                   value={selectedPriceType}
                   onChange={handlePriceTypeChange}
                   disabled={selectedLocation === "dhaka"}
                 >
-                  <option value="container">Container</option>
-                  <option value="bulk">Bulk</option>
+                  {selectedLocation === "dhaka" ? (
+                    <option value="container">Container</option>
+                  ) : (
+                    <>
+                      <option value="container">Container</option>
+                      <option value="bulk">Bulk</option>
+                    </>
+                  )}
                 </select>
 
                 <br />
 
-                <div className="mt-2 text-xl capitalize text-bold  text-black">
-                  <p>Shipping cost for {selectedLocation}</p>
-                  {selectedLocation === "dhaka" ? (
-                    <p>
-                      Container Price:{" "}
-                      {data?.ShippingCost?.[selectedLocation].containerPrice}
-                    </p>
-                  ) : (
-                    <p>
-                      {selectedPriceType === "container"
-                        ? `Container Price: ${data?.ShippingCost?.[selectedLocation].containerPrice}`
-                        : `Bulk Price: ${data?.ShippingCost?.[selectedLocation].bulkPrice}`}{" "}
-                      $
-                    </p>
-                  )}
-                </div>
+                <p>Shipping cost for {selectedLocation}:</p>
+                <p>Price: {shippingCost}</p>
               </div>
 
               <div className="mt-10">
@@ -615,13 +620,14 @@ export default function ProductBidding({ data }) {
                 {selectedItems.length !== 0 ? (
                   <div className="text-black text-left font-semibold">
                     Total item = {selectedItems.length}
-                    <p> Item price ={itemCurrentPrice.toFixed(2) + "$"}</p>
-                    <p> Shipping = {data?.ShippingCost + "$"}</p>
+                    <p>Total weight = {totals?.weight + "kg"}</p>
                     <p>
                       {" "}
-                      Total ={" "}
-                      {itemCurrentPrice + parseFloat(data?.ShippingCost) + "$"}
+                      Item price =
+                      {itemCurrentPrice.toFixed(2) / selectedItems.length + "$"}
+                      per kg
                     </p>
+                    <p> Total Bidding Price : {totals?.biddingTotal + "$"}</p>
                   </div>
                 ) : (
                   <div className="text-[red] capitalize text-md font-semibold">
@@ -638,7 +644,7 @@ export default function ProductBidding({ data }) {
                 >
                   <div className="  w-full  ">
                     <input
-                      min={itemCurrentPrice + parseFloat(data?.ShippingCost)}
+                      min={totals?.biddingTotal}
                       value={newPrice}
                       onChange={handlePriceChange}
                       type="number"
@@ -655,6 +661,8 @@ export default function ProductBidding({ data }) {
                     Place Bid
                   </button>
                 </form>
+
+                <p className="text-xl font-bold my-3 text-left"> Total Buy Price : {totals?.buyingTotal + "$"}</p>
 
                 <div className="flex  items-center lg:flex-row flex-col  justify-between ">
                   <div className="w-full">
