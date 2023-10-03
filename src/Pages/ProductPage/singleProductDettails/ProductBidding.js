@@ -140,6 +140,56 @@ export default function ProductBidding({ data }) {
     }
   }, [data._id]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    if (selectedItems.length === 0 || selectedItems.length < 0) {
+      return alert("Please select items");
+    } else if (!currentUser || !user) {
+      return navigate("/login");
+    } else if (user?.emailVerified === "false") {
+      return alert("Please  check your email and noreply! and verify email");
+    } else if (currentUser?.role !== "bidder") {
+      return alert("please waiting for admin approval");
+    } else if (selectedDate === "") {
+      return alert("Please select  date");
+    } else if (landingValue === "") {
+      return alert("Please select landing ");
+    } else if (shipmentTypeValue === "") {
+      return alert("Please select shipment type");
+    }
+
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const [selectedLocation, setSelectedLocation] = useState("pangon");
+  const [selectedPriceType, setSelectedPriceType] = useState("container");
+
+  const handleLocationChange = e => {
+    const newLocation = e.target.value;
+    setSelectedLocation(newLocation);
+
+    // If Dhaka is selected, reset the price type to "container"
+    if (newLocation === "dhaka") {
+      setSelectedPriceType("container");
+    }
+    
+  };
+
+  const handlePriceTypeChange = e => {
+    setSelectedPriceType(e.target.value);
+  };
+
+
+
+
+
+
+
   ///place bid
   const handlePlcebid = e => {
     e.preventDefault();
@@ -184,6 +234,19 @@ export default function ProductBidding({ data }) {
       bidderNumber: currentUser?.phoneNumber
     };
 
+    const bids = {
+      bids: selectedItems,
+      productName: data?.name,
+      productID: data?._id,
+      productPhoto: data?.mainImage,
+      bidAmount: newPrice,
+      bidderName: currentUser?.name,
+      bidderEmail: currentUser?.email,
+      bidderId: currentUser?._id,
+      bidderPhoto: currentUser?.userPhoto,
+      bidderNumber: currentUser?.phoneNumber
+    };
+
     fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/koyel/bids`, {
       method: "POST",
       headers: {
@@ -205,51 +268,6 @@ export default function ProductBidding({ data }) {
       });
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    if (selectedItems.length === 0 || selectedItems.length < 0) {
-      return alert("Please select items");
-    } else if (!currentUser || !user) {
-      return navigate("/login");
-    } else if (user?.emailVerified === "false") {
-      return alert("Please  check your email and noreply! and verify email");
-    } else if (currentUser?.role !== "bidder") {
-      return alert("please waiting for admin approval");
-    } else if (selectedDate === "") {
-      return alert("Please select  date");
-    } else if (landingValue === "") {
-      return alert("Please select landing ");
-    } else if (shipmentTypeValue === "") {
-      return alert("Please select shipment type");
-    }
-
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  console.log(data);
-  
-
-const [selectedLocation, setSelectedLocation] = useState("pangon");
-const [selectedPriceType, setSelectedPriceType] = useState("container");
-
-const handleLocationChange = e => {
-   const newLocation = e.target.value;
-   setSelectedLocation(newLocation);
-
-   // If Dhaka is selected, reset the price type to "container"
-   if (newLocation === "dhaka") {
-     setSelectedPriceType("container");
-   }
-};
-
-const handlePriceTypeChange = e => {
-  setSelectedPriceType(e.target.value);
-};
   return (
     <div className="  px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <section className=" overflow-hidden bg-white font-poppins dark:bg-white">
@@ -576,7 +594,8 @@ const handlePriceTypeChange = e => {
                     <p>
                       {selectedPriceType === "container"
                         ? `Container Price: ${data?.ShippingCost?.[selectedLocation].containerPrice}`
-                        : `Bulk Price: ${data?.ShippingCost?.[selectedLocation].bulkPrice}`} $
+                        : `Bulk Price: ${data?.ShippingCost?.[selectedLocation].bulkPrice}`}{" "}
+                      $
                     </p>
                   )}
                 </div>
