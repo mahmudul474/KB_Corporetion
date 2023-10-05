@@ -3,6 +3,7 @@ import React from "react";
 export default function SingelProductActionHistory({ bids }) {
   const reversedBids = bids ? [...bids].reverse() : [];
 
+  console.log(reversedBids);
   return (
     <div className="my-10   ">
       <div className=" overflow-x-auto shadow-md sm:rounded-lg">
@@ -23,11 +24,13 @@ export default function SingelProductActionHistory({ bids }) {
               <table className="table table-xs table-pin-rows ">
                 <thead>
                   <tr className="bg-white">
-                   
                     <td className="text-black bg-white">Bider</td>
                     <td className="text-black bg-white">Product</td>
                     <td className="text-black bg-white">Product Name</td>
+                    <td className="text-black bg-white">Per Kg price</td>
                     <td className="text-black bg-white">Total Item</td>
+                    <td className="text-black bg-white">Weight</td>
+
                     <td className="text-black bg-white">Bidding Price</td>
                     <td className="text-black bg-white">item</td>
                   </tr>
@@ -62,38 +65,85 @@ export default function SingelProductActionHistory({ bids }) {
                       <td className="text-black bg-white">
                         {bid?.productName}
                       </td>
+                      <td className="text-black bg-white">{bid.perkgPrice}</td>
                       <td className="text-black bg-white">
-                        {bid.item?.length}
+                        {bid.items?.length}
+                      </td>
+                      <td className="text-black bg-white">
+                        {bid.weight && bid.weight}
                       </td>
                       <td className="text-black bg-white">{bid.bidAmount}$</td>
                       <td>
-                        <div className="dropdown dropdown-hover">
-                          <label tabIndex={0} className=" bg-white m-1">
-                            <details>
-                              <summary className="text-black">Items</summary>
-                            </details>
-                          </label>
-                          <table
-                            tabIndex={0}
-                            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-                          >
-                            <thead className="bg-white">
-                              <tr className="bg-white">
-                                <td className="text-black bg-white">item</td>
-                                <td className="text-black bg-white">spec</td>
-                              </tr>{" "}
-                            </thead>
-                            {bid?.item?.reverse().map(i => (
-                              <tr className="bg-white">
-                                <td className="text-black bg-white">
-                                  {i?.koyel?.item}
-                                </td>
-                                <td className="text-black bg-white">
-                                  {i?.koyel?.spec}
-                                </td>
-                              </tr>
-                            ))}
-                          </table>
+                        <a href="#bidding_items" className="btn">
+                          vieW  Items
+                        </a>
+
+                        <div className="modal" id="bidding_items">
+                          <div className="modal-box">
+                            <div className="overflow-x-auto">
+                              <table className="table">
+                                <thead className="bg-white">
+                                  <tr className="bg-white">
+                                    <td className="text-black bg-white">
+                                      item
+                                    </td>
+                                    <td className="text-black bg-white">
+                                      spec
+                                    </td>
+                                    <td className="text-black bg-white">
+                                      THICKNESS
+                                    </td>
+                                    <td className="text-black bg-white">
+                                      WIDTH
+                                    </td>
+                                    <td className="text-black bg-white">
+                                      WEIGHT
+                                    </td>
+                                    <td className="text-black bg-white">TS</td>
+                                    <td className="text-black bg-white">YP</td>
+                                    <td className="text-black bg-white">EL</td>
+                                  </tr>{" "}
+                                </thead>
+                                <tbody>
+                                  {/* row 1 */}
+
+                                  {bid?.items?.reverse().map(i => (
+                                    <tr className="bg-white">
+                                      <td className="text-black bg-white">
+                                        {i?.item}
+                                      </td>
+                                      <td className="text-black bg-white">
+                                        {i?.spec}
+                                      </td>
+                                      <td className="text-black bg-white">
+                                        {i?.Thickness}
+                                      </td>
+                                      <td className="text-black bg-white">
+                                        {i?.Width}
+                                      </td>
+                                      <td className="text-black bg-white">
+                                        {i?.weight + "kg"}
+                                      </td>
+                                      <td className="text-black bg-white">
+                                        {i?.TS}
+                                      </td>
+                                      <td className="text-black bg-white">
+                                        {i?.YP}
+                                      </td>
+                                      <td className="text-black bg-white">
+                                        {i?.EL}
+                                      </td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                            <div className="modal-action">
+                              <a href="#" className="btn">
+                                 close 
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </td>
                     </tr>

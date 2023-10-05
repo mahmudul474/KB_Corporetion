@@ -93,7 +93,7 @@ export default function Koyel({ koyel, selectedItems, setSelectedItems }) {
               <td className="text-black">{skoyel?.TS}</td>
               <td className="text-black">{skoyel?.YP}</td>
               <td className="text-black">{skoyel?.EL}</td>
-              <td className="text-black">{skoyel?.currentBid + "$"}</td>
+              <td className="text-black">{skoyel?.startBiddingPrice + "$"}</td>
               <td className=" text-black ">
                 {skoyel.bids && skoyel.bids.length === 0
                   ? skoyel?.currentBid + "$"

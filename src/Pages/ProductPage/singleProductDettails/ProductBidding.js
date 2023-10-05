@@ -9,15 +9,17 @@ import Koyel from "../../../Shared/ProductDettailsCard/SingelProductDettailsCard
 import BuyNow from "../../../Shared/ProductDettailsCard/SingelProductDettailsCard/BuyNowKoyelItem/BuyNow";
 import SingelProductActionHistory from "../../../Shared/ProductDettailsCard/SingelProductDettailsCard/SingelProductActionHistory";
 import { useTranslation } from "../../../Component/TranslationProvider/TranslationProvider";
+import ButtonSpiner from "../../../Component/ButtonSpiner/ButtonSpiner";
 
 export default function ProductBidding({ data }) {
   const { currentUser, user } = useContext(AuthContext);
   const { translate } = useTranslation();
-
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
-  const [landingValue, setLandingValue] = useState(""); // State for landing select
-  const [shipmentTypeValue, setShipmentTypeValue] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedPriceType, setSelectedPriceType] = useState("");
+  const [shippingCost, setShippingCost] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
 
   const handleDateChange = date => {
     setSelectedDate(date);
@@ -44,31 +46,6 @@ export default function ProductBidding({ data }) {
     (accumulator, currentValue) => accumulator + Number(currentValue),
     0
   );
-
-
-  const totals = selectedItems?.reduce(
-    (accumulator, currentItem) => {
-      // Convert the strings to numbers before multiplication
-      const currentBidNumber = parseFloat(currentItem.currentBid);
-      const currentBuyNowNumber = parseFloat(currentItem.buyNowPrice);
-
-      // Calculate the bid and buy totals for the current item
-      const bidPrice = currentBidNumber * currentItem.weight;
-      const buyNowPrice = currentBuyNowNumber * currentItem.weight;
-
-      // Accumulate the totals for biddingTotal and buyingTotal
-      accumulator.biddingTotal += bidPrice;
-      accumulator.buyingTotal += buyNowPrice;
-
-      // Accumulate the weight
-      accumulator.weight += currentItem.weight;
-
-      return accumulator;
-    },
-    { biddingTotal: 0, buyingTotal: 0, weight: 0 } // Initial accumulator values
-  );
-
-  console.log(totals);
 
   /// img    slider
   const handleSubimgShow = subimgUrl => {
@@ -112,21 +89,6 @@ export default function ProductBidding({ data }) {
       clearInterval(interval);
     };
   }, [data.endBiddingTime]);
-  const isBiddingClosed = remainingTime === "Bidding Close";
-
-  const isBiddingStartSoon = startTime => {
-    const currentTime = new Date().getTime();
-    const startTimeValue = new Date(startTime).getTime();
-
-    return currentTime < startTimeValue;
-  };
-
-  const isBiddingEnd = endTime => {
-    const currentTime = new Date().getTime();
-    const endTimeValue = new Date(endTime).getTime();
-
-    return currentTime > endTimeValue;
-  };
 
   const formatDateTime = dateTimeString => {
     const options = {
@@ -192,9 +154,7 @@ export default function ProductBidding({ data }) {
     setIsModalOpen(false);
   };
 
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedPriceType, setSelectedPriceType] = useState("");
-  const [shippingCost, setShippingCost] = useState(null);
+  ////shopping cost
 
   useEffect(() => {
     if (selectedLocation in data?.ShippingCost) {
@@ -220,6 +180,30 @@ export default function ProductBidding({ data }) {
     setSelectedPriceType(e.target.value);
   };
 
+  ///totals  wit price and bid
+  const totals = selectedItems?.reduce(
+    (accumulator, currentItem) => {
+      // Convert the strings to numbers before multiplication
+      const currentBidNumber = parseFloat(
+        itemCurrentPrice
+          ? itemCurrentPrice.toFixed(2) / selectedItems.length
+          : currentItem.currentBid
+      );
+      const currentBuyNowNumber = parseFloat(currentItem.buyNowPrice);
+      // Calculate the bid and buy totals for the current item
+      const bidPrice = currentBidNumber * currentItem.weight;
+      const buyNowPrice = currentBuyNowNumber * currentItem.weight;
+      // Accumulate the totals for biddingTotal and buyingTotal
+      accumulator.biddingTotal += bidPrice;
+      accumulator.buyingTotal += buyNowPrice;
+      // Accumulate the weight
+      accumulator.weight += currentItem.weight;
+
+      return accumulator;
+    },
+    { biddingTotal: 0, buyingTotal: 0, weight: 0 } // Initial accumulator values
+  );
+
   ///place bid
   const handlePlcebid = e => {
     e.preventDefault();
@@ -233,14 +217,27 @@ export default function ProductBidding({ data }) {
     } else if (selectedItems.length === 0) {
       return alert("Please select items"), setBidError("Please select items");
     } else if (newPrice === totals?.biddingTotal) {
-      setBidError(`please  bidding minimum ${data?.minimumBid + "$"}`);
+      return setBidError(`please  bidding minimum ${data?.minimumBid + "$"}`);
+    } else if (newPrice < totals?.biddingTotal) {
+      return setBidError(
+        `you can not bidding less than${totals?.biddingTotal + "$"}`
+      );
+    } else if (selectedDate === null) {
+      setBidError("please select expected date");
+      return toast.error("please select expected date");
+    } else if (selectedLocation === "") {
+      setBidError("please select   landing ");
+      return toast.error("please select   landing");
+    } else if (selectedPriceType === "") {
+      setBidError("please select   shipment type ");
+      return toast.error("please select   shipment type");
     }
-
+    setIsloading(true);
     // Prepare the bid data for selected items
     const koyelBids = selectedItems.map(item => ({
       koyelId: item._id,
       koyel: item,
-      bidAmount: newPrice / selectedItems?.length,
+      bidAmount: newPrice / totals?.weight,
       bidderName: currentUser?.name,
       bidderEmail: currentUser?.email,
       bidderId: currentUser?._id,
@@ -248,48 +245,46 @@ export default function ProductBidding({ data }) {
       bidderNumber: currentUser?.phoneNumber
     }));
 
-    const bidder = {
+    const createBids = {
+      items: selectedItems,
       productName: data?.name,
       productID: data?._id,
       productPhoto: data?.mainImage,
       bidAmount: newPrice,
+      weight: totals?.weight,
+      biddingTotal: totals?.biddingTotal,
+      buyNowPrice: totals?.buyingTotal,
+      perkgPrice: newPrice / totals?.weight,
       bidderName: currentUser?.name,
       bidderEmail: currentUser?.email,
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
-      bidderNumber: currentUser?.phoneNumber
+      bidderNumber: currentUser?.phoneNumber,
+      shipping: {
+        landing: selectedLocation,
+        shippingType: selectedPriceType,
+        shippingCost: shippingCost
+      }
     };
 
-    const bids = {
-      bids: selectedItems,
-      productName: data?.name,
-      productID: data?._id,
-      productPhoto: data?.mainImage,
-      bidAmount: newPrice,
-      bidderName: currentUser?.name,
-      bidderEmail: currentUser?.email,
-      bidderId: currentUser?._id,
-      bidderPhoto: currentUser?.userPhoto,
-      bidderNumber: currentUser?.phoneNumber
-    };
-
-    fetch(`${process.env.REACT_APP_API_URL}/products/${data._id}/koyel/bids`, {
+    fetch(`http://localhost:5000/product/${data?._id}/bid/v1`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ koyelBids, bidder })
+      body: JSON.stringify({ koyelBids, createBids })
     })
       .then(response => response.json())
       .then(data => {
-        console.log("Bid placed successfully", data);
         if (data.message) {
           toast.success(data.message);
           window.location.reload(true);
           setNewPrice("");
+          setIsloading(false);
         } else {
           toast.error(data.error);
           setBidError(data.error);
+          setIsloading(false);
         }
       });
   };
@@ -392,17 +387,6 @@ export default function ProductBidding({ data }) {
                         </span>
                         <span className=" text-sm text-black  font-semibold  dark:text-black">
                           {data?.minimumBid + " $"}
-                        </span>
-                      </div>
-                      <div className="flex  justify-between items-center   text-lg  text-black    ">
-                        <span className=" text-sm text-black  font-semibold  dark:text-black">
-                          Current bidding Price:
-                        </span>
-
-                        <span className=" text-sm text-black  font-semibold  dark:text-black">
-                          {data.bids &&
-                            data.bids.length > 0 &&
-                            data.bids[data.bids.length - 1].amount + "$"}
                         </span>
                       </div>
                     </div>
@@ -559,32 +543,50 @@ export default function ProductBidding({ data }) {
 
           <div className="w-full p-2">
             <div className="w-full bg-white my-3">
-              <div className="flex items-center ">
-                <label className="mr-2 text-black">Expected Date</label>
+              <div className="flex w-full  flex-col ">
+                <label className="text-left text-lg text-black ">
+                  Expected Date
+                </label>
                 <DatePicker
                   selected={selectedDate}
                   onChange={handleDateChange}
-                  className="border bordered border-black text-black bg-white  rounded px-2 py-1"
+                  className="border bordered border-black w-full text-black bg-white  rounded  py-1"
                 />
               </div>
 
-              <div>
-                <label htmlFor="location">Select a location:</label>
+              <div className="w-full  text-left ">
+                <label
+                  htmlFor="location"
+                  className="text-left text-black text-lg "
+                >
+                  Select Shipping location
+                </label>
                 <select
+                  required
+                  className="w-full  border p-2 border-black text-black "
                   id="location"
                   value={selectedLocation}
                   onChange={handleLocationChange}
                 >
+                  <option disabled value="">
+                    {" "}
+                    select here{" "}
+                  </option>
                   <option value="pangon">Pangon</option>
                   <option value="mongla">Mongla</option>
                   <option value="dhaka">Dhaka</option>
                   <option value="chattogram">Chattogram</option>
                 </select>
-
                 <br />
-
-                <label htmlFor="priceType">Select a price type:</label>
+                <label
+                  className="text-left text-black text-lg "
+                  htmlFor="priceType"
+                >
+                  Select shipment type
+                </label>
                 <select
+                  required
+                  className="w-full  border p-2 border-black text-black "
                   id="priceType"
                   value={selectedPriceType}
                   onChange={handlePriceTypeChange}
@@ -594,16 +596,25 @@ export default function ProductBidding({ data }) {
                     <option value="container">Container</option>
                   ) : (
                     <>
+                      <option value="" disabled>
+                        select here{" "}
+                      </option>
                       <option value="container">Container</option>
                       <option value="bulk">Bulk</option>
                     </>
                   )}
                 </select>
-
                 <br />
-
-                <p>Shipping cost for {selectedLocation}:</p>
-                <p>Price: {shippingCost}</p>
+                {selectedLocation && (
+                  <p className=" text-xl text-black ">
+                    Shipping cost for {selectedLocation}
+                  </p>
+                )}
+                {shippingCost && (
+                  <p className=" text-xl text-black ">
+                    Price: {shippingCost + "$"}
+                  </p>
+                )}
               </div>
 
               <div className="mt-10">
@@ -655,14 +666,21 @@ export default function ProductBidding({ data }) {
                     />
                   </div>
 
-                  <button
-                    className={`w-[60%] text-black border-black   items-center  py-2.5 px-3   text-sm font-medium   rounded-lg border  `}
-                  >
-                    Place Bid
-                  </button>
+                  {isLoading ? (
+                    <ButtonSpiner data={"processing"}></ButtonSpiner>
+                  ) : (
+                    <button
+                      className={`w-[60%] text-black border-black   items-center  py-2.5 px-3   text-sm font-medium   rounded-lg border  `}
+                    >
+                      Place Bid
+                    </button>
+                  )}
                 </form>
 
-                <p className="text-xl font-bold my-3 text-left"> Total Buy Price : {totals?.buyingTotal + "$"}</p>
+                <p className="text-xl font-bold my-3 text-left">
+                  {" "}
+                  Total Buy Price : {totals?.buyingTotal + "$"}
+                </p>
 
                 <div className="flex  items-center lg:flex-row flex-col  justify-between ">
                   <div className="w-full">

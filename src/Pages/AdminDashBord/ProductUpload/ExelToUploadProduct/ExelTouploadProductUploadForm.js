@@ -207,7 +207,8 @@ const ExelTouploadProductUploadForm = () => {
         EL: row[7],
         buyNowPrice,
         minimumBid: minimumBid,
-        currentBid: minimumBid,
+        currentBid: startBiddingPrice,
+        startBiddingPrice: startBiddingPrice,
         bids: []
       }));
 
@@ -216,10 +217,9 @@ const ExelTouploadProductUploadForm = () => {
   };
 
   const handleSaveProduct = (mainImageUrl, subImageUrls, pdfUrl) => {
-
- if (category === "") {
-   return alert("Please select a category");
- }
+    if (category === "") {
+      return alert("Please select a category");
+    }
 
     const productInfo = {
       name,
@@ -237,6 +237,7 @@ const ExelTouploadProductUploadForm = () => {
       koyel: formData,
       key: "koyel",
       bids: [],
+      winners: [],
       buyNowPrice,
       ShippingCost: shoppingCost,
       category
