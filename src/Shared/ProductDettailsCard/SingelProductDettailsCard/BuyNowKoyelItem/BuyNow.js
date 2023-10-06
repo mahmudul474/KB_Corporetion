@@ -5,29 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { Tab } from '@headlessui/react'
 import coomingsoon from "./cooming.gif"
 
-export default function BuyNow({ id, data, close, shippingCost ,landing,expectedDate,shipmentType}) {
-  const sumBuyNowPrice = data.reduce((total, item) => {
-    const buyNowPrice = parseInt(item.buyNowPrice);
-    if (!isNaN(buyNowPrice)) {
-      return total + buyNowPrice;
-    }
-    return total;
-  }, 0);
+export default function BuyNow({
+  id,
+  data,
+  close,
+  shipmentType,
+  expectedDate,
+  landing,
+  shippingCost
+}) {
+ 
 
-  console.log(id, "this is id use");
-
-  ////when   multyple tone
-
-  //  const totalPriceByWidth = data.reduce((total, item) => {
-  //    const buyNowPrice = parseInt(item.buyNowPrice);
-  //    const width = item.Width;
-  //    if (!isNaN(buyNowPrice) && !isNaN(width)) {
-  //      return total + buyNowPrice * width;
-  //    }
-  //    return total;
-  //  }, 0);
-
-  //  console.log(totalPriceByWidth);
 
   const { currentUser } = useContext(AuthContext);
   const [bankSleep, setBanSleep] = useState(null);
@@ -85,7 +73,9 @@ export default function BuyNow({ id, data, close, shippingCost ,landing,expected
       productId: data?._id,
       productName: data?.name,
       productImg: data?.mainImage,
-      landing,expectedDate,shipmentType
+      landing,
+      expectedDate,
+      shipmentType
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/product/koyel-item/order/${id}`, {
@@ -154,7 +144,7 @@ export default function BuyNow({ id, data, close, shippingCost ,landing,expected
                 <h2 className="text-lg text-black my-2">Payment</h2>
                 <div className="mb-2 w-full  flex justify-center items-center">
                   <p className="text-black">
-                    SubTotal = {sumBuyNowPrice + shippingCost + "$"}
+                    SubTotal = 
                   </p>
                 </div>
                 <Tab.Group manual>
@@ -181,16 +171,16 @@ export default function BuyNow({ id, data, close, shippingCost ,landing,expected
                       <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 w-full">
                         <div className="mb-2 w-full  flex justify-between">
                           <p className="text-black">Price = </p>
-                          <p className="text-black">{sumBuyNowPrice + "$"}</p>
+                          <p className="text-black"></p>
                         </div>
                         <div className="mb-2 w-full  flex justify-between">
                           <p className="text-black">Shipping = </p>
-                          <p className="text-black">{shippingCost + "$"}</p>
+                          <p className="text-black"></p>
                         </div>
                         <div className="mb-2 w-full  flex justify-between">
                           <p className="text-black">SubTotal = </p>
                           <p className="text-black">
-                            {sumBuyNowPrice + shippingCost + "$"}
+                            
                           </p>
                         </div>
 
@@ -242,7 +232,7 @@ export default function BuyNow({ id, data, close, shippingCost ,landing,expected
                               onChange={e => setAmount(e.target.value)}
                               className="bg-white   shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                               id="amount"
-                              min={data?.buyNowPrice}
+                              min=""
                               type="text"
                               placeholder="Enter Amount"
                             />

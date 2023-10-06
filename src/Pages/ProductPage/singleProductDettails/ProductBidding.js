@@ -20,6 +20,7 @@ export default function ProductBidding({ data }) {
   const [selectedPriceType, setSelectedPriceType] = useState("");
   const [shippingCost, setShippingCost] = useState(null);
   const [isLoading, setIsloading] = useState(false);
+   
 
   const handleDateChange = date => {
     setSelectedDate(date);
@@ -140,10 +141,10 @@ export default function ProductBidding({ data }) {
     } else if (currentUser?.role !== "bidder") {
       return alert("please waiting for admin approval");
     } else if (selectedDate === "") {
-      return alert("Please select  date");
-    } else if (landingValue === "") {
-      return alert("Please select landing ");
-    } else if (shipmentTypeValue === "") {
+      return alert("Please select  Expected Date");
+    } else if (selectedLocation === "") {
+      return alert("Please Select Shipping location ");
+    } else if (selectedPriceType === "") {
       return alert("Please select shipment type");
     }
 
@@ -278,13 +279,13 @@ export default function ProductBidding({ data }) {
       .then(data => {
         if (data.message) {
           toast.success(data.message);
-          window.location.reload(true);
-          setNewPrice("");
           setIsloading(false);
+          setNewPrice("");
+          navigate("/my-dashboard/my-bids");
         } else {
+          setIsloading(false);
           toast.error(data.error);
           setBidError(data.error);
-          setIsloading(false);
         }
       });
   };
@@ -329,7 +330,7 @@ export default function ProductBidding({ data }) {
                       {data.name}
                     </h2>
                     <h2 className="     text-md font-bold text-black  text-left">
-                      {translate("navbar", "cr")} Type : {data?.category}
+                      Type : {data?.category}
                     </h2>
                     <p className="  mb-4 text-gray-700 text-left  ">
                       {data?.description?.slice(0, 100)}
@@ -353,7 +354,7 @@ export default function ProductBidding({ data }) {
                           <div className="modal-action">
                             <label
                               htmlFor="productDesc"
-                              className="btn bg-[#719f18]   hover:bg-[#73471b]"
+                              className="btn  bg-transparent border border-black "
                             >
                               Close!
                             </label>
@@ -698,12 +699,12 @@ export default function ProductBidding({ data }) {
         </div>
         {isModalOpen && (
           <BuyNow
-            shipmentType={shipmentTypeValue}
+            shipmentType={selectedPriceType}
             expectedDate={selectedDate}
-            landing={landingValue}
+            landing={selectedLocation}
             close={closeModal}
             id={data?._id}
-            shippingCost={parseFloat(data?.ShippingCost)}
+            shippingCost={shippingCost}
             data={selectedItems}
           ></BuyNow>
         )}
