@@ -12,7 +12,7 @@ function LanguageSwitcher() {
 
   return (
     <>
-      <div className="mr-[20px]   w-14 h-14">
+      <div className="mr-[10px]   w-14 h-14">
         <img
           onClick={() => handleLanguageChange("en")}
           src={koreaFlag}

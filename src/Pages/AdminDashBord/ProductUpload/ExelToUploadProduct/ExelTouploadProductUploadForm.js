@@ -240,7 +240,8 @@ const ExelTouploadProductUploadForm = () => {
       winners: [],
       buyNowPrice,
       ShippingCost: shoppingCost,
-      category
+      category,
+      emailsSent: false
       // winners: []
     };
 

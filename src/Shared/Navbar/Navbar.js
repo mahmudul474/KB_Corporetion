@@ -38,7 +38,7 @@ const Navbar = () => {
         <li>
           <p
             title="Our product"
-            className=" tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className=" tracking-wide  font-bold text-md transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
             {translate("navbar", "home")}
           </p>
@@ -48,7 +48,7 @@ const Navbar = () => {
         <li>
           <p
             title="Our product"
-            className=" tracking-wide text-xl  font-bold  transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className=" tracking-wide text-md  font-bold  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
             {translate("navbar", "company")}
           </p>
@@ -58,7 +58,7 @@ const Navbar = () => {
         <li>
           <p
             title="Our product"
-            className=" tracking-wide  font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className=" tracking-wide  font-bold  text-md  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
             {translate("navbar", "cr")}
           </p>
@@ -68,7 +68,7 @@ const Navbar = () => {
         <li>
           <p
             title="Our product"
-            className=" tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className=" tracking-wide font-bold  text-md  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
             {translate("navbar", "gi")}
           </p>
@@ -78,7 +78,7 @@ const Navbar = () => {
         <li>
           <p
             title="Our product"
-            className="tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className="tracking-wide font-bold  text-md  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
             {translate("navbar", "po")}
           </p>
@@ -88,7 +88,7 @@ const Navbar = () => {
         <li>
           <p
             title="Our product"
-            className=" tracking-wide font-bold  text-xl  transition-colors duration-200 hover:text-deep-purple-accent-400"
+            className=" tracking-wide font-bold  text-md  transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
             {translate("navbar", "event")}
           </p>
@@ -102,7 +102,7 @@ const Navbar = () => {
                 <Link to="/my-dashboard">
                   <li
                     onClick={() => setIsProflieOpen(false)}
-                    className="block px-4 text-xl   font-bold  text-gray-700"
+                    className="block px-4 text-md   font-bold  text-gray-700"
                     role="menuitem"
                     tabindex="-1"
                     id="user-menu-item-0"
@@ -116,7 +116,7 @@ const Navbar = () => {
               <Link to="/admin-dashboard">
                 <li
                   onClick={() => setIsProflieOpen(false)}
-                  className="block px-4 font-bold  text-xl text-gray-700"
+                  className="block px-4 font-bold  text-md text-gray-700"
                   role="menuitem"
                   tabindex="-1"
                   id="user-menu-item-0"
@@ -129,7 +129,7 @@ const Navbar = () => {
           </div>
 
           <li
-            className="block text-xl  text-gray-700"
+            className="block text-md  text-gray-700"
             role="menuitem"
             tabindex="-1"
             id="user-menu-item-0"
@@ -147,13 +147,13 @@ const Navbar = () => {
               >
                 <Link to="/my-dashboard">
                   <li>
-                    <a className="justify-between   font-bold text-xl">
+                    <a className="justify-between   font-bold text-md">
                       {translate("navbar", "profile")}
                     </a>
                   </li>
                 </Link>
                 <li onClick={handleLogOut}>
-                  <a className="text-red-500 font-bold text-xl">
+                  <a className="text-red-500 font-bold text-md">
                     {" "}
                     {translate("navbar", "logout")}
                   </a>
@@ -168,9 +168,9 @@ const Navbar = () => {
             <li onClick={() => setIsMenuOpen(false)}>
               <p
                 title="Our product"
-                className=" tracking-wide  font-bold text-xl transition-colors duration-200 hover:text-deep-purple-accent-400"
+                className=" tracking-wide  font-bold text-md transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
-                   {translate("navbar", "login")}
+                {translate("navbar", "login")}
               </p>
             </li>
           </Link>
@@ -185,7 +185,7 @@ const Navbar = () => {
   return (
     <div className="border  bg-slate-50 border-bottom    text-black ">
       {" "}
-      <div className="px-4 py-5  m-auto  md:px-24 lg:px-8">
+      <div className="px-4 py-5  m-auto   ">
         <div className="relative flex items-center justify-between">
           <a
             href="/"
@@ -193,17 +193,15 @@ const Navbar = () => {
             title="Company"
             className="inline-flex   justify-center  items-center "
           >
-            <img className=" h-[30px] md:h-[35px] lg:h-[60px]" src={logo} />
-            <p className="lg:text-[40px]  lg:font-[bold] md:text-[30px] text-[18px]">
-              Dong Heng <span className="text-[#008ece]">S&T</span>
-            </p>
+            <img className="" src={logo} />
+          
           </a>
-          <ul className="flex items-center md:flex hidden space-x-8 lg:flex">
+          <ul className="flex items-center  hidden space-x-4 lg:flex">
             {navitem}
           </ul>
-          <div className="lg:hidden flex flex-row space-x-3 md:hidden">
+          <div className="lg:hidden flex flex-row space-x-3 ">
             <>
-            <LanguageSwitcher></LanguageSwitcher>
+              <LanguageSwitcher></LanguageSwitcher>
             </>
 
             <button

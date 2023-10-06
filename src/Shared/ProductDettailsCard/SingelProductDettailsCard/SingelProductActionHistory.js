@@ -65,17 +65,21 @@ export default function SingelProductActionHistory({ bids }) {
                       <td className="text-black bg-white">
                         {bid?.productName}
                       </td>
-                      <td className="text-black bg-white">{bid.perkgPrice}</td>
+                      <td className="text-black bg-white">
+                        {bid.perkgPrice?.toFixed(2) + "$"}
+                      </td>
                       <td className="text-black bg-white">
                         {bid.items?.length}
                       </td>
                       <td className="text-black bg-white">
-                        {bid.weight && bid.weight}
+                        {bid.weight && bid.weight + "kg"}
                       </td>
-                      <td className="text-black bg-white">{bid.bidAmount}$</td>
+                      <td className="text-black bg-white">
+                        {bid.bidAmount?.toFixed(2) + "$"}
+                      </td>
                       <td>
                         <a href="#bidding_items" className="btn">
-                          vieW  Items
+                          vieW Items
                         </a>
 
                         <div className="modal" id="bidding_items">
@@ -140,7 +144,7 @@ export default function SingelProductActionHistory({ bids }) {
                             </div>
                             <div className="modal-action">
                               <a href="#" className="btn">
-                                 close 
+                                close
                               </a>
                             </div>
                           </div>

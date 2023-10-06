@@ -13,6 +13,7 @@ import ButtonSpiner from "../../../Component/ButtonSpiner/ButtonSpiner";
 
 export default function ProductBidding({ data }) {
   const { currentUser, user } = useContext(AuthContext);
+  console.log(currentUser,"s");
   const { translate } = useTranslation();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
@@ -243,7 +244,14 @@ export default function ProductBidding({ data }) {
       bidderEmail: currentUser?.email,
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
-      bidderNumber: currentUser?.phoneNumber
+      bidderNumber: currentUser?.phoneNumber,
+      businessName: currentUser?.businessName,
+      businessAddress: currentUser?.businessAddress,
+         shipping: {
+        landing: selectedLocation,
+        shippingType: selectedPriceType,
+        shippingCost: shippingCost
+      }
     }));
 
     const createBids = {
@@ -261,6 +269,8 @@ export default function ProductBidding({ data }) {
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
+       businessName: currentUser?.businessName,
+      businessAddress: currentUser?.businessAddress,
       shipping: {
         landing: selectedLocation,
         shippingType: selectedPriceType,
