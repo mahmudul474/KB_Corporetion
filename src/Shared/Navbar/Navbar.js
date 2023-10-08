@@ -193,12 +193,9 @@ const Navbar = () => {
             title="Company"
             className="inline-flex   justify-center  items-center "
           >
-            <img className="" src={logo} />
-          
+            <img className="h-[70px]" src={logo} />
           </a>
-          <ul className="flex items-center  hidden space-x-4 lg:flex">
-            {navitem}
-          </ul>
+          <ul className=" items-center  hidden space-x-4 lg:flex">{navitem}</ul>
           <div className="lg:hidden flex flex-row space-x-3 ">
             <>
               <LanguageSwitcher></LanguageSwitcher>

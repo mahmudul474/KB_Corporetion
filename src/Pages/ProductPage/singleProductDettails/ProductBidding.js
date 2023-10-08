@@ -224,16 +224,7 @@ export default function ProductBidding({ data }) {
       return setBidError(
         `you can not bidding less than${totals?.biddingTotal + "$"}`
       );
-    } else if (selectedDate === null) {
-      setBidError("please select expected date");
-      return toast.error("please select expected date");
-    } else if (selectedLocation === "") {
-      setBidError("please select   landing ");
-      return toast.error("please select   landing");
-    } else if (selectedPriceType === "") {
-      setBidError("please select   shipment type ");
-      return toast.error("please select   shipment type");
-    }
+    } 
     setIsloading(true);
     // Prepare the bid data for selected items
     const koyelBids = selectedItems.map(item => ({
@@ -246,12 +237,10 @@ export default function ProductBidding({ data }) {
       bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
       businessName: currentUser?.businessName,
-      businessAddress: currentUser?.businessAddress,
-         shipping: {
-        landing: selectedLocation,
-        shippingType: selectedPriceType,
-        shippingCost: shippingCost
-      }
+      productName: data?.name,
+      productID: data?._id,
+      productPhoto: data?.mainImage,
+      businessAddress: currentUser?.businessAddress
     }));
 
     const createBids = {
@@ -269,13 +258,8 @@ export default function ProductBidding({ data }) {
       bidderId: currentUser?._id,
       bidderPhoto: currentUser?.userPhoto,
       bidderNumber: currentUser?.phoneNumber,
-       businessName: currentUser?.businessName,
-      businessAddress: currentUser?.businessAddress,
-      shipping: {
-        landing: selectedLocation,
-        shippingType: selectedPriceType,
-        shippingCost: shippingCost
-      }
+      businessName: currentUser?.businessName,
+      businessAddress: currentUser?.businessAddress
     };
 
     fetch(`http://localhost:5000/product/${data?._id}/bid/v1`, {

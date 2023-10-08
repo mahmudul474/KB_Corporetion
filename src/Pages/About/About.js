@@ -12,16 +12,14 @@ import reliImg from "./assets/Reli.png"
 import tridloImg from "./assets/Tailored.png"
 import trusImg from "./assets/Trus.png"
 import { useTranslation } from "../../Component/TranslationProvider/TranslationProvider";
+import ShopLocationsMap from "../../Component/Googlemap/ShopLocationsMap";
 
 export default function About() {
   const { translate } = useTranslation();
-  const mapStyles = {
-    width: "100%",
-    height: "400px"
-  };
+
   return (
     <div>
-      <section className="flex items-center py-20 bg-gray-100 font-poppins ">
+      <section className="flex items-center m-auto py-20 bg-gray-100 font-poppins ">
         <div className="justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-6 md:px-6">
           <div className="flex flex-wrap items-center">
             <div className="w-full px-4 mb-10 xl:w-1/2 lg:mb-8">
@@ -59,38 +57,7 @@ export default function About() {
               <p className="mb-4 className= leading-7 text-gray-500 dark:text-gray-black  text-left">
                 {translate("company", "description")}
               </p>
-              <ul className="mb-10 list-outside hover:list-inside">
-                <li className="flex items-center mb-4 className= text-black  ">
-                  {translate("company", "1")}
-                </li>
-                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
-                  {translate("company", "2")}
-                </li>
-                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
-                  {translate("company", "3")}
-                </li>
-                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
-                  {translate("company", "4")}
-                </li>
-                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
-                  {translate("company", "5")}
-                </li>
-                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
-                  {translate("company", "6")}
-                </li>
-                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
-                  {translate("company", "7")}
-                </li>
-                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
-                  {translate("company", "8")}
-                </li>
-                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
-                  {translate("company", "9")}
-                </li>
-                <li className="flex items-center mb-4 className= text-black  dark:text-gray-400">
-                  {translate("company", "10")}
-                </li>
-              </ul>
+             
               <a
                 href="#"
                 download=""
@@ -216,20 +183,16 @@ export default function About() {
           {translate("why", "offics")}
         </h1>
 
+        <ShopLocationsMap></ShopLocationsMap>
+
         <div className=" px-4 py-5  flex  mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8flex justify-center items-center flex-col  lg:flex-row ">
           <div className="w-full">
-            <div className="w-[400px] h-[300px]">
-              <img className="w-full  h-full object-cover" src={ban} />
-            </div>
             <div className=" felx justify-start items-start text-left mt-5 text-black">
               <h4>KB CORPORATION</h4>
               <p>{translate("why", "email")}</p>
               <p> {translate("why", "cellphone")}</p>
               <p> {translate("why", "Address")}</p>
             </div>
-          </div>
-          <div className="w-full">
-            <img className="w-full  h-full object-cover" src={mapImg} />
           </div>
         </div>
       </div>
