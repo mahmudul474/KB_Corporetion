@@ -12,7 +12,7 @@ export default function KoyelItemBids() {
   useEffect(() => {
     setIsloading(true);
     if (currentUser) {
-      fetch(`http://localhost:5000/user/bids/${currentUser?._id}`)
+      fetch(`https://kb-server-6jly.vercel.app/user/bids/${currentUser?._id}`)
         .then(response => response.json())
         .then(data => {
           setItembids(data.bids, "get bids ");

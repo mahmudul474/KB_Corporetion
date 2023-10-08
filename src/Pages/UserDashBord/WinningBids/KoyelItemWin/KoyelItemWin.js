@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../../auth/AuthProbaider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import SendPaymentDettals from "../SendPaymentDettails/SendPaymentDettals";
 
 export default function KoyelItemWin() {
   const { currentUser } = useContext(AuthContext);
@@ -14,12 +15,25 @@ export default function KoyelItemWin() {
     queryKey: ["winProduct", currentUser],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/user/wins/${currentUser?._id}`
+        `https://kb-server-6jly.vercel.app/user/wins/${currentUser?._id}`
       );
       const data = await res.json();
       return data.wins;
     }
   });
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = product => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null);
+    setIsModalOpen(false);
+  };
 
   console.log(winProduct);
 
@@ -78,9 +92,7 @@ export default function KoyelItemWin() {
                   </td>
 
                   <td>
-                    <a href="#bidding_items" className="btn">
-                      vieW Items
-                    </a>
+                    <a href="#bidding_items">view items</a>
 
                     <div className="modal" id="bidding_items">
                       <div className="modal-box">
@@ -144,14 +156,25 @@ export default function KoyelItemWin() {
                   </td>
                   <td>
                     <Link to={`/product/${item?.productID}`}>
-                      <a className="btn">view Product</a>
+                      <a>view Product</a>
                     </Link>
                   </td>
+
+                  <td onClick={() => openModal(item)}>send Payments</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+      )}
+
+      {isModalOpen && (
+        <SendPaymentDettals
+          isOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          closeModal={closeModal}
+          data={selectedProduct}
+        />
       )}
     </div>
   );

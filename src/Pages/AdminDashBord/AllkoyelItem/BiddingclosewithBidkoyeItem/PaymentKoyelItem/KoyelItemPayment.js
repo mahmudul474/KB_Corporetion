@@ -6,6 +6,9 @@ import { BsChevronDown } from "react-icons/bs";
 
 export default function KoyelItemPayment() {
   const data = useLoaderData();
+
+  console.log(data, "product datra ");
+
   const [successfulPayment, setSucceFullPayment] = useState([]);
 
   ///get all  successful payments
@@ -28,10 +31,12 @@ export default function KoyelItemPayment() {
               <table className=" table table-xs table-pin-rows   ">
                 <thead className="bg-white  text-black">
                   <tr className="bg-white  text-black">
+                    <td>Product</td>
                     <td>Winner</td>
-                    <td>Items</td>
-                    <td>bid price</td>
-                    <td>Win Amount</td>
+                    <td>Total Win </td>
+                    <td>Total Weight</td>
+                    <td>Per kg Price</td>
+                    <td>Total Amount</td>
 
                     <th></th>
                   </tr>
@@ -44,10 +49,29 @@ export default function KoyelItemPayment() {
                         <div className="flex items-center space-x-3">
                           <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                              <img src={winner?.bidderPhoto} alt="winner" />
+                              <img src={winner?.productPhoto} alt="winner" />
                             </div>
                           </div>
                           <div>
+                            <div className="font-bold text-black">
+                              {winner?.productName}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        {" "}
+                        <div className="flex items-center space-x-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img src={winner?.bidderPhoto} alt="winner" />
+                            </div>
+                        
+                          </div>
+                          <div>
+                            <div className="font-bold text-black">
+                              {winner?.businessName}
+                            </div>
                             <div className="font-bold text-black">
                               {winner?.bidderName}
                             </div>
@@ -60,21 +84,25 @@ export default function KoyelItemPayment() {
                           </div>
                         </div>
                       </td>
+
+                      <td>{winner?.winproduct?.length}</td>
+                      <td>{winner?.totalWeight + "KG"}</td>
+                      <td>{winner?.averagePerKgPrice?.toFixed(2) + "$"}</td>
+                      <td>{winner?.total.toFixed(2) + "$"}</td>
                       <td>
-                        <div className="dropdown dropdown-hover">
-                          <label
-                            tabIndex={0}
-                            className=" flex items-center text-black justify-center m-1 cursor-pointer"
-                          >
-                            <span className="text-black">
-                              <BsChevronDown></BsChevronDown>
-                            </span>
-                            items
-                          </label>
-                          <ul
-                            tabIndex={0}
-                            className="dropdown-content z-[1] menu p-2 shadow bg-gray-200	 rounded-box "
-                          >
+                        {/* The button to open modal */}
+                        <label htmlFor="my_modal_6" className="btn">
+                          Products
+                        </label>
+
+                        {/* Put this part before </body> tag */}
+                        <input
+                          type="checkbox"
+                          id="my_modal_6"
+                          className="modal-toggle"
+                        />
+                        <div className="modal">
+                          <div className="modal-box">
                             <div className="overflow-x-auto bg-white text-black	">
                               <table className="table table-zebra">
                                 {/* head */}
@@ -90,31 +118,37 @@ export default function KoyelItemPayment() {
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr className="bg-white text-black ">
-                                    <th className="text-black">
-                                      {winner?.item}
-                                    </th>
-                                    <td className="text-black">
-                                      {winner?.spec}
-                                    </td>
-                                    <td className="text-black">
-                                      {winner?.Thickness}
-                                    </td>
-                                    <td className="text-black">
-                                      {winner?.Width}
-                                    </td>
-                                    <td className="text-black">{winner?.TS}</td>
-                                    <td className="text-black">{winner?.YP}</td>
-                                    <td className="text-black">{winner?.EL}</td>
-                                  </tr>
+                                  {winner?.winproduct.map(item => (
+                                    <tr className="bg-white text-black ">
+                                      <th className="text-black">
+                                        {item?.item}
+                                      </th>
+                                      <td className="text-black">
+                                        {item?.spec}
+                                      </td>
+                                      <td className="text-black">
+                                        {item?.Thickness}
+                                      </td>
+                                      <td className="text-black">
+                                        {item?.Width}
+                                      </td>
+                                      <td className="text-black">{item?.TS}</td>
+                                      <td className="text-black">{item?.YP}</td>
+                                      <td className="text-black">{item?.EL}</td>
+                                    </tr>
+                                  ))}
                                 </tbody>
                               </table>
                             </div>
-                          </ul>
+                            <div className="modal-action">
+                              <label htmlFor="my_modal_6" className="btn">
+                                Close!
+                              </label>
+                            </div>
+                          </div>
                         </div>
                       </td>
-                      <td className="text-black">{winner?.currentBid + "$"}</td>
-                      <td className="text-black">{winner?.bidAmount + "$"}</td>
+                      <td className="text-black">stutuse</td>
                     </tr>
                   ))}
                 </tbody>

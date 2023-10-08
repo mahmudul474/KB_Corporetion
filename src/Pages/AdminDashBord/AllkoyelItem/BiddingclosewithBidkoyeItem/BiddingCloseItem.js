@@ -46,8 +46,11 @@ export default function BiddingCloseItem() {
            <thead className="text-xs text-black first-line:uppercase bg-gray-50">
              <tr>
                <th text-black>Product</th>
-               <th text-black>Start bid</th>
-
+               <th text-black>Category</th>
+               <th text-black>Shipping Cost</th>
+               <th text-black>Total-item</th>
+               <th text-black>Total-Bids</th>
+               <th text-black>Total-Wins</th>
                <th text-black>Details</th>
                <th text-black>Payment</th>
              </tr>
@@ -71,7 +74,92 @@ export default function BiddingCloseItem() {
                      </div>
                    </div>
                  </th>
-                 <td text-black>{product?.startBiddingPrice}</td>
+                 <td>{product?.category}</td>
+                 <td>
+                   {/* The button to open modal */}
+                   <label htmlFor="my_modal_6" className="btn">
+                     view
+                   </label>
+
+                   {/* Put this part before </body> tag */}
+                   <input
+                     type="checkbox"
+                     id="my_modal_6"
+                     className="modal-toggle"
+                   />
+                   <div className="modal">
+                     <div className="modal-box">
+                       <div className="overflow-x-auto">
+                         <h1>Shipping Cost Per Kg</h1>
+                         <table className="table">
+                           {/* head */}
+                           <thead>
+                             <tr>
+                               <th>Location</th>
+                               <th>Container</th>
+                               <th>Bulk</th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                             {/* row 1 */}
+                             <tr>
+                               <td>Mongla</td>
+                               <td>
+                                 {product?.ShippingCost?.mongla.containerPrice +
+                                   "$ KG"}{" "}
+                               </td>
+                               <td>
+                                 {product?.ShippingCost?.mongla.bulkPrice +
+                                   "$ KG"}
+                               </td>
+                             </tr>
+                             <tr>
+                               <td>chattogram</td>
+                               <td>
+                                 {product?.ShippingCost?.chattogram
+                                   .containerPrice + "$ KG"}{" "}
+                               </td>
+                               <td>
+                                 {product?.ShippingCost?.chattogram.bulkPrice +
+                                   "$ KG"}
+                               </td>
+                             </tr>
+                             {/* row 2 */}
+                             <tr>
+                               <td>dhaka</td>
+                               <td>
+                                 {product?.ShippingCost?.dhaka.containerPrice +
+                                   "$ KG"}
+                               </td>
+                             </tr>
+                             {/* row 3 */}
+                             <tr>
+                               <td>pangon</td>
+                               <td>
+                                 {product?.ShippingCost?.pangon.containerPrice +
+                                   "$ KG"}
+                               </td>
+                               <td>
+                                 {" "}
+                                 {product?.ShippingCost?.pangon.bulkPrice +
+                                   "$ KG"}
+                               </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                       </div>
+                       <div className="modal-action">
+                         <label htmlFor="my_modal_6" className="btn">
+                           Close!
+                         </label>
+                       </div>
+                     </div>
+                   </div>
+                 </td>
+
+                 <td text-black>{product?.koyel?.length}</td>
+                 <td text-black>{product?.bids?.length}</td>
+                 <td text-black>{product?.winners?.length}</td>
 
                  <td text-black>
                    <Link

@@ -13,7 +13,7 @@ import ButtonSpiner from "../../../Component/ButtonSpiner/ButtonSpiner";
 
 export default function ProductBidding({ data }) {
   const { currentUser, user } = useContext(AuthContext);
-  console.log(currentUser,"s");
+  console.log(currentUser, "s");
   const { translate } = useTranslation();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
@@ -21,7 +21,6 @@ export default function ProductBidding({ data }) {
   const [selectedPriceType, setSelectedPriceType] = useState("");
   const [shippingCost, setShippingCost] = useState(null);
   const [isLoading, setIsloading] = useState(false);
-   
 
   const handleDateChange = date => {
     setSelectedDate(date);
@@ -224,7 +223,7 @@ export default function ProductBidding({ data }) {
       return setBidError(
         `you can not bidding less than${totals?.biddingTotal + "$"}`
       );
-    } 
+    }
     setIsloading(true);
     // Prepare the bid data for selected items
     const koyelBids = selectedItems.map(item => ({
@@ -240,6 +239,7 @@ export default function ProductBidding({ data }) {
       productName: data?.name,
       productID: data?._id,
       productPhoto: data?.mainImage,
+      shipping: data?.ShippingCost,
       businessAddress: currentUser?.businessAddress
     }));
 
@@ -262,7 +262,7 @@ export default function ProductBidding({ data }) {
       businessAddress: currentUser?.businessAddress
     };
 
-    fetch(`http://localhost:5000/product/${data?._id}/bid/v1`, {
+    fetch(`https://kb-server-6jly.vercel.app/product/${data?._id}/bid/v1`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

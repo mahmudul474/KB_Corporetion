@@ -6,7 +6,7 @@ const QrCode = () => {
     position: "fixed",
     bottom: "20px",
     left: "20px",
-    zIndex: "9999"
+    zIndex: ""
   };
   return (
     <img
