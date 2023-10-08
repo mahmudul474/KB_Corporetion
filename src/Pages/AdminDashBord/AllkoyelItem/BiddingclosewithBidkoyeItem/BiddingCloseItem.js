@@ -23,6 +23,12 @@ export default function BiddingCloseItem() {
  if(isLoading){
   return <LoadingSpiner></LoadingSpiner>
  }
+
+
+
+
+ console.log(koyelItems);
+
    return (
      <div>
        <div className="  shadow-md sm:rounded-lg">

@@ -14,9 +14,7 @@ import Private from "./PraivetRout/Privet";
 import Winers from "../Pages/Winners/Winers";
 import Users from "../Pages/AdminDashBord/Users/Users";
 import Order from "../Pages/AdminDashBord/Orders/Order";
-
 import About from "../Pages/About/About";
-
 import Adminrout from "./AdminRout/Adminrout";
 import Request from "../Pages/UserDashBord/RequestASeller/Request";
 import SellerRequest from "../Pages/AdminDashBord/Seller_Request/SellerRequest";
